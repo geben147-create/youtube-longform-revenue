@@ -10,10 +10,10 @@ window.LongformWorkspace = function mount(api) {
   for (const k of ['video','channel','preset']) if (!Array.isArray(db[k])) db[k]=[];
   if (!db.evidence || typeof db.evidence !== 'object') db.evidence={};
   const base = {ai:'',grade:'',group:'all',kind:'ad',model:'legacy',country:'',fx:'1400',target:'',metric:'',dir:'desc',one:false,window:false,focus:'',list:''};
-  let cfg = {...base}, active = '', library = '', panel = 'board', direct = false;
+  let qualifiedCount=0,researchCount=0; let cfg = {...base}, active = '', library = '', panel = 'board', direct = false;
   const params = new URL(location.href);
   const includesParam = k => params.searchParams.has(k);
-  const explicit = ['q','view','pageSize','analysis','panel'].some(includesParam);
+  const explicit = ['q','view','pageSize','analysis','panel','lf'].some(includesParam);
   direct = includesParam('q');
   const gradeRank = {A:3,B:2,C:1};
   const blue = 'lf-blue', purple = 'lf-purple', orange = 'lf-orange', gray = 'lf-gray', green = 'lf-green';
@@ -51,11 +51,11 @@ window.LongformWorkspace = function mount(api) {
   }
   function order(a,b,dir=cfg.dir){if(a==null)return b==null?0:1;if(b==null)return -1;return dir==='asc'?a-b:b-a;}
   function choose(rows,r,fallback){
-    if(direct)return rows.slice().sort(fallback);
+    if(direct){qualifiedCount=0;researchCount=rows.length;return rows.slice().sort(fallback);}
     const pairs=rows.map(v=>[v,metrics(v,r)]).filter(([v,m])=>{
       if(cfg.list==='video'&&!db.video.some(x=>x.key===v.id)||cfg.list==='channel'&&!db.channel.some(x=>x.key===cleanChannel(v)))return false;
       if(cfg.ai==='yes'&&!v.ai||cfg.ai==='unknown'&&v.ai||cfg.grade==='U'&&m.grade!=null||cfg.grade&&cfg.grade!=='U'&&m.grade!==gradeRank[cfg.grade])return false;
-      if(cfg.country&&m.country!==cfg.country||cfg.group==='qualified'&&!m.qualified||cfg.group==='research'&&m.qualified)return false;
+      if(cfg.country&&m.country!==cfg.country)return false;
       if(cfg.window&&(m.start==null?cfg.group==='qualified':m.start<7||m.start>90))return false;
       if(cfg.target!==''&&!(m.selected!=null&&m.selected>=Number(cfg.target)))return false;
       return true;
@@ -68,12 +68,12 @@ window.LongformWorkspace = function mount(api) {
       return fallback(a,b);
     };
     pairs.sort(cmp);
-    const seen=new Set();return pairs.map(p=>p[0]).filter(v=>!cfg.one||!seen.has(cleanChannel(v))&&!!seen.add(cleanChannel(v)));
+    const seen=new Set();const picked=pairs.filter(([v])=>!cfg.one||!seen.has(cleanChannel(v))&&!!seen.add(cleanChannel(v)));qualifiedCount=picked.filter(p=>p[1].qualified).length;researchCount=picked.length-qualifiedCount;return picked.filter(p=>cfg.group==='all'||p[1].qualified===(cfg.group==='qualified')).map(p=>p[0]);
   }
   const formNode = `
   <div id="lf-presets" class="lf-row" aria-label="추천 조합">${presets.map(p=>`<button type="button" data-lf="preset" data-key="${p.id}" title="${esc(p.about)}" aria-pressed="false">${p.name}</button>`).join('')}</div>
-  <p id="lf-hint" class="lf-hint"></p>
-  <div class="lf-row" aria-label="저장 관리"><button type="button" data-lf="save">현재 조건 조합 저장</button><button type="button" data-lf="library" data-key="preset">저장 조합</button><button type="button" data-lf="library" data-key="video">영상 즐겨찾기</button><button type="button" data-lf="library" data-key="channel">채널 즐겨찾기</button><button type="button" data-lf="all">전체 검색</button><button type="button" data-lf="shrink" aria-label="카드 축소" title="Ctrl+-">−</button><button type="button" data-lf="grow" aria-label="카드 확대" title="Ctrl++">+</button>${select('group','후보 구분',[['all','전체'],['qualified','근거 충족'],['research','조사 후보']],blue)}</div>
+  <p id="lf-hint" class="lf-hint"></p><p id="lf-counts" class="lf-hint" role="status"></p>
+  <div class="lf-row" aria-label="저장 관리"><button type="button" data-lf="save">현재 조건 조합 저장</button><button type="button" data-lf="library" data-key="preset">저장 조합</button><button type="button" data-lf="library" data-key="video">영상 즐겨찾기</button><button type="button" data-lf="library" data-key="channel">채널 즐겨찾기</button><button type="button" data-lf="all">전체 검색</button><button type="button" data-lf="default">기본 조합으로</button><button type="button" data-lf="share">조건 링크 복사</button><button type="button" data-lf="shrink" aria-label="카드 축소" title="Ctrl+-">−</button><button type="button" data-lf="grow" aria-label="카드 확대" title="Ctrl++">+</button>${select('group','후보 구분',[['all','전체'],['qualified','근거 충족'],['research','조사 후보']],blue)}</div>
   <details id="lf-options"><summary>상세 조건 · 정렬 방향 · 금액 모델</summary><div class="lf-options">
   ${select('ai','AI 제작',[['','전체'],['yes','AI 확인'],['unknown','미확인']],purple)}
   ${select('grade','근거 등급',[['','전체'],['A','A · 직접 근거'],['B','B · 교차 근거'],['C','C · 제한적'],['U','미확인']],blue)}
@@ -97,7 +97,7 @@ window.LongformWorkspace = function mount(api) {
     drawLibrary();
   }
   function clearDirect(){if(!direct)return;direct=false;const u=new URL(location.href);u.searchParams.delete('q');history.replaceState(history.state,'',u);}
-  function capture(){return {controls:Object.fromEntries(controls.map(id=>[id,$(id).value])),view:api.state.key,min:api.state.min,cfg:{...cfg}};}
+  function capture(){return {format:'longform',profile_id:'business-fit-v1',display:'grid',controls:Object.fromEntries(controls.map(id=>[id,$(id).value])),view:api.state.key,min:api.state.min,cfg:{...cfg}};}
   function apply(saved,{initial=false}={}){
     if(!initial){clearDirect();showPanel('board',panel!=='board');api.resetTrend();}
     if(!initial) $('q').value='';
@@ -106,6 +106,8 @@ window.LongformWorkspace = function mount(api) {
     $('customDaysLabel').hidden=$('days').value!=='custom';document.documentElement.style.setProperty('--cols',$('cols').value||'5');
     refresh();api.select(saved.view||'all');
   }
+  function readShare(raw){try{const x=JSON.parse(raw);if(x?.format==='longform'&&x.controls&&x.cfg)return x;}catch{}return null;}
+  function applyDefault(){const item=db.home&&db[db.home.type]?.find(x=>x.key===db.home.key);if(item)applyEntry(db.home.type,item);else applyPreset(presets[0]);}
   function defaults(){return {q:'',days:'all',vdays:'27',sort:'views',rpm:'2',pagesize:'100',cols:'5',vmin:'',vmax:'',mmin:'',mmax:'',vfrom:'',vto:''};}
   function applyPreset(p){active=p.id;apply({controls:{...defaults(),...p.controls},cfg:p.cfg});}
   function applyEntry(type,item){active='';if(type==='preset'){apply(item.value);return;}apply({controls:{...defaults(),q:type==='video'?item.key:''},cfg:{list:type==='channel'?'channel':''},view:'all'});if(type==='channel')api.findChannel(item.channel||item.name);}
@@ -131,7 +133,7 @@ window.LongformWorkspace = function mount(api) {
     const m=metrics(v,r), ch=cleanChannel(v), button=(kind,key,t,pressed=false)=>`<button type="button" data-lf="${kind}" data-key="${esc(key)}" ${kind==='evidence'?'':`aria-pressed="${pressed}"`}>${t}</button>`;
     const comparisons=cfg.focus==='new'?[['시작 경과',m.start,orange],['쇼츠 D7',m.d7,blue],['롱폼 D30',m.d30,blue]]:cfg.focus==='business'?[['작업 분',m.minutes,purple],['비용',m.cost,green],['실제 거래',m.trades,blue],['반복 거래',m.repeatTrades,blue],['시간당 이익',m.hourly,green]]:cfg.focus==='steady'?[['반복 %',m.repeat,blue],['작업 분',m.minutes,purple]]:[];
     const more=(cfg.focus||cfg.metric||cfg.model!=='legacy'||cfg.kind!=='ad')?`<div class="lf-labels"><span class="${m.selected==null?gray:green}">${cfg.kind==='profit'?'실제 순이익':cfg.kind==='total'?'실제 총수익':cfg.model==='actual'?'실제 광고':'광고 추정'} ${won(m.selected)}</span>${comparisons.map(([k,n,cls])=>`<span class="${n==null?gray:cls}">${k} ${['비용','시간당 이익'].includes(k)?won(n):shortNum(n)}</span>`).join('')}</div>`:'';
-    return `<div class="lf-labels"><span class="${m.qualified?blue:orange}">${m.qualified?'근거 충족':'조사 후보'}</span><span class="${m.grade?blue:gray}">${m.e.grade?esc(m.e.grade)+' 근거':'근거 미확인'}</span>${v.ai?'<span class="lf-purple">AI 제작</span>':''}${source(m.e.source)?`<a class="lf-blue" href="${esc(source(m.e.source))}" target="_blank" rel="noopener noreferrer">출처</a>`:''}</div>${more}<div class="lf-actions">${button('fav-video',v.id,'영상 저장',db.video.some(x=>x.key===v.id))}${button('fav-channel',v.id,'채널 저장',db.channel.some(x=>x.key===ch))}${button('evidence',v.id,'검증 근거')}</div>`;
+    return `<div class="lf-labels"><span class="${m.qualified?blue:orange}">${m.qualified?'근거 충족':'조사 후보'}</span><span class="${m.grade?blue:gray}">${m.e.grade?esc(m.e.grade)+' 근거':'근거 미확인'}</span>${v.ai?'<span class="lf-purple">AI 제작</span>':''}${source(m.e.source)?`<a class="lf-blue" href="${esc(source(m.e.source))}" target="_blank" rel="noopener noreferrer">출처</a>`:''}</div>${more}<div class="lf-actions">${button('fav-video',v.id,'영상 저장',db.video.some(x=>x.key===v.id))}${button('fav-channel',v.id,'채널 저장',db.channel.some(x=>x.key===ch))}${button('evidence',v.id,'검증 근거')}${cfg.one?button('channel-more',v.id,'이 채널 더보기'):''}</div>`;
   }
   function evidenceDialog(v){
     const e=evidence(v), d=$('lf-evidence-dialog'), form=d.querySelector('form');$('lf-evidence-title').textContent=v.t;
@@ -151,12 +153,15 @@ window.LongformWorkspace = function mount(api) {
     const b=ev.target.closest('[data-lf]');if(!b)return;const action=b.dataset.lf,k=b.dataset.key,index=Number(b.dataset.idx);
     if(action==='preset'){applyPreset(presets.find(p=>p.id===k));return;}
     if(action==='all'){active='';apply({controls:defaults(),cfg:base});return;}
+    if(action==='default'){applyDefault();return;}
+    if(action==='share'){const scope=capture();if(scope.cfg.list){message('즐겨찾기 목록은 기기 간 공유되지 않습니다.');return;}const u=new URL(location.href);u.search='';u.searchParams.set('lf',JSON.stringify(scope));if(scope.controls.q&&!scope.cfg.focus&&/^[\w-]{11}$/.test(scope.controls.q))u.searchParams.set('q',scope.controls.q);navigator.clipboard?.writeText(u.href).then(()=>message('조건 링크를 복사했습니다.'),()=>nameDialog('조건 링크',u.href,()=>{}));return;}
     if(action==='shrink'||action==='grow'){density(action==='shrink'?1:-1);return;}
     if(action==='save'){const saved=capture();nameDialog('조건 조합 이름',presets.find(p=>p.id===active)?.name||'내 조건 조합',name=>{db.preset.push({key:crypto.randomUUID?.()||String(Date.now()),name,value:saved});library='preset';store();drawLibrary();});return;}
     if(action==='library'){library=library===k?'':k;drawLibrary();return;}
     if(action==='close-library'){library='';drawLibrary();return;}
     if(action==='browse-library'){if(library==='preset'){message('저장한 이름을 선택하면 조건을 적용합니다.');return;}active='';apply({controls:defaults(),cfg:{list:library}});return;}
     if(action==='clear-home'){db.home=null;store();drawLibrary();return;}
+    if(action==='channel-more'){const v=api.get(k);if(v){active='';apply({controls:defaults(),cfg:{}});api.findChannel(v.ch);message('채널의 전체 조사 영상을 표시합니다.');}return;}
     if(action==='evidence'){const v=api.get(k);if(v)evidenceDialog(v);return;}
     if(action==='fav-video'||action==='fav-channel'){
       const v=api.get(k), type=action==='fav-video'?'video':'channel';if(!v)return;const key=type==='video'?v.id:cleanChannel(v);
@@ -176,9 +181,10 @@ window.LongformWorkspace = function mount(api) {
   window.addEventListener('popstate',()=>{const p=new URL(location.href);showPanel(p.searchParams.get('panel')==='reproduction'?'reproduction':'board',false,p.searchParams.get('section')||'');});
   function prepare(){
     if(direct){$('q').value=params.searchParams.get('q')||'';api.clearChannel();}
-    else if(!explicit&&db.home){const {type,key}=db.home;const item=db[type]?.find(x=>x.key===key);if(item)applyEntry(type,item);}
+    else if(!direct&&includesParam('lf')){const shared=readShare(params.searchParams.get('lf'));if(shared){apply(shared,{initial:true});message('공유 주소 조건 적용 중입니다.');}}
+    else if(!explicit)applyDefault();
     if(!direct&&params.searchParams.get('panel')==='reproduction')showPanel('reproduction',false,params.searchParams.get('section')||'');
     refresh();
   }
-  return {prepare,choose,card,direct:()=>direct,normalSearch(){clearDirect();refresh();},legacyReset(){active='';cfg={...base};clearDirect();refresh();}};
+  return {prepare,choose,card,counts(all){$('lf-counts').textContent='전체 '+all.toLocaleString('ko-KR')+'편 · 근거 충족 '+qualifiedCount.toLocaleString('ko-KR')+'편 · 조사 후보 '+researchCount.toLocaleString('ko-KR')+'편';},direct:()=>direct,normalSearch(){clearDirect();refresh();},legacyReset(){active='';cfg={...base};clearDirect();refresh();}};
 };
