@@ -1,0 +1,56 @@
+/* V7 panel: seed channel deep dive, new-channel ranking, sector queries and pilot tracker. Reads lf-v7.json lazily. */
+'use strict';
+window.LFV7UI = {
+  mount(api) {
+    const root = document.getElementById('lf-v7');
+    if (!root || root.dataset.ready) return null;
+    root.dataset.ready = '1';
+    const esc = api.esc, n = x => x == null ? '미확인' : Math.round(x).toLocaleString('ko-KR'), pct = x => x == null ? '미확인' : (Math.trunc(x * 1000) / 10) + '%';
+    const STORE = 'lf-v7:pilot:v1';
+    const TABS = [['seed', '핵심 채널 15편'], ['rank', '신생 채널 순위'], ['sector', '섹터·검색어'], ['pilot', 'A/B 파일럿 비교'], ['notes', '근거·한계']];
+    let data = null, tab = 'seed', sort = 'meanEx2', sector = '', loading = false, pilot = {};
+    try { pilot = JSON.parse(localStorage.getItem(STORE) || '{}') || {}; } catch { pilot = {}; }
+    root.innerHTML = '<summary>🔥 V7 신생 고수익 · 일본 국뽕 감동사연·AI 드라마</summary><div data-body><p class="lf-hint">열면 V7 조사 자료를 불러옵니다. 실제 수익이 아니라 공개 조회 기반 관찰과 가정입니다.</p></div>';
+    const body = root.querySelector('[data-body]');
+    const SORTS = { meanEx2: ['최고 2편 제외 평균', c => c.stats?.meanExTop2], median: ['중앙값', c => c.stats?.median], rate100k: ['10만 조회 달성률', c => c.stats?.rate100k], subsAsc: ['구독자 적은 순', c => c.subs == null ? null : -c.subs], newest: ['개설 최신순', c => c.joined ? Date.parse(c.joined) : null], x: ['구독자 대비 중앙값', c => c.subs > 0 && c.stats?.median != null ? c.stats.median / c.subs : null] };
+    const link = (u, t) => `<a href="${esc(u)}" target="_blank" rel="noopener noreferrer">${esc(t)}</a>`;
+    function seed() {
+      const s = data.seed, c = s.channel, st = s.channel.stats || {};
+      const vids = s.videos.slice().sort((a, b) => b.views - a.views), top = new Set((s.comparison?.top6 || []).map(x => x.id || x)), low = new Set((s.comparison?.bottom5 || []).map(x => x.id || x));
+      return `<div class="lf-card-mini"><strong>${link(c.url, c.name)}</strong> · 구독자 ${n(c.subs)}${c.subsPrecision ? ' ≈' : ''} · 개설 ${esc(c.joined || '미확인')} · 공개 영상 ${n(c.totalVideos)} · 채널 누적 조회 ${n(c.totalViews)}<br>영상 ${n(st.n)}편 · 평균 ${n(st.mean)} · 중앙값 ${n(st.median)} · 최고 2편 제외 평균 ${n(st.meanExTop2)} · 최고 2편 비중 ${pct(st.top2Share)} · 10만↑ ${pct(st.rate100k)} · 20만↑ ${pct(st.rate200k)} · 평균 길이 ${n((st.avgDurationSec || 0) / 60)}분<br><small>최근 7일 증가 조회는 이전 스냅샷이 없어 계산하지 않았습니다. 이 화면의 조회수가 기준 스냅샷(${esc(s.retrievedAt || '')})입니다.</small></div>
+      <div class="lf-table-wrap"><table><thead><tr><th></th><th>영상</th><th>조회</th><th>게시</th><th>길이</th><th>자막</th><th>AI·창작 표시</th></tr></thead><tbody>${vids.map(v => `<tr><td>${top.has(v.id) ? '상위' : low.has(v.id) ? '하위' : ''}</td><th><a href="${esc(v.url)}" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/${esc(v.id)}/mqdefault.jpg" alt="" width="96" height="54" loading="lazy" referrerpolicy="no-referrer"></a> ${esc(v.title)}${v.titleKo ? `<br><small>${esc(v.titleKo)} (어시스턴트 번역)</small>` : ''}</th><td>${n(v.views)}</td><td>${esc((v.publishedAt || '').slice(0, 10))}</td><td>${n((v.durationSec || 0) / 60)}분</td><td>${esc(v.transcript || '미확인')}</td><td>${esc(v.disclosure || '표시 미확인')}</td></tr>`).join('')}</tbody></table></div>
+      ${(s.comparison?.observations || []).length ? `<div class="lf-card-mini"><strong>상위 6편 vs 하위 5편 관찰 (원인 단정 아님)</strong><ul>${s.comparison.observations.map(o => `<li>${esc(o)}</li>`).join('')}</ul></div>` : ''}`;
+    }
+    function rank() {
+      const f = SORTS[sort][1];
+      const rows = data.channels.filter(c => !sector || (c.sectors || []).includes(sector)).slice().sort((a, b) => { const x = f(a), y = f(b); return x == null ? (y == null ? 0 : 1) : y == null ? -1 : y - x; });
+      return `<div class="lf-row"><label>정렬 <select data-v7="sort">${Object.entries(SORTS).map(([k, v]) => `<option value="${k}" ${sort === k ? 'selected' : ''}>${v[0]}</option>`).join('')}</select></label><label>섹터 <select data-v7="sector"><option value="">전체</option>${data.sectors.map(s => `<option ${sector === s.name ? 'selected' : ''}>${esc(s.name)}</option>`).join('')}</select></label><span>${rows.length}채널 · 신규 ${data.channels.filter(c => !c.known).length}</span></div>
+      <p class="lf-hint">저품질 후보로 수량을 채우지 않았습니다. 중앙값·평균은 채널 최신 업로드 표본(최대 30편)이며 시장 전체가 아닙니다. 외부 추정·실제 수익은 구분해 표시합니다.</p><div class="lf-table-wrap"><table><thead><tr><th>채널</th><th>제작 방식</th><th>구독자</th><th>개설</th><th>영상 수</th><th>중앙값</th><th>최고2 제외 평균</th><th>10만↑</th><th>최고2 비중</th><th>길이대</th><th>창작·AI 표시</th></tr></thead><tbody>${rows.map(c => `<tr><th>${link(c.url, c.name)}${c.known ? ' <small>(기존 채널)</small>' : ''}</th><td>${esc(({ on_camera: '출연형', narration: '나레이션', narration_only: '나레이션', ai: 'AI', ai_generated: 'AI', material_mix: '자료 조합' })[c.appearance] || '미확인')}</td><td>${n(c.subs)}</td><td>${esc(c.joined || '미확인')}</td><td>${n(c.totalVideos)}</td><td>${n(c.stats?.median)}</td><td>${n(c.stats?.meanExTop2)}</td><td>${pct(c.stats?.rate100k)}</td><td>${pct(c.stats?.top2Share)}</td><td>${esc(c.lengthBucket || '미확인')}</td><td>${esc(c.disclosure || '표시 미확인')}</td></tr>`).join('')}</tbody></table></div><details><summary>탐색 후보 ${n((data.candidates||[]).length)}곳 · 품질 기준 미달(표본 5편 미만 또는 중앙값 1,000회 미만) — 순위 제외, 참고용</summary><ul>${(data.candidates||[]).map(c=>`<li>${link(c.url||'#',c.name)} · 구독자 ${n(c.subs)} · 표본 ${n(c.sampleN)}편 · 중앙값 ${n(c.median)}</li>`).join('')}</ul></details><p class="lf-hint">신규 순위 대상: 일본어 ${data.marketCounts.JP}곳 · 한국어 ${data.marketCounts.KR}곳 · 영어 ${data.marketCounts.EN}곳. 한국·영어권 후보는 성과 기준을 넘는 채널이 아직 없습니다.</p>`;
+    }
+    function sectors() {
+      return `<div class="lf-table-wrap"><table><thead><tr><th>#</th><th>섹터</th><th>일본어 검색어</th><th>발견 채널</th><th>신규</th></tr></thead><tbody>${data.sectors.map((s, i) => `<tr><td>${i + 1}</td><th>${esc(s.name)}</th><td>${esc(s.query)}</td><td>${n(s.channels)}</td><td>${n(s.newChannels)}</td></tr>`).join('')}</tbody></table></div><p class="lf-hint">검색어는 추가 탐색용입니다. 국뽕 단독 검색으로는 감동 사연·낭독·AI 스토리텔링이 누락될 수 있어 교차 검색했습니다.</p>`;
+    }
+    function pilotTab() {
+      const fields = [['hours', '제작 시간(시간)'], ['cost', '제작비(원)'], ['d7', '7일 조회'], ['d30', '30일 조회'], ['retention', '평균 시청 유지율(%)'], ['rpm', '실제 RPM(원)']];
+      const types = [['A', 'A. 기존 사실 기반 국뽕 (50편 아웃라인 유지, 우선 1편)'], ['B', 'B. 신규 AI 감동 드라마 (독창 창작 사연, 30~40분, 우선 3편)']];
+      return `<p class="lf-hint">직접 측정한 값만 입력하세요. 이 브라우저에만 저장되고 자동 계산 값은 미입력 시 미산정입니다. 허구는 창작으로 표시하고 실제 해외 반응으로 위장하거나 타 채널 대본을 복제하지 않습니다.</p><table><thead><tr><th>유형</th>${fields.map(([, t]) => `<th>${t}</th>`).join('')}<th>시간당 순이익 (RPM×30일 조회−비용)÷시간</th></tr></thead><tbody>${types.map(([k, t]) => { const p = pilot[k] || {}; const hrs = Number(p.hours), rev = Number(p.d30) * Number(p.rpm) / 1000, net = Number(p.cost) >= 0 && hrs > 0 && Number.isFinite(rev) ? (rev - Number(p.cost)) / hrs : null; return `<tr><th>${esc(t)}</th>${fields.map(([f]) => `<td><input data-v7-pilot="${k}.${f}" type="number" min="0" value="${esc(p[f] ?? '')}" style="width:96px"></td>`).join('')}<td>${p.rpm && p.d30 && p.hours && p.cost !== undefined && p.cost !== '' ? n(net) + '원/시간' : '미산정'}</td></tr>`; }).join('')}</tbody></table>`;
+    }
+    function notes() {
+      return `<p>${esc(data.excludedNote || '')} (${n(data.excludedCount)}곳)</p><ul>${(data.limits || []).map(l => `<li>${esc(l)}</li>`).join('')}</ul><p>기존 일본 50편 아웃라인은 변경하지 않았고 이 자료는 별도 사업 유형 비교용입니다.</p>`;
+    }
+    function render() {
+      if (!data) return;
+      const head = `<div class="lf-row" role="tablist">${TABS.map(([k, t]) => `<button type="button" role="tab" data-v7="tab" data-tab="${k}" aria-selected="${tab === k}" aria-pressed="${tab === k}">${t}</button>`).join('')}</div><p class="lf-hint">조사 기준 ${esc(data.asOf)} · ${esc(data.scope || '')}</p>`;
+      body.innerHTML = head + ({ seed, rank, sector: sectors, pilot: pilotTab, notes })[tab]();
+    }
+    async function load() {
+      if (data || loading) return; loading = true;
+      try { const r = await fetch('lf-v7.json'); if (!r.ok) throw Error(r.status); data = await r.json(); render(); }
+      catch { loading = false; body.innerHTML = '<p>V7 자료를 읽지 못했습니다. 기존 갤러리는 영향을 받지 않습니다.</p>'; }
+    }
+    root.addEventListener('toggle', () => { if (root.open) load(); });
+    root.addEventListener('click', e => { const b = e.target.closest('[data-v7=tab]'); if (b) { tab = b.dataset.tab; render(); } });
+    root.addEventListener('change', e => { const t = e.target, v = t.dataset.v7, p = t.dataset.v7Pilot; if (v === 'sort') sort = t.value; else if (v === 'sector') sector = t.value; else if (p) { const [k, f] = p.split('.'); pilot[k] = { ...(pilot[k] || {}), [f]: t.value }; try { localStorage.setItem(STORE, JSON.stringify(pilot)); } catch { /* optional */ } } else return; render(); });
+    return { open(k) { if (k) tab = k; root.open = true; load(); render(); root.scrollIntoView({ block: 'nearest' }); } };
+  }
+};
