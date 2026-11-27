@@ -218,5 +218,5 @@ window.LongformWorkspace = function mount(api) {
     if(!direct&&params.searchParams.get('panel')==='reproduction')showPanel('reproduction',false,params.searchParams.get('section')||'');
     refresh();
   }
-  return {prepare,choose,card,metric:(v,r)=>cardCache.get(v.id)||metrics(v,r),capture,restore(saved){if(explicit||!saved?.cfg)return false;active=focusAlias(saved.cfg.focus)||'';apply(saved,{initial:true});return true;},counts(all){$('lf-counts').textContent='전체 '+all.toLocaleString('ko-KR')+'편 · 근거 충족 '+qualifiedCount.toLocaleString('ko-KR')+'편 · 조사 후보 '+researchCount.toLocaleString('ko-KR')+'편';},direct:()=>direct,normalSearch(){clearDirect();refresh();},legacyReset(){active='';cfg={...base};clearDirect();refresh();}};
+  return {prepare,choose,card,metric:(v,r)=>cardCache.get(v.id)||metrics(v,r),capture,restore(saved){if(!saved?.cfg)return false;active=focusAlias(saved.cfg.focus)||'';apply(saved,{initial:true});return true;},counts(all){$('lf-counts').textContent='전체 '+all.toLocaleString('ko-KR')+'편 · 근거 충족 '+qualifiedCount.toLocaleString('ko-KR')+'편 · 조사 후보 '+researchCount.toLocaleString('ko-KR')+'편';},direct:()=>direct,normalSearch(){clearDirect();refresh();},legacyReset(){active='';cfg={...base};clearDirect();refresh();}};
 };

@@ -226,3 +226,16 @@ body:has(> .lf-layout-mounted) :is(#lf-name-dialog,#lf-evidence-dialog) :is(inpu
   .lf-menu-editbar button { min-height: 32px; }
   .lf-layout-mounted :is(#gridTop,#trends-root) { scroll-margin-top: 47px; }
 }
+
+/* Rank colors remain semantic even when a different preset is active. */
+body:has(> .lf-layout-mounted){background-color:#111317!important}
+.lf-layout-mounted #lf-presets button[data-lf-rank="1"]{background-color:#581F32!important}
+.lf-layout-mounted #lf-presets button[data-lf-rank="2"]{background-color:#103F32!important}
+.lf-layout-mounted #lf-presets button[data-lf-rank="3"]{background-color:#35234E!important}
+.lf-layout-mounted #lf-presets button[aria-pressed=true]{outline:2px solid var(--lf-sort);outline-offset:1px}
+.lf-field{display:inline-grid;grid-template-columns:1fr auto;align-items:center;gap:2px;min-width:0}
+.lf-field select{grid-column:1/-1;max-width:100%}
+.lf-panel{margin:6px 0;border:1px solid var(--line);border-radius:7px;padding:7px 9px;background:var(--panel)}
+.lf-panel>summary{font-weight:780;cursor:pointer}
+.lf-table-wrap{overflow:auto;max-width:100%}.lf-panel table td,.lf-panel table th{padding:5px;border-bottom:1px solid var(--line);text-align:left}
+.lf-rank{color:var(--lf-key);font-size:11px;white-space:nowrap}
