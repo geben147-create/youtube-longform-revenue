@@ -7,8 +7,8 @@ window.LFV7UI = {
     root.dataset.ready = '1';
     const esc = api.esc, n = x => x == null ? '미확인' : Math.round(x).toLocaleString('ko-KR'), pct = x => x == null ? '미확인' : (Math.trunc(x * 1000) / 10) + '%';
     const STORE = 'lf-v7:pilot:v1';
-    const TABS = [['seed', '핵심 채널 15편'], ['rank', '신생 채널 순위'], ['sector', '섹터·검색어'], ['pilot', 'A/B 파일럿 비교'], ['notes', '근거·한계']];
-    let data = null, tab = 'seed', sort = 'meanEx2', sector = '', loading = false, pilot = {};
+    const TABS = [['seed', '핵심 채널 15편'], ['rank', '신생 채널 순위'], ['sector', '섹터·검색어'], ['pilot', 'A/B 파일럿 비교'], ['top20', 'V8 TOP 20'], ['v8pl', '재생목록 92편'], ['mkt', 'KR·JP·US 비교'], ['notes', '근거·한계']];
+    let v8 = null, v8sort = 'net', data = null, tab = 'seed', sort = 'meanEx2', sector = '', loading = false, pilot = {};
     try { pilot = JSON.parse(localStorage.getItem(STORE) || '{}') || {}; } catch { pilot = {}; }
     root.innerHTML = '<summary>🔥 V7 신생 고수익 · 일본 국뽕 감동사연·AI 드라마</summary><div data-body><p class="lf-hint">열면 V7 조사 자료를 불러옵니다. 실제 수익이 아니라 공개 조회 기반 관찰과 가정입니다.</p></div>';
     const body = root.querySelector('[data-body]');
@@ -35,13 +35,31 @@ window.LFV7UI = {
       const types = [['A', 'A. 기존 사실 기반 국뽕 (50편 아웃라인 유지, 우선 1편)'], ['B', 'B. 신규 AI 감동 드라마 (독창 창작 사연, 30~40분, 우선 3편)']];
       return `<p class="lf-hint">직접 측정한 값만 입력하세요. 이 브라우저에만 저장되고 자동 계산 값은 미입력 시 미산정입니다. 허구는 창작으로 표시하고 실제 해외 반응으로 위장하거나 타 채널 대본을 복제하지 않습니다.</p><table><thead><tr><th>유형</th>${fields.map(([, t]) => `<th>${t}</th>`).join('')}<th>시간당 순이익 (RPM×30일 조회−비용)÷시간</th></tr></thead><tbody>${types.map(([k, t]) => { const p = pilot[k] || {}; const hrs = Number(p.hours), rev = Number(p.d30) * Number(p.rpm) / 1000, net = Number(p.cost) >= 0 && hrs > 0 && Number.isFinite(rev) ? (rev - Number(p.cost)) / hrs : null; return `<tr><th>${esc(t)}</th>${fields.map(([f]) => `<td><input data-v7-pilot="${k}.${f}" type="number" min="0" value="${esc(p[f] ?? '')}" style="width:96px"></td>`).join('')}<td>${p.rpm && p.d30 && p.hours && p.cost !== undefined && p.cost !== '' ? n(net) + '원/시간' : '미산정'}</td></tr>`; }).join('')}</tbody></table>`;
     }
+    const W = x => x == null ? '미확인' : Math.trunc(x).toLocaleString('ko-KR');
+    const TY = { ai: 'AI 표기', doc: '자료 조합', cam: '출연', unknown: '미확인' };
+    function top20() {
+      if (!v8) return '<p>V8 자료 불러오는 중…</p>';
+      const K = { net: r => r.netMonthlyKRW[1], growth: r => r.growthPerDay, ease: r => r.ease * 1e9 + r.netMonthlyKRW[1] };
+      const rows = v8.top20.map(id => v8.rows.find(r => r.id === id)).sort((a, b) => { const x = K[v8sort](a), y = K[v8sort](b); return x == null ? 1 : y == null ? -1 : y - x; });
+      return '<div class="lf-row"><label>정렬 <select data-v7="v8sort"><option value="net"' + (v8sort === 'net' ? ' selected' : '') + '>예상 순이익순(중)</option><option value="growth"' + (v8sort === 'growth' ? ' selected' : '') + '>신생 채널 성장률순(일평균 조회)</option><option value="ease"' + (v8sort === 'ease' ? ' selected' : '') + '>제작 용이성순</option></select></label></div><p class="lf-hint">월수익=중앙값×월 8편×RPM 1,000/2,000/4,000원 시나리오(가정). 실제 수익 증빙 없음. 제작비·시간은 가정값. 진입형=신규/소형 채널, 벤치마크=대형 기성(진입 보장 아님).</p><div class="lf-table-wrap"><table><thead><tr><th>#</th><th>채널</th><th>구분</th><th>시장</th><th>구독자</th><th>개설</th><th>중앙값</th><th>편당 하/중/상</th><th>월 순이익 하/중/상(원)</th><th>누적 하/중/상(원)</th><th>일평균 조회</th><th>제작</th><th>제작비·시간</th></tr></thead><tbody>' + rows.map((r, i) => '<tr><td>' + (i + 1) + '</td><th>' + link(r.url, r.name) + '</th><td>' + (r.tier === 'entry' ? '진입형' : '벤치마크') + '</td><td>' + esc(r.market || '미확인') + '</td><td>' + W(r.subs) + '</td><td>' + esc(r.joined || '미확인') + '</td><td>' + W(r.median) + '</td><td>' + r.perVideoKRW.map(W).join('/') + '</td><td>' + r.netMonthlyKRW.map(W).join('/') + '</td><td>' + (r.cumulativeRevenueKRW || []).map(W).join('/') + '</td><td>' + W(r.growthPerDay) + '</td><td>' + TY[r.production] + '</td><td>' + W(r.costPerVideo) + '원·' + r.hoursPerVideo + 'h</td></tr>').join('') + '</tbody></table></div>';
+    }
+    function v8pl() {
+      if (!v8) return '<p>불러오는 중…</p>';
+      const p = v8.playlist;
+      return '<p>재생목록 ' + esc(p.title) + ' · 표시 ' + p.videosVisible + '편(비공개·삭제 ' + p.hiddenUnavailable + '편 숨김) · 채널 ' + p.channels.length + '곳. 조회수는 목록 표시값(반올림). 월수익은 채널 30일 조회 데이터가 없어 산정하지 않았습니다.</p><div class="lf-table-wrap"><table><thead><tr><th>채널</th><th>편수</th><th>누적 조회</th><th>편당 하/중/상(원)</th><th>누적 하/중/상(원)</th></tr></thead><tbody>' + p.channels.map(c => '<tr><th>' + esc(c.ch) + '</th><td>' + c.n + '</td><td>' + W(c.views) + '</td><td>' + c.perVideoKRW.map(W).join('/') + '</td><td>' + c.cumulativeRevenueKRW.map(W).join('/') + '</td></tr>').join('') + '</tbody></table></div><details><summary>영상 92편</summary><ul>' + p.rows.map(r => '<li><a href="https://www.youtube.com/watch?v=' + esc(r.id) + '" target="_blank" rel="noopener noreferrer">' + esc(r.title) + '</a> · ' + esc(r.ch) + ' · ' + esc(r.viewsText) + '</li>').join('') + '</ul></details>';
+    }
+    function mkt() {
+      if (!v8) return '<p>불러오는 중…</p>';
+      return '<div class="lf-table-wrap"><table><thead><tr><th>시장</th><th>RPM 계수(가정)</th><th>조사 채널</th><th>중앙값의 중앙값</th><th>경쟁</th><th>제작비·시간</th><th>저작권 위험</th></tr></thead><tbody>' + v8.markets.map(m => '<tr><th>' + esc(m.name) + '</th><td>' + m.rpmCoefficient + '</td><td>' + m.channels + '</td><td>' + W(m.medianOfMedians) + '</td><td>' + esc(m.competitionNote) + '</td><td>' + esc(m.cost) + '<br>' + esc(m.hours) + '</td><td>' + esc(m.copyrightRisk) + '</td></tr>').join('') + '</tbody></table></div><p class="lf-hint">미국 표본은 3곳뿐이라 비교 신뢰도가 낮습니다. 제목·썸네일·훅 분석은 V7 15편 심층과 설명란 기반 표기만 근거가 있고, V8 신규 채널의 훅·썸네일은 미확인입니다.</p>';
+    }
+    async function loadV8() { if (v8) return; try { v8 = await (await fetch('lf-v8.json')).json(); render(); } catch { /* optional */ } }
     function notes() {
       return `<p>${esc(data.excludedNote || '')} (${n(data.excludedCount)}곳)</p><ul>${(data.limits || []).map(l => `<li>${esc(l)}</li>`).join('')}</ul><p>기존 일본 50편 아웃라인은 변경하지 않았고 이 자료는 별도 사업 유형 비교용입니다.</p>`;
     }
     function render() {
       if (!data) return;
       const head = `<div class="lf-row" role="tablist">${TABS.map(([k, t]) => `<button type="button" role="tab" data-v7="tab" data-tab="${k}" aria-selected="${tab === k}" aria-pressed="${tab === k}">${t}</button>`).join('')}</div><p class="lf-hint">조사 기준 ${esc(data.asOf)} · ${esc(data.scope || '')}</p>`;
-      body.innerHTML = head + ({ seed, rank, sector: sectors, pilot: pilotTab, notes })[tab]();
+      body.innerHTML = head + ({ seed, rank, sector: sectors, pilot: pilotTab, top20, v8pl, mkt, notes })[tab]();
     }
     async function load() {
       if (data || loading) return; loading = true;
@@ -49,8 +67,8 @@ window.LFV7UI = {
       catch { loading = false; body.innerHTML = '<p>V7 자료를 읽지 못했습니다. 기존 갤러리는 영향을 받지 않습니다.</p>'; }
     }
     root.addEventListener('toggle', () => { if (root.open) load(); });
-    root.addEventListener('click', e => { const b = e.target.closest('[data-v7=tab]'); if (b) { tab = b.dataset.tab; render(); } });
-    root.addEventListener('change', e => { const t = e.target, v = t.dataset.v7, p = t.dataset.v7Pilot; if (v === 'sort') sort = t.value; else if (v === 'sector') sector = t.value; else if (p) { const [k, f] = p.split('.'); pilot[k] = { ...(pilot[k] || {}), [f]: t.value }; try { localStorage.setItem(STORE, JSON.stringify(pilot)); } catch { /* optional */ } } else return; render(); });
-    return { open(k) { if (k) tab = k; root.open = true; load(); render(); root.scrollIntoView({ block: 'nearest' }); } };
+    root.addEventListener('click', e => { const b = e.target.closest('[data-v7=tab]'); if (b) { tab = b.dataset.tab; if (/top20|v8pl|mkt/.test(tab)) loadV8(); render(); } });
+    root.addEventListener('change', e => { const t = e.target, v = t.dataset.v7, p = t.dataset.v7Pilot; if (v === 'v8sort') v8sort = t.value; else if (v === 'sort') sort = t.value; else if (v === 'sector') sector = t.value; else if (p) { const [k, f] = p.split('.'); pilot[k] = { ...(pilot[k] || {}), [f]: t.value }; try { localStorage.setItem(STORE, JSON.stringify(pilot)); } catch { /* optional */ } } else return; render(); });
+    return { open(k) { if (k) tab = k; if (/top20|v8pl|mkt/.test(tab)) loadV8(); root.open = true; load(); render(); root.scrollIntoView({ block: 'nearest' }); } };
   }
 };
