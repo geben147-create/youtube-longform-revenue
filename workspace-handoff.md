@@ -49,5 +49,7 @@ node --check lf-selection-ui.js
 
 - In-place five presets plus identical-filter overall / selected-field positions; preserve favorites namespaces, direct URLs and old calculations. Unknown full business score and unknown growth remain unrankable as verified candidates. Recent/prior upload cohorts use different-age lifetime snapshots; displayed as such.
 - Responsive local menu settings, 2–4 comparison, Korean browser voice fallback, and separate candidate/source panels. No external private storage, OAuth, rank publication into Insta, or player ad manipulation.
-- Research seed: 413 verified distinct public-source candidates in 10 areas (34–58 per area), KR 117 / JP 162 / US-oriented English 134; 30/60/365 windows 102/157/413. Target 100 per area is not finished. The ten channel observations do not establish ten independent operators.
+- Research seed: 692 verified distinct public-source candidates in 10 areas, KR 197 / JP 267 / US-oriented English 228; 30/60/365 windows 200/286/692. Target 100 per area is not finished. The ten channel observations do not establish ten independent operators.
 - Fresh-feed retrieval provenance belongs to each verified observation. See LFObservations.provenance(row,'v'); cache replay does not inject retrieval times.
+
+- The HUB handoff now fails closed to explicit JSON download when the public receiver scripts are missing, cross-origin, or incompatible. Readiness is not a delivery receipt.

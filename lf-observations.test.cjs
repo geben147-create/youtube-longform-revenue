@@ -243,7 +243,7 @@ test('selection freezes current view provenance and keeps imported captions out 
     value: {'lf-project': 'project', 'lf-select-days': '30', 'lf-select-scope': 'similar', 'lf-select-sort': 'views'}[id]
   };
   const blobs = [];
-  function BrowserURL(value) { return {origin: new URL(value).origin, href: value, searchParams: new Map()}; }
+  function BrowserURL(value, base) { return new URL(value, base); }
   BrowserURL.createObjectURL = blob => { blobs.push(blob); return String(blobs.length - 1); };
   BrowserURL.revokeObjectURL = () => {};
   class BrowserBlob {
@@ -257,12 +257,14 @@ test('selection freezes current view provenance and keeps imported captions out 
   };
   const now = new Date(day3);
   class BrowserDate extends Date {static now() { return now.getTime(); }}
-  let runCount = 0;
+  let runCount = 0, receiver = true;
+  class MockDOMParser { parseFromString() { return { querySelectorAll() { return ['workbench-v3-core.js','workbench-v3-ui.js'].map(x=>({getAttribute:()=>x})); } }; } }
+  const fetch = async url => ({url,ok:receiver,text:async()=>url.endsWith('workbench-v3-core.js')?'content-workbench.selection.v1 content-workbench:selection:v1:':url.endsWith('workbench-v3-ui.js')?'selectionKey();localStorage.getItem(request)':'fixture html'});
   const window = {LFObservations: {provenance}, LFExport: {...exporter, pack(run, meta) {
     packed.push(meta); return exporter.pack(run, meta);
   }}};
   vm.runInNewContext(fs.readFileSync(require.resolve('./lf-selection-ui.js'), 'utf8'), {
-    window, document, Date: BrowserDate, URL: BrowserURL, Blob: BrowserBlob, setTimeout() {},
+    window, document, Date: BrowserDate, URL: BrowserURL, Blob: BrowserBlob, DOMParser:MockDOMParser, AbortController, fetch, setTimeout() {}, clearTimeout() {},
     crypto: {randomUUID: () => 'run-' + (++runCount)},
     location: {origin: 'https://geben147-create.github.io'}, localStorage: {setItem: (key, val) => storage.set(key, val)},
     navigator: {clipboard: {writeText: async text => { clipboard.push(text); }}}
@@ -292,7 +294,7 @@ test('selection freezes current view provenance and keeps imported captions out 
   click('zip');
   assert.equal(downloads.length, 0);
   fields['[data-private]'].checked = true; input();
-  click('json'); click('hub'); click('md'); click('csv'); click('copy');
+  await click('json'); await click('hub'); await click('md'); await click('csv'); await click('copy');
   assert.equal(packed.length, 4); // JSON/HUB never call the caption packer.
   for (const metadata of packed) {
     assert.equal(Object.hasOwn(metadata[first], 'parsed'), false);
@@ -319,4 +321,6 @@ test('selection freezes current view provenance and keeps imported captions out 
   fields['[data-private]'].checked = true; input();
   click('zip');
   assert.equal(downloads.length, 4);
+  receiver=false; storage.clear(); await click('hub');
+  assert.equal(storage.size,0); assert.equal(downloads.length,5); const fallback=JSON.parse(await downloads.at(-1).text()); assert.equal(fallback.run_id,manifest.run_id); assert.equal(fallback.selected.length,7); assert.equal(fallback.selected[0].rights.analysis,'unknown'); assert.equal((await downloads.at(-1).text()).includes(body),false);
 });
