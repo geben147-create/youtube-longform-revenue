@@ -15,7 +15,7 @@ Open a card's `검증 근거`, enter an evidence URL, and fill the JSON field on
 - `revenueBasis`: `verified`, `views`, `period_start`, `period_end`, `views_basis`, `revenue_scope`, `evidence_url`, `observed_at`, `retrieved_at`. M1/M2 require matched period and cannot silently apply period rates to lifetime volumes.
 - `rpmEvidence.m1`: `verified: true`, `same_channel: true` or matching `channel_id`, `format: "longform"`, `currency: "KRW"`, `period_start`, `period_end`, `views_basis`, `revenue_scope`, `revenue_kind: "studio_estimate"` or `"settlement"`, `rpm` or revenue/view pair, `evidence_url`.
 - `rpmEvidence.m2`: verified matched format, currency, period, basis, scope, country and sector, `selection_rule`, `evidence_url`, and distinct channel RPM `samples` or documented `sample_size`, `dispersion` and `median_rpm`.
-- `actual`: known observed settlement, with `verified`, `kind: "settlement"`, `revenue_scope`, `views_basis`, `period_start`, `period_end`, `amount`, `evidence_url`. Distinguish source data from own pilot.
+- `actual`: known observed settlement, with `verified`, `kind: "settlement"`, `revenue_scope`, `views_basis`, `period_start`, `period_end`, `amount`, `currency: "KRW"`, `evidence_url`. Distinguish source data from own pilot.
 - `business`: `startedAt` (verified date, not channel registration), `months` (three most recent completed calendar months in compatible scope; each record includes month, amount, currency, scope, completed, source), `snapshots` (only actual D30 observations, with video_id/day/views/basis/observed_at), `pilots` (distinct id, own, measured, minutes), `comparisons` (independent operators with same criteria, traced sampling rule and snapshots), `expansion` (researched, paidTradeVerified, actor, own, completedMonths, procedureVerified, weeklyMinutes and evidenced transaction counts). The six criteria P/C/H/T/X/N follow the MASTER. Unknown does not reweight the score, which is not a probability. `d30`/`d7` on the root are explicit verified observations with `{day,views,observed_at,evidence_url}` and never backfilled from cumulative views.
 - `pilot`: own measured period, revenue/cost and direct minutes, laborCost and laborAlreadyIncluded, currency, scope, monetization status, evidence_url. Approved/known zero differs from unknown.
 
@@ -38,3 +38,9 @@ node --test lf-metrics.test.cjs lf-export.test.cjs lf-observations.test.cjs
 node --check longform-workspace.js
 node --check lf-selection-ui.js
 ```
+
+## Integration evidence
+
+- `lf-hub-fixture.json` is an eight-video, metadata-only fixture from the existing catalog; it is not a new verified recommendation. HUB branch owner confirmed in Chrome that all eight IDs remain ordered, all unknown observation timestamps remain null, and filters are retained.
+- Branch Chrome: built-in 2,883 rows; current shared merge 2,902 visible rows; 19 additions; 0 newer verified replacements observed. The pure merge tests cover actual newer, ambiguous, stale, undated, and cached observations.
+- Browser: Quick 7 and Quick 8; mutating the draft does not mutate the frozen 8-item run; JSON preserves dates without generated times and contains no cues; unauthorized SRT download is withheld.
