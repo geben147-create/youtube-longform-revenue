@@ -82,9 +82,9 @@ window.LFV6 = (function () {
     const ch = i.c;
     return `<dl class="v6-card" aria-label="채널·영상 지표">
 <div><dt>구독자</dt><dd>${U(i.subs != null ? n0(i.subs) + (ch?.subsPrecision ? ' ≈' : '') : null, i.subsReason)}</dd></div>
-<div><dt>채널 개설</dt><dd>${U(i.joined ? esc(i.joined) + ' (' + i.chAge + '일)' : null, ch ? '개설일 미표시' : '채널 통계 미수집')}</dd></div>
+<div><dt title="About 표시 개설일 (±1일 가능)">채널 개설</dt><dd>${U(i.joined ? esc(i.joined) + ' (' + i.chAge + '일)' : null, ch ? '개설일 미표시' : '채널 통계 미수집')}</dd></div>
 <div><dt>표본 최초 게시</dt><dd>${U(i.firstSample ? esc(i.firstSample) : null)} <small>표본 ${i.sample.n}편</small></dd></div>
-<div><dt>공개 영상</dt><dd>${U(i.chVideos != null ? n0(i.chVideos) + '개' : null, ch ? '영상 수 미표시' : '채널 통계 미수집')}</dd></div>
+<div><dt title="채널 About 표시값. 쇼츠·비공개 제외 여부는 YouTube 표시 기준">공개 영상</dt><dd>${U(i.chVideos != null ? n0(i.chVideos) + '개' : null, ch ? '영상 수 미표시' : '채널 통계 미수집')}</dd></div>
 <div><dt>채널 누적 조회</dt><dd>${U(i.chViews != null ? n0(i.chViews) : null, ch ? '조회수 미표시' : '채널 통계 미수집')}</dd></div>
 <div><dt>영상 게시</dt><dd>${U(v.d ? esc(v.d) + (i.ageDays != null ? ' (' + i.ageDays + '일)' : '') : null)}</dd></div>
 <div><dt>구독자 대비</dt><dd class="lf-key">${i.x != null ? 'X' + Math.trunc(i.x * 100) / 100 : '<span class="lf-gray" title="' + esc(i.subsReason || '배수 계산 불가') + '">계산 불가</span>'}</dd></div>
@@ -93,7 +93,7 @@ window.LFV6 = (function () {
 <div><dt>제작 방식</dt><dd>${({ on_camera: '출연형', narration_only: '나레이션', ai_generated: 'AI 생성(추정)', material_mix: '자료 조합' })[i.appearance] || '<span class="lf-gray" title="프레임·설명 검증 전">미확인</span>'}</dd></div>
 <div><dt>확인일</dt><dd>${ch?.checkedAt ? esc(ch.checkedAt.slice(0, 10)) : (v.checked ? esc(v.checked) : '미확인')}</dd></div>
 <div><dt>채널</dt><dd>${i.url ? `<a href="${esc(i.url)}" target="_blank" rel="noopener noreferrer">링크</a>` : '미확인'}</dd></div>
-${i.oldChannelRecentStart ? '<div class="v6-wide"><dd class="lf-orange">오래된 채널 · 최근 콘텐츠 시작 가능성(표본 기준)</dd></div>' : ''}</dl>`;
+${i.oldChannelRecentStart ? '<div class="v6-wide"><dd class="lf-orange">오래된 채널이지만 수집 표본은 최근 게시뿐 · 최근 시작 여부는 미확인</dd></div>' : ''}</dl>`;
   }
   function channels(rows, rate) {
     if (!api) return '';
