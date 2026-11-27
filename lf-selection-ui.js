@@ -1,0 +1,74 @@
+/* Browser-only LONGFORM intake. Nothing is transmitted except by explicit download/hub navigation. */
+'use strict';
+window.LFSelectionUI=function(api){
+  const $=id=>document.getElementById(id), root=$('lf-selection'), esc=api.esc, ex=window.LFExport;
+  if(!root||!ex)return null;
+  let picked=[], run=null, meta=Object.create(null), visible=[];
+  const DAY=86400000, originHub='https://geben147-create.github.io/Insta/research-hub-20261108/';
+  async function hubReady(){
+    if(location.origin!==new URL(originHub).origin||typeof AbortController!=='function'||typeof DOMParser!=='function')return false;
+    const controller=new AbortController();const timer=setTimeout(()=>controller.abort(),4500);
+    const paths=['','workbench-v3-core.js','workbench-v3-ui.js'];
+    try{const bodies=await Promise.all(paths.map(async path=>{const url=originHub+path;const r=await fetch(url,{cache:'no-store',credentials:'same-origin',redirect:'error',signal:controller.signal});if(!r.ok||r.url!==url)throw Error('unavailable');return r.text();}));const [html,core,ui]=bodies;const scripts=[...new DOMParser().parseFromString(html,'text/html').querySelectorAll('script[src]')].map(n=>new URL(n.getAttribute('src'),originHub).href);return paths.slice(1).every(p=>scripts.includes(originHub+p))&&core.includes('content-workbench.selection.v1')&&core.includes('content-workbench:selection:v1:')&&/selectionKey\(/.test(ui)&&/localStorage\.getItem\(request\)/.test(ui);}
+    catch{return false;}finally{clearTimeout(timer);}
+  }
+  const ts=v=>[v.publishedAt,v.published_at].find(x=>typeof x==='string'&&/T.*(?:Z|[+-]\d\d:\d\d)$/.test(x)&&!isNaN(Date.parse(x)))||null;
+  const within=(v,days,now)=>{const cut=now-days*DAY, x=ts(v);if(x)return Date.parse(x)>=cut&&Date.parse(x)<=now?'ok':'out';if(!/^\d{4}-\d\d-\d\d$/.test(v.d||''))return 'unknown';const lo=Date.parse(v.d+'T00:00:00+09:00');if(lo+DAY<=cut||lo>now)return 'out';return lo<cut||lo+DAY>now?'boundary':'ok';};
+  const labels={structure:'전개',emotion:'감정선',hook:'훅·질문 (30초 / 최대 210초)',retention:'유지 장치 (가설)',ending:'반전·결말',evidence:'자료 삽입'};
+  root.innerHTML=`<summary>제작 참고 영상 7~8편 선정 · 허브 전달</summary><div class="lf-row"><label>프로젝트 ID <input id="lf-project" maxlength="80" placeholder="예: my-project"></label><label>게시 기간 <select id="lf-select-days"><option>30</option><option>60</option></select></label><label>채널 범위 <select id="lf-select-scope"><option value="similar">현재 결과의 여러 채널</option><option value="same">첫 선정 영상과 같은 채널</option></select></label><label>선정 순서 <select id="lf-select-sort"><option value="views">누적 조회</option><option value="daily">게시 후 일평균</option><option value="date">게시일</option></select></label><button type="button" data-run="quick7">상위 7편</button><button type="button" data-run="quick8">상위 8편</button><button type="button" data-run="freeze">선택 영상 분석 준비</button></div><p class="lf-hint" id="lf-pick-status" role="status"></p><ol id="lf-pick-list"></ol><p class="lf-hint">게시 기간은 조회 발생 기간이 아닙니다. 정확한 게시 시각이 없고 경계에 걸리면 선정에서 제외합니다. 자막은 권한을 확인한 파일만 수동으로 입력합니다.</p><div id="lf-run-area" hidden></div><p class="lf-hint" id="lf-run-status" role="status"></p>`;
+  const msg=t=>$('lf-run-status').textContent=t;
+  const controls=()=>({days:Number($('lf-select-days').value),scope:$('lf-select-scope').value,sort:$('lf-select-sort').value});
+  const display=()=>{const list=$('lf-pick-list');list.innerHTML=picked.map((v,i)=>`<li>${esc(v.t)} · ${esc(v.ch)} <button type="button" data-run="up" data-idx="${i}" ${i===0?'disabled':''}>위</button> <button type="button" data-run="remove" data-idx="${i}">제외</button></li>`).join('');const channels=[...new Set(picked.map(v=>v.ch))];$('lf-pick-status').textContent=`선정 ${picked.length}/8편 · ${channels.length}채널${picked.length<7?' · 최소 7편 필요':''}${run?' · 현재 고정 실행 '+run.run_id:''}`;};
+  const download=(payload,type,name)=>{const u=URL.createObjectURL(new Blob([payload],{type})),a=document.createElement('a');a.href=u;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(u),10000);};
+  // Report exports get only user-entered metadata. Pass cue bodies only for an
+  // explicit private ZIP download with rights evidence; never pass parsed text.
+  const exportMeta=(privateZip)=>Object.fromEntries(Object.entries(meta).map(([k,v])=>[k,{
+    rights:{...v.rights}, excerpt:v.excerpt, analysis:v.analysis,
+    ...(privateZip&&v.rights.private_export==='full'&&v.rights.evidence?{cues:v.cues}:{})
+  }]));
+  function activate(){const node=$('lf-run-area');node.hidden=false;node.innerHTML=`<p><b>고정 실행 ${esc(run.run_id)} · ${run.selected.length}편</b></p><div class="lf-row"><button type="button" data-run="json">선정 JSON</button><button type="button" data-run="md">Markdown</button><button type="button" data-run="copy">묶음 복사</button><button type="button" data-run="csv">CSV</button><button type="button" data-run="zip">허용 자막 SRT ZIP</button><button type="button" data-run="hub">허브에 선정 정보 전달</button><a href="https://sheets.google.com/" target="_blank" rel="noopener">Google Sheets에서 CSV 수동 가져오기</a></div><p>전체 자막은 이 탭 메모리에서만 처리합니다. 계정·시트 대상 미지정으로 Sheets 자동 저장은 연결하지 않았습니다.</p>`+run.selected.map(v=>`<details class="lf-case" data-vid="${v.video_id}"><summary>${esc(v.title_original)} · <span data-status>자막 미입력 · 분석 미검토</span></summary><label>권한 증빙(사용자가 확인한 URL 또는 기록) <input data-proof></label><div class="lf-row"><label><input type="checkbox" data-analysis> 분석 허용</label><label><input type="checkbox" data-store> 전문 보관 허용</label><label><input type="checkbox" data-excerpt-right> 짧은 인용 공개 허용</label><label><input type="checkbox" data-private> 전문 비공개 내보내기 허용</label></div><label>권한 있는 자막 파일 <input type="file" accept=".srt,.vtt,.txt" data-caption disabled></label><p class="lf-hint">첫 30초 / 롱폼 첫 210초, 최대 실제 길이 ${Math.min(210,v.duration_seconds??210)}초. 실제 유지율은 별도 근거 필요.</p><p data-windows class="lf-hint">훅 검토: 타임코드 미입력</p><label><input type="checkbox" data-reviewed> 내 분석 검토 완료</label><label>허용된 짧은 인용 <textarea data-excerpt maxlength="300" rows="2"></textarea></label>${Object.entries(labels).map(([k,t])=>`<label>${t}<textarea data-note="${k}" rows="2"></textarea></label>`).join('')}</details>`).join('');display();}
+  function snapshotRow(v,c){
+    const stamps=window.LFObservations?.provenance?.(v,'v');
+    return {video_id:v.id,source_url:'https://www.youtube.com/watch?v='+v.id,title_original:v.t,channel:v.ch,published_at:ts(v),published_date:v.d,views:Number.isSafeInteger(v.v)?v.v:null,observed_at:stamps?.observedAt??null,retrieved_at:stamps?.retrievedAt??null,duration_seconds:v.s,language:v.language||null,format:'longform',model_version:window.LFMetrics?.MODEL_VERSION||null,model_id:c.cfg?.model||'legacy',selection_reason:'편집자가 선정한 '+c.reason,rights:{analysis:'unknown',store_full:'unknown',publish:'unknown',private_export:'unknown',evidence:null}};
+  }
+  function freeze(){const c=controls(), project=$('lf-project').value.trim(), now=Date.now();if(!/^[\w\p{L}-]{1,80}$/u.test(project))return msg('프로젝트 ID를 입력하세요(공백 없는 문자·숫자·-·_).');if(picked.length<7||picked.length>8)return msg('고유 영상 7~8편을 선정하세요.');const selected=picked.map(v=>api.get(v.id)||v);const invalid=selected.filter(v=>within(v,c.days,now)!=='ok');if(invalid.length)return msg('게시 기간 밖 또는 경계 시각 미확인: '+invalid.map(v=>v.t).join(', '));if(c.scope==='same'&&new Set(selected.map(v=>v.ch)).size!==1)return msg('같은 채널의 영상만 선정하세요.');const filters={...api.filters(),selection:c};const next=ex.createRun({project_id:project,run_id:crypto.randomUUID(),published_within_days:c.days,filters_snapshot:filters,selected:selected.map(v=>snapshotRow(v,{...filters,reason:c.sort}))});if(run)msg('새 선택을 만들었습니다. 이전 실행은 이미 내려받은 파일에 유지됩니다.');run={...next,created_at:new Date(now).toISOString(),filters:next.filters_snapshot,selected:next.selected.map(v=>({...v,model_id:filters.cfg?.model||'legacy'}))};meta=Object.create(null);activate();}
+  function quick(n){const c=controls(),now=Date.now(),scope=picked[0]?.ch||visible[0]?.ch;const pool=[...visible].filter(v=>within(v,c.days,now)==='ok'&&(c.scope!=='same'||v.ch===scope));const cmp={date:(a,b)=>String(b.d).localeCompare(a.d),views:(a,b)=>(b.v??-1)-(a.v??-1),daily:(a,b)=>(b.v??-1)/api.age(b)-(a.v??-1)/api.age(a)}[c.sort];picked=pool.sort(cmp).slice(0,n);display();msg(picked.length<n?`기간·채널 조건에 맞는 확인 후보 ${picked.length}편. 중복으로 채우지 않았습니다.`:'상위 '+picked.length+'편을 골랐습니다. 실행을 고정할 수 있습니다.');}
+  document.addEventListener('click',async e=>{const b=e.target.closest('[data-run]');if(!b)return;const a=b.dataset.run;if(a==='select'){const v=api.get(b.dataset.id), i=picked.findIndex(x=>x.id===v?.id);if(i>=0)picked.splice(i,1);else if(v&&picked.length<8)picked.push(v);else{root.open=true;return msg('최대 8편까지 선정할 수 있습니다.');}root.open=true;display();api.render();return;}
+    if(a==='quick7'||a==='quick8'){quick(Number(a.at(-1)));api.render();return;}if(a==='freeze'){freeze();return;}if(a==='remove'||a==='up'){const i=Number(b.dataset.idx);if(a==='remove')picked.splice(i,1);else if(i>0)[picked[i-1],picked[i]]=[picked[i],picked[i-1]];display();api.render();return;}if(!run)return;
+    const name='longform-'+run.run_id;
+    if(a==='json'||a==='hub'){
+      const manifest={...run,selected:run.selected.map(row=>{const rights=meta[row.video_id]?.rights||row.rights;return {...row,rights:{analysis:rights.analysis,store_full:rights.store_full,publish:rights.publish,private_export:rights.private_export,evidence:null}};})};
+      const json=JSON.stringify(manifest,null,2);
+      if(a==='json'){download(json,'application/json',name+'.json');return msg('선정 JSON 준비 완료');}
+      if(!await hubReady()){download(json,'application/json',name+'.json');return msg('공식 허브의 자동 수신부를 확인할 수 없어 JSON을 내려받았습니다. 수신 호환 버전에서 이 파일을 가져오세요.');}
+      try{localStorage.setItem('content-workbench:selection:v1:longform:'+manifest.run_id,json);const u=new URL(originHub);u.searchParams.set('format','longform');u.searchParams.set('run_id',manifest.run_id);u.hash='workspace';const l=document.createElement('a');l.href=u.href;l.target='_blank';l.rel='noopener noreferrer';l.click();msg('선정 메타데이터만 전달했습니다. 허브의 가져오기 결과는 별도 확인이 필요합니다.');}catch{download(json,'application/json',name+'.json');msg('공통 저장을 사용할 수 없어 JSON 파일로 내려받았습니다.');}return;
+    }
+    if(!['md','csv','copy','zip'].includes(a))return;
+    const bundle=ex.pack(run,exportMeta(a==='zip'));
+    const pending=run.selected.flatMap(v=>!meta[v.video_id]?.parsed?[v.video_id+' 자막 미입력·확인 필요']:meta[v.video_id]?.analysis?.review_status!=='reviewed'?[v.video_id+' 분석 미검토']:[]);
+    if(pending.length)bundle.markdown='# 누락 및 확인 필요: '+pending.join(', ')+'\n\n'+bundle.markdown;
+    if(a==='md')download(bundle.markdown,'text/markdown',name+'.md');else if(a==='csv')download('\ufeff'+bundle.csv,'text/csv',name+'.csv');else if(a==='zip'){if(!bundle.zip)return msg('내보낼 권한 있는 타임코드 SRT가 없습니다.');download(bundle.zip,'application/zip',name+'-SRT.zip');}else if(a==='copy'){navigator.clipboard.writeText(bundle.markdown).then(()=>msg('검토 자료와 누락 목록을 복사했습니다.'),()=>download(bundle.markdown,'text/markdown',name+'.md'));return;}msg('파일 준비 완료 · 제외 항목 '+bundle.omissions.length+'건');});
+  root.addEventListener('input',e=>{const d=e.target.closest('.lf-case');if(!d)return;const key=d.dataset.vid, old=meta[key]||{};const proof=d.querySelector('[data-proof]').value.trim();const checked=name=>d.querySelector('[data-'+name+']').checked;const rights={analysis:checked('analysis')&&proof?'allowed':'unknown',store_full:checked('store')&&proof?'allowed':'unknown',publish:checked('excerpt-right')&&proof?'excerpt':'unknown',private_export:checked('private')&&proof?'full':'unknown',evidence:proof||null};const analysis=Object.fromEntries([...d.querySelectorAll('[data-note]')].filter(x=>x.value.trim()).map(x=>[x.dataset.note,x.value.trim()]));const file=d.querySelector('[data-caption]');const reviewed=d.querySelector('[data-reviewed]');if(e.target!==reviewed)reviewed.checked=false;file.disabled=!(rights.analysis==='allowed'||rights.store_full==='allowed'||rights.private_export==='full');meta[key]={...old,rights,excerpt:d.querySelector('[data-excerpt]').value.trim(),analysis:Object.keys(analysis).length?{...analysis,review_status:reviewed.checked?'reviewed':'unreviewed'}:null};if(file.disabled){delete meta[key].cues;delete meta[key].parsed;file.value='';}if(!meta[key].parsed)d.querySelector('[data-windows]').textContent='훅 검토: 타임코드 미입력';d.querySelector('[data-status]').textContent=(meta[key].parsed?'자막 입력됨':'자막 미입력')+(reviewed.checked&&Object.keys(analysis).length&&rights.analysis==='allowed'?' · 사용자 검토 완료':' · 분석 미검토');});
+  root.addEventListener('change',async e=>{
+    const file=e.target;if(!file.matches('[data-caption]'))return;
+    const d=file.closest('.lf-case'),k=d.dataset.vid,f=file.files?.[0],current=run?.run_id,proof=meta[k]?.rights?.evidence;
+    if(!meta[k])return;
+    delete meta[k].cues;delete meta[k].parsed;
+    d.querySelector('[data-reviewed]').checked=false;if(meta[k].analysis)meta[k].analysis.review_status='unreviewed';
+    d.querySelector('[data-windows]').textContent='훅 검토: 타임코드 미입력';
+    d.querySelector('[data-status]').textContent='자막 미입력 · 분석 미검토';
+    if(!f||!proof||file.disabled)return;
+    if(f.size>5e6){msg('자막 파일은 5MB 이하만 가능합니다.');return;}
+    const stillAllowed=()=>run?.run_id===current&&file.files?.[0]===f&&!file.disabled&&meta[k]?.rights?.evidence===proof;
+    try{
+      const text=await f.text();if(!stillAllowed())return;
+      const r=ex.caption(text,f.name.split('.').at(-1));
+      const limit=run.selected.find(v=>v.video_id===k)?.duration_seconds??210;
+      const count=t=>r.cues.filter(c=>c.start_ms<Math.min(t,limit)*1000).length;
+      d.querySelector('[data-windows]').textContent=!r.warnings.length&&r.timed?'검토 범위: 첫 '+Math.min(30,limit)+'초 '+count(30)+'개 / 첫 '+Math.min(210,limit)+'초 '+count(210)+'개 자막 구간. 유지율 실측 아님.':r.timed?'훅 검토: 타임코드 확인 필요':'훅 검토: TXT 시간 미확인';
+      if(!r.warnings.length){meta[k].cues=r.timed?r.cues:null;meta[k].parsed=true;}
+      d.querySelector('[data-status]').textContent=r.warnings.length?'자막 타임코드 또는 파일 형식 확인 필요':r.timed?'타임코드 입력 완료 · 미검토':'TXT 입력 · 시간 확인 필요';
+    }catch{if(stillAllowed())d.querySelector('[data-status]').textContent='자막 입력 실패';}
+  });
+  display();return {pool:a=>{visible=a;},button:v=>`<button type="button" data-run="select" data-id="${v.id}" aria-pressed="${picked.some(x=>x.id===v.id)}">참고 선정</button>`};
+};
