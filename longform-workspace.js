@@ -78,7 +78,7 @@ window.LongformWorkspace = function mount(api) {
       if(cfg.target!==''&&!(m.selected!=null&&m.selected>=Number(cfg.target)))return false;
       return true;
     };
-    const f=focusAlias(cfg.focus);const cmp=([a,x],[b,y])=>{
+    const f=focusAlias(cfg.focus);const cmp=([a,x],[b,y])=>{const w6=window.LFV6?.compare(a,b,r);if(w6)return w6;
       if(cfg.metric){const by=order(x[cfg.metric],y[cfg.metric]);if(by)return by;}
       const Q=f&&!cfg.metric?Number(y.qualified)-Number(x.qualified):0;if(Q)return Q;
       const fields={ 'business-fit':[['score','desc'],['grade','desc'],['monthlyMin','desc'],['monthlyAvg','desc'],['start','asc']],steady:[['monthlyMin','desc'],['monthlyAvg','desc'],['grade','desc']],new:[['d30','desc'],['median','desc']], 'low-labor':[['hourly','desc'],['repeatTrades','desc'],['minutes','asc'],['cost','asc']],declining:[['decline','asc']] }[f]||[];
