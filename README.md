@@ -1,12 +1,15 @@
 # 유튜브 롱폼 전체 썸네일
 
-[공식 바둑판](https://geben147-create.github.io/youtube-longform-revenue/index.html) · [전부 보기](https://geben147-create.github.io/youtube-longform-revenue/index.html?pageSize=all) · [벚꽃 채널](https://geben147-create.github.io/youtube-longform-revenue/index.html?view=sakura)
+[공식 바둑판](https://geben147-create.github.io/youtube-longform-revenue/index.html) · [채널 흐름 분석](https://geben147-create.github.io/youtube-longform-revenue/index.html?analysis=1) · [벚꽃 채널](https://geben147-create.github.io/youtube-longform-revenue/index.html?view=sakura)
 
-기존 533편을 보존하고, 총 2079개 고유 영상 ID를 한 바둑판에 정리했습니다. 영상 길이는 3분 초과이며 새로 더한 영상은 YouTube 원본 메타데이터에서 비라이브와 공개 조회수를 검증했습니다. 왼쪽 모든 메뉴는 제목만 있는 별도 페이지 대신 같은 바둑판으로 이어집니다.
+2026-11-27 KST 게시 자료 기준 영상 2,883편, 채널 흐름 20곳. 기존 저장 자료 전체와 채널 최근 표본으로 새로 확인한 롱폼을 합쳤습니다. 공유 롱폼 조사 목록에서 이후 추가되는 영상은 고유 ID로 불러옵니다.
 
-썸네일은 YouTube 원본으로 연결됩니다. 매 카드의 미리재생은 YouTube에서 임베드를 허용하는 영상에 한해 작동합니다. 광고수익은 공개 누적 조회수 × RPM 가정(1,000/2,000/4,000, 단위 KRW)이며 실제 정산액이나 월 수익이 아닙니다. 금액은 백만 미만 단위를 버립니다.
+## 채널 흐름 분석 기준
 
-- [벚꽃 채널 원본·수익 계산 근거](channel-notes.md)
-- [일본어권 AI 롱폼 재조사와 제작 근거](japan-ai.md)
-- [게시 버전 영상 데이터](all-videos.json)
-- [기존 조사 파일과 출처](https://github.com/geben147-create/Insta/tree/main/youtube-longform-revenue)
+- 기본 추천: 최근 중앙값(절반이 넘긴 조회수) + 목표 달성률(기본 10,000회 이상 비율). 최근 하위 25% 경계를 보면 대박 영상이 아닌 바닥 성과를 알 수 있습니다.
+- 같은 길이의 연속 게시 기간의 중앙값 비율과 최고/중앙값 비율로 최근 상승·하락, 한 편만 잘된 경우를 구분합니다. 확인한 과거 최고는 최근 기간 밖에서 확인한 자료의 최고일 뿐, 채널 전체 최고를 보장하지 않습니다.
+- 현재 분석 표본은 YouTube 동영상 탭 최신순에서 확인한 3분 초과·비라이브 영상입니다. 개설일과 전체 공개 업로드 수는 채널 정보의 값이며 전체 업로드 수에는 쇼츠 등이 포함될 수 있습니다. 채널별 확보 기간이 다르고, 충분히 수집되지 않은 기간은 ‘비교 자료 부족’으로 표시합니다.
+- 조회수는 자료 수집 시점의 공개 누적 조회수입니다. 해당 기간에 발생한 조회수 또는 게시 후 같은 경과일 기준의 조회수는 아닙니다.
+- 영상 카드의 썸네일 버튼은 페이지 안에서 재생을 열고, YouTube 삽입 제한 시에는 원본 링크로 볼 수 있습니다. 금액은 조회수 × 가정 단가 1,000/2,000/4,000 (KRW)로, 실제 정산액이 아닙니다. 화면 금액은 만 단위까지, 추정 근거에서 절삭 전 계산값을 볼 수 있습니다.
+
+[분석 원자료와 채널 출처](channel-trends.json) · [전체 영상 데이터](all-videos.json) · [벚꽃 채널 근거](channel-notes.md) · [일본어권 AI 조사](japan-ai.md)
