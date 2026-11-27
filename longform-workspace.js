@@ -73,7 +73,7 @@ window.LongformWorkspace = function mount(api) {
   const formNode = `
   <div id="lf-presets" class="lf-row" aria-label="추천 조합">${presets.map(p=>`<button type="button" data-lf="preset" data-key="${p.id}" title="${esc(p.about)}" aria-pressed="false">${p.name}</button>`).join('')}</div>
   <p id="lf-hint" class="lf-hint"></p>
-  <div class="lf-row" aria-label="저장 관리"><button type="button" data-lf="save">현재 조건 조합 저장</button><button type="button" data-lf="library" data-key="preset">저장 조합</button><button type="button" data-lf="library" data-key="video">영상 즐겨찾기</button><button type="button" data-lf="library" data-key="channel">채널 즐겨찾기</button><button type="button" data-lf="all">전체 검색</button>${select('group','후보 구분',[['all','전체'],['qualified','근거 충족'],['research','조사 후보']],blue)}</div>
+  <div class="lf-row" aria-label="저장 관리"><button type="button" data-lf="save">현재 조건 조합 저장</button><button type="button" data-lf="library" data-key="preset">저장 조합</button><button type="button" data-lf="library" data-key="video">영상 즐겨찾기</button><button type="button" data-lf="library" data-key="channel">채널 즐겨찾기</button><button type="button" data-lf="all">전체 검색</button><button type="button" data-lf="shrink" aria-label="카드 축소" title="Ctrl+-">−</button><button type="button" data-lf="grow" aria-label="카드 확대" title="Ctrl++">+</button>${select('group','후보 구분',[['all','전체'],['qualified','근거 충족'],['research','조사 후보']],blue)}</div>
   <details id="lf-options"><summary>상세 조건 · 정렬 방향 · 금액 모델</summary><div class="lf-options">
   ${select('ai','AI 제작',[['','전체'],['yes','AI 확인'],['unknown','미확인']],purple)}
   ${select('grade','근거 등급',[['','전체'],['A','A · 직접 근거'],['B','B · 교차 근거'],['C','C · 제한적'],['U','미확인']],blue)}
@@ -97,7 +97,7 @@ window.LongformWorkspace = function mount(api) {
     drawLibrary();
   }
   function clearDirect(){if(!direct)return;direct=false;const u=new URL(location.href);u.searchParams.delete('q');history.replaceState(history.state,'',u);}
-  function capture(){return {controls:Object.fromEntries(controls.map(id=>[id,$(id).value])),view:api.state.key,min:api.state.min,cfg:{...cfg,list:''}};}
+  function capture(){return {controls:Object.fromEntries(controls.map(id=>[id,$(id).value])),view:api.state.key,min:api.state.min,cfg:{...cfg}};}
   function apply(saved,{initial=false}={}){
     if(!initial){clearDirect();showPanel('board',panel!=='board');api.resetTrend();}
     if(!initial) $('q').value='';
@@ -142,6 +142,8 @@ window.LongformWorkspace = function mount(api) {
       if(next.repeat>100||next.repeatTrades>next.trades){msg.textContent='반복 성과는 0~100%, 반복 거래는 실제 거래 건수 이하여야 합니다.';return;}
       msg.textContent='';db.evidence[v.id]=next;store();d.close();api.render();if(!storageError)message('검증 근거를 이 브라우저에 저장했습니다.');};
   }
+  function density(delta){const cols=$('cols');const n=Math.min(6,Math.max(3,Number(cols.value||5)+delta));cols.value=String(n);cols.dispatchEvent(new Event('change'));}
+  document.addEventListener('keydown',e=>{if(panel!=='board'||!(e.ctrlKey||e.metaKey)||e.altKey||e.target.closest?.('input,textarea,select,[contenteditable],dialog'))return;if(['-','_','+','='].includes(e.key)){e.preventDefault();density(e.key==='-'||e.key==='_'?1:-1);}});
   root.addEventListener('change',event=>{const id=event.target.id.slice(3);if(!ext.includes(id))return;clearDirect();if(id==='ai')active='';const control=event.target;cfg[id]=control.type==='checkbox'?control.checked:control.value;api.state.pg=1;refresh();api.render();});
   document.addEventListener('click',ev=>{
     const rlink=ev.target.closest('#lf-repro-link');if(rlink&&!ev.ctrlKey&&!ev.metaKey&&!ev.shiftKey&&!ev.altKey){ev.preventDefault();showPanel(panel==='reproduction'?'board':'reproduction');window.scrollTo(0,0);return;}
@@ -149,6 +151,7 @@ window.LongformWorkspace = function mount(api) {
     const b=ev.target.closest('[data-lf]');if(!b)return;const action=b.dataset.lf,k=b.dataset.key,index=Number(b.dataset.idx);
     if(action==='preset'){applyPreset(presets.find(p=>p.id===k));return;}
     if(action==='all'){active='';apply({controls:defaults(),cfg:base});return;}
+    if(action==='shrink'||action==='grow'){density(action==='shrink'?1:-1);return;}
     if(action==='save'){const saved=capture();nameDialog('조건 조합 이름',presets.find(p=>p.id===active)?.name||'내 조건 조합',name=>{db.preset.push({key:crypto.randomUUID?.()||String(Date.now()),name,value:saved});library='preset';store();drawLibrary();});return;}
     if(action==='library'){library=library===k?'':k;drawLibrary();return;}
     if(action==='close-library'){library='';drawLibrary();return;}
