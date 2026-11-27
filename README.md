@@ -1,6 +1,6 @@
 # 유튜브 롱폼 전체 썸네일
 
-[공식 바둑판](https://geben147-create.github.io/youtube-longform-revenue/index.html) · [채널 흐름 분석](https://geben147-create.github.io/youtube-longform-revenue/index.html?analysis=1) · [벚꽃 채널](https://geben147-create.github.io/youtube-longform-revenue/index.html?view=sakura)
+[공식 바둑판](https://geben147-create.github.io/youtube-longform-revenue/index.html) · [채널 흐름 분석](https://geben147-create.github.io/youtube-longform-revenue/index.html?analysis=1) · [벚꽃 채널](https://geben147-create.github.io/youtube-longform-revenue/index.html?view=sakura) · [수익 재현 가능성 V2](https://geben147-create.github.io/youtube-longform-revenue/reproduction.html)
 
 2026-11-27 KST 게시 자료 기준 영상 2,883편, 채널 흐름 20곳. 기존 저장 자료 전체와 채널 최근 표본으로 새로 확인한 롱폼을 합쳤습니다. 공유 롱폼 조사 목록에서 이후 추가되는 영상은 고유 ID로 불러옵니다.
 
@@ -13,3 +13,7 @@
 - 영상 카드의 썸네일 버튼은 페이지 안에서 재생을 열고, YouTube 삽입 제한 시에는 원본 링크로 볼 수 있습니다. 금액은 조회수 × 가정 단가 1,000/2,000/4,000 (KRW)로, 실제 정산액이 아닙니다. 화면 금액은 만 단위까지, 추정 근거에서 절삭 전 계산값을 볼 수 있습니다.
 
 [분석 원자료와 채널 출처](channel-trends.json) · [전체 영상 데이터](all-videos.json) · [벚꽃 채널 근거](channel-notes.md) · [일본어권 AI 조사](japan-ai.md)
+
+## 수익 재현 가능성 V2
+
+롱폼 벤치마크, 100점 우선순위 평가, M1~M5 수익 모델 비교, 30일 손익을 별도로 제공합니다. 기존 원본 수익순이나 조사 기준은 바뀌지 않으며, 원자료가 부족한 사례는 미산정입니다.
