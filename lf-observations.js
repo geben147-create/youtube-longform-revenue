@@ -31,19 +31,33 @@
     return canonical.length === 24 ? canonical : null;
   }
 
-  function stamp(input) {
+  function stamp(input, feedRetrievedAt = null) {
     const at = has(input, 'observedAt') ? input.observedAt : null;
     const observedAt = instant(at);
     const verified = observedAt !== null && has(input, 'verified') && input.verified === true;
     const checked = day(at) || (has(input, 'checked') && day(input.checked));
-    return checked ? {observedAt, verified, checked} : {observedAt, verified};
+    const retrievedAt = verified ? ((has(input, 'retrievedAt') && instant(input.retrievedAt)) || feedRetrievedAt) : null;
+    return {observedAt, verified, ...(checked ? {checked} : {}), ...(retrievedAt ? {retrievedAt} : {})};
   }
 
-  function current(row, metric) {
-    if (!has(row, metric) || !validMetric(metric, row[metric])) return null;
+  function current(row, metric, feedRetrievedAt) {
+    if (!record(row) || !metrics.includes(metric) || !has(row, metric) || !validMetric(metric, row[metric])) return null;
     const scoped = has(row, 'observations') && record(row.observations) && has(row.observations, metric);
     const input = scoped ? (record(row.observations[metric]) ? row.observations[metric] : {}) : row;
-    return {metric, value: row[metric], ...stamp(input)};
+    return {metric, value: row[metric], ...stamp(input, feedRetrievedAt)};
+  }
+
+  // Export/display the two timestamps for the current verified value, never a
+  // root-level retrieval timestamp left over from another metric or version.
+  function provenance(row, metric) {
+    const entry = current(row, metric);
+    return {observedAt: entry?.verified ? entry.observedAt : null, retrievedAt: entry?.retrievedAt ?? null};
+  }
+
+  // Repeated fetches of a single claim do not grow history; keep the earliest
+  // known retrieval. This also makes duplicate feed claims stable.
+  function earlierRetrieval(entry, previous) {
+    return Boolean(entry.retrievedAt && (!previous.retrievedAt || entry.retrievedAt < previous.retrievedAt));
   }
 
   function newer(candidate, incumbent) {
@@ -55,7 +69,7 @@
     return true; // A verified dated observation takes precedence over an undated baseline.
   }
 
-  function mergeOne(original, incoming, conflicts, isNew) {
+  function mergeOne(original, incoming, conflicts, isNew, feedRetrievedAt) {
     const row = copy(original);
     const history = new Map();
     const byMetric = new Map(metrics.map(metric => [metric, new Map()]));
@@ -63,7 +77,8 @@
     let changed = false;
 
     function keep(entry) {
-      history.set(JSON.stringify([entry.metric, entry.value, entry.observedAt, entry.verified, entry.checked]), entry);
+      const key = JSON.stringify([entry.metric, entry.value, entry.observedAt, entry.verified, entry.checked]);
+      if (!history.has(key) || earlierRetrieval(entry, history.get(key))) history.set(key, entry);
       if (entry.verified) {
         const byTime = byMetric.get(entry.metric);
         if (!byTime.has(entry.observedAt)) byTime.set(entry.observedAt, new Set());
@@ -78,10 +93,12 @@
         }
       }
       for (const metric of metrics) {
-        const entry = current(source, metric);
+        const entry = current(source, metric, activeFeed ? feedRetrievedAt : null);
         if (!entry) continue;
         keep(entry);
-        if (activeFeed && entry.verified && (!candidates.has(metric) || candidates.get(metric).observedAt < entry.observedAt)) {
+        const prior = candidates.get(metric);
+        if (activeFeed && entry.verified && (!prior || prior.observedAt < entry.observedAt ||
+            (prior.observedAt === entry.observedAt && prior.value === entry.value && earlierRetrieval(entry, prior)))) {
           candidates.set(metric, entry);
         }
       }
@@ -92,7 +109,7 @@
 
     const observations = has(row, 'observations') && record(row.observations) ? row.observations : {};
     for (const metric of metrics) {
-      const incumbent = current(original, metric);
+      const incumbent = current(original, metric, isNew ? feedRetrievedAt : null);
       const candidate = candidates.get(metric);
       const byTime = byMetric.get(metric);
       // An equal-time disagreement with the incumbent is worth surfacing even if its
@@ -108,6 +125,9 @@
         selected = candidate;
         row[metric] = candidate.value;
         changed = true;
+      } else if (isNew && !blocked && incumbent?.verified && candidate?.observedAt === incumbent.observedAt) {
+        // Duplicate matching claims can supply retrieval metadata for a new ID.
+        selected = candidate;
       } else if (isNew && incumbent?.verified && byTime.get(incumbent.observedAt).size > 1) {
         // New IDs have no original local value to fall back to. Keep the evidence,
         // but do not show an arbitrary winner for their disputed current metric.
@@ -116,9 +136,9 @@
         delete observations[metric];
       }
       if (selected) {
-        const {observedAt, verified, checked} = selected;
-        // Keep the checked marker attached to the metric it originally accompanied.
-        observations[metric] = {observedAt, verified, ...(checked ? {checked} : {})};
+        const {metric: _metric, value: _value, ...provenance} = selected;
+        // Keep checked/retrieved markers attached to the observation they accompanied.
+        observations[metric] = provenance;
       }
     }
     if (Object.keys(observations).length) row.observations = observations;
@@ -127,10 +147,13 @@
   }
 
   /**
-   * merge(localRows, remoteRows) => {rows, conflicts, added, updated}.
+   * merge(localRows, remoteRows, {retrievedAt}?) => {rows, conflicts, added, updated}.
    * Match by id; keep local order/metadata; append new IDs in first-seen feed order.
    * v/s/n accept explicit {observedAt, verified: true}, preferably per metric at
-   * row.observations[metric]; a per-metric record overrides row-wide provenance.
+   * row.observations[metric]; a per-metric record overrides row-wide provenance,
+   * including optional retrievedAt. Supply the optional batch retrievedAt only for
+   * a fresh fetch: it fills missing timestamps on verified incoming current claims,
+   * not local rows or history. Retrieval never affects recency or verification.
    * checked is legacy day-only evidence. note, d, and asOf are never time inputs.
    * rows are independent JSON data suitable for cache round-tripping. Observations
    * retains current provenance; history retains de-duplicated claims, including
@@ -138,7 +161,8 @@
    * updated counts existing IDs whose current metric/provenance advanced, not edits
    * to history alone. conflicts entries are {id, metric, observedAt, values}.
    */
-  function merge(localRows, remoteRows) {
+  function merge(localRows, remoteRows, options) {
+    const feedRetrievedAt = record(options) && has(options, 'retrievedAt') ? instant(options.retrievedAt) : null;
     const incoming = new Map();
     for (const row of list(remoteRows)) {
       const id = idOf(row);
@@ -151,17 +175,17 @@
     for (const local of list(localRows)) {
       const id = idOf(local);
       if (id === null) { rows.push(copy(local)); continue; }
-      const result = mergeOne(local, incoming.get(id) || [], conflicts, false);
+      const result = mergeOne(local, incoming.get(id) || [], conflicts, false, feedRetrievedAt);
       rows.push(result.row);
       if (result.changed) updated++;
       incoming.delete(id);
     }
     for (const [first, ...rest] of incoming.values()) {
-      rows.push(mergeOne(first, rest, conflicts, true).row);
+      rows.push(mergeOne(first, rest, conflicts, true, feedRetrievedAt).row);
       added++;
     }
     return {rows, conflicts, added, updated};
   }
 
-  return {merge};
+  return {merge, provenance};
 }));

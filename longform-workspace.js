@@ -3,6 +3,7 @@
 window.LongformWorkspace = function mount(api) {
   const $ = id => document.getElementById(id), esc = api.esc;
   const KEY = 'yt-longform-workspace:v1';
+  const H=(key,text)=>window.LFHelp?.label(key,text)||esc(text);
   const root = $('lf-workspace'), gallery = $('lf-gallery'), repro = $('lf-repro');
   const empty = () => ({video:[], channel:[], preset:[], home:null, evidence:{}});
   let db, storageError = false;
@@ -17,19 +18,22 @@ window.LongformWorkspace = function mount(api) {
   direct = includesParam('q');
   const gradeRank = {A:3,B:2,C:1};
   const blue = 'lf-blue', purple = 'lf-purple', orange = 'lf-orange', gray = 'lf-gray', green = 'lf-green';
-  const presets = [
-    {id:'steady',name:'1순위 · 지속수익 / AI',about:'최근 1년 · 근거 등급 · 반복 성과 · 편당 직접 시간 · 채널 대표 1개',controls:{days:'365'},cfg:{ai:'yes',focus:'steady',one:true}},
-    {id:'new',name:'2순위 · 신규 발견',about:'콘텐츠 시작 7~90일 · 쇼츠 D7과 롱폼 D30을 별개로 비교',controls:{},cfg:{focus:'new',window:true,metric:'d30'}},
-    {id:'business',name:'3순위 · 낮은 관여 / 사업 확장',about:'작업시간 · 비용 · 실제/반복 거래 · 시간당 이익',controls:{},cfg:{focus:'business',kind:'profit',metric:'hourly'}}
+  const presets=[
+    {id:'business-fit',name:'1 · 종합 사업 추천순',about:'동일 경과 D30 · 3개 완료월 · 직접 작업 · 독립 비교 · 사업 근거. 누락 시 종합 미산정.',controls:{days:'365'},cfg:{focus:'business-fit',one:true}},
+    {id:'steady',name:'2 · 지속 수익 높은 순',about:'최근 3개 완료월 최저 → 월평균 · 누적 시나리오와 별개',controls:{days:'365'},cfg:{focus:'steady',one:true}},
+    {id:'low-labor',name:'3 · AI 제작·저관여 사업순',about:'작품별 AI 공개 근거 · 직접 제작비/시간 · 거래와 시간당 이익',controls:{days:'365'},cfg:{focus:'low-labor',ai:'yes',one:true}},
+    {id:'new',name:'4 · 신규 성공 채널',about:'실제 콘텐츠 시작 7~90일 · 동일 경과 D30 성과 · 기간 미충족은 관측 대기',controls:{days:'365'},cfg:{focus:'new',window:true,one:true}},
+    {id:'declining',name:'5 · 과거 상승·현재 하락 채널',about:'과거 상승과 이후 하락을 모두 확인할 수 있는 업로드 표본만 순위 · 월수익 아님',controls:{days:'365'},cfg:{focus:'declining',one:true}}
   ];
-  const values = [['','기존 정렬'],['views','누적 조회'],['date','게시일'],['duration','영상 길이'],['daily','게시 후 일평균'],['selected','선택 금액'],['ad','광고수익'],['total','실제 총수익'],['profit','실제 순이익'],['grade','근거 등급'],['repeat','반복 성과 (%)'],['minutes','직접 작업시간'],['cost','실제 비용'],['trades','실제 거래'],['repeatTrades','반복 거래'],['hourly','시간당 이익'],['start','형식 시작 후 경과일'],['d7','쇼츠 D7'],['d30','롱폼 D30'],['median','동일 D30 중앙값'],['p25','동일 D30 하위 25%'],['hitRate','동일 D30 달성률'],['monthlyMin','완료월 최저'],['monthlyAvg','완료월 평균'],['score','사업 적합도'],['expansion','사업 확장 단계'],['pilotRevenue','내 예상 광고수익'],['pilotCash','내 현금 이익'],['pilotLabor','내 노동비 포함 이익']];
+  const focusAlias=f=>f==='business'?'low-labor':f;
+  const values = [['','추천 조합 순서'],['views','누적 조회'],['date','게시일'],['duration','영상 길이'],['daily','게시 후 일평균'],['selected','선택 금액'],['ad','광고수익'],['total','실제 총수익'],['profit','실제 순이익'],['grade','근거 등급'],['repeat','반복 성과 (%)'],['minutes','직접 작업시간'],['cost','실제 비용'],['trades','실제 거래'],['repeatTrades','반복 거래'],['hourly','시간당 이익'],['start','형식 시작 후 경과일'],['d7','쇼츠 D7'],['d30','롱폼 D30'],['decline','최근/직전 중앙값 배수'],['concentration','최고작 의존도'],['independence','독립 채널 조건 충족 비율'],['breakEven','손익분기 조회수'],['median','동일 D30 중앙값'],['p25','동일 D30 하위 25%'],['hitRate','동일 D30 달성률'],['monthlyMin','완료월 최저'],['monthlyAvg','완료월 평균'],['score','사업 적합도'],['expansion','사업 확장 단계'],['pilotRevenue','내 예상 광고수익'],['pilotCash','내 현금 이익'],['pilotLabor','내 노동비 포함 이익']];
   const fields = [
     ['grade','근거 등급','grade'],['source','검증한 출처 URL','url'],['country','확인된 국가','country'],['start','형식 시작일','date'],
     ['d7','관련 쇼츠 D7 조회','number'],['d30','롱폼 D30 조회','number'],['repeat','동일 경과 반복 성과 (%)','number'],['minutes','직접 작업시간 (분)','number'],['cost','실제 편당 제작비 (KRW)','number'],['trades','실제 거래 건수','number'],['repeatTrades','반복 거래 건수','number'],['actualAd','실제 누적 광고수익 (KRW)','number'],['total','실제 누적 총수익 (KRW)','number'],['profit','실제 순이익 (KRW)','signed'],['m1','M1 동일 범위 실측 RPM (KRW)','number'],['m2','M2 동일 범위 비교군 RPM (KRW)','number']
   ];
   const countryOptions=[['','전체 / 미지정'],['KR','한국'],['JP','일본'],['US','미국'],['other','기타 확인 국가']];
   const options = rows=>rows.map(([v,t])=>`<option value="${esc(v)}">${esc(t)}</option>`).join('');
-  const select = (id, title, rows, cls='')=>`<label class="${cls}">${title}<select id="lf-${id}">${options(rows)}</select></label>`;
+  const select = (id,title,rows,cls='')=>`<div class="lf-field ${cls}"><label for="lf-${id}">${title}</label>${['metric','dir','kind','model','grade'].includes(id)?H(({metric:'sort',dir:'sort',kind:'estimatedRevenue',model:'rpm',grade:'grade'})[id],'?'):''}<select id="lf-${id}">${options(rows)}</select></div>`;
   const num = v=>typeof v==='number'&&Number.isFinite(v)?v:null;
   function source(v) {try {const u=new URL(v);return /^https?:$/.test(u.protocol)?u.href:null;} catch {return null;}}
   function evidence(v) {const e=db.evidence[v.id]??v.workspaceEvidence;return e && source(e.source) ? e : {};}
@@ -39,7 +43,7 @@ window.LongformWorkspace = function mount(api) {
   const won = v => v==null?'미산정':(v<0?'−':'')+api.money(Math.abs(v));
   function startAge(e){if(!/^\d{4}-\d\d-\d\d$/.test(e.start||''))return null;const d=Math.floor((api.today()-Date.parse(e.start+'T00:00:00Z'))/86400000);return Number.isFinite(d)&&d>=0?d:null;}
   function sector(v){const t=[v.k,...v.b].join(' ');return /정부지원/.test(t)?'grant':/주식|ETF|경제|보험|투자|연금/i.test(t)?'finance':/AI 창업|AI 사업/.test(t)?'ai':/고양이|햄스터|동물/.test(t)?'pets':/교육/.test(t)?'education':/테크|기술/.test(t)?'tech':/음악/.test(t)?'music':/드라마|영화|예능/.test(t)?'drama':'';}
-  const modelMeta=v=>({views_basis:'public',revenue_scope:'ad',observed_at:v.observations?.v?.verified===true?v.observations.v.observedAt:null,retrieved_at:v.retrievedAt||null});
+  const modelMeta=v=>{const pr=window.LFObservations?.provenance?.(v,'v');return {views_basis:'public',revenue_scope:'ad',observed_at:pr?.observedAt??null,retrieved_at:pr?.retrievedAt??null};};
   function metrics(v,r){
     const e=evidence(v), c=country(v,e), rawViews=num(v.v), extra=e.v3||{}, timing=modelMeta(v), asOf=new Date(Date.now()+32400000).toISOString().slice(0,10);
     const assumptions={sector:sector(v),country:cfg.country||c,fx:Number(cfg.fx),channel_id:cleanChannel(v)};const cal=core.models({...assumptions,...timing,views:rawViews});const basis=extra.revenueBasis||{};if(extra.rpmEvidence&&basis.verified===true&&basis.period_start&&basis.period_end&&basis.views_basis&&basis.revenue_scope&&source(basis.evidence_url)){const verified=core.models({...assumptions,...basis,views:num(basis.views),evidence:extra.rpmEvidence});cal.m1=verified.m1;cal.m2=verified.m2;}
@@ -50,39 +54,47 @@ window.LongformWorkspace = function mount(api) {
     const hasTime=x=>typeof x==='string'&&/T.*(?:Z|[+-]\d\d:\d\d)$/.test(x)&&Number.isFinite(Date.parse(x))&&Date.parse(x)<=Date.now();
     const valid=(a,d)=>a?.day===d&&a?.verified===true&&hasTime(a?.observed_at)&&source(a.evidence_url)&&Number.isInteger(a.views)&&a.views>=0?a.views:null;
     const d30=valid(extra.d30,30),d7=valid(extra.d7,7), start=startAge({start:extra.business?.startedAt||e.start});
+    const trend=cfg.focus==='declining'||['decline'].includes(cfg.metric)?api.trend?.(v.ch):null;const decline=trend?.type==='decline'&&trend?.coverageLabel==='complete'&&trend?.priorRise===true&&Number.isFinite(trend.ratio)?trend.ratio:null;
     const profit=extra.pilot?.own===true&&source(extra.pilot?.evidence_url)?pilot.cashProfit??null:null,minutes=business.pilot?.medianMinutes??null;
-    const result={ad,total:settle&&['total','platform'].includes(act.revenue_scope)?act.amount:null,profit,repeat:business.hitRate==null?null:business.hitRate*100,minutes,cost:extra.pilot?.own===true&&num(extra.pilot?.variableCost)!=null&&num(extra.pilot?.fixedCost)!=null?extra.pilot.variableCost+extra.pilot.fixedCost:null,trades:extra.business?.expansion?.paidTradeVerified===true?num(extra.business?.expansion?.trades):null,repeatTrades:extra.business?.expansion?.procedureVerified===true?num(extra.business?.expansion?.repeatTrades):null,hourly:profit==null?null:pilot.hourlyCashProfit??null,start,d7,d30,date:Number.isFinite(Date.parse(v.d))?Date.parse(v.d):null,views:rawViews,duration:num(v.s),daily:rawViews==null?null:rawViews/api.age(v),grade:gradeRank[proofGrade]??null,e:{...e,grade:proofGrade==='U'?null:proofGrade},country:c,model,business,score:business.score,median:business.median,p25:business.p25,hitRate:business.hitRate,monthlyMin:business.monthlyMin,monthlyAvg:business.monthlyAvg,expansion:business.components?.X??null,pilotRevenue:extra.pilot?.own===true?pilot.estimatedAdRevenue??null:null,pilotCash:profit,pilotLabor:profit==null?null:pilot.laborAdjustedProfit??null,timing,d30Waiting:d30==null&&api.age(v)<=30};
+    const result={ad,total:settle&&['total','platform'].includes(act.revenue_scope)?act.amount:null,profit,repeat:business.hitRate==null?null:business.hitRate*100,minutes,cost:extra.pilot?.own===true&&num(extra.pilot?.variableCost)!=null&&num(extra.pilot?.fixedCost)!=null?extra.pilot.variableCost+extra.pilot.fixedCost:null,trades:extra.business?.expansion?.paidTradeVerified===true?num(extra.business?.expansion?.trades):null,repeatTrades:extra.business?.expansion?.procedureVerified===true?num(extra.business?.expansion?.repeatTrades):null,hourly:profit==null?null:pilot.hourlyCashProfit??null,start,d7,d30,date:Number.isFinite(Date.parse(v.d))?Date.parse(v.d):null,views:rawViews,duration:num(v.s),daily:rawViews==null?null:rawViews/api.age(v),grade:gradeRank[proofGrade]??null,e:{...e,grade:proofGrade==='U'?null:proofGrade},country:c,model,business,score:business.score,median:business.median,p25:business.p25,hitRate:business.hitRate,monthlyMin:business.monthlyMin,monthlyAvg:business.monthlyAvg,expansion:business.components?.X??null,pilotRevenue:extra.pilot?.own===true?pilot.estimatedAdRevenue??null:null,pilotCash:profit,decline,trend,concentration:business.repeat?.concentration??null,independence:business.comparison?.T??null,breakEven:extra.pilot?.own===true?pilot.breakEvenViews??null:null,pilotLabor:profit==null?null:pilot.laborAdjustedProfit??null,timing,d30Waiting:d30==null&&api.age(v)<=30};
     result.selected=result[cfg.kind];
-    const gradeOK=result.grade>=2;
-    result.qualified=cfg.focus==='new'?start!=null&&start>=7&&start<=90&&d30!=null&&(business.repeat?.count??0)>=4:
-      cfg.focus==='business'?gradeOK&&(business.pilot?.count??0)>=3&&[profit,result.hourly,result.cost,result.trades,result.repeatTrades,result.expansion].every(x=>x!=null):
-      gradeOK&&result.score!=null&&business.steady===true&&(result.monthlyMin??0)>0&&(!cfg.focus||v.ai===true);
-    result.qualified=result.qualified&&(cfg.focus==='new'||(business.repeat?.count??0)>=Math.max(12,Number(cfg.sample)||12)||cfg.focus==='business');
+    const gradeOK=result.grade>=2, focus=focusAlias(cfg.focus);
+    result.qualified=focus==='new'?start!=null&&start>=7&&start<=90&&d30!=null&&(business.repeat?.count??0)>=4&&d30>=Number(cfg.d30goal):
+      focus==='low-labor'?(business.pilot?.count??0)>=3&&[profit,result.hourly,result.cost,result.trades,result.repeatTrades,result.expansion].every(x=>x!=null)&&v.ai===true:
+      focus==='declining'?decline!=null:focus==='steady'?gradeOK&&business.monthly?.P!=null&&(result.monthlyMin??0)>0:
+      gradeOK&&result.score!=null&&business.steady===true&&(result.monthlyMin??0)>0;
     return result;
   }
   function order(a,b,dir=cfg.dir){if(a==null)return b==null?0:1;if(b==null)return -1;return dir==='asc'?a-b:b-a;}
-  function choose(rows,r,fallback){
-    if(direct){qualifiedCount=0;researchCount=rows.length;picker?.pool(rows);return rows.slice().sort(fallback);}
-    const pairs=rows.map(v=>[v,metrics(v,r)]).filter(([v,m])=>{
+  let ranks={global:new Map(),field:new Map()}, cardCache=new Map(), rankCache=null;
+  function choose(rows,r,fallback,all=rows){
+    if(direct){qualifiedCount=0;researchCount=rows.length;picker?.pool(rows);ranks={global:new Map(),field:new Map()};cardCache.clear();return rows.slice().sort(fallback);}
+    cardCache=new Map();const make=v=>{if(!cardCache.has(v.id))cardCache.set(v.id,metrics(v,r));return [v,cardCache.get(v.id)];};
+    const allowed=([v,m])=>{
       if(cfg.list==='video'&&!db.video.some(x=>x.key===v.id)||cfg.list==='channel'&&!db.channel.some(x=>x.key===cleanChannel(v)))return false;
       if(cfg.ai==='yes'&&!v.ai||cfg.ai==='unknown'&&v.ai||cfg.grade==='U'&&m.grade!=null||cfg.grade&&cfg.grade!=='U'&&m.grade!==gradeRank[cfg.grade])return false;
       if(cfg.country&&m.country!==cfg.country)return false;
       if(cfg.window&&(m.start==null?cfg.group==='qualified':m.start<7||m.start>90))return false;
       if(cfg.target!==''&&!(m.selected!=null&&m.selected>=Number(cfg.target)))return false;
       return true;
-    });
-    const cmp=([a,x],[b,y])=>{
-      if(cfg.metric){const first=order(x[cfg.metric],y[cfg.metric]);if(first)return first;}
-      if(cfg.focus==='steady'){const first=Number(y.qualified)-Number(x.qualified)||order(x.grade,y.grade,'desc')||order(x.score,y.score,'desc')||order(x.monthlyMin,y.monthlyMin,'desc')||order(x.monthlyAvg,y.monthlyAvg,'desc')||order(x.start,y.start,'asc');if(first)return first;return a.id.localeCompare(b.id);}
-      if(cfg.focus==='new'){const first=order(x.d30,y.d30,'desc');if(first)return first;}
-      if(cfg.focus==='business'){const first=order(x.repeatTrades,y.repeatTrades,'desc')||order(x.trades,y.trades,'desc')||order(x.minutes,y.minutes,'asc')||order(x.cost,y.cost,'asc');if(first)return first;}
+    };
+    const f=focusAlias(cfg.focus);const cmp=([a,x],[b,y])=>{
+      if(cfg.metric){const by=order(x[cfg.metric],y[cfg.metric]);if(by)return by;}
+      const Q=f&&!cfg.metric?Number(y.qualified)-Number(x.qualified):0;if(Q)return Q;
+      const fields={ 'business-fit':[['score','desc'],['grade','desc'],['monthlyMin','desc'],['monthlyAvg','desc'],['start','asc']],steady:[['monthlyMin','desc'],['monthlyAvg','desc'],['grade','desc']],new:[['d30','desc'],['median','desc']], 'low-labor':[['hourly','desc'],['repeatTrades','desc'],['minutes','asc'],['cost','asc']],declining:[['decline','asc']] }[f]||[];
+      for(const [key,dir] of fields){const n=order(x[key],y[key],cfg.dir==='asc'?(dir==='asc'?'desc':'asc'):dir);if(n)return n;}
       return fallback(a,b);
     };
-    pairs.sort(cmp);
-    const seen=new Set();const picked=pairs.filter(([v])=>!cfg.one||!seen.has(cleanChannel(v))&&!!seen.add(cleanChannel(v)));qualifiedCount=picked.filter(p=>p[1].qualified).length;researchCount=picked.length-qualifiedCount;picker?.pool(pairs.filter(p=>cfg.group==='all'||p[1].qualified===(cfg.group==='qualified')).map(p=>p[0]));return picked.filter(p=>cfg.group==='all'||p[1].qualified===(cfg.group==='qualified')).map(p=>p[0]);
+    const inGroup=p=>cfg.group==='all'||p[1].qualified===(cfg.group==='qualified');
+    const representative=pairs=>{const seen=new Set();return pairs.filter(([v])=>!cfg.one||!seen.has(cleanChannel(v))&&!!seen.add(cleanChannel(v)));};
+    const rank=pairs=>{const ranked=new Map();pairs.forEach(([v],i)=>{ranked.set(v.id,i+1);if(cfg.one)ranked.set('ch:'+cleanChannel(v),i+1);});return ranked;};
+    const sorted=rows.map(make).filter(allowed).sort(cmp), picked=representative(sorted);qualifiedCount=picked.filter(p=>p[1].qualified).length;researchCount=picked.length-qualifiedCount;picker?.pool(sorted.filter(inGroup).map(p=>p[0]));
+    const display=picked.filter(inGroup);const key=JSON.stringify([cfg,r,api.state.signature||'',all.map(v=>v.id).join(','),all.at(-1)?.v,api.state.epoch||0]);
+    if(all===rows||(all.length===rows.length&&all.every((v,i)=>v===rows[i])))ranks.global=rank(display);else if(rankCache?.key===key)ranks.global=rankCache.map;else {ranks.global=rank(representative(all.map(make).filter(allowed).sort(cmp)).filter(inGroup));rankCache={key,map:ranks.global};}
+    ranks.field=rank(display);return display.map(([v])=>v);
   }
   const formNode = `
-  <div id="lf-presets" class="lf-row" aria-label="추천 조합">${presets.map(p=>`<button type="button" data-lf="preset" data-key="${p.id}" title="${esc(p.about)}" aria-pressed="false">${p.name}</button>`).join('')}</div>
+  <div id="lf-presets" class="lf-row" aria-label="추천 조합">${presets.map(p=>`<button type="button" data-lf="preset" data-key="${p.id}" data-lf-rank="${presets.indexOf(p)+1}" title="${esc(p.about)}" aria-pressed="false">${['💎 ','🔥 ','🎀 '][presets.indexOf(p)]||''}${esc(p.name)}</button>`).join('')}</div>
   <p id="lf-hint" class="lf-hint"></p><p id="lf-counts" class="lf-hint" role="status"></p>
   <div class="lf-row" aria-label="저장 관리"><button type="button" data-lf="save">현재 조건 조합 저장</button><button type="button" data-lf="library" data-key="preset">저장 조합</button><button type="button" data-lf="library" data-key="video">영상 즐겨찾기</button><button type="button" data-lf="library" data-key="channel">채널 즐겨찾기</button><button type="button" data-lf="all">전체 검색</button><button type="button" data-lf="default">기본 조합으로</button><button type="button" data-lf="share">조건 링크 복사</button><button type="button" data-lf="shrink" aria-label="카드 축소" title="Ctrl+-">−</button><button type="button" data-lf="grow" aria-label="카드 확대" title="Ctrl++">+</button>${select('group','후보 구분',[['all','전체'],['qualified','근거 충족'],['research','조사 후보']],blue)}</div>
   <details id="lf-options"><summary>상세 조건 · 정렬 방향 · 금액 모델</summary><div class="lf-options">
@@ -114,7 +126,7 @@ window.LongformWorkspace = function mount(api) {
     if(!initial){clearDirect();showPanel('board',panel!=='board');api.resetTrend();}
     if(!initial) $('q').value='';
     for(const [id,value] of Object.entries(saved.controls||{}))if(controls.includes(id))$(id).value=String(value);
-    cfg={...base,...saved.cfg};api.clearChannel();api.state.min=Number(saved.min)||0;
+    cfg={...base,...saved.cfg};api.state.epoch=(api.state.epoch||0)+1;api.clearChannel();api.state.min=Number(saved.min)||0;
     $('customDaysLabel').hidden=$('days').value!=='custom';document.documentElement.style.setProperty('--cols',$('cols').value||'5');
     refresh();api.select(saved.view||'all');
   }
@@ -122,7 +134,7 @@ window.LongformWorkspace = function mount(api) {
   function applyDefault(){const item=db.home&&db[db.home.type]?.find(x=>x.key===db.home.key);if(item)applyEntry(db.home.type,item);else applyPreset(presets[0]);}
   function defaults(){return {q:'',days:'all',vdays:'27',sort:'views',rpm:'2',pagesize:'100',cols:'5',vmin:'',vmax:'',mmin:'',mmax:'',vfrom:'',vto:''};}
   function applyPreset(p){active=p.id;apply({controls:{...defaults(),...p.controls},cfg:p.cfg});}
-  function applyEntry(type,item){active='';if(type==='preset'){active=item.value?.cfg?.focus||'';apply(item.value);return;}apply({controls:{...defaults(),q:type==='video'?item.key:''},cfg:{list:type==='channel'?'channel':''},view:'all'});if(type==='channel')api.findChannel(item.channel||item.name);}
+  function applyEntry(type,item){active='';if(type==='preset'){active=focusAlias(item.value?.cfg?.focus)||'';apply(item.value);return;}apply({controls:{...defaults(),q:type==='video'?item.key:''},cfg:{list:type==='channel'?'channel':''},view:'all'});if(type==='channel')api.findChannel(item.channel||item.name);}
   function showPanel(name,update=true,section=''){
     panel=name;gallery.hidden=name!=='board';repro.hidden=name!=='reproduction';
     $('lf-repro-link').setAttribute('aria-current',name==='reproduction'?'page':'false');
@@ -142,12 +154,13 @@ window.LongformWorkspace = function mount(api) {
     form.onsubmit=e=>{if(e.submitter?.value==='cancel')return;e.preventDefault();const n=input.value.trim();if(!n)return;d.close();fn(n);};
   }
   function card(v,r){
-    const m=metrics(v,r), ch=cleanChannel(v), button=(kind,key,t,pressed=false)=>`<button type="button" data-lf="${kind}" data-key="${esc(key)}" ${kind==='evidence'?'':`aria-pressed="${pressed}"`}>${t}</button>`;
-    const comparisons=cfg.focus==='new'?[['시작 경과',m.start,orange],['쇼츠 D7',m.d7,blue],['롱폼 D30',m.d30,blue]]:cfg.focus==='business'?[['작업 분',m.minutes,purple],['비용',m.cost,green],['실제 거래',m.trades,blue],['반복 거래',m.repeatTrades,blue],['내 예상 광고',m.pilotRevenue,green],['내 현금 이익',m.pilotCash,green],['내 노동비 포함',m.pilotLabor,green],['시간당 이익',m.hourly,green]]:cfg.focus==='steady'?[['반복 %',m.repeat,blue],['작업 분',m.minutes,purple]]:[];
-    if(cfg.focus==='steady')comparisons.push(['D30 중앙값',m.median,blue],['D30 하위 25%',m.p25,blue],['동일 D30 표본',m.business.repeat.count,blue]);
-    if(m.business.concentrationWarning&&cfg.focus==='steady')comparisons.push(['최고작 비중',m.business.concentration*100,orange]);
-    const more=(cfg.focus||cfg.metric||cfg.model!=='legacy'||cfg.kind!=='ad')?`<div class="lf-labels"><span class="${m.selected==null?gray:green}">${cfg.kind==='profit'?'실제 순이익':cfg.kind==='total'?'실제 총수익':cfg.model==='actual'?'실제 광고':'광고 추정'} ${won(m.selected)}</span>${comparisons.map(([k,n,cls])=>`<span class="${n==null?gray:cls}">${k} ${['비용','시간당 이익'].includes(k)?won(n):shortNum(n)}</span>`).join('')}</div>`:'';
-    return `<div class="lf-labels"><span class="${m.qualified?blue:orange}">${m.qualified?'근거 충족':'조사 후보'}</span><span class="${m.grade?blue:gray}" title="${esc(m.model?.status||'')}">${m.e.grade?esc(m.e.grade)+' 근거':'U · 근거 미확인'}</span>${v.ai?'<span class="lf-purple">AI 제작</span>':''}${source(m.e.source)?`<a class="lf-blue" href="${esc(source(m.e.source))}" target="_blank" rel="noopener noreferrer">출처</a>`:''}</div>${cfg.focus==='new'?'<span class="lf-orange">장기 검증 전</span>':''}${more}${cfg.focus==='steady'?`<small class="lf-gray">근거 ${m.business.confirmed}/6 · ${m.monthlyMin===0?'최저 월 0 · 지속 수익 미충족':m.business.score==null?'점수 미산정':''}</small>`:''}<div class="lf-actions">${button('fav-video',v.id,'영상 저장',db.video.some(x=>x.key===v.id))}${button('fav-channel',v.id,'채널 저장',db.channel.some(x=>x.key===ch))}${button('evidence',v.id,'검증 근거')}${cfg.one?button('channel-more',v.id,'이 채널 더보기'):''}${picker?.button(v)||''}</div>`;
+    const m=cardCache.get(v.id)||metrics(v,r), ch=cleanChannel(v), button=(kind,key,t,pressed=false)=>`<button type="button" data-lf="${kind}" data-key="${esc(key)}" ${kind==='evidence'?'':`aria-pressed="${pressed}"`}>${t}</button>`;
+    const focus=focusAlias(cfg.focus);const comparisons=focus==='new'?[['시작 경과',m.start,orange],['롱폼 D30',m.d30,blue]]:focus==='low-labor'?[['작업 분',m.minutes,purple],['비용',m.cost,green],['실제 거래',m.trades,blue],['반복 거래',m.repeatTrades,blue],['내 예상 광고',m.pilotRevenue,green],['내 현금 이익',m.pilotCash,green],['내 노동비 포함',m.pilotLabor,green],['시간당 이익',m.hourly,green]]:focus==='steady'?[['3개월 최저',m.monthlyMin,green],['3개월 평균',m.monthlyAvg,green]]:focus==='business-fit'?[['사업 적합도',m.score,blue],['동일 D30 중앙값',m.median,blue]]:focus==='declining'?[['최근/직전 배수',m.decline,orange]]:[];
+    
+    
+    const more=(cfg.focus||cfg.metric||cfg.model!=='legacy'||cfg.kind!=='ad')?`<div class="lf-labels"><span class="${m.selected==null?gray:green}">${cfg.kind==='profit'?'실제 순이익':cfg.kind==='total'?'실제 총수익':cfg.model==='actual'?'실제 광고':'광고 추정'} ${won(m.selected)}</span>${comparisons.map(([k,n,cls])=>`<span class="${n==null?gray:cls}">${k} ${['비용','시간당 이익','3개월 최저','3개월 평균','내 예상 광고','내 현금 이익','내 노동비 포함'].includes(k)?won(n):k==='롱폼 D30'&&m.d30Waiting?'관측 대기':shortNum(n)}</span>`).join('')}</div>`:'';
+    const g=ranks.global.get(v.id)??ranks.global.get('ch:'+ch), f=ranks.field.get(v.id);const rankText=direct?'':`<span class="lf-rank" title="같은 조건의 연구 목록 순위이며 판매/실수익 순위가 아닙니다">전체 ${g??'–'} · 분야 ${f??'–'}</span>`;
+    return `<div class="lf-labels">${rankText}<span data-lf-tone="${m.qualified?'evidence':'unknown'}" class="${m.qualified?blue:orange}">${m.qualified?'근거 충족':'조사 후보'}</span><span class="${m.grade?blue:gray}" title="${esc(m.model?.status||'')}">${m.e.grade?esc(m.e.grade)+' 근거':'U · 근거 미확인'}</span>${v.ai?'<span class="lf-purple">AI 제작</span>':''}${source(m.e.source)?`<a class="lf-blue" href="${esc(source(m.e.source))}" target="_blank" rel="noopener noreferrer">출처</a>`:''}</div>${cfg.focus==='new'?'<span class="lf-orange">장기 검증 전</span>':''}${more}${focus==='business-fit'?`<small class="lf-gray">근거 ${m.business.confirmed}/6 · ${m.monthlyMin===0?'최저 월 0 · 지속 수익 미충족':m.business.score==null?'점수 미산정':''}</small>`:''}<div class="lf-actions">${button('fav-video',v.id,'영상 저장',db.video.some(x=>x.key===v.id))}${button('fav-channel',v.id,'채널 저장',db.channel.some(x=>x.key===ch))}${button('evidence',v.id,'검증 근거')}${cfg.one?button('channel-more',v.id,'채널 영상 펼치기'):''}${picker?.button(v)||''}</div>`;
   }
   function evidenceDialog(v){
     const e=evidence(v), d=$('lf-evidence-dialog'), form=d.querySelector('form');$('lf-evidence-title').textContent=v.t;
@@ -161,7 +174,7 @@ window.LongformWorkspace = function mount(api) {
       const msg=$('lf-evidence-status');if(!source(next.source)){msg.textContent='검증에 사용한 http(s) 출처 URL을 입력하세요.';return;}
       if(next.repeat>100||next.repeatTrades>next.trades){msg.textContent='반복 성과는 0~100%, 반복 거래는 실제 거래 건수 이하여야 합니다.';return;}
       try{if(box.value.trim()){const obj=JSON.parse(box.value);if(!obj||typeof obj!=='object'||Array.isArray(obj))throw Error();next.v3=obj;}}catch{msg.textContent='검증 자료는 JSON 객체로 입력하세요.';return;}
-      msg.textContent='';db.evidence[v.id]=next;store();d.close();api.render();if(!storageError)message('검증 근거를 이 브라우저에 저장했습니다.');};
+      msg.textContent='';db.evidence[v.id]=next;api.state.epoch=(api.state.epoch||0)+1;store();d.close();api.render();if(!storageError)message('검증 근거를 이 브라우저에 저장했습니다.');};
   }
   function density(delta){const cols=$('cols');const n=Math.min(6,Math.max(3,Number(cols.value||5)+delta));cols.value=String(n);cols.dispatchEvent(new Event('change'));}
   document.addEventListener('keydown',e=>{if(panel!=='board'||!(e.ctrlKey||e.metaKey)||e.altKey||e.target.closest?.('input,textarea,select,[contenteditable],dialog'))return;if(['-','_','+','='].includes(e.key)){e.preventDefault();density(e.key==='-'||e.key==='_'?1:-1);}});
@@ -180,7 +193,7 @@ window.LongformWorkspace = function mount(api) {
     if(action==='close-library'){library='';drawLibrary();return;}
     if(action==='browse-library'){if(library==='preset'){message('저장한 이름을 선택하면 조건을 적용합니다.');return;}active='';apply({controls:defaults(),cfg:{list:library}});return;}
     if(action==='clear-home'){db.home=null;store();drawLibrary();return;}
-    if(action==='channel-more'){const v=api.get(k);if(v){active='';apply({controls:defaults(),cfg:{}});api.findChannel(v.ch);message('채널의 전체 조사 영상을 표시합니다.');}return;}
+    if(action==='channel-more'){const v=api.get(k);if(v){active='';cfg={...cfg,one:false};api.select('all');api.findChannel(v.ch);refresh();message('채널의 전체 조사 영상을 표시합니다.');}return;}
     if(action==='evidence'){const v=api.get(k);if(v)evidenceDialog(v);return;}
     if(action==='fav-video'||action==='fav-channel'){
       const v=api.get(k), type=action==='fav-video'?'video':'channel';if(!v)return;const key=type==='video'?v.id:cleanChannel(v);
@@ -205,5 +218,5 @@ window.LongformWorkspace = function mount(api) {
     if(!direct&&params.searchParams.get('panel')==='reproduction')showPanel('reproduction',false,params.searchParams.get('section')||'');
     refresh();
   }
-  return {prepare,choose,card,counts(all){$('lf-counts').textContent='전체 '+all.toLocaleString('ko-KR')+'편 · 근거 충족 '+qualifiedCount.toLocaleString('ko-KR')+'편 · 조사 후보 '+researchCount.toLocaleString('ko-KR')+'편';},direct:()=>direct,normalSearch(){clearDirect();refresh();},legacyReset(){active='';cfg={...base};clearDirect();refresh();}};
+  return {prepare,choose,card,metric:(v,r)=>cardCache.get(v.id)||metrics(v,r),capture,restore(saved){if(explicit||!saved?.cfg)return false;active=focusAlias(saved.cfg.focus)||'';apply(saved,{initial:true});return true;},counts(all){$('lf-counts').textContent='전체 '+all.toLocaleString('ko-KR')+'편 · 근거 충족 '+qualifiedCount.toLocaleString('ko-KR')+'편 · 조사 후보 '+researchCount.toLocaleString('ko-KR')+'편';},direct:()=>direct,normalSearch(){clearDirect();refresh();},legacyReset(){active='';cfg={...base};clearDirect();refresh();}};
 };

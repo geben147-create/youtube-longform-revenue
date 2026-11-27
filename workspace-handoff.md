@@ -44,3 +44,10 @@ node --check lf-selection-ui.js
 - `lf-hub-fixture.json` is an eight-video, metadata-only fixture from the existing catalog; it is not a new verified recommendation. HUB branch owner confirmed in Chrome that all eight IDs remain ordered, all unknown observation timestamps remain null, and filters are retained.
 - Branch Chrome: built-in 2,883 rows; current shared merge 2,902 visible rows; 19 additions; 0 newer verified replacements observed. The pure merge tests cover actual newer, ambiguous, stale, undated, and cached observations.
 - Browser: Quick 7 and Quick 8; mutating the draft does not mutate the frozen 8-item run; JSON preserves dates without generated times and contains no cues; unauthorized SRT download is withheld.
+
+## Five-view follow-up (2026-11-27)
+
+- In-place five presets plus identical-filter overall / selected-field positions; preserve favorites namespaces, direct URLs and old calculations. Unknown full business score and unknown growth remain unrankable as verified candidates. Recent/prior upload cohorts use different-age lifetime snapshots; displayed as such.
+- Responsive local menu settings, 2–4 comparison, Korean browser voice fallback, and separate candidate/source panels. No external private storage, OAuth, rank publication into Insta, or player ad manipulation.
+- Research seed: 214 verified distinct public-source candidates in 10 areas (20–23 per area), KR 63 / JP 77 / US-oriented English 74; 30/60/365 windows 76/117/214. Target 100 per area is not finished. The ten channel observations do not establish ten independent operators.
+- Fresh-feed retrieval provenance belongs to each verified observation. See LFObservations.provenance(row,'v'); cache replay does not inject retrieval times.
