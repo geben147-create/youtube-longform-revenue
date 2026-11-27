@@ -54,7 +54,7 @@ window.LFV6 = (function () {
   function active() { return Object.entries(st).some(([k, v]) => !['sort', 'limit', 'mode', 'list'].includes(k) && v !== '' && v !== false); }
   function pass(v, rate) {
     if (rate) r = rate;
-    if (!active()) return true;
+    if (!api || !active()) return true;
     const i = info(v), ge = (val, min) => val != null && val >= Number(min), le = (val, max) => val != null && val <= Number(max);
     if (st.subsMax !== '' && !le(i.subs, st.subsMax)) return false;
     if (st.chAgeMax !== '' && !le(i.chAge, st.chAgeMax)) return false;
@@ -69,13 +69,14 @@ window.LFV6 = (function () {
   const KEY = { estDesc: [i => i.est, 1], viewsDesc: [(i, v) => num(v.v), 1], subsAsc: [i => i.subs, -1], xDesc: [i => i.x, 1], chNewest: [i => i.joined ? Date.parse(i.joined) : null, 1], chVideosAsc: [i => i.chVideos, -1], postNewest: [(i, v) => dateMs(v.d), 1], perDayDesc: [i => i.perDay, 1], chEstDesc: [i => i.chEst, 1], videoEstAvgDesc: [i => i.avgEst, 1] };
   function compare(a, b, rate) {
     if (rate) r = rate;
-    if (!st.sort || !KEY[st.sort]) return 0;
+    if (!api || !st.sort || !KEY[st.sort]) return 0;
     const [f, dir] = KEY[st.sort], x = f(info(a), a), y = f(info(b), b);
     if (x == null || x === undefined) return y == null ? 0 : 1; if (y == null) return -1;
     return (y - x) * dir;
   }
   const n0 = x => x == null ? null : Math.round(x).toLocaleString('ko-KR');
   function card(v, rate) {
+    if (!api) return '';
     if (rate) r = rate;
     const i = info(v), esc = api.esc, U = (val, reason) => val == null ? `<span class="lf-gray" title="${esc(reason || '미확인')}">미확인</span>` : val;
     const ch = i.c;
@@ -95,6 +96,7 @@ window.LFV6 = (function () {
 ${i.oldChannelRecentStart ? '<div class="v6-wide"><dd class="lf-orange">오래된 채널 · 최근 콘텐츠 시작 가능성(표본 기준)</dd></div>' : ''}</dl>`;
   }
   function channels(rows, rate) {
+    if (!api) return '';
     if (rate) r = rate;
     const seen = new Set(), esc = api.esc, out = [];
     for (const v of rows) { const k = norm(v.ch); if (seen.has(k)) continue; seen.add(k); out.push(v); if (out.length >= 300) break; }
