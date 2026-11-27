@@ -16,8 +16,8 @@ window.LFPlusUI = {
     function views() { return Number.isFinite(video?.v) ? video.v : null; }
     function render() {
       if (!video) return;
-      const info = api.metrics(video), cal = info.cal || {}, subs = Number(form.subs) > 0 ? Number(form.subs) : null;
-      const recent = api.recentViews(video.ch) || [], aux = P.subscriberAux({ views: views(), subscribers: subs, recentViews: recent });
+      const info = api.metrics(video), baseCal = info.cal || {}, subs = Number(form.subs) > 0 ? Number(form.subs) : null;
+      const cal = form.country ? { ...baseCal, m3: window.LFMetrics.models({ views: views(), sector: info.sector, country: form.country, fx: Number(form.fx) }).m3 } : baseCal, recent = api.recentViews(video.ch) || [], aux = P.subscriberAux({ views: views(), subscribers: subs, recentViews: recent });
       const countryOptions = ['', 'KR', 'JP', 'US', 'IN'].map(c => `<option value="${c}" ${form.country === c ? 'selected' : ''}>${c === 'IN' ? 'IN · 계수 없음' : c || '자동/미지정'}</option>`).join('');
       const header = `<h3>${esc(video.t)}</h3><p>${esc(video.ch)} · 공개 누적 ${Number(video.v).toLocaleString('ko-KR')}회 · <a href="https://www.youtube.com/watch?v=${esc(video.id)}" target="_blank" rel="noopener noreferrer">원본</a></p><div class="lf-row" role="tablist">${TABS.map(([k, t]) => `<button type="button" role="tab" data-tab="${k}" aria-selected="${tab === k}" aria-pressed="${tab === k}">${t}</button>`).join('')}</div>`;
       const sections = {
