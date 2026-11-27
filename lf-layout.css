@@ -239,3 +239,8 @@ body:has(> .lf-layout-mounted){background-color:#111317!important}
 .lf-panel>summary{font-weight:780;cursor:pointer}
 .lf-table-wrap{overflow:auto;max-width:100%}.lf-panel table td,.lf-panel table th{padding:5px;border-bottom:1px solid var(--line);text-align:left}
 .lf-rank{color:var(--lf-key);font-size:11px;white-space:nowrap}
+
+#lf-plus [role=tab][aria-selected=true]{background:var(--lf-rank-1);color:var(--lf-key);border-color:var(--lf-sort)}
+.lf-card-mini{margin:6px 0;padding:6px 8px;border:1px solid var(--line);border-radius:7px;background:var(--paper)}
+#lf-plus table{width:100%;border-collapse:collapse}#lf-plus th,#lf-plus td{padding:4px;border-bottom:1px solid var(--line);text-align:left}
+#lf-plus input,#lf-plus select{max-width:100%;min-height:30px}

@@ -53,3 +53,7 @@ node --check lf-selection-ui.js
 - Fresh-feed retrieval provenance belongs to each verified observation. See LFObservations.provenance(row,'v'); cache replay does not inject retrieval times.
 
 - The HUB handoff now fails closed to explicit JSON download when the public receiver scripts are missing, cross-origin, or incompatible. Readiness is not a delivery receipt.
+
+## Plus-alpha calculator options (2026-11-27)
+
+Structure unchanged: M1~M5, legacy 1,000/2,000/4,000 and V3 business-fit outputs are not replaced. Added: `lf-plus.js` (pure helpers), `lf-plus-ui.js` (opt-in card button "계산 비교" and tabbed panel), country-coefficient disclosure (only M3 multiplies KR 0.40/JP 0.55/US 1.00 and FX; M2 only filters country; legacy/M1/M4/M5 do not use it; IN has no coefficient), child conservative retention scenarios (100/70/50/30 percent, not official), M3+ mixed-country simulator composed from unchanged M3, subscriber-based supplementary metrics, and evidence audit that withholds only unsupported business-fit ranking while retaining raw values. Tests: `node --test lf-plus.test.cjs` plus the existing metrics, observations and export tests.
