@@ -1,0 +1,33 @@
+{
+  "schema": "GPT42_TRACEABILITY_V1.0",
+  "group_id": "2B",
+  "experiment_id": "EXP-2B-KR-20261128-001",
+  "script_id": "2B-KR-0001-V002",
+  "package_revision": "P003",
+  "previous_script_id": "2B-KR-0001-V001",
+  "previous_script_sha256": "ad471f3194bbeed84870c76aeba688fb00a7f7bd183ada1fce35d2e9736fe181",
+  "script_sha256": "e3af12537de67f04063190d61a1eb842e9c4cecf5beb4d21ff33953518becbfc",
+  "analysis_id": "2B-KR-0001-ANALYSIS-V003",
+  "analysis_sha256": "a1312680d312eaa9fb1210bb7c398ea4714bbc16a065cb526ae55e275cf6b041",
+  "master_prompt_version": "V1.2-TRACE",
+  "master_prompt_sha256": "36d291e747b0dbbc706bb5891e9c287e1ea9271cab86471083b0f4e3c8ad74ee",
+  "outline_sha256": "fc975a81394c0bada0a9bc7e3ea80e0524572e0df5f6b3abb6b9fd977586bc28",
+  "source": "https://geben147-create.github.io/youtube-longform-revenue/gpt42.html",
+  "reference_ids": [
+    "NAQXPYPaC_U",
+    "EYTYtD_aw2g",
+    "VpYAfInd-dU",
+    "QvtKzowsbWA",
+    "ylO0gjrzr8c",
+    "8HXJxyzeODo",
+    "_0QGGa-ov4o"
+  ],
+  "original_cues": 2509,
+  "korean_reference_cues": 2449,
+  "original_srt": 7,
+  "original_images": 7,
+  "retention_devices": 70,
+  "analysis_basis": "Full supplied SRT and thumbnail images; 6 secondary view snapshots; actual footage, factual claims, translation accuracy, CTR, retention and settled revenue not independently verified.",
+  "public_summary": "B1 reframes the metric; B2 resolves an archival question; B3 contrasts comments and documentary claims; B4 compares news frames; B5 returns from history to ordinary habits; B6/B7 use recurring experiential discoveries. No private assets or full text published.",
+  "status": "SOURCE_ASSETS_COMPLETE_ANALYSIS_COMPLETE_VALIDATION_PARTIAL"
+}
