@@ -84,7 +84,7 @@
     const used = new Set(gptExclude || []), out = {};
     const ch = v => window.LFMetric.channels().get(terms(v.ch));
     const pick = (list, perCh, key, cap) => { const per = new Map(), res = []; for (const v of list.sort(key)) { if (used.has(v.id)) continue; const k = terms(v.ch); const n = per.get(k) || 0; if (n >= perCh) continue; per.set(k, n + 1); used.add(v.id); res.push(v); if (res.length >= cap) break; } return res; };
-    const long = E.pool.filter(v => v.s > 180 && Number.isFinite(v.v) && E.scores.get(v.id)?.cat?.key !== 'fullmovie');
+    const long = E.pool.filter(v => { const c = E.scores.get(v.id)?.cat; return v.s > 180 && Number.isFinite(v.v) && c && c.key !== 'fullmovie' && c.cls !== 'C'; }); // 제작 재현 대상만: 출연·대규모 촬영형(C)·영화 전편·분야 미분류 제외
     const c1 = v => E.scores.get(v.id)?.parts.c1?.raw ?? null;
     out['1A'] = pick(long.filter(v => { const c = ch(v); return c && c.n >= 5 && c.repeat >= 0.5 && c1(v) != null; }), 3, (a, b) => c1(b) - c1(a) || b.v - a.v, 250);
     out['2A'] = pick(long.filter(v => v.v * 2 >= 1e6 && (c1(v) ?? 0) >= 1e7), 2, (a, b) => b.v * c1(b) - a.v * c1(a), 250);
@@ -100,7 +100,7 @@
   document.addEventListener('click', e => { const b = e.target.closest('[data-grp-copy]'); if (!b || !lastGroups) return; const k = b.dataset.grpCopy; const L = k === 'all' ? ['1A', '2A', '2B', '2C'].flatMap(g => lastGroups[g] || []) : (lastGroups[k] || []); const txt = L.map(v => 'https://www.youtube.com/watch?v=' + v.id).join('\n'); (navigator.clipboard?.writeText(txt) || Promise.reject()).then(() => { b.textContent = '복사됨 ' + L.length + '개'; }).catch(() => { const t = document.createElement('textarea'); t.value = txt; document.body.appendChild(t); t.select(); document.execCommand('copy'); t.remove(); b.textContent = '복사됨 ' + L.length + '개'; }); });
   function groupsTab(E) {
     const G = groups(E); lastGroups = G; const total = ['1A', '2A', '2B', '2C'].reduce((a, g) => a + G[g].length, 0);
-    return '<p class="lf-hint">GPT 1·2차 42편은 제외하고, 같은 영상은 한 그룹에만 넣었습니다(1A→2A→2B→2C 순). 목표: 체크한 4개 그룹 × 250편 = 1,000편. 현재 ' + nf(total) + '편 · 부족분은 1분 예약 발굴이 채우며 새 영상이 들어오면 자동으로 다시 나열됩니다. 금액은 추정(실제 정산 아님).</p><p><button type="button" data-grp-copy="all">체크한 4개 그룹 URL 전체 복사</button></p>'
+    return '<p class="lf-hint">GPT 1·2차 42편, 출연·대규모 촬영형(C등급), 영화 전편 업로드, 분야 미분류 영상은 제외하고(AI 제작 재현 대상만), 같은 영상은 한 그룹에만 넣었습니다(1A→2A→2B→2C 순). 목표: 체크한 4개 그룹 × 250편 = 1,000편. 현재 ' + nf(total) + '편 · 부족분은 1분 예약 발굴이 채우며 새 영상이 들어오면 자동으로 다시 나열됩니다. 금액은 추정(실제 정산 아님).</p><p><button type="button" data-grp-copy="all">체크한 4개 그룹 URL 전체 복사</button></p>'
       + GROUPS.map(([g, name, rule, on]) => on ? '<details class="v14-grp" data-grp="' + g + '"' + (g === '1A' ? ' open' : '') + '><summary><b>' + (g[0] === '1' ? '🔴 ' : '🔵 ') + g + ' ' + esc(name) + '</b> · ' + nf(G[g].length) + '/250편 <button type="button" data-grp-copy="' + g + '">URL ' + G[g].length + '개 복사</button></summary><p class="lf-hint">' + esc(rule) + '</p><div data-grp-body>' + (g === '1A' ? gtable(E, G[g]) : '<p class="lf-hint">펼치면 목록이 열립니다.</p>') + '</div></details>' : '<p class="lf-hint">☐ ' + g + ' ' + esc(name) + ' — ' + esc(rule) + '</p>').join('');
   }
   let lastT20 = null;
