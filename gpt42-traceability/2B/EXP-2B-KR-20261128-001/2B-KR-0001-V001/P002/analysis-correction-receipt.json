@@ -1,0 +1,15 @@
+{
+  "schema": "GPT42_TRACEABILITY_V1.0",
+  "experiment_id": "EXP-2B-KR-20261128-001",
+  "script_id": "2B-KR-0001-V001",
+  "package_revision": "P002",
+  "previous_public_record_commit": "90e1c0a63a101942d875e403744e1bcc93e4cc23",
+  "analysis_id": "2B-KR-0001-ANALYSIS-V002",
+  "analysis_sha256": "03be40636aa21c52a837600c9375f39dcf67f2fbb0a57e1fbf43b2d5dbaf234e",
+  "previous_analysis_sha256": "7d22be32e3fa40d348a3c3bd1d8e6eadb9f11c186c935bb0039096e8d9575af1",
+  "master_prompt_version": "V1.1-TRACE",
+  "master_prompt_sha256": "255a0b9900fb9554d26b2571828d0fc8ceeb1475f7fd4abfd663563bda4a8003",
+  "script_sha256": "ad471f3194bbeed84870c76aeba688fb00a7f7bd183ada1fce35d2e9736fe181",
+  "change": "Corrected seven title-label fields using existing title metadata. No full subtitle analysis added. Script unchanged. No private content uploaded.",
+  "status": "PARTIAL"
+}
