@@ -82,10 +82,10 @@
 
   // ---------- RangeFilter ----------
   const RKEY = 'lf-v13:range:v1';
-  const range = { rows: LS(RKEY, {}), unknown: LS('lf-v13:range-unknown', false), errors: {} };
-  function rangeFromURL() { const u = new URL(location.href).searchParams.get('rf'); if (!u) return; const out = {}; for (const part of u.split(',')) { const [k, a = '', b = ''] = part.split(/[:~]/); if (MET[k]) out[k] = { min: decodeURIComponent(a), max: decodeURIComponent(b) }; } range.rows = out; SS(RKEY, out); }
-  function active() { const out = []; for (const [k, r] of Object.entries(range.rows)) { if (!MET[k] || !MET[k][4]) continue; let a = parseNum(r.min), b = parseNum(r.max); if (k === 'repeat') { if (a != null && a > 1 && !/%/.test(r.min)) a /= 100; if (b != null && b > 1 && !/%/.test(r.max)) b /= 100; } if ((a == null && b == null) || Number.isNaN(a) || Number.isNaN(b)) continue; if (a != null && b != null && a > b) continue; out.push([k, a, b]); } return out; }
   let actCache = null;
+  const range = { rows: LS(RKEY, {}), unknown: LS('lf-v13:range-unknown', false), errors: {} };
+  function rangeFromURL() { const u = new URL(location.href).searchParams.get('rf'); if (!u) return; const out = {}; for (const part of u.split(',')) { const [k, a = '', b = ''] = part.split(/[:~]/); if (MET[k]) out[k] = { min: decodeURIComponent(a), max: decodeURIComponent(b) }; } range.rows = out; SS(RKEY, out); actCache = null; }
+  function active() { const out = []; for (const [k, r] of Object.entries(range.rows)) { if (!MET[k] || !MET[k][4]) continue; let a = parseNum(r.min), b = parseNum(r.max); if (k === 'repeat') { if (a != null && a > 1 && !/%/.test(r.min)) a /= 100; if (b != null && b > 1 && !/%/.test(r.max)) b /= 100; } if ((a == null && b == null) || Number.isNaN(a) || Number.isNaN(b)) continue; if (a != null && b != null && a > b) continue; out.push([k, a, b]); } return out; }
   window.LFRange = {
     ok(v) { const act = actCache || (actCache = active()); for (const [k, a, b] of act) { let x = MET[k][3](v); if (k === 'repeat' && x != null) x = x; if (x == null) { if (!range.unknown) return false; continue; } if (a != null && x < a) return false; if (b != null && x > b) return false; } return true; },
     active: () => active(), parseNum
@@ -403,7 +403,7 @@ html:not(.v13-auto-cols) .grid{grid-template-columns:repeat(var(--v13-cols,var(-
       new MutationObserver(() => { if (pend) return; pend = true; requestAnimationFrame(() => { pend = false; decorateCards(); decorateAudit(); applyVis(); if (!document.getElementById('v13-thumbs')) buildVis(); if (!document.querySelector('.v13-medit')) buildMenuEdit(); }); }).observe(document.getElementById('grid') || document.body, { childList: true, subtree: true });
       document.getElementById('rpm')?.addEventListener('change', () => setTimeout(decorateCards, 60));
       decorateCards(); applyVis();
-      if (active().length || sort.key) rerender();
+      actCache = null; if (active().length || sort.key) { rerender(); setTimeout(() => { actCache = null; rerender(); chips(); }, 1500); }
     },
     parseNum
   };
