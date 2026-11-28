@@ -18,6 +18,25 @@
     return '<span class="krw" data-n="' + Number(x) + '" title="정확 ' + esc(Number(x).toLocaleString('ko-KR')) + '원' + (formula ? ' · 계산식: ' + esc(formula) : ' · 계산식은 표 위 설명 참조') + '">' + fmt(x) + '</span>';
   }
   window.LFMoney = { fmt, html };
+  // GPT research medal + filter
+  const GPT_KEY = 'lf-v12:gpt:v1';
+  const LFGPT = window.LFGPT = { mode: LS(GPT_KEY, 'all'), ids: null, has(v) { return !!v && (((v.src || []).includes('GPT 조사')) || !!(this.ids && this.ids.has(v.id))); }, ok(v) { return this.mode === 'all' ? true : this.mode === 'only' ? this.has(v) : !this.has(v); } };
+  const MEDAL = '<span class="gpt-medal" style="background:#FFEB00;color:#E00000;font-weight:900" title="어시스턴트(GPT)가 직접 조사·추가한 영상">★ GPT</span>';
+  function rowId(tr) { const s = new Set([...tr.querySelectorAll('a[href*="watch?v="],a[href*="/shorts/"]')].map(a => (a.getAttribute('href').match(/(?:v=|shorts\/)([\w-]{11})/) || [])[1]).filter(Boolean)); return s.size === 1 ? [...s][0] : null; }
+  function mark(thumb, titleHost, on, after) {
+    for (const m of [thumb && thumb.querySelector(':scope>.gpt-medal'), titleHost && titleHost.querySelector('.gpt-title')]) if (m && !on) m.remove();
+    if (!on) return;
+    if (thumb && !thumb.querySelector(':scope>.gpt-medal')) { thumb.classList.add('gpt-thumb'); thumb.insertAdjacentHTML('beforeend', MEDAL); }
+    let tm = titleHost && titleHost.querySelector('.gpt-title');
+    if (titleHost && !tm) { const s = document.createElement('span'); s.className = 'gpt-title'; s.innerHTML = MEDAL; if (after) after.after(s); else titleHost.appendChild(s); tm = s; }
+    if (tm) { const vis = thumb && thumb.offsetParent !== null && getComputedStyle(thumb).display !== 'none' && (thumb.querySelector('img')?.offsetParent ?? null) !== null; tm.hidden = !!vis; }
+  }
+  function decorate() {
+    if (!LFGPT.ids) return;
+    for (const a of document.querySelectorAll('.grid article[data-id]')) { const ttl = a.querySelector('.cardtitle'); mark(a.querySelector('.thumb'), ttl ? ttl.parentElement : null, LFGPT.ids.has(a.dataset.id), ttl); }
+    for (const tr of document.querySelectorAll('.lf-panel tbody tr')) { const id = rowId(tr); if (!id) continue; const on = LFGPT.ids.has(id); const th = tr.querySelector('a.v12-th,a:has(>img[src*="ytimg"])'); const cell = (th && th.closest('td,th')) || tr.querySelector('th') || tr.cells[1]; mark(th, cell, on, null); tr.hidden = LFGPT.mode !== 'all' && !LFGPT.ok({ id }); }
+  }
+  window.LFGPTDecorate = decorate;
 
   // 2) View toggles (independent, persisted)
   const UI_KEY = 'lf-v12:ui:v1', ui = Object.assign({ thumbs: true, analysis: true, metrics: true }, LS(UI_KEY, {}));
@@ -29,6 +48,7 @@ html.v12-no-metrics .grid article .v6-card{display:none!important}
 #v12-bar{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:6px 0}#v12-bar button,.v12-tools button,.v12-chip{font-size:12px;padding:3px 8px;border-radius:6px;border:1px solid #3a4256;background:#1b2130;color:inherit;cursor:pointer}
 #v12-bar button[aria-pressed=false]{opacity:.75}.v12-chips{display:flex;flex-wrap:wrap;gap:4px;margin:4px 0}.v12-chip{border-color:#c0392b}.v12-chip b{margin-left:4px}
 .v12-adv{margin:4px 0}.v12-adv>summary{cursor:pointer;font-size:13px;color:#9fb0d0}.v12-adv .controls{margin-top:6px}
+.gpt-medal,.grid article .thumb .gpt-medal,.lf-panel .gpt-medal{display:inline-block;background:#FFEB00!important;color:#E00000!important;font-weight:900!important;opacity:1!important;filter:none!important;mix-blend-mode:normal!important;font-size:11px;line-height:1.3;padding:1px 6px;border-radius:4px;border:1px solid #E00000;white-space:nowrap;box-shadow:0 1px 3px rgba(0,0,0,.5);letter-spacing:.2px}.gpt-thumb{position:relative}.gpt-thumb>.gpt-medal{position:absolute;top:4px;right:4px;z-index:3;pointer-events:none}.gpt-title{margin-left:4px;vertical-align:middle}.gpt-title[hidden]{display:none!important}
 .v12-sum{margin-left:8px;color:#8a93a6;font-weight:400;font-size:12px}
 .v12-tools{display:flex;flex-wrap:wrap;gap:4px;align-items:center;margin:4px 0;font-size:12px}.v12-tools [aria-pressed=true]{border-color:#e74c3c;color:#ff8b7b}
 .v12-sortable{cursor:pointer;white-space:nowrap}.v12-sortable .v12-ar{font-size:10px;color:#6c7891;margin-left:2px}.v12-sortable[data-dir=desc] .v12-ar{color:#ff6b5b}.v12-sortable[data-dir=asc] .v12-ar{color:#ff6b5b}
@@ -111,8 +131,8 @@ html.v12-no-metrics .grid article .v6-card{display:none!important}
   function panels() { return [...document.querySelectorAll('details.lf-panel, details#ranges')]; }
   function badge(d) { const s = d.querySelector(':scope>summary'); if (!s) return; let b = s.querySelector('.v12-sum'); if (!b) { b = document.createElement('small'); b.className = 'v12-sum'; s.appendChild(b); } const tb = d.querySelectorAll('table'), rows = [...tb].reduce((a, t) => a + (t.tBodies[0]?.rows.length || 0), 0); if (d.open && tb.length) { sums[d.id] = '표 ' + tb.length + '개 · ' + rows.toLocaleString('ko-KR') + '행'; SS(SUM_KEY, sums); } b.textContent = sums[d.id] ? '· ' + sums[d.id] : (d.open ? '' : '· 접힘'); }
   // 7) Filters: core visible, advanced folded, chips
-  const DEF = { q: '', days: 'all', sort: 'views', rpm: '2', pagesize: '100', cols: '5', vmin: '', vmax: '', mmin: '', mmax: '', vfrom: '', vto: '' };
-  const LABEL = { q: '검색', days: '게시 기간', sort: '정렬', rpm: '추정 단가', pagesize: '한 화면', cols: '열 수', vmin: '조회 최소', vmax: '조회 최대', mmin: '추정액 최소', mmax: '추정액 최대', vfrom: '게시 시작', vto: '게시 끝' };
+  const DEF = { gptf: 'all', q: '', days: 'all', sort: 'views', rpm: '2', pagesize: '100', cols: '5', vmin: '', vmax: '', mmin: '', mmax: '', vfrom: '', vto: '' };
+  const LABEL = { gptf: 'GPT 조사', q: '검색', days: '게시 기간', sort: '정렬', rpm: '추정 단가', pagesize: '한 화면', cols: '열 수', vmin: '조회 최소', vmax: '조회 최대', mmin: '추정액 최소', mmax: '추정액 최대', vfrom: '게시 시작', vto: '게시 끝' };
   function chips() {
     const box = document.getElementById('v12-chips'); if (!box) return;
     const out = [];
@@ -126,6 +146,9 @@ html.v12-no-metrics .grid article .v6-card{display:none!important}
     const c = document.getElementById('controls'); if (!c || document.getElementById('v12-bar')) return;
     const q = document.getElementById('q');
     q.closest('label').insertAdjacentHTML('afterend', '<button type="button" id="v12-search" title="Enter 키와 같음">🔍 검색</button>');
+    const rpmL = document.getElementById('rpm')?.closest('label'); (rpmL || q.closest('label')).insertAdjacentHTML('afterend', '<label title="★ GPT 메달: 어시스턴트가 직접 조사·추가한 영상">GPT 조사<select id="gptf"><option value="all">기존 전체 영상</option><option value="only">★ GPT 조사만</option><option value="exclude">GPT 제외</option></select></label>');
+    const gs = document.getElementById('gptf'); gs.value = LFGPT.mode;
+    gs.addEventListener('change', () => { LFGPT.mode = gs.value; SS(GPT_KEY, gs.value); document.getElementById('sort')?.dispatchEvent(new Event('change', { bubbles: true })); decorate(); setTimeout(chips, 50); });
     const reset = document.getElementById('reset'); if (reset) { reset.textContent = '모든 조건 초기화'; reset.title = '검색·필터·정렬만 초기화 (즐겨찾기·저장 조합·메뉴 편집·화면 설정은 유지)'; }
     const adv = document.createElement('details'); adv.className = 'v12-adv'; adv.id = 'v12-adv'; adv.open = LS('lf-v12:adv', false);
     adv.innerHTML = '<summary>⚙ 고급 필터·화면 설정 (한 화면 편수·열 수·조회수·추정액·게시일 범위)</summary><div class="controls" data-v12-advbox></div>';
@@ -149,7 +172,7 @@ html.v12-no-metrics .grid article .v6-card{display:none!important}
   document.addEventListener('click', e => {
     const t = e.target.closest('[data-v12-toggle],[data-v12-fold],[data-v12-view],[data-v12-sortdir],[data-v12-clear],[data-v12-close],[data-v12-play],.lf-panel a:has(>img[src*="ytimg"]),#lf-v12 a:has(>img[src*="ytimg"])');
     if (!t) return;
-    if (t.dataset.v12Toggle) { ui[t.dataset.v12Toggle] = !ui[t.dataset.v12Toggle]; SS(UI_KEY, ui); applyUI(); return; }
+    if (t.dataset.v12Toggle) { ui[t.dataset.v12Toggle] = !ui[t.dataset.v12Toggle]; SS(UI_KEY, ui); applyUI(); setTimeout(decorate, 30); return; }
     if (t.dataset.v12Fold) { const open = t.dataset.v12Fold === 'open'; for (const d of panels()) d.open = open; return; }
     if (t.dataset.v12View) { tview = t.dataset.v12View; SS(TV_KEY, tview); scan(); syncTools(); return; }
     if (t.dataset.v12Sortdir) { const tools = t.closest('.v12-tools'); sortTable(tools._tb, Number(tools.querySelector('[data-v12-sortcol]').value), t.dataset.v12Sortdir); return; }
@@ -190,10 +213,12 @@ html.v12-no-metrics .grid article .v6-card{display:none!important}
       }
       // observers
       let pend = false;
-      const run = () => { pend = false; scan(); normalizeMoney(document.querySelector('main') || document.body); for (const d of panels()) badge(d); };
+      const run = () => { pend = false; scan(); decorate(); normalizeMoney(document.querySelector('main') || document.body); for (const d of panels()) badge(d); };
       new MutationObserver(() => { if (!pend) { pend = true; requestAnimationFrame(run); } }).observe(document.body, { childList: true, subtree: true });
       document.addEventListener('toggle', e => { if (e.target.matches && e.target.matches('details.lf-panel,details#ranges')) badge(e.target); }, true);
       run();
+      fetch('lf-gpt-ids.json').then(r => r.ok ? r.json() : null).then(j => { if (!j) return; LFGPT.ids = new Set(j.ids); decorate(); if (LFGPT.mode !== 'all') document.getElementById('sort')?.dispatchEvent(new Event('change', { bubbles: true })); }).catch(() => {});
+      document.addEventListener('change', () => setTimeout(decorate, 30));
       return this.panel;
     }
   };
