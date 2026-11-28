@@ -1,0 +1,31 @@
+{
+  "schema": "GPT42_TRACEABILITY_V1.0",
+  "group_id": "2B",
+  "experiment_id": "EXP-2B-KR-20261128-001",
+  "script_id": "2B-KR-0001-V001",
+  "package_revision": "P002",
+  "status": "PARTIAL",
+  "source": "https://geben147-create.github.io/youtube-longform-revenue/gpt42.html",
+  "source_data": "https://github.com/geben147-create/youtube-longform-revenue/blob/main/lf-gpt42.json",
+  "source_git_blob_sha": "a4203e95ea4ce4695a52e3f5cf9280ab1b90d5eb",
+  "reference_video_ids": [
+    "NAQXPYPaC_U",
+    "EYTYtD_aw2g",
+    "VpYAfInd-dU",
+    "QvtKzowsbWA",
+    "ylO0gjrzr8c",
+    "8HXJxyzeODo",
+    "_0QGGa-ov4o"
+  ],
+  "script_sha256": "ad471f3194bbeed84870c76aeba688fb00a7f7bd183ada1fce35d2e9736fe181",
+  "analysis_sha256": "7d22be32e3fa40d348a3c3bd1d8e6eadb9f11c186c935bb0039096e8d9575af1",
+  "outline_sha256": "a3b530f9dc51a6b527c48c07695c299f2fade624d24dbcde07cd4929c5e5c2b9",
+  "master_prompt_version": "V1.1-TRACE",
+  "master_prompt_sha256": "a885e5e7a740b6cb0abe59fc07c31022a821667fd9ccab78bc77c50b6c2c2555",
+  "previous_package_sha256": "04eec5bbb4df12afc4b2a21f3d502762556e0694464e35c6fa6bac1edf2b60e2",
+  "public_summary": "Historical 2B source snapshot: seven candidate videos, B1-B6 exceed the strict 10-video cap; B7 meets it. B1/B2 prioritized for absolute view and repeatability hypotheses; B4 single-hit risk. Full original subtitles and image files not available in the package; original scripts not publicly uploaded; TTS/actual revenue unverified.",
+  "full_original_srt_count": 0,
+  "thumbnail_original_count": 0,
+  "actual_revenue": null,
+  "tts_duration_verified": false
+}
