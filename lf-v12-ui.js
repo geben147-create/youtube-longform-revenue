@@ -30,12 +30,12 @@
     if (thumb && !thumb.querySelector(':scope>.gpt-medal')) { thumb.classList.add('gpt-thumb'); thumb.insertAdjacentHTML('beforeend', MEDAL); }
     let tm = titleHost && titleHost.querySelector('.gpt-title');
     if (titleHost && !tm) { const s = document.createElement('span'); s.className = 'gpt-title'; s.innerHTML = MEDAL; if (after) after.after(s); else titleHost.appendChild(s); tm = s; }
-    if (tm) { const vis = thumb && thumb.offsetParent !== null && getComputedStyle(thumb).display !== 'none' && (thumb.querySelector('img')?.offsetParent ?? null) !== null; tm.hidden = !!vis; }
+    if (tm) { const r = document.documentElement.classList; const off = r.contains('v12-no-thumbs') || r.contains('v13-mode-numbers') || !!document.querySelector('.lf-layout-no-thumbs'); const vis = !!thumb && !off && !thumb.hidden; if (tm.hidden !== vis) tm.hidden = vis; }
   }
   function decorate() {
     if (!LFGPT.ids) return;
     for (const a of document.querySelectorAll('.grid article[data-id]')) { const ttl = a.querySelector('.cardtitle'); mark(a.querySelector('.thumb'), ttl ? ttl.parentElement : null, LFGPT.ids.has(a.dataset.id), ttl); }
-    for (const tr of document.querySelectorAll('.lf-panel tbody tr')) { const id = rowId(tr); if (!id) continue; const on = LFGPT.ids.has(id); const th = tr.querySelector('a.v12-th,a:has(>img[src*="ytimg"])'); const cell = (th && th.closest('td,th')) || tr.querySelector('th') || tr.cells[1]; mark(th, cell, on, null); tr.hidden = LFGPT.mode !== 'all' && !LFGPT.ok({ id }); }
+    for (const tr of document.querySelectorAll('.lf-panel tbody tr')) { const id = rowId(tr); if (!id) continue; const on = LFGPT.ids.has(id); const th = tr.querySelector('a.v12-th,a.v12-tha'); const cell = (th && th.closest('td,th')) || tr.querySelector('th') || tr.cells[1]; mark(th, cell, on, null); tr.hidden = LFGPT.mode !== 'all' && !LFGPT.ok({ id }); }
   }
   window.LFGPTDecorate = decorate;
 
@@ -60,7 +60,7 @@ html.v12-no-metrics .grid article .v6-card{display:none!important}
 .v12-mode-grid img[src*="ytimg"]{width:100%!important;height:auto!important;aspect-ratio:16/9;object-fit:cover;display:block;border-radius:6px}
 .v12-mode-compact td,.v12-mode-compact th{padding:2px 4px!important;font-size:12px;line-height:1.3}.v12-mode-compact img[src*="ytimg"]{width:64px!important;height:36px!important;object-fit:cover;vertical-align:middle}.v12-mode-compact small{font-size:10px}.v12-mode-compact tbody th{min-width:300px;max-width:420px}.v12-mode-compact tbody th a.v12-th,.v12-mode-compact tbody th>a:first-child{float:left;margin-right:6px}.v12-mode-compact td{white-space:nowrap}
 .v12-th{display:inline-block;position:relative;vertical-align:middle;margin-right:4px}.v12-th img{width:96px;height:54px;object-fit:cover;border-radius:4px}
-.lf-panel a:has(>img[src*="ytimg"]),.v12-th{position:relative;display:inline-block}.lf-panel a:has(>img[src*="ytimg"])::after,.v12-th::after{content:"▶";position:absolute;left:4px;bottom:4px;font-size:10px;background:rgba(0,0,0,.7);color:#fff;border-radius:3px;padding:0 4px}
+.lf-panel a.v12-tha,.v12-th{position:relative;display:inline-block}.lf-panel a.v12-tha::after,.v12-th::after{content:"▶";position:absolute;left:4px;bottom:4px;font-size:10px;background:rgba(0,0,0,.7);color:#fff;border-radius:3px;padding:0 4px}
 #v12-player{max-width:min(960px,96vw);width:96vw;background:#111;color:#eee;border:1px solid #444;border-radius:10px;padding:8px}#v12-player iframe{width:100%;aspect-ratio:16/9;border:0}#v12-player .row{display:flex;justify-content:space-between;gap:8px;margin-top:6px}
 `;
   // 3) Player
@@ -119,7 +119,8 @@ html.v12-no-metrics .grid article .v6-card{display:none!important}
   }
   function setMode(host, m) { host.classList.remove('v12-mode-grid', 'v12-mode-table', 'v12-mode-compact'); host.classList.add('v12-mode-' + m); }
   function syncTools() { for (const b of document.querySelectorAll('[data-v12-view]')) b.setAttribute('aria-pressed', String(b.dataset.v12View === tview)); }
-  function scan(root) { for (const tb of (root || document).querySelectorAll('.lf-panel table, #lf-v12 table')) enhance(tb); for (const h of document.querySelectorAll('[data-v12video]')) if (!h.classList.contains('v12-mode-' + tview)) setMode(h, tview); }
+  function tagThumbs() { for (const im of document.querySelectorAll('.lf-panel a > img[src*="ytimg"]')) { const a = im.parentElement; if (!a.classList.contains('v12-tha') && !a.classList.contains('v12-th')) a.classList.add('v12-tha'); } }
+  function scan(root) { tagThumbs(); for (const tb of (root || document).querySelectorAll('.lf-panel table, #lf-v12 table')) enhance(tb); for (const h of document.querySelectorAll('[data-v12video]')) if (!h.classList.contains('v12-mode-' + tview)) setMode(h, tview); }
   // 5) Text money normalizer for modules that print raw "123,456,789원"
   const MONEY_RE = /(-?\d{1,3}(?:,\d{3}){1,}|-?\d{5,})\s?원(?![가-힣])/g;
   const MONEY_T = /(\d{1,3}(?:,\d{3})+|\d{5,})\s?원(?![가-힣])/;
@@ -172,7 +173,7 @@ html.v12-no-metrics .grid article .v6-card{display:none!important}
   }
   // Events
   document.addEventListener('click', e => {
-    const t = e.target.closest('[data-v12-toggle],[data-v12-fold],[data-v12-view],[data-v12-sortdir],[data-v12-clear],[data-v12-close],[data-v12-play],.lf-panel a:has(>img[src*="ytimg"]),#lf-v12 a:has(>img[src*="ytimg"])');
+    const t = e.target.closest('[data-v12-toggle],[data-v12-fold],[data-v12-view],[data-v12-sortdir],[data-v12-clear],[data-v12-close],[data-v12-play],.lf-panel a.v12-tha,#lf-v12 a.v12-tha');
     if (!t) return;
     if (t.dataset.v12Toggle) { ui[t.dataset.v12Toggle] = !ui[t.dataset.v12Toggle]; SS(UI_KEY, ui); applyUI(); setTimeout(decorate, 30); return; }
     if (t.dataset.v12Fold) { const open = t.dataset.v12Fold === 'open'; for (const d of panels()) d.open = open; return; }

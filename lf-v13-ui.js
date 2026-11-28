@@ -29,8 +29,9 @@
   const D = () => window.LFData;
   let chCache = null, chCacheSize = -1;
   function channels() {
+    const sz = D()?.size ? D().size() : -2;
+    if (chCache && chCacheSize === sz) return chCache;
     const all = D()?.all() || [];
-    if (chCache && chCacheSize === all.length) return chCache;
     const now = Date.now(), m = new Map();
     for (const v of all) { const k = terms(v.ch); if (!k) continue; let c = m.get(k); if (!c) m.set(k, c = { vids: [] }); c.vids.push(v); }
     for (const c of m.values()) {
@@ -43,7 +44,7 @@
       const n90 = ds.filter(x => now - x <= 90 * DAY).length; c.monthly = ds.length ? n90 / 3 : null;
       const gaps = []; for (let i = 1; i < Math.min(ds.length, 11); i++) gaps.push((ds[i - 1] - ds[i]) / DAY); c.interval = gaps.length ? med(gaps.sort((a, b) => a - b)) : null;
     }
-    chCache = m; chCacheSize = all.length; return m;
+    chCache = m; chCacheSize = D()?.size ? D().size() : all.length; return m;
   }
   const rpm = () => Number($('#rpm')?.value) || 2;
   function info(v) { try { return window.LFV6?.info ? window.LFV6.info(v) : {}; } catch { return {}; } }
@@ -78,7 +79,7 @@
     ['daily', '게시 후 일평균 조회(정렬 전용)', '회', v => { const a = age(v); return a && Number.isFinite(v.v) ? v.v / Math.max(a, 1) : null; }, null]
   ];
   const MET = Object.fromEntries(METRICS.map(m => [m[0], m]));
-  window.LFMetric = { get: (k, v) => MET[k] ? MET[k][3](v) : null, list: METRICS.map(m => m[0]), parseNum, channels };
+  window.LFMetric = { get: (k, v) => MET[k] ? MET[k][3](v) : null, list: METRICS.map(m => m[0]), parseNum, channels, register(key, label, unit, fn, quick) { if (MET[key]) return; const m = [key, label, unit, fn, quick || null]; METRICS.push(m); MET[key] = m; const sel = document.getElementById('v13-sort'); if (sel) { sel.insertAdjacentHTML(key === 'opp' ? 'afterbegin' : 'beforeend', '<option value="' + key + '">' + esc(label) + '</option>'); if (key === 'opp') { const blank = sel.querySelector('option[value=""]'); if (blank) sel.prepend(blank); } if (sort.key === key) sel.value = key; } if (pendingSort && pendingSort[0] === key) { sort.key = key; sort.dir = pendingSort[1]; pendingSort = null; } } };
 
   // ---------- RangeFilter ----------
   const RKEY = 'lf-v13:range:v1';
@@ -126,11 +127,11 @@
 
   // ---------- SortControl ----------
   const SKEY = 'lf-v13:sort:v1';
-  const sort = LS(SKEY, { key: '', dir: 'desc' });
-  (function () { const u = new URL(location.href).searchParams.get('so'); if (u) { const [k, d] = u.split(':'); if (MET[k]) { sort.key = k; sort.dir = d === 'asc' ? 'asc' : 'desc'; } } })();
+  const sort = LS(SKEY, { key: 'opp', dir: 'desc' }); let pendingSort = null;
+  (function () { const u = new URL(location.href).searchParams.get('so'); if (u) { const [k, d] = u.split(':'); if (MET[k]) { sort.key = k; sort.dir = d === 'asc' ? 'asc' : 'desc'; } else pendingSort = [k, d === 'asc' ? 'asc' : 'desc']; } })();
   window.LFSort = {
-    active: () => !!sort.key,
-    cmp(a, b) { if (!sort.key) return 0; const f = MET[sort.key][3]; const x = f(a), y = f(b); if (x == null && y == null) return 0; if (x == null) return 1; if (y == null) return -1; return sort.dir === 'asc' ? x - y : y - x; },
+    active: () => !!sort.key && !!MET[sort.key],
+    cmp(a, b) { if (!sort.key || !MET[sort.key]) return 0; const f = MET[sort.key][3]; const x = f(a), y = f(b); if (x == null && y == null) return 0; if (x == null) return 1; if (y == null) return -1; return sort.dir === 'asc' ? x - y : y - x; },
     state: () => ({ ...sort })
   };
   function buildSort() {
@@ -155,7 +156,7 @@
     box.querySelectorAll('.v13-chip').forEach(x => x.remove());
     const add = [];
     for (const [k, a, b] of active()) add.push('<button type="button" class="v12-chip v13-chip" data-v13-clear="' + k + '">' + esc(MET[k][1]) + ': ' + (a == null ? '' : nf(a, 2)) + ' ~ ' + (b == null ? '' : nf(b, 2)) + '<b>✕</b></button>');
-    if (sort.key) add.push('<button type="button" class="v12-chip v13-chip" data-v13-clear="__sort">정렬: ' + esc(MET[sort.key][1]) + (sort.dir === 'asc' ? ' ↑' : ' ↓') + '<b>✕</b></button>');
+    if (sort.key && MET[sort.key]) add.push('<button type="button" class="v12-chip v13-chip" data-v13-clear="__sort">정렬: ' + esc(MET[sort.key][1]) + (sort.dir === 'asc' ? ' ↑' : ' ↓') + '<b>✕</b></button>');
     if (add.length) { box.insertAdjacentHTML('afterbegin', add.join('')); for (const h of box.querySelectorAll('.lf-hint')) if (/적용 중인 조건 없음/.test(h.textContent)) h.textContent = '적용 중:'; }
   }
   document.addEventListener('click', e => {
