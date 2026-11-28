@@ -39,8 +39,8 @@
   }
   function why(s) { return window.LFOpp.weights.map(([k, l, w]) => { const p = s.parts[k]; return l + '(' + w + '): ' + (p ? nf(p.pts, 1) + '점' + (p.assumed ? '[분류 가정]' : '') : '미확인'); }).join(' · '); }
   // ---------- panel ----------
-  const TABS = [['groups', '💛 GPT 그룹 확장 1,000편'], ['top20', '🎯 지금 제작 TOP 20'], ['video', '영상 순위'], ['channel', '채널 순위'], ['cat', '분야 순위'], ['market', '국가·언어 순위'], ['young', '저구독·신생·저영상 TOP 100'], ['bands', '수익 금액 구간'], ['survival', 'AI 경제 채널 생존'], ['progress', '신규 발굴 진행률'], ['audit', '계산식·가중치 공개']];
-  let tab = 'groups', extra = {};
+  const TABS = [['fields', '🧩 분야별 1,000편 (12분야)'], ['groups', '💛 GPT 그룹 확장 1,000편'], ['top20', '🎯 지금 제작 TOP 20'], ['video', '영상 순위'], ['channel', '채널 순위'], ['cat', '분야 순위'], ['market', '국가·언어 순위'], ['young', '저구독·신생·저영상 TOP 100'], ['bands', '수익 금액 구간'], ['survival', 'AI 경제 채널 생존'], ['progress', '신규 발굴 진행률'], ['audit', '계산식·가중치 공개']];
+  let tab = 'fields', extra = {};
   const vrow = (v, s, i) => '<tr><td>' + (i + 1) + '</td><th><a href="https://www.youtube.com/watch?v=' + esc(v.id) + '" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/' + esc(v.id) + '/mqdefault.jpg" width="96" height="54" loading="lazy" referrerpolicy="no-referrer" alt=""></a> ' + esc(v.t) + '<br><small>' + esc(v.ch) + ' · ' + esc(v.d || '') + '</small></th><td data-n="' + (s.rank ?? '') + '" title="' + esc(why(s)) + '">' + nf(s.rank, 1) + (s.tentative ? ' <small class="v14-tent">잠정</small>' : '') + '</td><td data-n="' + s.coverage + '">' + P(s.coverage) + '</td><td>' + esc(s.cat ? s.cat.cls + ' ' + s.cat.label : '미분류') + '</td><td data-n="' + (v.v ?? '') + '">' + nf(v.v) + '</td><td>' + [1, 2, 4].map(k => M(v.v * k, nf(v.v) + '회 × ' + k * 1000 + '원 ÷ 1,000')).join('/') + '</td><td data-n="' + (s.parts.c1?.raw ?? '') + '">' + M(s.parts.c1?.raw, '채널 표본 중앙값 × 월 업로드 × 2,000원 ÷ 1,000') + '</td><td data-n="' + (s.parts.c8?.raw ?? '') + '">' + (s.parts.c8 ? nf(s.parts.c8.raw, 2) + '배' : '미확인') + '</td><td>' + esc(s.market || '미확인') + '</td></tr>';
   const vhead = '<thead><tr><th>#</th><th>영상</th><th>기회 점수</th><th>근거 충족률</th><th>분야·제작 등급</th><th>조회</th><th>영상 추정 하/중/상</th><th>채널 월 추정(중)</th><th>구독자 대비</th><th>언어</th></tr></thead>';
   function chanRows(E) {
@@ -103,6 +103,57 @@
     return '<p class="lf-hint">GPT 1·2차 42편, 출연·대규모 촬영형(C등급), 영화 전편 업로드, 분야 미분류 영상은 제외하고(AI 제작 재현 대상만), 같은 영상은 한 그룹에만 넣었습니다(1A→2A→2B→2C 순). 목표: 체크한 4개 그룹 × 250편 = 1,000편. 현재 ' + nf(total) + '편 · 부족분은 1분 예약 발굴이 채우며 새 영상이 들어오면 자동으로 다시 나열됩니다. 금액은 추정(실제 정산 아님).</p><p><button type="button" data-grp-copy="all">체크한 4개 그룹 URL 전체 복사</button></p>'
       + GROUPS.map(([g, name, rule, on]) => on ? '<details class="v14-grp" data-grp="' + g + '"' + (g === '1A' ? ' open' : '') + '><summary><b>' + (g[0] === '1' ? '🔴 ' : '🔵 ') + g + ' ' + esc(name) + '</b> · ' + nf(G[g].length) + '/250편 <button type="button" data-grp-copy="' + g + '">URL ' + G[g].length + '개 복사</button></summary><p class="lf-hint">' + esc(rule) + '</p><div data-grp-body>' + (g === '1A' ? gtable(E, G[g]) : '<p class="lf-hint">펼치면 목록이 열립니다.</p>') + '</div></details>' : '<p class="lf-hint">☐ ' + g + ' ' + esc(name) + ' — ' + esc(rule) + '</p>').join('');
   }
+  // ---- field expansion: 12 fields x 84 videos (21 per group 1A/2A/2B/2C), additional to the groups tab ----
+  const FIELDS = [
+    ['kids', '어린이·키즈 콘텐츠', /어린이|키즈|동요|동화|유아|아이들|kids|nursery|cocomelon|children|子供|童謡|幼児/i],
+    ['english', '영어 교육', /영어|English|영단어|회화|토익|파닉스|ESL|IELTS|TOEFL|英語|英会話/i],
+    ['beauty', '뷰티·화장·피부', /뷰티|화장|메이크업|스킨케어|피부|헤어|makeup|skincare|beauty|cosmetic|ヘア|美容|コスメ/i],
+    ['travel', '여행', /여행|관광|투어|호텔|항공|travel|trip|tour|vlog|journey|旅|観光/i],
+    ['tech', '전자·자동차·전기차·기술', /전기차|자동차|배터리|전자|반도체|테슬라|EV|tesla|battery|electric|car |cars|automotive|電気自動車|自動車|家電|ロボット|로봇/i],
+    ['it', 'IT·AI 도구·개발', /\bIT\b|AI 도구|챗GPT|ChatGPT|프로그래밍|코딩|개발자|앱 |소프트웨어|클라우드|software|coding|programming|developer|GPT|生成AI|プログラミング/i],
+    ['coin', '코인·가상자산', /코인|비트코인|이더리움|암호화폐|가상자산|crypto|bitcoin|ethereum|blockchain|仮想通貨|ビットコイン/i],
+    ['stock', '주식', /주식|증시|주가|코스피|나스닥|S&P|종목|stock|nasdaq|equity|株|日経/i],
+    ['master', '주식 대가·투자 거장', /버핏|워런|피터 ?린치|달리오|멍거|소로스|그레이엄|대가|거장|buffett|munger|dalio|lynch|soros|graham|バフェット/i],
+    ['etf', 'ETF·연금·은퇴자금', /ETF|연금|은퇴|노후|배당|IRP|퇴직|retire|pension|401k|dividend|NISA|iDeCo|年金|老後|配当/i],
+    ['health', '건강·시니어 생활', /건강|시니어|노인|운동|영양|수면|health|senior|elder|nutrition|健康|老人|シニア/i],
+    ['money', '부동산·절약·재테크', /부동산|재테크|절약|저축|월급|아파트|real estate|saving|budget|mortgage|不動産|節約|貯金/i]
+  ];
+  const FIELD_PER = 84, GP = [['1A', 21], ['2A', 21], ['2B', 21], ['2C', 21]];
+  let lastFields = null;
+  function fieldsData(E) {
+    const used = new Set(gptExclude || []);
+    try { const G = groups(E); for (const g of ['1A', '2A', '2B', '2C']) for (const v of G[g]) used.add(v.id); } catch { /* optional */ }
+    const ch = v => window.LFMetric.channels().get(terms(v.ch));
+    const c1 = v => E.scores.get(v.id)?.parts.c1?.raw ?? null;
+    const rank = v => E.scores.get(v.id)?.rank ?? 0;
+    const long = E.pool.filter(v => { const c = E.scores.get(v.id)?.cat; return v.s > 180 && Number.isFinite(v.v) && !used.has(v.id) && !(c && (c.key === 'fullmovie' || c.cls === 'C')); });
+    const out = [];
+    for (const [key, name, re] of FIELDS) {
+      const pool = long.filter(v => !used.has(v.id) && re.test([v.t, v.ch, ...(v.ks || [])].join(' ')));
+      const take = new Map(), perCh = new Map(), items = [];
+      const add = (v, g, strict) => { if (take.has(v.id)) return false; const k = terms(v.ch); const n = perCh.get(k) || 0; if (n >= 2) return false; perCh.set(k, n + 1); take.set(v.id, 1); items.push({ v, g, strict }); return true; };
+      const rules = {
+        '1A': [v => { const c = ch(v); return c && c.n >= 5 && c.repeat >= 0.5 && c1(v) != null; }, (a, b) => (c1(b) ?? 0) - (c1(a) ?? 0)],
+        '2A': [v => v.v * 2 >= 1e6 && (c1(v) ?? 0) >= 1e7, (a, b) => b.v - a.v],
+        '2B': [v => { const i = E.info(v) || {}; return i.chAge != null && i.chAge <= 120 && i.subs != null && i.subs <= 10000 && i.x != null && i.x >= 20; }, (a, b) => b.v - a.v],
+        '2C': [v => v.v >= 3e5, (a, b) => rank(b) - rank(a)]
+      };
+      for (const [g, q] of GP) { let n = 0; for (const v of pool.filter(rules[g][0]).sort(rules[g][1])) { if (n >= q) break; if (add(v, g, true)) n++; } }
+      const fill = pool.filter(v => !take.has(v.id)).sort((a, b) => rank(b) - rank(a));
+      for (const v of fill) { if (items.length >= FIELD_PER) break; const cnt = g => items.filter(x => x.g === g).length; const g = GP.map(x => x[0]).sort((a, b) => cnt(a) - cnt(b))[0]; add(v, g, false); }
+      for (const it of items) used.add(it.v.id);
+      out.push({ key, name, items: items.slice(0, FIELD_PER), matched: pool.length });
+    }
+    return out;
+  }
+  document.addEventListener('toggle', e => { const d = e.target; if (!d.matches || !d.matches('details.v14-fld') || !d.open || !lastFields) return; const b = d.querySelector('[data-fld-body]'); if (b && !b.querySelector('table')) b.innerHTML = fieldTable(engine(), lastFields[Number(d.dataset.fld)]); }, true);
+  document.addEventListener('click', e => { const b = e.target.closest('[data-fld-copy]'); if (!b || !lastFields) return; const k = b.dataset.fldCopy; const L = k === 'all' ? lastFields.flatMap(f => f.items) : lastFields[Number(k)].items; const txt = L.map(x => 'https://www.youtube.com/watch?v=' + x.v.id).join('\n'); (navigator.clipboard?.writeText(txt) || Promise.reject()).then(() => { b.textContent = '복사됨 ' + L.length + '개'; }).catch(() => { const t = document.createElement('textarea'); t.value = txt; document.body.appendChild(t); t.select(); document.execCommand('copy'); t.remove(); b.textContent = '복사됨 ' + L.length + '개'; }); });
+  const fieldTable = (E, f) => '<div class="lf-table-wrap"><table>' + vhead.replace('<th>#</th>', '<th>#</th><th>그룹</th>') + '<tbody>' + f.items.map((x, k) => vrow(x.v, E.scores.get(x.v.id), k).replace('</td><th>', '</td><td>' + x.g + (x.strict ? '' : ' <small class="v14-tent">보충</small>') + '</td><th>')).join('') + '</tbody></table></div>';
+  function fieldsTab(E) {
+    const F = fieldsData(E); lastFields = F; const total = F.reduce((a, f) => a + f.items.length, 0);
+    return '<p class="lf-hint">12개 분야 × 84편 = 1,008편 목표(분야마다 1A·2A·2B·2C 각 21편). 위 「GPT 그룹 확장」 목록·GPT 42편과 겹치지 않게 별도로 나열합니다. 그룹 조건에 맞는 영상이 모자라면 같은 분야의 기회 점수 상위로 "보충"(표시)하고, 부족분은 1분 예약이 채웁니다. 현재 ' + nf(total) + '편. 금액은 추정(실제 정산 아님), 출연·대규모 촬영형·영화 전편은 제외.</p><p><button type="button" data-fld-copy="all">12개 분야 URL 전체 복사</button></p>'
+      + F.map((f, i) => '<details class="v14-fld" data-fld="' + i + '"' + (i === 0 ? ' open' : '') + '><summary><b>' + esc(f.name) + '</b> · ' + f.items.length + '/' + FIELD_PER + '편 (조건 일치 후보 ' + nf(f.matched) + ', 엄격 ' + f.items.filter(x => x.strict).length + ') <button type="button" data-fld-copy="' + i + '">URL ' + f.items.length + '개 복사</button></summary><div data-fld-body>' + (i === 0 ? fieldTable(E, f) : '<p class="lf-hint">펼치면 목록이 열립니다.</p>') + '</div></details>').join('');
+  }
   let lastT20 = null;
   const t20table = (E, t) => '<div class="lf-table-wrap"><table>' + vhead + '<tbody>' + t.refs.map((v, k) => vrow(v, E.scores.get(v.id), k)).join('') + '</tbody></table></div>';
   document.addEventListener('toggle', e => { const d = e.target; if (!d.matches || !d.matches('details.v14-t20') || !d.open || !lastT20) return; const b = d.querySelector('[data-t20-body]'); if (b && !b.querySelector('table')) b.innerHTML = t20table(engine(), lastT20[Number(d.dataset.t20)]); }, true);
@@ -133,6 +184,7 @@
     if (tab === 'market') { const by = {}; for (const v of E.pool) { const s = E.scores.get(v.id); if (!s?.market || s.rank == null) continue; (by[s.market] ??= []).push(s.rank); } const L = Object.entries(by).map(([k, r]) => { r.sort((a, b) => b - a); const t = r.slice(0, 50); return [k, r.length, t.reduce((a, b) => a + b, 0) / t.length]; }).sort((a, b) => b[2] - a[2]); const C = extra.countries; h = '<p class="lf-hint">언어 시장 = 제목·채널명 문자 기준(채널 운영국·시청국과 다름). 영어 영상에 미국 RPM을 자동 적용하지 않습니다.</p><div class="lf-table-wrap"><table><thead><tr><th>언어 시장</th><th>영상</th><th>상위 50편 기회 점수</th></tr></thead><tbody>' + L.map(r => '<tr><th>' + r[0] + '</th><td data-n="' + r[1] + '">' + nf(r[1]) + '</td><td data-n="' + r[2] + '">' + nf(r[2], 1) + '</td></tr>').join('') + '</tbody></table></div>' + (C ? '<h4>국가별 근거 (' + esc(C.asOf || '') + ')</h4><div class="lf-table-wrap"><table><thead><tr><th>국가</th><th>YouTube 이용자</th><th>RPM·CPM 근거</th><th>주 언어</th><th>AI 현지화</th><th>상거래·제휴</th></tr></thead><tbody>' + C.countries.map(c => '<tr><th>' + esc(c.name) + '</th><td>' + (c.ytUsers?.value != null ? esc(String(c.ytUsers.value)) + ' <small>(' + esc(c.ytUsers.year || '') + ' · ' + (c.ytUsers.source ? '<a href="' + esc(c.ytUsers.source) + '" target="_blank" rel="noopener noreferrer">출처</a>' : '') + ')</small>' : '미확인') + '</td><td>' + ((c.rpm || []).map(r => esc(r.value + ' ' + (r.unit || '') + ' ' + (r.niche || '')) + (r.source ? ' <a href="' + esc(r.source) + '" target="_blank" rel="noopener noreferrer">출처</a>' : '')).join('<br>') || '미확인') + '</td><td>' + esc(c.lang || '') + '</td><td>' + esc((c.aiLocalization?.level || '미확인') + (c.aiLocalization?.basis ? ' · ' + c.aiLocalization.basis : '')) + '</td><td>' + esc(c.commerce?.note || '미확인') + (c.commerce?.source ? ' <a href="' + esc(c.commerce.source) + '" target="_blank" rel="noopener noreferrer">출처</a>' : '') + '</td></tr>').join('') + '</tbody></table></div>' : '<p>국가별 근거 자료 수집 중(lf-countries.json).</p>'); }
     if (tab === 'young') { const L = E.pool.map(v => [v, E.scores.get(v.id), E.info(v) || {}]).filter(([v, s, i]) => s?.rank != null && i.subs != null && i.subs <= 50000 && i.chAge != null && i.chAge <= 365 && i.chVideos != null && i.chVideos <= 50 && i.x != null && i.x >= 2).sort((a, b) => b[1].rank - a[1].rank).slice(0, 100); h = '<p class="lf-hint">조건: 구독자 ≤5만 · 개설 ≤365일 · 공개 영상 ≤50 · 구독자 대비 2배↑ (범위 검색으로 1·3·7·10·14·30·60·90·180일, 3·5·10·20·30개, 100~1만 명, 2~100배 등 세부 조합 가능). 채널 개설일과 실제 첫 영상 게시일은 V6 카드의 "표본 최초 게시"로 구분.</p><div class="lf-table-wrap"><table>' + vhead + '<tbody>' + L.map(([v, s], i) => vrow(v, s, i)).join('') + '</tbody></table></div>'; }
     if (tab === 'bands') h = bands(E);
+    if (tab === 'fields') h = gptExclude ? fieldsTab(E) : '<p>GPT 42편 목록을 읽는 중… 다시 눌러 주세요.</p>';
     if (tab === 'groups') h = gptExclude ? groupsTab(E) : '<p>GPT 42편 목록을 읽는 중… 다시 눌러 주세요.</p>';
     if (tab === 'audit') h = audit(E);
     if (tab === 'top20') { const L = top20(E); h = '<p class="lf-hint">분야 × 언어 시장 조합 중 상위 15편 기회 점수 평균 순. 참고 영상 8편·추천 채널 최대 5곳 연결. 제작시간·비용은 등급 가정, 순이익 = 채널 월 추정(중) − 제작비 × 월 8편. 근거 충족률이 낮으면 잠정.</p>' + L.map((t, i) => '<details class="v14-t20" data-t20="' + i + '"' + (i < 1 ? ' open' : '') + '><summary><b>' + (i + 1) + '. ' + esc(t.cat.label) + ' · ' + esc(t.mk) + '</b> · 기회 ' + nf(t.score, 1) + ' · 근거 ' + P(t.cov) + (t.cov < 0.6 ? ' <span class="v14-tent">잠정</span>' : '') + ' · 제작 ' + t.cat.cls + '등급</summary><div class="v14-grid"><div><b>영상당 추정(참고 8편 중앙값)</b> ' + (t.views != null ? [1, 2, 4].map(k => M(t.views * k)).join(' / ') : '미확인') + '<br><b>채널 월 추정(중앙값)</b> ' + (t.monthly != null ? [0.5, 1, 2].map(k => M(t.monthly * k)).join(' / ') : '미확인') + '<br><b>반복 성공률(중앙값)</b> ' + P(t.repeat) + '<br><b>신생·저구독 성과</b> ' + esc(t.young) + '<br><b>경쟁(최근 1년 채널 수)</b> ' + nf(t.comp) + '<br><b>AI 제작 시간·비용(가정)</b> ' + nf(t.hours, 1) + '시간 · ' + M(t.cost) + '/편<br><b>예상 순이익(월, 중)</b> ' + M(t.net, '채널 월 추정 − 제작비 × 8편') + '<br><b>사업 확장성</b> ' + t.cat.business + ' · <b>구매 의도</b> ' + t.cat.purchase + '<br><b>추천 국가·언어</b> ' + esc(t.mk) + (t.mk === 'KR' ? ' → 일본어 현지화 검토' : t.mk === 'JP' ? ' → 한국어·영어 역현지화 검토' : '') + '<br><b>제작 단계</b> ' + esc(t.steps) + '<br><b>추천 이유</b> 같은 분야·언어에서 상위 영상 기회 점수가 높고 참고 영상이 8편 이상 있습니다.<br><b>위험</b> 저작권(타사 영상·뉴스 화면), 정치·혐오 표현(국뽕), 반복 템플릿 판정, 실제 정산 미확인' + (t.cat.key === 'kukppong' ? '<br><b>제목·썸네일·대본 구조</b> V9 일본뽕 썸네일 규칙 10개 · V7 핵심 채널 15편 훅 분석 참고' : '') + '</div><div><b>추천 채널</b><ul>' + t.chs.map(c => '<li>' + esc(c.ch) + ' · 기회 ' + nf(c.s.rank, 1) + '</li>').join('') + '</ul></div></div><div data-t20-body>' + (i < 1 ? t20table(E, t) : '<p class="lf-hint">펼치면 참고 영상 8편이 열립니다.</p>') + '</div></details>').join(''); lastT20 = L; }
