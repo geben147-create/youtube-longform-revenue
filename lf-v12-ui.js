@@ -65,6 +65,7 @@ html.v12-no-metrics .grid article .v6-card{display:none!important}
 `;
   // 3) Player
   function play(id, title) {
+    if (window.LFPlayer && window.LFPlayer.mode !== 'legacy') { window.LFPlayer.open(id, title); return; }
     let d = document.getElementById('v12-player');
     if (!d) { d = document.createElement('dialog'); d.id = 'v12-player'; document.body.appendChild(d); d.addEventListener('close', () => { d.innerHTML = ''; }); d.addEventListener('click', e => { if (e.target === d) d.close(); }); }
     if (!d.showModal) { window.open('https://www.youtube.com/watch?v=' + id, '_blank', 'noopener'); return; }
