@@ -21,7 +21,8 @@
   // GPT research medal + filter
   const GPT_KEY = 'lf-v12:gpt:v1';
   const LFGPT = window.LFGPT = { mode: LS(GPT_KEY, 'all'), ids: null, has(v) { return !!v && (((v.src || []).includes('GPT 조사')) || !!(this.ids && this.ids.has(v.id))); }, ok(v) { return this.mode === 'all' ? true : this.mode === 'only' ? this.has(v) : !this.has(v); } };
-  const MEDAL = '<span class="gpt-medal" style="background:#FFEB00;color:#E00000;font-weight:900" title="어시스턴트(GPT)가 직접 조사·추가한 영상">★ GPT</span>';
+  const MEDAL_SVG = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="52" height="18" viewBox="0 0 52 18"><rect x="0.5" y="0.5" width="51" height="17" rx="4" fill="#FFEB00" stroke="#E00000"/><text x="26" y="13.2" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="11.5" font-weight="900" fill="#E00000">★ GPT</text></svg>');
+  const MEDAL = '<span class="gpt-medal" title="어시스턴트(GPT)가 직접 조사·추가한 영상"><img src="' + MEDAL_SVG + '" alt="★ GPT" width="52" height="18" style="display:block;width:52px;height:18px;border:0;filter:none"></span>';
   function rowId(tr) { const s = new Set([...tr.querySelectorAll('a[href*="watch?v="],a[href*="/shorts/"]')].map(a => (a.getAttribute('href').match(/(?:v=|shorts\/)([\w-]{11})/) || [])[1]).filter(Boolean)); return s.size === 1 ? [...s][0] : null; }
   function mark(thumb, titleHost, on, after) {
     for (const m of [thumb && thumb.querySelector(':scope>.gpt-medal'), titleHost && titleHost.querySelector('.gpt-title')]) if (m && !on) m.remove();
@@ -48,7 +49,7 @@ html.v12-no-metrics .grid article .v6-card{display:none!important}
 #v12-bar{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:6px 0}#v12-bar button,.v12-tools button,.v12-chip{font-size:12px;padding:3px 8px;border-radius:6px;border:1px solid #3a4256;background:#1b2130;color:inherit;cursor:pointer}
 #v12-bar button[aria-pressed=false]{opacity:.75}.v12-chips{display:flex;flex-wrap:wrap;gap:4px;margin:4px 0}.v12-chip{border-color:#c0392b}.v12-chip b{margin-left:4px}
 .v12-adv{margin:4px 0}.v12-adv>summary{cursor:pointer;font-size:13px;color:#9fb0d0}.v12-adv .controls{margin-top:6px}
-.gpt-medal,.grid article .thumb .gpt-medal,.lf-panel .gpt-medal{display:inline-block;background:#FFEB00!important;color:#E00000!important;font-weight:900!important;opacity:1!important;filter:none!important;mix-blend-mode:normal!important;font-size:11px;line-height:1.3;padding:1px 6px;border-radius:4px;border:1px solid #E00000;white-space:nowrap;box-shadow:0 1px 3px rgba(0,0,0,.5);letter-spacing:.2px}.gpt-thumb{position:relative}.gpt-thumb>.gpt-medal{position:absolute;top:4px;right:4px;z-index:3;pointer-events:none}.gpt-title{margin-left:4px;vertical-align:middle}.gpt-title[hidden]{display:none!important}
+.gpt-medal{display:inline-block;line-height:0;padding:0;border:0;background:none;box-shadow:0 1px 3px rgba(0,0,0,.6);border-radius:4px}.gpt-medal img{display:block;width:52px!important;height:18px!important;aspect-ratio:auto!important;object-fit:fill!important;border-radius:4px}.gpt-thumb{position:relative}.gpt-thumb>.gpt-medal{position:absolute;top:4px;right:4px;z-index:3;pointer-events:none}.gpt-title{margin-left:4px;vertical-align:middle}.gpt-title[hidden]{display:none!important}
 .v12-sum{margin-left:8px;color:#8a93a6;font-weight:400;font-size:12px}
 .v12-tools{display:flex;flex-wrap:wrap;gap:4px;align-items:center;margin:4px 0;font-size:12px}.v12-tools [aria-pressed=true]{border-color:#e74c3c;color:#ff8b7b}
 .v12-sortable{cursor:pointer;white-space:nowrap}.v12-sortable .v12-ar{font-size:10px;color:#6c7891;margin-left:2px}.v12-sortable[data-dir=desc] .v12-ar{color:#ff6b5b}.v12-sortable[data-dir=asc] .v12-ar{color:#ff6b5b}
