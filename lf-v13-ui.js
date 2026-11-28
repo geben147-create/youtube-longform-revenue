@@ -156,7 +156,7 @@
     const add = [];
     for (const [k, a, b] of active()) add.push('<button type="button" class="v12-chip v13-chip" data-v13-clear="' + k + '">' + esc(MET[k][1]) + ': ' + (a == null ? '' : nf(a, 2)) + ' ~ ' + (b == null ? '' : nf(b, 2)) + '<b>✕</b></button>');
     if (sort.key) add.push('<button type="button" class="v12-chip v13-chip" data-v13-clear="__sort">정렬: ' + esc(MET[sort.key][1]) + (sort.dir === 'asc' ? ' ↑' : ' ↓') + '<b>✕</b></button>');
-    if (add.length) box.insertAdjacentHTML('afterbegin', add.join(''));
+    if (add.length) { box.insertAdjacentHTML('afterbegin', add.join('')); for (const h of box.querySelectorAll('.lf-hint')) if (/적용 중인 조건 없음/.test(h.textContent)) h.textContent = '적용 중:'; }
   }
   document.addEventListener('click', e => {
     const c = e.target.closest('[data-v13-clear]'); if (!c) return;
