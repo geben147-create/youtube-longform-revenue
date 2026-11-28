@@ -74,7 +74,7 @@
   const GROUPS = [
     ['1A', '반복 고수익 채널', '채널 표본 5편↑ · 10만↑ 반복률 50%↑ · 채널 월 추정 확인 · 채널당 최대 3편 · 채널 월 추정순', true],
     ['1B', '저구독 대비 폭발적 조회수·고수익', '체크 해제됨 — 이번 확장에서 제외', false],
-    ['2A', '편당·월수익 최우수', '영상당 중 추정 100만 원↑ · 채널 월 추정 1,000만 원↑ · 채널당 최대 2편 · 편당×월 추정순', true],
+    ['2A', '편당·월수익 최우수', '편당(중 2,000원) 또는 채널 월 추정 800만 원↑ · 모자라면 아래 금액으로 내려가 TOP 20까지 · 채널당 최대 2편 · 금액순', true],
     ['2B', '신생·저구독·고조회·고수익 잠재력', '개설 120일 이내 · 구독자 1만 이하 · 구독자 대비 20배↑ · 채널당 최대 2편 · 조회순', true],
     ['2C', '다양한 채널의 성공 공식 교차 검증', '조회 30만↑ · 채널당 1편 · 분야를 돌아가며 선택(다양성) · 기회 점수순', true]
   ];
@@ -87,7 +87,7 @@
     const long = E.pool.filter(v => { const c = E.scores.get(v.id)?.cat; return v.s > 180 && Number.isFinite(v.v) && c && c.key !== 'fullmovie' && c.cls !== 'C'; }); // 제작 재현 대상만: 출연·대규모 촬영형(C)·영화 전편·분야 미분류 제외
     const c1 = v => E.scores.get(v.id)?.parts.c1?.raw ?? null;
     out['1A'] = pick(long.filter(v => { const c = ch(v); return c && c.n >= 5 && c.repeat >= 0.5 && c1(v) != null; }), 3, (a, b) => c1(b) - c1(a) || b.v - a.v, 250);
-    out['2A'] = pick(long.filter(v => v.v * 2 >= 1e6 && (c1(v) ?? 0) >= 1e7), 2, (a, b) => b.v * c1(b) - a.v * c1(a), 250);
+    const amt = v => Math.max(v.v * 2, c1(v) ?? 0); let a2 = pick(long.filter(v => amt(v) >= 8e6), 2, (a, b) => amt(b) - amt(a), 250); if (a2.length < 20) a2 = a2.concat(pick(long.filter(v => amt(v) < 8e6), 2, (a, b) => amt(b) - amt(a), 20 - a2.length)); out['2A'] = a2;
     out['2B'] = pick(long.filter(v => { const i = E.info(v) || {}; return i.chAge != null && i.chAge <= 120 && i.subs != null && i.subs <= 10000 && i.x != null && i.x >= 20; }), 2, (a, b) => b.v - a.v, 250);
     const byCat = new Map(); for (const v of long.filter(v => v.v >= 3e5)) { const k = E.scores.get(v.id)?.cat?.key || 'etc'; (byCat.get(k) || byCat.set(k, []).get(k)).push(v); }
     for (const a of byCat.values()) a.sort((x, y) => (E.scores.get(y.id)?.rank ?? 0) - (E.scores.get(x.id)?.rank ?? 0));
@@ -134,7 +134,7 @@
       const add = (v, g, strict) => { if (take.has(v.id)) return false; const k = terms(v.ch); const n = perCh.get(k) || 0; if (n >= 2) return false; perCh.set(k, n + 1); take.set(v.id, 1); items.push({ v, g, strict }); return true; };
       const rules = {
         '1A': [v => { const c = ch(v); return c && c.n >= 5 && c.repeat >= 0.5 && c1(v) != null; }, (a, b) => (c1(b) ?? 0) - (c1(a) ?? 0)],
-        '2A': [v => v.v * 2 >= 1e6 && (c1(v) ?? 0) >= 1e7, (a, b) => b.v - a.v],
+        '2A': [v => Math.max(v.v * 2, c1(v) ?? 0) >= 8e6, (a, b) => Math.max(b.v * 2, c1(b) ?? 0) - Math.max(a.v * 2, c1(a) ?? 0)],
         '2B': [v => { const i = E.info(v) || {}; return i.chAge != null && i.chAge <= 120 && i.subs != null && i.subs <= 10000 && i.x != null && i.x >= 20; }, (a, b) => b.v - a.v],
         '2C': [v => v.v >= 3e5, (a, b) => rank(b) - rank(a)]
       };
