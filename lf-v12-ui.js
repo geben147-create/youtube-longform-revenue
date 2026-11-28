@@ -21,7 +21,7 @@
   // GPT research medal + filter
   const GPT_KEY = 'lf-v12:gpt:v1';
   const LFGPT = window.LFGPT = { mode: LS(GPT_KEY, 'all'), ids: null, has(v) { return !!v && (((v.src || []).includes('GPT 조사')) || !!(this.ids && this.ids.has(v.id))); }, ok(v) { return this.mode === 'all' ? true : this.mode === 'only' ? this.has(v) : !this.has(v); } };
-  const MEDAL = '<span class="gpt-medal" title="어시스턴트(GPT)가 직접 조사·추가한 영상">★ GPT</span>';
+  const MEDAL = '<span class="gpt-medal" style="background:#FFEB00;color:#E00000;font-weight:900" title="어시스턴트(GPT)가 직접 조사·추가한 영상">★ GPT</span>';
   function rowId(tr) { const s = new Set([...tr.querySelectorAll('a[href*="watch?v="],a[href*="/shorts/"]')].map(a => (a.getAttribute('href').match(/(?:v=|shorts\/)([\w-]{11})/) || [])[1]).filter(Boolean)); return s.size === 1 ? [...s][0] : null; }
   function mark(thumb, titleHost, on, after) {
     for (const m of [thumb && thumb.querySelector(':scope>.gpt-medal'), titleHost && titleHost.querySelector('.gpt-title')]) if (m && !on) m.remove();
