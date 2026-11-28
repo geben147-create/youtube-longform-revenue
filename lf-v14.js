@@ -5,13 +5,14 @@
   const DAY = 864e5;
   // ---- category classes (initial hypothesis from the brief; adjusted by evidence later) ----
   const CATS = [
+    ['fullmovie', '영화·드라마 전편 업로드(저작권 위험)', 'B', /full movie|full film|full episode|풀버전|전편|전체 회차|完整版|全集|全話/i, 0.1, 0.2],
     // key, label, class, regex, business(0-1), purchase(0-1)
     ['ai-invest', 'AI 투자·주식·ETF·코인·경제', 'S', /AI ?(투자|주식|ETF|코인|경제)|주식|증시|ETF|코인|비트코인|배당|금리|경제|재테크|株|投資|NISA|stock|invest|crypto|bitcoin|dividend|econom/i, 1, 1],
     ['ai-biz', 'AI 창업·마케팅·자동화·전자책', 'S', /창업|마케팅|자동화|전자책|SaaS|부업|수익화|사업|副業|起業|marketing|automation|side hustle|ebook|business/i, 1, 0.9],
     ['kukppong', '한일 국뽕·해외반응', 'S', /국뽕|해외반응|외국인|海外の反応|日本人|韓国人|外国人|称賛|絶賛|reaction|korea|japan/i, 0.35, 0.35],
     ['war-doc', '전쟁·전투기·잠수함·산업·재난 다큐', 'S', /전쟁|전투|전투기|잠수함|전함|군|세계대전|재난|참사|사고|폭발|산업|war|battle|fighter|submarine|navy|disaster|explosion|戦|軍|艦/i, 0.3, 0.45],
     ['science', '건축·과학·공학·지식', 'S', /건축|과학|공학|구조|우주|기술|지식|원리|이유|engineer|science|architect|physics|space|how it works|建築|科学|技術/i, 0.45, 0.5],
-    ['travel', '여행·드론·풍경·세계 문화', 'S', /여행|드론|풍경|도시|걷기|walk|travel|drone|4K|旅|散歩/i, 0.4, 0.45],
+    ['travel', '여행·드론·풍경·세계 문화', 'S', /여행|드론|풍경|도시 걷기|걷기|walking tour|travel|drone|旅|散歩/i, 0.4, 0.45],
     ['kids-edu', 'AI 어린이 영어 교육', 'A', /어린이|키즈|동요|영어 공부|파닉스|kids|nursery|phonics|子供|童謡/i, 0.6, 0.6],
     ['animal', '동물 이야기·캐릭터', 'A', /동물|고양이|강아지|cat|dog|animal|猫|犬/i, 0.25, 0.35],
     ['history', '역사 복원·과거 문화·야담', 'A', /역사|조선|왕조|고대|중세|야담|history|ancient|medieval|歴史|江戸|昭和/i, 0.35, 0.45],
@@ -90,7 +91,7 @@
       let got = 0, cov = 0, parts = {};
       for (const [k, , w] of W) { const x = r[k]; if (x == null || !Number.isFinite(x)) { parts[k] = null; continue; } const n = pct(k, x); parts[k] = { raw: x, norm: n, pts: w * n, assumed: ASSUMED.has(k) }; got += w * n; cov += w; }
       const coverage = cov / 100, scaled = cov ? got / cov * 100 : null;
-      const rank = scaled == null ? null : scaled * Math.min(1, coverage / 0.6);
+      const rank = scaled == null ? null : scaled * Math.min(1, coverage / 0.75);
       out.set(v.id, { score: got, coverage, scaled, rank, tentative: coverage < 0.6, parts, cat: category(v), market: market(v) });
     }
     return { scores: out, repro, comp, weights: W, assumed: [...ASSUMED], classes: CLASS, cats: CATS.map(c => ({ key: c[0], label: c[1], cls: c[2], business: c[4], purchase: c[5] })) };

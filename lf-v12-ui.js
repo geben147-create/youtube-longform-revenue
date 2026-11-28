@@ -30,7 +30,7 @@
     if (thumb && !thumb.querySelector(':scope>.gpt-medal')) { thumb.classList.add('gpt-thumb'); thumb.insertAdjacentHTML('beforeend', MEDAL); }
     let tm = titleHost && titleHost.querySelector('.gpt-title');
     if (titleHost && !tm) { const s = document.createElement('span'); s.className = 'gpt-title'; s.innerHTML = MEDAL; if (after) after.after(s); else titleHost.appendChild(s); tm = s; }
-    if (tm) { const vis = thumb && thumb.offsetParent !== null && getComputedStyle(thumb).display !== 'none' && (thumb.querySelector('img')?.offsetParent ?? null) !== null; tm.hidden = !!vis; }
+    if (tm) { const r = document.documentElement.classList; const off = r.contains('v12-no-thumbs') || r.contains('v13-mode-numbers') || !!document.querySelector('.lf-layout-no-thumbs'); const vis = !!thumb && !off && !thumb.hidden; if (tm.hidden !== vis) tm.hidden = vis; }
   }
   function decorate() {
     if (!LFGPT.ids) return;
