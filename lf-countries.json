@@ -1,0 +1,1084 @@
+{
+  "asOf": "2026-11-27",
+  "countries": [
+    {
+      "code": "KR",
+      "name": "한국",
+      "ytUsers": {
+        "value": 42900000,
+        "valueMillions": 42.9,
+        "year": 2025,
+        "source": "https://searchengineland.com/guide/youtube-users"
+      },
+      "usage": {
+        "penetrationPctOfPopulation": 84,
+        "penetrationNote": "광고 도달 기준, 전체 인구 대비(인터넷 사용자 대비 아님), 2025",
+        "penetrationSource": "https://worldpopulationreview.com/country-rankings/youtube-users-by-country",
+        "avgDailyMinutes": 161.5,
+        "avgDailyMinutesSource": "https://5322813.fs1.hubspotusercontent-na1.net/hubfs/5322813/Digital%20i%20-%20June%202026%20-%20The%20YouTube%20Era%20-%20Public%20Version.pdf",
+        "avgDailyMinutesNote": "Digital i, 활성 YouTube 계정, 2025",
+        "androidAppMonthlyTime": "44h49m",
+        "androidAppMonthlyNote": "YouTube Android 앱 월 이용시간(USPTO 제출 자료 내 인용 표, 원출처·연도 미표기; data.ai/DataReportal 계열로 보이나 미확인)",
+        "androidAppMonthlySource": "https://ptacts.uspto.gov/ptacts/public-informations/petitions/1558420/download-documents?artifactId=wEKAfQQMumytSiSvP39wkIRy3Ygkx1hrwQpNNAg9zgxTfrOAY9J-C0I"
+      },
+      "rpm": [
+        {
+          "value": 2.91,
+          "unit": "USD CPM(광고주, 1천 노출) 중앙값",
+          "niche": "전체(니치 미구분), 데이터: IsThisChannelMonetized",
+          "year": 2025,
+          "source": "https://www.digitalinformationworld.com/2025/08/youtube-cpm-rates-in-2025-how-location.html"
+        },
+        {
+          "value": 5.73,
+          "unit": "USD CPM(1천 광고 노출)",
+          "niche": "전체(니치 미구분), AIR Media-Tech 3,000+ 채널",
+          "year": 2025,
+          "source": "https://air.io/en/monetization/how-much-can-creators-make-with-adsense-in-2025"
+        }
+      ],
+      "lang": "ko",
+      "demand": [],
+      "aiLocalization": {
+        "level": "보통",
+        "basis": "English→Korean 자동더빙 지원, Expressive Speech는 Korean→English 방향만 표시. 한글 자막·썸네일 필요. (추정) 근거: https://support.google.com/youtube/answer/15569972 , http://blog.youtube/news-and-events/youtube-auto-dubbing-expressive-speech"
+      },
+      "commerce": {
+        "note": "2025 온라인쇼핑 272조원(약 $191B, 서비스 포함; 상품만은 $140B 미만), 모바일 77.6%",
+        "source": "https://www.mobiloud.com/blog/ecommerce-market-size-by-country"
+      }
+    },
+    {
+      "code": "JP",
+      "name": "일본",
+      "ytUsers": {
+        "value": 78500000,
+        "valueMillions": 78.5,
+        "year": 2025,
+        "source": "https://www.statista.com/statistics/280685/number-of-monthly-unique-youtube-users/"
+      },
+      "usage": {
+        "penetrationPctOfPopulation": 63.8,
+        "penetrationNote": "광고 도달 기준, 전체 인구 대비(인터넷 사용자 대비 아님), 2025",
+        "penetrationSource": "https://worldpopulationreview.com/country-rankings/youtube-users-by-country",
+        "avgDailyMinutes": 128.5,
+        "avgDailyMinutesSource": "https://5322813.fs1.hubspotusercontent-na1.net/hubfs/5322813/Digital%20i%20-%20June%202026%20-%20The%20YouTube%20Era%20-%20Public%20Version.pdf",
+        "avgDailyMinutesNote": "Digital i, 활성 YouTube 계정, 2025",
+        "androidAppMonthlyTime": "33h42m",
+        "androidAppMonthlyNote": "YouTube Android 앱 월 이용시간(USPTO 제출 자료 내 인용 표, 원출처·연도 미표기; data.ai/DataReportal 계열로 보이나 미확인)",
+        "androidAppMonthlySource": "https://ptacts.uspto.gov/ptacts/public-informations/petitions/1558420/download-documents?artifactId=wEKAfQQMumytSiSvP39wkIRy3Ygkx1hrwQpNNAg9zgxTfrOAY9J-C0I"
+      },
+      "rpm": [
+        {
+          "value": 3.41,
+          "unit": "USD CPM(광고주, 1천 노출) 중앙값",
+          "niche": "전체(니치 미구분), 데이터: IsThisChannelMonetized",
+          "year": 2025,
+          "source": "https://www.digitalinformationworld.com/2025/08/youtube-cpm-rates-in-2025-how-location.html"
+        },
+        {
+          "value": 5.68,
+          "unit": "USD CPM(1천 광고 노출)",
+          "niche": "전체(니치 미구분), AIR Media-Tech 3,000+ 채널",
+          "year": 2025,
+          "source": "https://air.io/en/monetization/how-much-can-creators-make-with-adsense-in-2025"
+        }
+      ],
+      "lang": "ja",
+      "demand": [],
+      "aiLocalization": {
+        "level": "보통",
+        "basis": "English→Japanese 자동더빙 지원이나 Expressive Speech 미포함. 비라틴 문자(가나/한자) 자막·썸네일 현지화 필요. (추정) 근거: https://support.google.com/youtube/answer/15569972 , http://blog.youtube/news-and-events/youtube-auto-dubbing-expressive-speech"
+      },
+      "commerce": {
+        "note": "METI: 2024 B2C 물품 15.2조엔(약 $100B, EC화율 9.8%), 서비스·디지털 포함 26.1조엔",
+        "source": "https://www.mobiloud.com/blog/ecommerce-market-size-by-country"
+      }
+    },
+    {
+      "code": "US",
+      "name": "미국",
+      "ytUsers": {
+        "value": 254000000,
+        "valueMillions": 254,
+        "year": 2025,
+        "source": "https://www.statista.com/statistics/280685/number-of-monthly-unique-youtube-users/"
+      },
+      "usage": {
+        "penetrationPctOfPopulation": 73,
+        "penetrationNote": "광고 도달 기준, 전체 인구 대비(인터넷 사용자 대비 아님), 2025",
+        "penetrationSource": "https://worldpopulationreview.com/country-rankings/youtube-users-by-country",
+        "avgDailyMinutes": 111.6,
+        "avgDailyMinutesSource": "https://5322813.fs1.hubspotusercontent-na1.net/hubfs/5322813/Digital%20i%20-%20June%202026%20-%20The%20YouTube%20Era%20-%20Public%20Version.pdf",
+        "avgDailyMinutesNote": "Digital i, 활성 YouTube 계정, 2025",
+        "androidAppMonthlyTime": "26h20m",
+        "androidAppMonthlyNote": "YouTube Android 앱 월 이용시간(USPTO 제출 자료 내 인용 표, 원출처·연도 미표기; data.ai/DataReportal 계열로 보이나 미확인)",
+        "androidAppMonthlySource": "https://ptacts.uspto.gov/ptacts/public-informations/petitions/1558420/download-documents?artifactId=wEKAfQQMumytSiSvP39wkIRy3Ygkx1hrwQpNNAg9zgxTfrOAY9J-C0I"
+      },
+      "rpm": [
+        {
+          "value": 11.95,
+          "unit": "USD CPM(광고주, 1천 노출) 중앙값",
+          "niche": "전체(니치 미구분), 데이터: IsThisChannelMonetized",
+          "year": 2025,
+          "source": "https://www.digitalinformationworld.com/2025/08/youtube-cpm-rates-in-2025-how-location.html"
+        },
+        {
+          "value": 14.67,
+          "unit": "USD CPM(1천 광고 노출)",
+          "niche": "전체(니치 미구분), AIR Media-Tech 3,000+ 채널",
+          "year": 2025,
+          "source": "https://air.io/en/monetization/how-much-can-creators-make-with-adsense-in-2025"
+        },
+        {
+          "value": 0.328,
+          "unit": "USD Shorts RPM per 1,000 engaged views",
+          "niche": "Shorts(전체)",
+          "year": 2025,
+          "source": "https://dubsync.me/youtube-rpm-by-country"
+        }
+      ],
+      "lang": "en",
+      "demand": [],
+      "aiLocalization": {
+        "level": "쉬움",
+        "basis": "영어 원어: 번역/더빙 불필요(영어 원본 기준). 한국어 원본이면 YouTube 자동더빙 Korean→English 지원(Expressive Speech 포함). 근거: https://support.google.com/youtube/answer/15569972 , http://blog.youtube/news-and-events/youtube-auto-dubbing-expressive-speech"
+      },
+      "commerce": {
+        "note": "Census: 2025 리테일 이커머스 $1.23T(리테일의 16.4%)",
+        "source": "https://www.mobiloud.com/blog/ecommerce-market-size-by-country"
+      }
+    },
+    {
+      "code": "DE",
+      "name": "독일",
+      "ytUsers": {
+        "value": 64700000,
+        "valueMillions": 64.7,
+        "year": 2025,
+        "source": "https://www.statista.com/statistics/280685/number-of-monthly-unique-youtube-users/"
+      },
+      "usage": {
+        "penetrationPctOfPopulation": 77.6,
+        "penetrationNote": "광고 도달 기준, 전체 인구 대비(인터넷 사용자 대비 아님), 2025",
+        "penetrationSource": "https://worldpopulationreview.com/country-rankings/youtube-users-by-country",
+        "avgDailyMinutes": null,
+        "avgDailyMinutesSource": null,
+        "avgDailyMinutesNote": null,
+        "androidAppMonthlyTime": "15h10m",
+        "androidAppMonthlyNote": "YouTube Android 앱 월 이용시간(USPTO 제출 자료 내 인용 표, 원출처·연도 미표기; data.ai/DataReportal 계열로 보이나 미확인)",
+        "androidAppMonthlySource": "https://ptacts.uspto.gov/ptacts/public-informations/petitions/1558420/download-documents?artifactId=wEKAfQQMumytSiSvP39wkIRy3Ygkx1hrwQpNNAg9zgxTfrOAY9J-C0I"
+      },
+      "rpm": [
+        {
+          "value": 6.43,
+          "unit": "USD CPM(광고주, 1천 노출) 중앙값",
+          "niche": "전체(니치 미구분), 데이터: IsThisChannelMonetized",
+          "year": 2025,
+          "source": "https://www.digitalinformationworld.com/2025/08/youtube-cpm-rates-in-2025-how-location.html"
+        },
+        {
+          "value": 9.79,
+          "unit": "USD CPM(1천 광고 노출)",
+          "niche": "전체(니치 미구분), AIR Media-Tech 3,000+ 채널",
+          "year": 2025,
+          "source": "https://air.io/en/monetization/how-much-can-creators-make-with-adsense-in-2025"
+        }
+      ],
+      "lang": "de",
+      "demand": [],
+      "aiLocalization": {
+        "level": "쉬움",
+        "basis": "English→German 자동더빙 + Expressive Speech 지원. 라틴 문자. (추정) 근거: https://support.google.com/youtube/answer/15569972 , http://blog.youtube/news-and-events/youtube-auto-dubbing-expressive-speech"
+      },
+      "commerce": {
+        "note": "HDE: 2025 온라인 리테일 €92.3bn(리테일 13.5%), 마켓플레이스 비중 56.7%",
+        "source": "https://www.mobiloud.com/blog/ecommerce-market-size-by-country"
+      }
+    },
+    {
+      "code": "FR",
+      "name": "프랑스",
+      "ytUsers": {
+        "value": 51500000,
+        "valueMillions": 51.5,
+        "year": 2025,
+        "source": "https://www.statista.com/statistics/280685/number-of-monthly-unique-youtube-users/"
+      },
+      "usage": {
+        "penetrationPctOfPopulation": 75.7,
+        "penetrationNote": "광고 도달 기준, 전체 인구 대비(인터넷 사용자 대비 아님), 2025",
+        "penetrationSource": "https://worldpopulationreview.com/country-rankings/youtube-users-by-country",
+        "avgDailyMinutes": 77,
+        "avgDailyMinutesSource": "https://5322813.fs1.hubspotusercontent-na1.net/hubfs/5322813/Digital%20i%20-%20June%202026%20-%20The%20YouTube%20Era%20-%20Public%20Version.pdf",
+        "avgDailyMinutesNote": "Digital i, 활성 YouTube 계정, 2025",
+        "androidAppMonthlyTime": "16h50m",
+        "androidAppMonthlyNote": "YouTube Android 앱 월 이용시간(USPTO 제출 자료 내 인용 표, 원출처·연도 미표기; data.ai/DataReportal 계열로 보이나 미확인)",
+        "androidAppMonthlySource": "https://ptacts.uspto.gov/ptacts/public-informations/petitions/1558420/download-documents?artifactId=wEKAfQQMumytSiSvP39wkIRy3Ygkx1hrwQpNNAg9zgxTfrOAY9J-C0I"
+      },
+      "rpm": [
+        {
+          "value": 4.54,
+          "unit": "USD CPM(광고주, 1천 노출) 중앙값",
+          "niche": "전체(니치 미구분), 데이터: IsThisChannelMonetized",
+          "year": 2025,
+          "source": "https://www.digitalinformationworld.com/2025/08/youtube-cpm-rates-in-2025-how-location.html"
+        },
+        {
+          "value": 6.76,
+          "unit": "USD CPM(1천 광고 노출)",
+          "niche": "전체(니치 미구분), AIR Media-Tech 3,000+ 채널",
+          "year": 2025,
+          "source": "https://air.io/en/monetization/how-much-can-creators-make-with-adsense-in-2025"
+        }
+      ],
+      "lang": "fr",
+      "demand": [],
+      "aiLocalization": {
+        "level": "쉬움",
+        "basis": "YouTube 자동더빙 English→French 지원 + Expressive Speech 8개 언어에 포함(2026-02). 라틴 문자. (추정: 품질 상위권) 근거: https://support.google.com/youtube/answer/15569972 , http://blog.youtube/news-and-events/youtube-auto-dubbing-expressive-speech"
+      },
+      "commerce": {
+        "note": "FEVAD: 2025 온라인 총 €196.4bn(서비스 포함), 상품 €76.1bn",
+        "source": "https://www.mobiloud.com/blog/ecommerce-market-size-by-country"
+      }
+    },
+    {
+      "code": "GB",
+      "name": "영국",
+      "ytUsers": {
+        "value": 55500000,
+        "valueMillions": 55.5,
+        "year": 2025,
+        "source": "https://www.statista.com/statistics/280685/number-of-monthly-unique-youtube-users/"
+      },
+      "usage": {
+        "penetrationPctOfPopulation": 79,
+        "penetrationNote": "광고 도달 기준, 전체 인구 대비(인터넷 사용자 대비 아님), 2025",
+        "penetrationSource": "https://worldpopulationreview.com/country-rankings/youtube-users-by-country",
+        "avgDailyMinutes": 51,
+        "avgDailyMinutesSource": "https://www.ofcom.org.uk/siteassets/resources/documents/research-and-data/online-research/online-nation/2025/online-nations-report-2025.pdf",
+        "avgDailyMinutesNote": "Ofcom Online Nation 2025: 성인 인터넷 사용자 1인당 51분/일(2025-05, TV 제외), 온라인 성인 94% 월간 도달",
+        "androidAppMonthlyTime": "19h10m",
+        "androidAppMonthlyNote": "YouTube Android 앱 월 이용시간(USPTO 제출 자료 내 인용 표, 원출처·연도 미표기; data.ai/DataReportal 계열로 보이나 미확인)",
+        "androidAppMonthlySource": "https://ptacts.uspto.gov/ptacts/public-informations/petitions/1558420/download-documents?artifactId=wEKAfQQMumytSiSvP39wkIRy3Ygkx1hrwQpNNAg9zgxTfrOAY9J-C0I",
+        "reachPctOfInternetUsers": 94
+      },
+      "rpm": [
+        {
+          "value": 7.6,
+          "unit": "USD CPM(광고주, 1천 노출) 중앙값",
+          "niche": "전체(니치 미구분), 데이터: IsThisChannelMonetized",
+          "year": 2025,
+          "source": "https://www.digitalinformationworld.com/2025/08/youtube-cpm-rates-in-2025-how-location.html"
+        },
+        {
+          "value": 8.91,
+          "unit": "USD CPM(1천 광고 노출)",
+          "niche": "전체(니치 미구분), AIR Media-Tech 3,000+ 채널",
+          "year": 2025,
+          "source": "https://air.io/en/monetization/how-much-can-creators-make-with-adsense-in-2025"
+        },
+        {
+          "value": 0.166,
+          "unit": "USD Shorts RPM per 1,000 engaged views",
+          "niche": "Shorts(전체)",
+          "year": 2025,
+          "source": "https://dubsync.me/youtube-rpm-by-country"
+        }
+      ],
+      "lang": "en",
+      "demand": [],
+      "aiLocalization": {
+        "level": "쉬움",
+        "basis": "영어 원어: 번역/더빙 불필요(영어 원본 기준). 한국어 원본이면 YouTube 자동더빙 Korean→English 지원(Expressive Speech 포함). 근거: https://support.google.com/youtube/answer/15569972 , http://blog.youtube/news-and-events/youtube-auto-dubbing-expressive-speech"
+      },
+      "commerce": {
+        "note": "ONS: 2025 온라인 약 £133bn(약 $175B, 리테일의 27.5%, Great Britain)",
+        "source": "https://www.mobiloud.com/blog/ecommerce-market-size-by-country"
+      }
+    },
+    {
+      "code": "CA",
+      "name": "캐나다",
+      "ytUsers": {
+        "value": 33000000,
+        "valueMillions": 33,
+        "year": 2025,
+        "source": "https://searchengineland.com/guide/youtube-users"
+      },
+      "usage": {
+        "penetrationPctOfPopulation": 79.4,
+        "penetrationNote": "광고 도달 기준, 전체 인구 대비(인터넷 사용자 대비 아님), 2025",
+        "penetrationSource": "https://worldpopulationreview.com/country-rankings/youtube-users-by-country",
+        "avgDailyMinutes": null,
+        "avgDailyMinutesSource": null,
+        "avgDailyMinutesNote": null,
+        "androidAppMonthlyTime": "19h04m",
+        "androidAppMonthlyNote": "YouTube Android 앱 월 이용시간(USPTO 제출 자료 내 인용 표, 원출처·연도 미표기; data.ai/DataReportal 계열로 보이나 미확인)",
+        "androidAppMonthlySource": "https://ptacts.uspto.gov/ptacts/public-informations/petitions/1558420/download-documents?artifactId=wEKAfQQMumytSiSvP39wkIRy3Ygkx1hrwQpNNAg9zgxTfrOAY9J-C0I"
+      },
+      "rpm": [
+        {
+          "value": 6.65,
+          "unit": "USD CPM(광고주, 1천 노출) 중앙값",
+          "niche": "전체(니치 미구분), 데이터: IsThisChannelMonetized",
+          "year": 2025,
+          "source": "https://www.digitalinformationworld.com/2025/08/youtube-cpm-rates-in-2025-how-location.html"
+        },
+        {
+          "value": 9.93,
+          "unit": "USD CPM(1천 광고 노출)",
+          "niche": "전체(니치 미구분), AIR Media-Tech 3,000+ 채널",
+          "year": 2025,
+          "source": "https://air.io/en/monetization/how-much-can-creators-make-with-adsense-in-2025"
+        },
+        {
+          "value": 0.165,
+          "unit": "USD Shorts RPM per 1,000 engaged views",
+          "niche": "Shorts(전체)",
+          "year": 2025,
+          "source": "https://dubsync.me/youtube-rpm-by-country"
+        }
+      ],
+      "lang": "en, fr",
+      "demand": [],
+      "aiLocalization": {
+        "level": "쉬움",
+        "basis": "영어 원어: 번역/더빙 불필요(영어 원본 기준). 한국어 원본이면 YouTube 자동더빙 Korean→English 지원(Expressive Speech 포함). 근거: https://support.google.com/youtube/answer/15569972 , http://blog.youtube/news-and-events/youtube-auto-dubbing-expressive-speech"
+      },
+      "commerce": {
+        "note": "StatCan: 2024 이커머스 C$73.7B(약 $54B)",
+        "source": "https://www.mobiloud.com/blog/ecommerce-market-size-by-country"
+      }
+    },
+    {
+      "code": "AU",
+      "name": "호주",
+      "ytUsers": {
+        "value": 20900000,
+        "valueMillions": 20.9,
+        "year": 2025,
+        "source": "https://worldpopulationreview.com/country-rankings/youtube-users-by-country"
+      },
+      "usage": {
+        "penetrationPctOfPopulation": 80.2,
+        "penetrationNote": "광고 도달 기준, 전체 인구 대비(인터넷 사용자 대비 아님), 2025",
+        "penetrationSource": "https://worldpopulationreview.com/country-rankings/youtube-users-by-country",
+        "avgDailyMinutes": null,
+        "avgDailyMinutesSource": null,
+        "avgDailyMinutesNote": null,
+        "androidAppMonthlyTime": "21h36m",
+        "androidAppMonthlyNote": "YouTube Android 앱 월 이용시간(USPTO 제출 자료 내 인용 표, 원출처·연도 미표기; data.ai/DataReportal 계열로 보이나 미확인)",
+        "androidAppMonthlySource": "https://ptacts.uspto.gov/ptacts/public-informations/petitions/1558420/download-documents?artifactId=wEKAfQQMumytSiSvP39wkIRy3Ygkx1hrwQpNNAg9zgxTfrOAY9J-C0I"
+      },
+      "rpm": [
+        {
+          "value": 8.93,
+          "unit": "USD CPM(광고주, 1천 노출) 중앙값",
+          "niche": "전체(니치 미구분), 데이터: IsThisChannelMonetized",
+          "year": 2025,
+          "source": "https://www.digitalinformationworld.com/2025/08/youtube-cpm-rates-in-2025-how-location.html"
+        },
+        {
+          "value": 13.3,
+          "unit": "USD CPM(1천 광고 노출)",
+          "niche": "전체(니치 미구분), AIR Media-Tech 3,000+ 채널",
+          "year": 2025,
+          "source": "https://air.io/en/monetization/how-much-can-creators-make-with-adsense-in-2025"
+        },
+        {
+          "value": 0.193,
+          "unit": "USD Shorts RPM per 1,000 engaged views",
+          "niche": "Shorts(전체)",
+          "year": 2025,
+          "source": "https://dubsync.me/youtube-rpm-by-country"
+        }
+      ],
+      "lang": "en",
+      "demand": [],
+      "aiLocalization": {
+        "level": "쉬움",
+        "basis": "영어 원어: 번역/더빙 불필요(영어 원본 기준). 한국어 원본이면 YouTube 자동더빙 Korean→English 지원(Expressive Speech 포함). 근거: https://support.google.com/youtube/answer/15569972 , http://blog.youtube/news-and-events/youtube-auto-dubbing-expressive-speech"
+      },
+      "commerce": {
+        "note": "Australia Post: 2025 온라인 A$82.6B(약 $53B, +14%)",
+        "source": "https://www.mobiloud.com/blog/ecommerce-market-size-by-country"
+      }
+    },
+    {
+      "code": "ES",
+      "name": "스페인",
+      "ytUsers": {
+        "value": 39000000,
+        "valueMillions": 39,
+        "year": 2025,
+        "source": "https://searchengineland.com/guide/youtube-users"
+      },
+      "usage": {
+        "penetrationPctOfPopulation": 82.9,
+        "penetrationNote": "광고 도달 기준, 전체 인구 대비(인터넷 사용자 대비 아님), 2025",
+        "penetrationSource": "https://worldpopulationreview.com/country-rankings/youtube-users-by-country",
+        "avgDailyMinutes": 58,
+        "avgDailyMinutesSource": "https://5322813.fs1.hubspotusercontent-na1.net/hubfs/5322813/Digital%20i%20-%20June%202026%20-%20The%20YouTube%20Era%20-%20Public%20Version.pdf",
+        "avgDailyMinutesNote": "Digital i, 활성 YouTube 계정, 2025",
+        "androidAppMonthlyTime": "17h10m",
+        "androidAppMonthlyNote": "YouTube Android 앱 월 이용시간(USPTO 제출 자료 내 인용 표, 원출처·연도 미표기; data.ai/DataReportal 계열로 보이나 미확인)",
+        "androidAppMonthlySource": "https://ptacts.uspto.gov/ptacts/public-informations/petitions/1558420/download-documents?artifactId=wEKAfQQMumytSiSvP39wkIRy3Ygkx1hrwQpNNAg9zgxTfrOAY9J-C0I"
+      },
+      "rpm": [
+        {
+          "value": 3.14,
+          "unit": "USD CPM(광고주, 1천 노출) 중앙값",
+          "niche": "전체(니치 미구분), 데이터: IsThisChannelMonetized",
+          "year": 2025,
+          "source": "https://www.digitalinformationworld.com/2025/08/youtube-cpm-rates-in-2025-how-location.html"
+        }
+      ],
+      "lang": "es",
+      "demand": [],
+      "aiLocalization": {
+        "level": "쉬움",
+        "basis": "English→Spanish 자동더빙 + Expressive Speech 지원. 라틴 문자. 지역 변이(스페인/멕시코) 품질 차이는 미확인. 근거: https://support.google.com/youtube/answer/15569972 , http://blog.youtube/news-and-events/youtube-auto-dubbing-expressive-speech"
+      },
+      "commerce": {
+        "note": "Ecommerce Europe: 2024 B2C €95.2bn(서비스 포함 정도 국가별 상이)",
+        "source": "https://www.eurocommerce.eu/app/uploads/2025/10/final-corrigendum-executive-summary-european-e-commerce-report-2025.pdf"
+      }
+    },
+    {
+      "code": "IT",
+      "name": "이탈리아",
+      "ytUsers": {
+        "value": 41200000,
+        "valueMillions": 41.2,
+        "year": 2025,
+        "source": "https://searchengineland.com/guide/youtube-users"
+      },
+      "usage": {
+        "penetrationPctOfPopulation": 71.2,
+        "penetrationNote": "광고 도달 기준, 전체 인구 대비(인터넷 사용자 대비 아님), 2025",
+        "penetrationSource": "https://worldpopulationreview.com/country-rankings/youtube-users-by-country",
+        "avgDailyMinutes": 50.5,
+        "avgDailyMinutesSource": "https://5322813.fs1.hubspotusercontent-na1.net/hubfs/5322813/Digital%20i%20-%20June%202026%20-%20The%20YouTube%20Era%20-%20Public%20Version.pdf",
+        "avgDailyMinutesNote": "Digital i, 활성 YouTube 계정, 2025",
+        "androidAppMonthlyTime": "18h15m",
+        "androidAppMonthlyNote": "YouTube Android 앱 월 이용시간(USPTO 제출 자료 내 인용 표, 원출처·연도 미표기; data.ai/DataReportal 계열로 보이나 미확인)",
+        "androidAppMonthlySource": "https://ptacts.uspto.gov/ptacts/public-informations/petitions/1558420/download-documents?artifactId=wEKAfQQMumytSiSvP39wkIRy3Ygkx1hrwQpNNAg9zgxTfrOAY9J-C0I"
+      },
+      "rpm": [
+        {
+          "value": 3.59,
+          "unit": "USD CPM(광고주, 1천 노출) 중앙값",
+          "niche": "전체(니치 미구분), 데이터: IsThisChannelMonetized",
+          "year": 2025,
+          "source": "https://www.digitalinformationworld.com/2025/08/youtube-cpm-rates-in-2025-how-location.html"
+        }
+      ],
+      "lang": "it",
+      "demand": [],
+      "aiLocalization": {
+        "level": "쉬움",
+        "basis": "English→Italian 자동더빙 + Expressive Speech 지원. (추정) 근거: https://support.google.com/youtube/answer/15569972 , http://blog.youtube/news-and-events/youtube-auto-dubbing-expressive-speech"
+      },
+      "commerce": {
+        "note": "Osservatori PoliMi: 2025 B2C €62.3bn(상품 €40bn, 서비스 €22.3bn), 소비의 13%",
+        "source": "https://www.osservatori.net/comunicato/ecommerce-b2c/ecommerce-retail-italia-mercato"
+      }
+    },
+    {
+      "code": "BR",
+      "name": "브라질",
+      "ytUsers": {
+        "value": 150000000,
+        "valueMillions": 150,
+        "year": 2025,
+        "source": "https://www.statista.com/statistics/280685/number-of-monthly-unique-youtube-users/"
+      },
+      "usage": {
+        "penetrationPctOfPopulation": 67.8,
+        "penetrationNote": "광고 도달 기준, 전체 인구 대비(인터넷 사용자 대비 아님), 2025",
+        "penetrationSource": "https://worldpopulationreview.com/country-rankings/youtube-users-by-country",
+        "avgDailyMinutes": null,
+        "avgDailyMinutesSource": null,
+        "avgDailyMinutesNote": null,
+        "androidAppMonthlyTime": "22h38m",
+        "androidAppMonthlyNote": "YouTube Android 앱 월 이용시간(USPTO 제출 자료 내 인용 표, 원출처·연도 미표기; data.ai/DataReportal 계열로 보이나 미확인)",
+        "androidAppMonthlySource": "https://ptacts.uspto.gov/ptacts/public-informations/petitions/1558420/download-documents?artifactId=wEKAfQQMumytSiSvP39wkIRy3Ygkx1hrwQpNNAg9zgxTfrOAY9J-C0I"
+      },
+      "rpm": [
+        {
+          "value": 1.33,
+          "unit": "USD CPM(광고주, 1천 노출) 중앙값",
+          "niche": "전체(니치 미구분), 데이터: IsThisChannelMonetized",
+          "year": 2025,
+          "source": "https://www.digitalinformationworld.com/2025/08/youtube-cpm-rates-in-2025-how-location.html"
+        },
+        {
+          "value": 0.045,
+          "unit": "USD Shorts RPM per 1,000 engaged views",
+          "niche": "Shorts(전체)",
+          "year": 2025,
+          "source": "https://dubsync.me/youtube-rpm-by-country"
+        }
+      ],
+      "lang": "pt",
+      "demand": [
+        {
+          "note": "ANBIMA(2022): 금융 인플루언서 최소 266명, 2020-09~2021-02 콘텐츠 16만 건 이상; 금융정보 채널 선호 YouTube 32%(TV 29%, Instagram 22%)",
+          "source": "https://iosrjournals.org/iosr-jrme/papers/Vol-13%20Issue-2/Ser-4/A1302040109.pdf"
+        },
+        {
+          "note": "브라질 YouTube 금융교육 콘텐츠 토픽모델 분석: 시청 수요는 단기·저난도 주제 중심",
+          "source": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3973565"
+        }
+      ],
+      "aiLocalization": {
+        "level": "쉬움",
+        "basis": "English→Portuguese 자동더빙 + Expressive Speech 지원. 브라질/포르투갈 변이 구분 여부 미확인. 근거: https://support.google.com/youtube/answer/15569972 , http://blog.youtube/news-and-events/youtube-auto-dubbing-expressive-speech"
+      },
+      "commerce": {
+        "note": "FecomercioSP: 2025 R$295.6B(약 $53B, +20%)",
+        "source": "https://www.mobiloud.com/blog/ecommerce-market-size-by-country"
+      }
+    },
+    {
+      "code": "MX",
+      "name": "멕시코",
+      "ytUsers": {
+        "value": 85000000,
+        "valueMillions": 85,
+        "year": 2025,
+        "source": "https://www.statista.com/statistics/280685/number-of-monthly-unique-youtube-users/"
+      },
+      "usage": {
+        "penetrationPctOfPopulation": 63.6,
+        "penetrationNote": "광고 도달 기준, 전체 인구 대비(인터넷 사용자 대비 아님), 2025",
+        "penetrationSource": "https://worldpopulationreview.com/country-rankings/youtube-users-by-country",
+        "avgDailyMinutes": null,
+        "avgDailyMinutesSource": null,
+        "avgDailyMinutesNote": null,
+        "androidAppMonthlyTime": "21h04m",
+        "androidAppMonthlyNote": "YouTube Android 앱 월 이용시간(USPTO 제출 자료 내 인용 표, 원출처·연도 미표기; data.ai/DataReportal 계열로 보이나 미확인)",
+        "androidAppMonthlySource": "https://ptacts.uspto.gov/ptacts/public-informations/petitions/1558420/download-documents?artifactId=wEKAfQQMumytSiSvP39wkIRy3Ygkx1hrwQpNNAg9zgxTfrOAY9J-C0I"
+      },
+      "rpm": [
+        {
+          "value": 1.64,
+          "unit": "USD CPM(광고주, 1천 노출) 중앙값",
+          "niche": "전체(니치 미구분), 데이터: IsThisChannelMonetized",
+          "year": 2025,
+          "source": "https://www.digitalinformationworld.com/2025/08/youtube-cpm-rates-in-2025-how-location.html"
+        },
+        {
+          "value": 0.04,
+          "unit": "USD Shorts RPM per 1,000 engaged views",
+          "niche": "Shorts(전체)",
+          "year": 2025,
+          "source": "https://dubsync.me/youtube-rpm-by-country"
+        }
+      ],
+      "lang": "es",
+      "demand": [],
+      "aiLocalization": {
+        "level": "쉬움",
+        "basis": "English→Spanish 자동더빙 + Expressive Speech 지원. 라틴 문자. 지역 변이(스페인/멕시코) 품질 차이는 미확인. 근거: https://support.google.com/youtube/answer/15569972 , http://blog.youtube/news-and-events/youtube-auto-dubbing-expressive-speech"
+      },
+      "commerce": {
+        "note": "AMVO: 2025 리테일 이커머스 MX$941B(약 $49B, +19.2%), 소셜이 상품 발견 주경로",
+        "source": "https://www.mobiloud.com/blog/ecommerce-market-size-by-country"
+      }
+    },
+    {
+      "code": "IN",
+      "name": "인도",
+      "ytUsers": {
+        "value": 500000000,
+        "valueMillions": 500,
+        "year": 2025,
+        "source": "https://www.statista.com/statistics/280685/number-of-monthly-unique-youtube-users/"
+      },
+      "usage": {
+        "penetrationPctOfPopulation": 33.7,
+        "penetrationNote": "광고 도달 기준, 전체 인구 대비(인터넷 사용자 대비 아님), 2025",
+        "penetrationSource": "https://worldpopulationreview.com/country-rankings/youtube-users-by-country",
+        "avgDailyMinutes": null,
+        "avgDailyMinutesSource": null,
+        "avgDailyMinutesNote": null,
+        "androidAppMonthlyTime": "29h08m",
+        "androidAppMonthlyNote": "YouTube Android 앱 월 이용시간(USPTO 제출 자료 내 인용 표, 원출처·연도 미표기; data.ai/DataReportal 계열로 보이나 미확인)",
+        "androidAppMonthlySource": "https://ptacts.uspto.gov/ptacts/public-informations/petitions/1558420/download-documents?artifactId=wEKAfQQMumytSiSvP39wkIRy3Ygkx1hrwQpNNAg9zgxTfrOAY9J-C0I"
+      },
+      "rpm": [
+        {
+          "value": 0.96,
+          "unit": "USD CPM(광고주, 1천 노출) 중앙값",
+          "niche": "전체(니치 미구분), 데이터: IsThisChannelMonetized",
+          "year": 2025,
+          "source": "https://www.digitalinformationworld.com/2025/08/youtube-cpm-rates-in-2025-how-location.html"
+        },
+        {
+          "value": 0.74,
+          "unit": "USD CPM(1천 광고 노출)",
+          "niche": "전체(니치 미구분), AIR Media-Tech 3,000+ 채널",
+          "year": 2025,
+          "source": "https://air.io/en/monetization/how-much-can-creators-make-with-adsense-in-2025"
+        },
+        {
+          "value": 0.008,
+          "unit": "USD Shorts RPM per 1,000 engaged views",
+          "niche": "Shorts(전체)",
+          "year": 2025,
+          "source": "https://dubsync.me/youtube-rpm-by-country"
+        }
+      ],
+      "lang": "hi, en 외 다수 지역어",
+      "demand": [
+        {
+          "note": "인도 동영상 시청자 85%가 YouTube가 관심 기술 학습에 도움된다고 응답, 5명 중 4명이 새로운 것을 배우러 YouTube 이용(Think with Google, 2021-10)",
+          "source": "https://www.thinkwithgoogle.com/intl/en-apac/marketing-strategies/video/edtech-youtube-video-marketing-india/"
+        }
+      ],
+      "aiLocalization": {
+        "level": "보통",
+        "basis": "English→Hindi(Expressive) 및 Tamil/Telugu/Bengali/Malayalam/Punjabi 자동더빙 지원. 다언어 시장이라 언어 선택 분산, 데바나가리 등 다문자. (추정) 근거: https://support.google.com/youtube/answer/15569972 , http://blog.youtube/news-and-events/youtube-auto-dubbing-expressive-speech"
+      },
+      "commerce": {
+        "note": "Bain/Flipkart: 2025 e-retail $65~66B(+19~21%), 온라인 구매자 2.9~3억",
+        "source": "https://www.mobiloud.com/blog/ecommerce-market-size-by-country"
+      }
+    },
+    {
+      "code": "ID",
+      "name": "인도네시아",
+      "ytUsers": {
+        "value": 151000000,
+        "valueMillions": 151,
+        "year": 2025,
+        "source": "https://www.statista.com/statistics/280685/number-of-monthly-unique-youtube-users/"
+      },
+      "usage": {
+        "penetrationPctOfPopulation": 50.2,
+        "penetrationNote": "광고 도달 기준, 전체 인구 대비(인터넷 사용자 대비 아님), 2025",
+        "penetrationSource": "https://worldpopulationreview.com/country-rankings/youtube-users-by-country",
+        "avgDailyMinutes": null,
+        "avgDailyMinutesSource": null,
+        "avgDailyMinutesNote": null,
+        "androidAppMonthlyTime": "31h28m",
+        "androidAppMonthlyNote": "YouTube Android 앱 월 이용시간(USPTO 제출 자료 내 인용 표, 원출처·연도 미표기; data.ai/DataReportal 계열로 보이나 미확인)",
+        "androidAppMonthlySource": "https://ptacts.uspto.gov/ptacts/public-informations/petitions/1558420/download-documents?artifactId=wEKAfQQMumytSiSvP39wkIRy3Ygkx1hrwQpNNAg9zgxTfrOAY9J-C0I"
+      },
+      "rpm": [
+        {
+          "value": 0.87,
+          "unit": "USD CPM(광고주, 1천 노출) 중앙값",
+          "niche": "전체(니치 미구분), 데이터: IsThisChannelMonetized",
+          "year": 2025,
+          "source": "https://www.digitalinformationworld.com/2025/08/youtube-cpm-rates-in-2025-how-location.html"
+        },
+        {
+          "value": 0.84,
+          "unit": "USD CPM(1천 광고 노출)",
+          "niche": "전체(니치 미구분), AIR Media-Tech 3,000+ 채널",
+          "year": 2025,
+          "source": "https://air.io/en/monetization/how-much-can-creators-make-with-adsense-in-2025"
+        },
+        {
+          "value": 0.012,
+          "unit": "USD Shorts RPM per 1,000 engaged views",
+          "niche": "Shorts(전체)",
+          "year": 2025,
+          "source": "https://dubsync.me/youtube-rpm-by-country"
+        }
+      ],
+      "lang": "id",
+      "demand": [
+        {
+          "note": "YouTube 인도네시아 'knowledge' 영상 시청시간 80% 이상 증가(Think with Google, 2020)",
+          "source": "https://www.thinkwithgoogle.com/_qs/documents/10257/There_is_something_for_everyone_What_are_people_in_Indonesia_watching_online_CAsAS0D.pdf"
+        },
+        {
+          "note": "JakPat 설문(2017): 응답자 54%가 튜토리얼 채널 구독, 엔터 인플루언서 50.3%보다 높음",
+          "source": "http://www.tubefilter.com/2017/04/17/indonesia-youtube-educational-tutorials-above-entertainment"
+        }
+      ],
+      "aiLocalization": {
+        "level": "쉬움",
+        "basis": "English→Indonesian 자동더빙 + Expressive Speech 지원, Korean→Indonesian 직접 경로도 있음. 라틴 문자. 근거: https://support.google.com/youtube/answer/15569972 , http://blog.youtube/news-and-events/youtube-auto-dubbing-expressive-speech"
+      },
+      "commerce": {
+        "note": "e-Conomy SEA: 2025 이커머스 GMV 약 $71B",
+        "source": "https://www.mobiloud.com/blog/ecommerce-market-size-by-country"
+      }
+    },
+    {
+      "code": "VN",
+      "name": "베트남",
+      "ytUsers": {
+        "value": 62100000,
+        "valueMillions": 62.1,
+        "year": 2025,
+        "source": "https://www.statista.com/statistics/280685/number-of-monthly-unique-youtube-users/"
+      },
+      "usage": {
+        "penetrationPctOfPopulation": 61.5,
+        "penetrationNote": "광고 도달 기준, 전체 인구 대비(인터넷 사용자 대비 아님), 2025",
+        "penetrationSource": "https://worldpopulationreview.com/country-rankings/youtube-users-by-country",
+        "avgDailyMinutes": null,
+        "avgDailyMinutesSource": null,
+        "avgDailyMinutesNote": null,
+        "androidAppMonthlyTime": "26h26m",
+        "androidAppMonthlyNote": "YouTube Android 앱 월 이용시간(USPTO 제출 자료 내 인용 표, 원출처·연도 미표기; data.ai/DataReportal 계열로 보이나 미확인)",
+        "androidAppMonthlySource": "https://ptacts.uspto.gov/ptacts/public-informations/petitions/1558420/download-documents?artifactId=wEKAfQQMumytSiSvP39wkIRy3Ygkx1hrwQpNNAg9zgxTfrOAY9J-C0I"
+      },
+      "rpm": [
+        {
+          "value": 0.82,
+          "unit": "USD CPM(광고주, 1천 노출) 중앙값",
+          "niche": "전체(니치 미구분), 데이터: IsThisChannelMonetized",
+          "year": 2025,
+          "source": "https://www.digitalinformationworld.com/2025/08/youtube-cpm-rates-in-2025-how-location.html"
+        },
+        {
+          "value": 0.85,
+          "unit": "USD CPM(1천 광고 노출)",
+          "niche": "전체(니치 미구분), AIR Media-Tech 3,000+ 채널",
+          "year": 2025,
+          "source": "https://air.io/en/monetization/how-much-can-creators-make-with-adsense-in-2025"
+        }
+      ],
+      "lang": "vi",
+      "demand": [],
+      "aiLocalization": {
+        "level": "어려움",
+        "basis": "YouTube 자동더빙은 Vietnamese→English만 지원, English→Vietnamese 미지원(2026 Help 표). 성조 언어. 외부 TTS 필요. (추정) 근거: https://support.google.com/youtube/answer/15569972 , http://blog.youtube/news-and-events/youtube-auto-dubbing-expressive-speech"
+      },
+      "commerce": {
+        "note": "e-Conomy SEA: 2025 GMV 약 $25B (ECDB 2024 예측 $23.7B)",
+        "source": "https://www.mobiloud.com/blog/ecommerce-market-size-by-country"
+      }
+    },
+    {
+      "code": "TH",
+      "name": "태국",
+      "ytUsers": {
+        "value": 47200000,
+        "valueMillions": 47.2,
+        "year": 2025,
+        "source": "https://searchengineland.com/guide/youtube-users"
+      },
+      "usage": {
+        "penetrationPctOfPopulation": 66.4,
+        "penetrationNote": "광고 도달 기준, 전체 인구 대비(인터넷 사용자 대비 아님), 2025",
+        "penetrationSource": "https://worldpopulationreview.com/country-rankings/youtube-users-by-country",
+        "avgDailyMinutes": null,
+        "avgDailyMinutesSource": null,
+        "avgDailyMinutesNote": null,
+        "androidAppMonthlyTime": "41h28m",
+        "androidAppMonthlyNote": "YouTube Android 앱 월 이용시간(USPTO 제출 자료 내 인용 표, 원출처·연도 미표기; data.ai/DataReportal 계열로 보이나 미확인)",
+        "androidAppMonthlySource": "https://ptacts.uspto.gov/ptacts/public-informations/petitions/1558420/download-documents?artifactId=wEKAfQQMumytSiSvP39wkIRy3Ygkx1hrwQpNNAg9zgxTfrOAY9J-C0I"
+      },
+      "rpm": [
+        {
+          "value": 1.22,
+          "unit": "USD CPM(광고주, 1천 노출) 중앙값",
+          "niche": "전체(니치 미구분), 데이터: IsThisChannelMonetized",
+          "year": 2025,
+          "source": "https://www.digitalinformationworld.com/2025/08/youtube-cpm-rates-in-2025-how-location.html"
+        }
+      ],
+      "lang": "th",
+      "demand": [],
+      "aiLocalization": {
+        "level": "어려움",
+        "basis": "Thai→English만 지원, English→Thai 미지원. 태국 문자·성조 언어. (추정) 근거: https://support.google.com/youtube/answer/15569972 , http://blog.youtube/news-and-events/youtube-auto-dubbing-expressive-speech"
+      },
+      "commerce": {
+        "note": "e-Conomy SEA: 2025 GMV 약 $33B",
+        "source": "https://www.mobiloud.com/blog/ecommerce-market-size-by-country"
+      }
+    },
+    {
+      "code": "PH",
+      "name": "필리핀",
+      "ytUsers": {
+        "value": 59600000,
+        "valueMillions": 59.6,
+        "year": 2025,
+        "source": "https://www.statista.com/statistics/280685/number-of-monthly-unique-youtube-users/"
+      },
+      "usage": {
+        "penetrationPctOfPopulation": 49.6,
+        "penetrationNote": "광고 도달 기준, 전체 인구 대비(인터넷 사용자 대비 아님), 2025",
+        "penetrationSource": "https://worldpopulationreview.com/country-rankings/youtube-users-by-country",
+        "avgDailyMinutes": null,
+        "avgDailyMinutesSource": null,
+        "avgDailyMinutesNote": null,
+        "androidAppMonthlyTime": "32h40m",
+        "androidAppMonthlyNote": "YouTube Android 앱 월 이용시간(USPTO 제출 자료 내 인용 표, 원출처·연도 미표기; data.ai/DataReportal 계열로 보이나 미확인)",
+        "androidAppMonthlySource": "https://ptacts.uspto.gov/ptacts/public-informations/petitions/1558420/download-documents?artifactId=wEKAfQQMumytSiSvP39wkIRy3Ygkx1hrwQpNNAg9zgxTfrOAY9J-C0I"
+      },
+      "rpm": [
+        {
+          "value": 1.22,
+          "unit": "USD CPM(광고주, 1천 노출) 중앙값",
+          "niche": "전체(니치 미구분), 데이터: IsThisChannelMonetized",
+          "year": 2025,
+          "source": "https://www.digitalinformationworld.com/2025/08/youtube-cpm-rates-in-2025-how-location.html"
+        },
+        {
+          "value": 0.023,
+          "unit": "USD Shorts RPM per 1,000 engaged views",
+          "niche": "Shorts(전체)",
+          "year": 2025,
+          "source": "https://dubsync.me/youtube-rpm-by-country"
+        }
+      ],
+      "lang": "fil(tl), en",
+      "demand": [],
+      "aiLocalization": {
+        "level": "보통",
+        "basis": "Filipino/Tagalog는 YouTube 자동더빙 목록에 없음. 영어가 공용어로 쓰여 영어 원본 활용 가능(영어 이해도 통계는 미수집). (추정) 근거: https://support.google.com/youtube/answer/15569972 , http://blog.youtube/news-and-events/youtube-auto-dubbing-expressive-speech"
+      },
+      "commerce": {
+        "note": "ECDB: 2025 매출 $24,766m(+18.5%, 성장률 1위)",
+        "source": "https://ecdb.com/resources/sample-data/ranking/fastest-growing-countries"
+      }
+    },
+    {
+      "code": "SA",
+      "name": "사우디아라비아",
+      "ytUsers": {
+        "value": 27200000,
+        "valueMillions": 27.2,
+        "year": 2025,
+        "source": "https://worldpopulationreview.com/country-rankings/youtube-users-by-country"
+      },
+      "usage": {
+        "penetrationPctOfPopulation": 79.4,
+        "penetrationNote": "광고 도달 기준, 전체 인구 대비(인터넷 사용자 대비 아님), 2025",
+        "penetrationSource": "https://worldpopulationreview.com/country-rankings/youtube-users-by-country",
+        "avgDailyMinutes": null,
+        "avgDailyMinutesSource": null,
+        "avgDailyMinutesNote": null,
+        "androidAppMonthlyTime": "25h48m",
+        "androidAppMonthlyNote": "YouTube Android 앱 월 이용시간(USPTO 제출 자료 내 인용 표, 원출처·연도 미표기; data.ai/DataReportal 계열로 보이나 미확인)",
+        "androidAppMonthlySource": "https://ptacts.uspto.gov/ptacts/public-informations/petitions/1558420/download-documents?artifactId=wEKAfQQMumytSiSvP39wkIRy3Ygkx1hrwQpNNAg9zgxTfrOAY9J-C0I",
+        "reachPctOfInternetUsers": 96,
+        "reachNote": "Statista: 디지털 인구의 약 96%(2025-10 기준 설명문)",
+        "reachSource": "https://www.statista.com/statistics/280685/number-of-monthly-unique-youtube-users/"
+      },
+      "rpm": [
+        {
+          "value": 2.18,
+          "unit": "USD CPM(광고주, 1천 노출) 중앙값",
+          "niche": "전체(니치 미구분), 데이터: IsThisChannelMonetized",
+          "year": 2025,
+          "source": "https://www.digitalinformationworld.com/2025/08/youtube-cpm-rates-in-2025-how-location.html"
+        }
+      ],
+      "lang": "ar",
+      "demand": [],
+      "aiLocalization": {
+        "level": "보통",
+        "basis": "English→Arabic 자동더빙 지원(Expressive Speech 미포함, Arabic→English는 포함). 우→좌 문자(RTL)로 자막·그래픽 처리 필요. 방언(걸프 등) 처리 품질 미확인. 근거: https://support.google.com/youtube/answer/15569972 , http://blog.youtube/news-and-events/youtube-auto-dubbing-expressive-speech"
+      },
+      "commerce": {
+        "note": "ECDB: 2024 예측 매출 $13,200.3m(27위); EZDubai 보고서상 Mada 카드 온라인 거래 2024 $53B(정의 상이)",
+        "source": "https://ecommercedb.com/markets/sa/all"
+      }
+    },
+    {
+      "code": "AE",
+      "name": "UAE(두바이 포함)",
+      "ytUsers": {
+        "value": 8300000.000000001,
+        "valueMillions": 8.3,
+        "year": 2025,
+        "source": "https://worldpopulationreview.com/country-rankings/youtube-users-by-country"
+      },
+      "usage": {
+        "penetrationPctOfPopulation": 73.6,
+        "penetrationNote": "광고 도달 기준, 전체 인구 대비(인터넷 사용자 대비 아님), 2025",
+        "penetrationSource": "https://worldpopulationreview.com/country-rankings/youtube-users-by-country",
+        "avgDailyMinutes": null,
+        "avgDailyMinutesSource": null,
+        "avgDailyMinutesNote": null,
+        "androidAppMonthlyTime": "25h22m",
+        "androidAppMonthlyNote": "YouTube Android 앱 월 이용시간(USPTO 제출 자료 내 인용 표, 원출처·연도 미표기; data.ai/DataReportal 계열로 보이나 미확인)",
+        "androidAppMonthlySource": "https://ptacts.uspto.gov/ptacts/public-informations/petitions/1558420/download-documents?artifactId=wEKAfQQMumytSiSvP39wkIRy3Ygkx1hrwQpNNAg9zgxTfrOAY9J-C0I"
+      },
+      "rpm": [
+        {
+          "value": 3.03,
+          "unit": "USD CPM(광고주, 1천 노출) 중앙값",
+          "niche": "전체(니치 미구분), 데이터: IsThisChannelMonetized",
+          "year": 2025,
+          "source": "https://www.digitalinformationworld.com/2025/08/youtube-cpm-rates-in-2025-how-location.html"
+        }
+      ],
+      "lang": "ar (영어 광범위 사용은 근거 미수집)",
+      "demand": [],
+      "aiLocalization": {
+        "level": "보통",
+        "basis": "English→Arabic 자동더빙 지원(Expressive Speech 미포함, Arabic→English는 포함). 우→좌 문자(RTL)로 자막·그래픽 처리 필요. 방언(걸프 등) 처리 품질 미확인. 근거: https://support.google.com/youtube/answer/15569972 , http://blog.youtube/news-and-events/youtube-auto-dubbing-expressive-speech"
+      },
+      "commerce": {
+        "note": "EZDubai/Euromonitor: 2024 이커머스 AED32.3bn($8.8B), 2029 $13.8B 전망",
+        "source": "https://www.wam.ae/en/article/bjsbc4q-uae-e-commerce-market-reaches-aed323-billion-2024"
+      }
+    },
+    {
+      "code": "TR",
+      "name": "튀르키예",
+      "ytUsers": {
+        "value": 57900000,
+        "valueMillions": 57.9,
+        "year": 2025,
+        "source": "https://www.statista.com/statistics/280685/number-of-monthly-unique-youtube-users/"
+      },
+      "usage": {
+        "penetrationPctOfPopulation": 65.7,
+        "penetrationNote": "광고 도달 기준, 전체 인구 대비(인터넷 사용자 대비 아님), 2025",
+        "penetrationSource": "https://worldpopulationreview.com/country-rankings/youtube-users-by-country",
+        "avgDailyMinutes": null,
+        "avgDailyMinutesSource": null,
+        "avgDailyMinutesNote": null,
+        "androidAppMonthlyTime": "24h40m",
+        "androidAppMonthlyNote": "YouTube Android 앱 월 이용시간(USPTO 제출 자료 내 인용 표, 원출처·연도 미표기; data.ai/DataReportal 계열로 보이나 미확인)",
+        "androidAppMonthlySource": "https://ptacts.uspto.gov/ptacts/public-informations/petitions/1558420/download-documents?artifactId=wEKAfQQMumytSiSvP39wkIRy3Ygkx1hrwQpNNAg9zgxTfrOAY9J-C0I"
+      },
+      "rpm": [
+        {
+          "value": 0.87,
+          "unit": "USD CPM(광고주, 1천 노출) 중앙값",
+          "niche": "전체(니치 미구분), 데이터: IsThisChannelMonetized",
+          "year": 2025,
+          "source": "https://www.digitalinformationworld.com/2025/08/youtube-cpm-rates-in-2025-how-location.html"
+        },
+        {
+          "value": 1.09,
+          "unit": "USD CPM(1천 광고 노출)",
+          "niche": "전체(니치 미구분), AIR Media-Tech 3,000+ 채널",
+          "year": 2025,
+          "source": "https://air.io/en/monetization/how-much-can-creators-make-with-adsense-in-2025"
+        },
+        {
+          "value": 0.024,
+          "unit": "USD Shorts RPM per 1,000 engaged views",
+          "niche": "Shorts(전체)",
+          "year": 2025,
+          "source": "https://dubsync.me/youtube-rpm-by-country"
+        }
+      ],
+      "lang": "tr",
+      "demand": [],
+      "aiLocalization": {
+        "level": "어려움",
+        "basis": "Turkish→English만 지원, English→Turkish 미지원. 라틴 문자이나 외부 더빙 필요. (추정) 근거: https://support.google.com/youtube/answer/15569972 , http://blog.youtube/news-and-events/youtube-auto-dubbing-expressive-speech"
+      },
+      "commerce": {
+        "note": "무역부: 2025 전체 이커머스 4.57조 TL(+52.2%), 리테일 2.46조 TL",
+        "source": "https://ticaret.gov.tr/data/6a104abe269de1b0e034a48c/T%C3%BCrkiye'de%20E-Ticaretin%20G%C3%B6r%C3%BCn%C3%BCm%C3%BC%20Raporu%202025%20%C4%B0ngilizce%20Versiyonu.pdf"
+      }
+    },
+    {
+      "code": "PL",
+      "name": "폴란드",
+      "ytUsers": {
+        "value": 29000000,
+        "valueMillions": 29,
+        "year": 2025,
+        "source": "https://worldpopulationreview.com/country-rankings/youtube-users-by-country"
+      },
+      "usage": {
+        "penetrationPctOfPopulation": 75.6,
+        "penetrationNote": "광고 도달 기준, 전체 인구 대비(인터넷 사용자 대비 아님), 2025",
+        "penetrationSource": "https://worldpopulationreview.com/country-rankings/youtube-users-by-country",
+        "avgDailyMinutes": null,
+        "avgDailyMinutesSource": null,
+        "avgDailyMinutesNote": null,
+        "androidAppMonthlyTime": "28h01m",
+        "androidAppMonthlyNote": "YouTube Android 앱 월 이용시간(USPTO 제출 자료 내 인용 표, 원출처·연도 미표기; data.ai/DataReportal 계열로 보이나 미확인)",
+        "androidAppMonthlySource": "https://ptacts.uspto.gov/ptacts/public-informations/petitions/1558420/download-documents?artifactId=wEKAfQQMumytSiSvP39wkIRy3Ygkx1hrwQpNNAg9zgxTfrOAY9J-C0I"
+      },
+      "rpm": [
+        {
+          "value": 2.94,
+          "unit": "USD CPM(광고주, 1천 노출) 중앙값",
+          "niche": "전체(니치 미구분), 데이터: IsThisChannelMonetized",
+          "year": 2025,
+          "source": "https://www.digitalinformationworld.com/2025/08/youtube-cpm-rates-in-2025-how-location.html"
+        }
+      ],
+      "lang": "pl",
+      "demand": [],
+      "aiLocalization": {
+        "level": "보통",
+        "basis": "English→Polish 자동더빙 지원, Expressive Speech 미포함. 라틴 문자(확장 발음 부호). (추정) 근거: https://support.google.com/youtube/answer/15569972 , http://blog.youtube/news-and-events/youtube-auto-dubbing-expressive-speech"
+      },
+      "commerce": {
+        "note": "Ecommerce Europe: 2024 B2C €43.4bn; ECDB 2025 $32,300m(+15.5%)",
+        "source": "https://www.eurocommerce.eu/app/uploads/2025/10/final-corrigendum-executive-summary-european-e-commerce-report-2025.pdf"
+      }
+    },
+    {
+      "code": "NL",
+      "name": "네덜란드",
+      "ytUsers": {
+        "value": 14800000,
+        "valueMillions": 14.8,
+        "year": 2025,
+        "source": "https://worldpopulationreview.com/country-rankings/youtube-users-by-country"
+      },
+      "usage": {
+        "penetrationPctOfPopulation": 80.9,
+        "penetrationNote": "광고 도달 기준, 전체 인구 대비(인터넷 사용자 대비 아님), 2025",
+        "penetrationSource": "https://worldpopulationreview.com/country-rankings/youtube-users-by-country",
+        "avgDailyMinutes": null,
+        "avgDailyMinutesSource": null,
+        "avgDailyMinutesNote": null,
+        "androidAppMonthlyTime": "14h56m",
+        "androidAppMonthlyNote": "YouTube Android 앱 월 이용시간(USPTO 제출 자료 내 인용 표, 원출처·연도 미표기; data.ai/DataReportal 계열로 보이나 미확인)",
+        "androidAppMonthlySource": "https://ptacts.uspto.gov/ptacts/public-informations/petitions/1558420/download-documents?artifactId=wEKAfQQMumytSiSvP39wkIRy3Ygkx1hrwQpNNAg9zgxTfrOAY9J-C0I"
+      },
+      "rpm": [
+        {
+          "value": 6.44,
+          "unit": "USD CPM(광고주, 1천 노출) 중앙값",
+          "niche": "전체(니치 미구분), 데이터: IsThisChannelMonetized",
+          "year": 2025,
+          "source": "https://www.digitalinformationworld.com/2025/08/youtube-cpm-rates-in-2025-how-location.html"
+        },
+        {
+          "value": 8.62,
+          "unit": "USD CPM(1천 광고 노출)",
+          "niche": "전체(니치 미구분), AIR Media-Tech 3,000+ 채널",
+          "year": 2025,
+          "source": "https://air.io/en/monetization/how-much-can-creators-make-with-adsense-in-2025"
+        }
+      ],
+      "lang": "nl",
+      "demand": [],
+      "aiLocalization": {
+        "level": "보통",
+        "basis": "English→Dutch 자동더빙 지원, Expressive Speech 미포함. 라틴 문자. (추정) 근거: https://support.google.com/youtube/answer/15569972 , http://blog.youtube/news-and-events/youtube-auto-dubbing-expressive-speech"
+      },
+      "commerce": {
+        "note": null,
+        "source": null
+      }
+    }
+  ],
+  "notes": [
+    "채널 운영 국가, 콘텐츠 언어, 시청자 국가는 서로 다르다. CPM/RPM은 '시청자 국가' 기준으로 결정되며(AIR: 'The country matters more than the language'), 채널 운영 국가나 콘텐츠 언어가 아니다. 예: 스페인어 콘텐츠도 시청자가 중남미면 저CPM.",
+    "ytUsers: Statista(2025-10) 우선, 상위 13개 외는 Searchengineland(Statista/DataReportal 기반 20위 표) 또는 WorldPopulationReview(2025, DataReportal 광고도달 기반). 두 계열 방법론이 달라 수치 차이 있음(예: 인도 500M vs 491M).",
+    "usage.penetrationPctOfPopulation은 전체 인구 대비 광고 도달률이며 인터넷 사용자 대비 이용률이 아님. 인터넷 사용자 대비 값은 영국(Ofcom 94%)·사우디(Statista ~96%)만 확보.",
+    "CPM 수치는 광고주 지불가(크리에이터 수령 RPM 아님). AIR: 롱폼은 YouTube가 45% 보유, 중앙값 채널은 조회의 53%만 광고 노출, 전체 니치 RPM 중앙값 약 $2.30(2025-05~2026-05, 300채널).",
+    "니치별 RPM(국가 미구분, AIR 300채널, 2025-05~2026-05 중앙값): Education & Science $10.22(P25-P75 $2.31-$19.50), Business & Finance $2.01(3채널, 방향성만), News & Politics $2.60(3채널), Kids $0.33. 다큐멘터리 단독 니치 수치는 미확보. 출처: https://air.io/en/air-data-findings/which-youtube-niche-makes-the-most-money-in-2026-ranked-by-real-rpm-and-cpm",
+    "rpm 배열의 Shorts RPM은 DubSync 페이지가 AIR Media-Tech(2026-01) 데이터로 인용한 값(재인용).",
+    "aiLocalization은 YouTube 자동더빙 지원 방향표(Help 15569972)와 Expressive Speech 8개 언어(2026-02 블로그) 기반 정성 평가이며, 실제 청취 품질 테스트는 하지 않음(추정).",
+    "commerce 수치는 국가별 정의 상이(상품만/서비스 포함/GMV). 국가 간 직접 비교 주의. 네덜란드는 미확보(null).",
+    "demand는 한국·일본·미국·유럽 등 다수 국가에서 국가별 다큐/교육/금융 수요 근거를 찾지 못해 빈 배열."
+  ]
+}
