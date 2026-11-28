@@ -12,7 +12,7 @@
     ['kukppong', '한일 국뽕·해외반응', 'S', /국뽕|해외반응|외국인|海外の反応|日本人|韓国人|外国人|称賛|絶賛|reaction|korea|japan/i, 0.35, 0.35],
     ['war-doc', '전쟁·전투기·잠수함·산업·재난 다큐', 'S', /전쟁|전투|전투기|잠수함|전함|무기|방산|전란|대전|세계대전|재난|참사|사고|폭발|산업|war|battle|fighter|submarine|navy|disaster|explosion|戦|軍|艦/i, 0.3, 0.45],
     ['science', '건축·과학·공학·지식', 'S', /건축|과학|공학|구조물|우주|기술|원리|물리|engineer|science|architect|physics|space|how it works|建築|科学|技術/i, 0.45, 0.5],
-    ['travel', '여행·드론·풍경·세계 문화', 'S', /여행|드론|풍경|도시 걷기|걷기|walking tour|travel|drone|旅|散歩/i, 0.4, 0.45],
+    ['travel', '여행·드론·풍경·세계 문화', 'S', /여행|드론 영상|드론 촬영|풍경|도시 걷기|걷기|walking tour|travel|drone footage|aerial|旅|散歩/i, 0.4, 0.45],
     ['kids-edu', 'AI 어린이 영어 교육', 'A', /어린이|키즈|동요|영어 공부|파닉스|kids|nursery|phonics|子供|童謡/i, 0.6, 0.6],
     ['animal', '동물 이야기·캐릭터', 'A', /동물|고양이|강아지|cat|dog|animal|猫|犬/i, 0.25, 0.35],
     ['history', '역사 복원·과거 문화·야담', 'A', /역사|조선|왕조|고대|중세|야담|history|ancient|medieval|歴史|江戸|昭和/i, 0.35, 0.45],
