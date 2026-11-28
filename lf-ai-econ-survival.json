@@ -1,0 +1,4726 @@
+{
+ "asOf": "2026-11-28T13:55:55.320Z",
+ "method": {
+  "source": "lf-gallery-extra.json videos 중 ks/k에 AI 주식·AI ETF·AI 투자 분석·AI 경제·AI 코인·AI 창업·투자 대가·전자책·리포트·AI 자동화 SaaS(투자/주식/ETF 정확 일치 키는 데이터에 없음) 포함 592편 → 487채널, lf-channels.json과 channelId 매칭 486",
+  "selection": "과거 표본 최대 조회 상위 30 + 나머지에서 시드(20261127) 셔플 무작위 30 = 60",
+  "fetch": "열린 YouTube 탭 안 page.evaluate fetch: /channel/{id}/videos(ytInitialData) + RSS feeds/videos.xml(최근 15편, 쇼츠 포함), 요청 간 1.5초, 429 시 60초 대기 1회 후 건너뜀(실제 429 0회)",
+  "latestUpload": "동영상 탭 첫 항목 상대표기(근사)와 RSS published 중 더 최근",
+  "uploads30d": "동영상 탭 상대표기 30일 이내 수(탭 최대 30개라 30=상한) + RSS 30일 이내 수(15 상한, 쇼츠 포함)",
+  "latest10Median": "동영상 탭 최신 10편 표시 조회수(K/M 반올림 근사)의 중앙값",
+  "decline": "최신10 중앙값 < 과거 표본 중앙값×0.3. 과거 표본 다수가 1편(그 채널 히트작)이라 하락이 과대평가될 수 있음",
+  "template": "최신 10편 제목 토큰화(CJK는 2-gram), 절반 이상 제목에 나온 토큰 수/평균 토큰 수 = commonTokenRatio, 평균 쌍 Jaccard; 높음 ≥0.3 or J≥0.25, 중간 ≥0.12 or J≥0.1",
+  "aiDisclosure": "채널 설명+RSS 15편 설명에서 문구 그대로 추출, 제작 표기/주제 언급 구분. YouTube 합성콘텐츠 라벨 미확인",
+  "appearance": "채널 설명 자기소개 단서만, 썸네일 얼굴은 미확인(null)",
+  "statusRule": "삭제/비공개 > 업로드 중단(90일+) > 조회 하락 > 운영중(30일 내) > 미확인; 30~90일 공백은 flags에 기록",
+  "notCollected": "연락처 저장 안 함. 수익화 여부·중단 원인은 공개 근거 없어 모두 미확인. AI 사용을 중단 원인으로 보지 않음"
+ },
+ "channels": [
+  {
+   "name": "디글 클래식 :Diggle Classic",
+   "channelId": "UCRMA_Nb5VF-YoWApSVeXPVA",
+   "url": "https://www.youtube.com/channel/UCRMA_Nb5VF-YoWApSVeXPVA",
+   "pickReason": "조회 상위",
+   "keywords": [
+    "AI 투자 분석"
+   ],
+   "subs": 3440000,
+   "joined": "2019-03-20",
+   "totalVideos": 88552,
+   "pastSample": {
+    "n": 1,
+    "medianViews": 3041880,
+    "maxViews": 3041880,
+    "dates": [
+     "2026-10-15"
+    ]
+   },
+   "channelPage": {
+    "httpStatus": 200,
+    "exists": true,
+    "rssStatus": 200
+   },
+   "latestUpload": {
+    "videosTabFirst": {
+     "id": "w8INlwY8gD4",
+     "relative": "1h ago",
+     "approxDate": "2026-11-28"
+    },
+    "rssLatestPublished": "2026-11-28T12:31:24+00:00",
+    "daysAgo": 0
+   },
+   "uploads30d": {
+    "longformVideosTab": 30,
+    "longformNote": "30개 이상(상한)",
+    "rssAllIncludingShorts": 15,
+    "rssCapped": true
+   },
+   "latest10": {
+    "medianViews": 1650,
+    "viewsSource": "동영상 탭 표시값(근사, K/M 반올림)",
+    "n": 10,
+    "ratioToPastSample": 0.001,
+    "biasNote": "과거 표본 1편(히트작일 수 있음) 대비라 하락 과대 가능"
+   },
+   "appearance": {
+    "lfChannelsField": "unknown",
+    "descriptionClue": null,
+    "thumbnailFace": null,
+    "judgement": null
+   },
+   "aiDisclosure": null,
+   "aiDisclosureNote": "채널 설명·최근 15편 RSS 설명에 AI 음성/제작 문구 없음 (YouTube 합성콘텐츠 라벨은 미확인)",
+   "audienceClue": {
+    "where": "제목 _TOumERNAWU",
+    "text": "[댓글 모음] 일 잘하는 알바생의 정석 ㄷㄷ #보검매직컬2"
+   },
+   "dataClue": null,
+   "template": {
+    "commonTokens": [],
+    "commonTokenRatio": 0,
+    "meanPairJaccard": 0.013,
+    "level": "낮음"
+   },
+   "status": "조회 하락",
+   "flags": [
+    "운영중",
+    "조회 하락"
+   ],
+   "monetization": "미확인",
+   "stopCause": "미확인"
+  },
+  {
+   "name": "BBC Global",
+   "channelId": "UCfYW5GXBXueSO5p9bxD45qg",
+   "url": "https://www.youtube.com/channel/UCfYW5GXBXueSO5p9bxD45qg",
+   "pickReason": "조회 상위",
+   "keywords": [
+    "AI 경제"
+   ],
+   "subs": 817000,
+   "joined": "2017-08-05",
+   "totalVideos": 852,
+   "pastSample": {
+    "n": 1,
+    "medianViews": 2296907,
+    "maxViews": 2296907,
+    "dates": [
+     "2026-07-20"
+    ]
+   },
+   "channelPage": {
+    "httpStatus": 200,
+    "exists": true,
+    "rssStatus": 200
+   },
+   "latestUpload": {
+    "videosTabFirst": {
+     "id": "JfhOEbui8kw",
+     "relative": "3d ago",
+     "approxDate": "2026-11-25"
+    },
+    "rssLatestPublished": "2026-11-24T16:44:39+00:00",
+    "daysAgo": 3
+   },
+   "uploads30d": {
+    "longformVideosTab": 24,
+    "longformNote": null,
+    "rssAllIncludingShorts": 14,
+    "rssCapped": false
+   },
+   "latest10": {
+    "medianViews": 11000,
+    "viewsSource": "동영상 탭 표시값(근사, K/M 반올림)",
+    "n": 10,
+    "ratioToPastSample": 0.005,
+    "biasNote": "과거 표본 1편(히트작일 수 있음) 대비라 하락 과대 가능"
+   },
+   "appearance": {
+    "lfChannelsField": "unknown",
+    "descriptionClue": null,
+    "thumbnailFace": null,
+    "judgement": null
+   },
+   "aiDisclosure": null,
+   "aiDisclosureNote": "채널 설명·최근 15편 RSS 설명에 AI 음성/제작 문구 없음 (YouTube 합성콘텐츠 라벨은 미확인)",
+   "audienceClue": null,
+   "dataClue": {
+    "where": "영상 설명 6YETEabq4As",
+    "text": "They found that women’s employment and earnings improved at the companies where bosses recently became fathers to a daughter."
+   },
+   "template": {
+    "commonTokens": [
+     "the"
+    ],
+    "commonTokenRatio": 0.106,
+    "meanPairJaccard": 0.084,
+    "level": "낮음"
+   },
+   "status": "조회 하락",
+   "flags": [
+    "운영중",
+    "조회 하락"
+   ],
+   "monetization": "미확인",
+   "stopCause": "미확인"
+  },
+  {
+   "name": "Mark Tilbury",
+   "channelId": "UCxgAuX3XZROujMmGphN_scA",
+   "url": "https://www.youtube.com/channel/UCxgAuX3XZROujMmGphN_scA",
+   "pickReason": "조회 상위",
+   "keywords": [
+    "AI 창업"
+   ],
+   "subs": 9480000,
+   "joined": "2014-03-15",
+   "totalVideos": 389,
+   "pastSample": {
+    "n": 1,
+    "medianViews": 1882083,
+    "maxViews": 1882083,
+    "dates": [
+     "2026-11-16"
+    ]
+   },
+   "channelPage": {
+    "httpStatus": 200,
+    "exists": true,
+    "rssStatus": 200
+   },
+   "latestUpload": {
+    "videosTabFirst": {
+     "id": "uy2JLqwiZpU",
+     "relative": "6d ago",
+     "approxDate": "2026-11-22"
+    },
+    "rssLatestPublished": "2026-11-27T20:32:56+00:00",
+    "daysAgo": 0.7
+   },
+   "uploads30d": {
+    "longformVideosTab": 5,
+    "longformNote": null,
+    "rssAllIncludingShorts": 8,
+    "rssCapped": false
+   },
+   "latest10": {
+    "medianViews": 2150000,
+    "viewsSource": "동영상 탭 표시값(근사, K/M 반올림)",
+    "n": 10,
+    "ratioToPastSample": 1.142,
+    "biasNote": "과거 표본 1편(히트작일 수 있음) 대비라 하락 과대 가능"
+   },
+   "appearance": {
+    "lfChannelsField": "unknown",
+    "descriptionClue": null,
+    "thumbnailFace": null,
+    "judgement": null
+   },
+   "aiDisclosure": {
+    "where": "영상 설명 ZzDRSxx3zgY",
+    "text": "Using Claude and Higgsfield, I created AI-generated images and videos, contacted over 50 real businesses, and tried to turn one of the biggest AI side hustles into a profitable business.",
+    "type": "주제 언급(제작 표기 아님으로 판단)"
+   },
+   "aiDisclosureNote": null,
+   "audienceClue": null,
+   "dataClue": null,
+   "template": {
+    "commonTokens": [
+     "for",
+     "to"
+    ],
+    "commonTokenRatio": 0.253,
+    "meanPairJaccard": 0.069,
+    "level": "중간"
+   },
+   "status": "운영중",
+   "flags": [
+    "운영중"
+   ],
+   "monetization": "미확인",
+   "stopCause": null
+  },
+  {
+   "name": "원빅월드쇼 | One Big World Show | 1BWS",
+   "channelId": "UCHKDlM4UOmtEBhwDTg8lqJQ",
+   "url": "https://www.youtube.com/channel/UCHKDlM4UOmtEBhwDTg8lqJQ",
+   "pickReason": "조회 상위",
+   "keywords": [
+    "AI 경제"
+   ],
+   "subs": 891000,
+   "joined": "2014-07-30",
+   "totalVideos": 972,
+   "pastSample": {
+    "n": 1,
+    "medianViews": 1441858,
+    "maxViews": 1441858,
+    "dates": [
+     "2026-11-16"
+    ]
+   },
+   "channelPage": {
+    "httpStatus": 200,
+    "exists": true,
+    "rssStatus": 200
+   },
+   "latestUpload": {
+    "videosTabFirst": {
+     "id": "DhkuI8DKGnQ",
+     "relative": "2d ago",
+     "approxDate": "2026-11-26"
+    },
+    "rssLatestPublished": "2026-11-27T08:30:05+00:00",
+    "daysAgo": 1.2
+   },
+   "uploads30d": {
+    "longformVideosTab": 19,
+    "longformNote": null,
+    "rssAllIncludingShorts": 15,
+    "rssCapped": true
+   },
+   "latest10": {
+    "medianViews": 192500,
+    "viewsSource": "동영상 탭 표시값(근사, K/M 반올림)",
+    "n": 10,
+    "ratioToPastSample": 0.134,
+    "biasNote": "과거 표본 1편(히트작일 수 있음) 대비라 하락 과대 가능"
+   },
+   "appearance": {
+    "lfChannelsField": "unknown",
+    "descriptionClue": null,
+    "thumbnailFace": null,
+    "judgement": null
+   },
+   "aiDisclosure": null,
+   "aiDisclosureNote": "채널 설명·최근 15편 RSS 설명에 AI 음성/제작 문구 없음 (YouTube 합성콘텐츠 라벨은 미확인)",
+   "audienceClue": {
+    "where": "영상 설명 DhkuI8DKGnQ",
+    "text": "38:04 시청자 댓글 읽기"
+   },
+   "dataClue": null,
+   "template": {
+    "commonTokens": [],
+    "commonTokenRatio": 0,
+    "meanPairJaccard": 0.01,
+    "level": "낮음"
+   },
+   "status": "조회 하락",
+   "flags": [
+    "운영중",
+    "조회 하락"
+   ],
+   "monetization": "미확인",
+   "stopCause": "미확인"
+  },
+  {
+   "name": "TBS NEWS DIG Powered by JNN",
+   "channelId": "UC6AG81pAkf6Lbi_1VC5NmPA",
+   "url": "https://www.youtube.com/channel/UC6AG81pAkf6Lbi_1VC5NmPA",
+   "pickReason": "조회 상위",
+   "keywords": [
+    "AI 경제"
+   ],
+   "subs": 3440000,
+   "joined": "2009-09-14",
+   "totalVideos": 92509,
+   "pastSample": {
+    "n": 1,
+    "medianViews": 1033746,
+    "maxViews": 1033746,
+    "dates": [
+     "2026-10-16"
+    ]
+   },
+   "channelPage": {
+    "httpStatus": 200,
+    "exists": true,
+    "rssStatus": 200
+   },
+   "latestUpload": {
+    "videosTabFirst": {
+     "id": "hnCQYNtY1xQ",
+     "relative": "23 min ago",
+     "approxDate": "2026-11-28"
+    },
+    "rssLatestPublished": "2026-11-28T13:27:46+00:00",
+    "daysAgo": 0
+   },
+   "uploads30d": {
+    "longformVideosTab": 30,
+    "longformNote": "30개 이상(상한)",
+    "rssAllIncludingShorts": 15,
+    "rssCapped": true
+   },
+   "latest10": {
+    "medianViews": 11000,
+    "viewsSource": "동영상 탭 표시값(근사, K/M 반올림)",
+    "n": 10,
+    "ratioToPastSample": 0.011,
+    "biasNote": "과거 표본 1편(히트작일 수 있음) 대비라 하락 과대 가능"
+   },
+   "appearance": {
+    "lfChannelsField": "unknown",
+    "descriptionClue": null,
+    "thumbnailFace": null,
+    "judgement": null
+   },
+   "aiDisclosure": null,
+   "aiDisclosureNote": "채널 설명·최근 15편 RSS 설명에 AI 음성/제작 문구 없음 (YouTube 합성콘텐츠 라벨은 미확인)",
+   "audienceClue": null,
+   "dataClue": null,
+   "template": {
+    "commonTokens": [
+     "tbs",
+     "news",
+     "dig"
+    ],
+    "commonTokenRatio": 0.063,
+    "meanPairJaccard": 0.033,
+    "level": "낮음"
+   },
+   "status": "조회 하락",
+   "flags": [
+    "운영중",
+    "조회 하락"
+   ],
+   "monetization": "미확인",
+   "stopCause": "미확인"
+  },
+  {
+   "name": "돈 공부시켜주는남자",
+   "channelId": "UCdHvVS34GpMKV16dMlIbk0w",
+   "url": "https://www.youtube.com/channel/UCdHvVS34GpMKV16dMlIbk0w",
+   "pickReason": "조회 상위",
+   "keywords": [
+    "AI 투자 분석"
+   ],
+   "subs": 21100,
+   "joined": "2019-01-05",
+   "totalVideos": 70,
+   "pastSample": {
+    "n": 1,
+    "medianViews": 789808,
+    "maxViews": 789808,
+    "dates": [
+     "2026-02-23"
+    ]
+   },
+   "channelPage": {
+    "httpStatus": 200,
+    "exists": true,
+    "rssStatus": 200
+   },
+   "latestUpload": {
+    "videosTabFirst": {
+     "id": "f4FmcAgSXow",
+     "relative": "3d ago",
+     "approxDate": "2026-11-25"
+    },
+    "rssLatestPublished": "2026-11-25T02:33:04+00:00",
+    "daysAgo": 3
+   },
+   "uploads30d": {
+    "longformVideosTab": 6,
+    "longformNote": null,
+    "rssAllIncludingShorts": 8,
+    "rssCapped": false
+   },
+   "latest10": {
+    "medianViews": 375,
+    "viewsSource": "동영상 탭 표시값(근사, K/M 반올림)",
+    "n": 10,
+    "ratioToPastSample": 0,
+    "biasNote": "과거 표본 1편(히트작일 수 있음) 대비라 하락 과대 가능"
+   },
+   "appearance": {
+    "lfChannelsField": "unknown",
+    "descriptionClue": null,
+    "thumbnailFace": null,
+    "judgement": null
+   },
+   "aiDisclosure": {
+    "where": "영상 설명 lyH3jpwU46w",
+    "text": "2️⃣ AI 기반 부정행위 감지 (풀영상에서 이어집니다)",
+    "type": "주제 언급(제작 표기 아님으로 판단)"
+   },
+   "aiDisclosureNote": null,
+   "audienceClue": null,
+   "dataClue": {
+    "where": "채널 설명",
+    "text": "쉽고 현실적인 경제 이야기 채널입니다."
+   },
+   "template": {
+    "commonTokens": [],
+    "commonTokenRatio": 0,
+    "meanPairJaccard": 0.004,
+    "level": "낮음"
+   },
+   "status": "조회 하락",
+   "flags": [
+    "운영중",
+    "조회 하락"
+   ],
+   "monetization": "미확인",
+   "stopCause": "미확인"
+  },
+  {
+   "name": "Silicon Valley Girl",
+   "channelId": "UCiq1FIgtEK7LRAOB1JXTPig",
+   "url": "https://www.youtube.com/channel/UCiq1FIgtEK7LRAOB1JXTPig",
+   "pickReason": "조회 상위",
+   "keywords": [
+    "AI 경제",
+    "AI 창업"
+   ],
+   "subs": 1630000,
+   "joined": "2018-04-04",
+   "totalVideos": 474,
+   "pastSample": {
+    "n": 4,
+    "medianViews": 291981.5,
+    "maxViews": 700474,
+    "dates": [
+     "2026-05-29",
+     "2026-06-13",
+     "2026-10-07"
+    ]
+   },
+   "channelPage": {
+    "httpStatus": 200,
+    "exists": true,
+    "rssStatus": 200
+   },
+   "latestUpload": {
+    "videosTabFirst": {
+     "id": "drrMoBocXZ0",
+     "relative": "3d ago",
+     "approxDate": "2026-11-25"
+    },
+    "rssLatestPublished": "2026-11-24T17:20:28+00:00",
+    "daysAgo": 3
+   },
+   "uploads30d": {
+    "longformVideosTab": 12,
+    "longformNote": null,
+    "rssAllIncludingShorts": 14,
+    "rssCapped": false
+   },
+   "latest10": {
+    "medianViews": 145000,
+    "viewsSource": "동영상 탭 표시값(근사, K/M 반올림)",
+    "n": 10,
+    "ratioToPastSample": 0.497,
+    "biasNote": null
+   },
+   "appearance": {
+    "lfChannelsField": "unknown",
+    "descriptionClue": null,
+    "thumbnailFace": null,
+    "judgement": null
+   },
+   "aiDisclosure": null,
+   "aiDisclosureNote": "채널 설명·최근 15편 RSS 설명에 AI 음성/제작 문구 없음 (YouTube 합성콘텐츠 라벨은 미확인)",
+   "audienceClue": null,
+   "dataClue": null,
+   "template": {
+    "commonTokens": [
+     "the",
+     "ai"
+    ],
+    "commonTokenRatio": 0.179,
+    "meanPairJaccard": 0.071,
+    "level": "중간"
+   },
+   "status": "운영중",
+   "flags": [
+    "운영중"
+   ],
+   "monetization": "미확인",
+   "stopCause": null
+  },
+  {
+   "name": "Bloomberg Television",
+   "channelId": "UCIALMKvObZNtJ6AmdCLP7Lg",
+   "url": "https://www.youtube.com/channel/UCIALMKvObZNtJ6AmdCLP7Lg",
+   "pickReason": "조회 상위",
+   "keywords": [
+    "AI 경제"
+   ],
+   "subs": 3360000,
+   "joined": "2017-05-03",
+   "totalVideos": 100661,
+   "pastSample": {
+    "n": 2,
+    "medianViews": 394412,
+    "maxViews": 692756,
+    "dates": [
+     "2026-06-04",
+     "2026-11-25"
+    ]
+   },
+   "channelPage": {
+    "httpStatus": 200,
+    "exists": true,
+    "rssStatus": 200
+   },
+   "latestUpload": {
+    "videosTabFirst": {
+     "id": "3htnjaptiEk",
+     "relative": "47 min ago",
+     "approxDate": "2026-11-28"
+    },
+    "rssLatestPublished": "2026-11-28T13:04:14+00:00",
+    "daysAgo": 0
+   },
+   "uploads30d": {
+    "longformVideosTab": 30,
+    "longformNote": "30개 이상(상한)",
+    "rssAllIncludingShorts": 15,
+    "rssCapped": true
+   },
+   "latest10": {
+    "medianViews": 6450,
+    "viewsSource": "동영상 탭 표시값(근사, K/M 반올림)",
+    "n": 10,
+    "ratioToPastSample": 0.016,
+    "biasNote": null
+   },
+   "appearance": {
+    "lfChannelsField": "unknown",
+    "descriptionClue": null,
+    "thumbnailFace": null,
+    "judgement": null
+   },
+   "aiDisclosure": null,
+   "aiDisclosureNote": "채널 설명·최근 15편 RSS 설명에 AI 음성/제작 문구 없음 (YouTube 합성콘텐츠 라벨은 미확인)",
+   "audienceClue": null,
+   "dataClue": {
+    "where": "영상 설명 3htnjaptiEk",
+    "text": "com for business news & analysis, up-to-the-minute market data, features, profiles and more."
+   },
+   "template": {
+    "commonTokens": [],
+    "commonTokenRatio": 0,
+    "meanPairJaccard": 0.024,
+    "level": "낮음"
+   },
+   "status": "조회 하락",
+   "flags": [
+    "운영중",
+    "조회 하락"
+   ],
+   "monetization": "미확인",
+   "stopCause": "미확인"
+  },
+  {
+   "name": "PIVOT CAREER",
+   "channelId": "UCnuJEgRFwy8BNZiJEr8ewyQ",
+   "url": "https://www.youtube.com/channel/UCnuJEgRFwy8BNZiJEr8ewyQ",
+   "pickReason": "조회 상위",
+   "keywords": [
+    "AI 경제"
+   ],
+   "subs": 1070000,
+   "joined": "2026-06-02",
+   "totalVideos": 381,
+   "pastSample": {
+    "n": 2,
+    "medianViews": 488585,
+    "maxViews": 689772,
+    "dates": [
+     "2025-12-03",
+     "2026-03-28"
+    ]
+   },
+   "channelPage": {
+    "httpStatus": 200,
+    "exists": true,
+    "rssStatus": 200
+   },
+   "latestUpload": {
+    "videosTabFirst": {
+     "id": "6eOURih1C0c",
+     "relative": "1h ago",
+     "approxDate": "2026-11-28"
+    },
+    "rssLatestPublished": "2026-11-28T12:00:05+00:00",
+    "daysAgo": 0
+   },
+   "uploads30d": {
+    "longformVideosTab": 30,
+    "longformNote": "30개 이상(상한)",
+    "rssAllIncludingShorts": 15,
+    "rssCapped": true
+   },
+   "latest10": {
+    "medianViews": 54000,
+    "viewsSource": "동영상 탭 표시값(근사, K/M 반올림)",
+    "n": 10,
+    "ratioToPastSample": 0.111,
+    "biasNote": null
+   },
+   "appearance": {
+    "lfChannelsField": "unknown",
+    "descriptionClue": null,
+    "thumbnailFace": null,
+    "judgement": null
+   },
+   "aiDisclosure": null,
+   "aiDisclosureNote": "채널 설명·최근 15편 RSS 설명에 AI 음성/제작 문구 없음 (YouTube 합성콘텐츠 라벨은 미확인)",
+   "audienceClue": {
+    "where": "채널 설명",
+    "text": "▼YouTubeコメントポリシーについて"
+   },
+   "dataClue": {
+    "where": "제목 BTygVIYGDDY",
+    "text": "【AI時代の20代の転職】求められる人材像／即戦力人材の定義が変わる／20代が狙うべき企業／AIに奪われない「Why」と「What」の力／20代転職市場の最新データ【PIVOT CAREER】"
+   },
+   "template": {
+    "commonTokens": [
+     "0代",
+     "ない"
+    ],
+    "commonTokenRatio": 0.03,
+    "meanPairJaccard": 0.021,
+    "level": "낮음"
+   },
+   "status": "조회 하락",
+   "flags": [
+    "운영중",
+    "조회 하락"
+   ],
+   "monetization": "미확인",
+   "stopCause": "미확인"
+  },
+  {
+   "name": "소소한 AI 입문노트 | 소에노",
+   "channelId": "UCSftqyavYFpdAcnghLZE05A",
+   "url": "https://www.youtube.com/channel/UCSftqyavYFpdAcnghLZE05A",
+   "pickReason": "조회 상위",
+   "keywords": [
+    "AI 자동화 SaaS"
+   ],
+   "subs": 65100,
+   "joined": "2025-08-07",
+   "totalVideos": 89,
+   "pastSample": {
+    "n": 1,
+    "medianViews": 677304,
+    "maxViews": 677304,
+    "dates": [
+     "2026-04-17"
+    ]
+   },
+   "channelPage": {
+    "httpStatus": 200,
+    "exists": true,
+    "rssStatus": 200
+   },
+   "latestUpload": {
+    "videosTabFirst": {
+     "id": "B7MzPzTNHwk",
+     "relative": "4d ago",
+     "approxDate": "2026-11-24"
+    },
+    "rssLatestPublished": "2026-11-24T09:00:32+00:00",
+    "daysAgo": 4
+   },
+   "uploads30d": {
+    "longformVideosTab": 6,
+    "longformNote": null,
+    "rssAllIncludingShorts": 3,
+    "rssCapped": false
+   },
+   "latest10": {
+    "medianViews": 37000,
+    "viewsSource": "동영상 탭 표시값(근사, K/M 반올림)",
+    "n": 10,
+    "ratioToPastSample": 0.055,
+    "biasNote": "과거 표본 1편(히트작일 수 있음) 대비라 하락 과대 가능"
+   },
+   "appearance": {
+    "lfChannelsField": "unknown",
+    "descriptionClue": null,
+    "thumbnailFace": null,
+    "judgement": null
+   },
+   "aiDisclosure": {
+    "where": "영상 설명 B7MzPzTNHwk",
+    "text": "브랜드를 처음 만들어 보시거나, AI로 만든 이미지들이 따로 놀아서 고민이셨던 분들이라면 여러분도 파이어플라이로 한번 직접 써 보시는 걸 추천드려요.",
+    "type": "주제 언급(제작 표기 아님으로 판단)"
+   },
+   "aiDisclosureNote": null,
+   "audienceClue": {
+    "where": "영상 설명 8HnL9eBZD0M",
+    "text": "클로드 아티팩트로 해결하고 싶은 반복 업무가 있다면 댓글로 남겨주세요!"
+   },
+   "dataClue": {
+    "where": "영상 설명 8HnL9eBZD0M",
+    "text": "✔ 클로드 데이터(대시보드): 연결해 둔 데이터는 열 때마다 최신으로 가져오고, 숫자를 누르면 어디서 온 숫자인지 확인할 수 있습니다."
+   },
+   "template": {
+    "commonTokens": [
+     "클로드"
+    ],
+    "commonTokenRatio": 0.095,
+    "meanPairJaccard": 0.037,
+    "level": "낮음"
+   },
+   "status": "조회 하락",
+   "flags": [
+    "운영중",
+    "조회 하락"
+   ],
+   "monetization": "미확인",
+   "stopCause": "미확인"
+  },
+  {
+   "name": "손에잡히는경제",
+   "channelId": "UCiYbaVEODktcsh09454Grow",
+   "url": "https://www.youtube.com/channel/UCiYbaVEODktcsh09454Grow",
+   "pickReason": "조회 상위",
+   "keywords": [
+    "AI 경제"
+   ],
+   "subs": 510000,
+   "joined": "2023-12-13",
+   "totalVideos": 2572,
+   "pastSample": {
+    "n": 2,
+    "medianViews": 392654.5,
+    "maxViews": 670042,
+    "dates": [
+     "2026-07-15",
+     "2026-10-10"
+    ]
+   },
+   "channelPage": {
+    "httpStatus": 200,
+    "exists": true,
+    "rssStatus": 200
+   },
+   "latestUpload": {
+    "videosTabFirst": {
+     "id": "l_K6eK3piE0",
+     "relative": "2h ago",
+     "approxDate": "2026-11-28"
+    },
+    "rssLatestPublished": "2026-11-28T11:00:23+00:00",
+    "daysAgo": 0.1
+   },
+   "uploads30d": {
+    "longformVideosTab": 30,
+    "longformNote": "30개 이상(상한)",
+    "rssAllIncludingShorts": 15,
+    "rssCapped": true
+   },
+   "latest10": {
+    "medianViews": 57500,
+    "viewsSource": "동영상 탭 표시값(근사, K/M 반올림)",
+    "n": 10,
+    "ratioToPastSample": 0.146,
+    "biasNote": null
+   },
+   "appearance": {
+    "lfChannelsField": "unknown",
+    "descriptionClue": null,
+    "thumbnailFace": null,
+    "judgement": null
+   },
+   "aiDisclosure": {
+    "where": "영상 설명 fQpYsLj0gZ8",
+    "text": "18:15 AI 기반 사이버 범죄 확대와 산업시설 위협",
+    "type": "주제 언급(제작 표기 아님으로 판단)"
+   },
+   "aiDisclosureNote": null,
+   "audienceClue": null,
+   "dataClue": {
+    "where": "제목 1Z3eOkZPm34",
+    "text": "[손경제] 10조 증안펀드｜국산 전기차 세액공제｜트럼프 데이터센터 경고｜20261123(월)"
+   },
+   "template": {
+    "commonTokens": [],
+    "commonTokenRatio": 0,
+    "meanPairJaccard": 0.003,
+    "level": "낮음"
+   },
+   "status": "조회 하락",
+   "flags": [
+    "운영중",
+    "조회 하락"
+   ],
+   "monetization": "미확인",
+   "stopCause": "미확인"
+  },
+  {
+   "name": "CNBC Television",
+   "channelId": "UCrp_UI8XtuYfpiqluWLD7Lw",
+   "url": "https://www.youtube.com/channel/UCrp_UI8XtuYfpiqluWLD7Lw",
+   "pickReason": "조회 상위",
+   "keywords": [
+    "AI 주식"
+   ],
+   "subs": 3430000,
+   "joined": "2018-05-29",
+   "totalVideos": 161263,
+   "pastSample": {
+    "n": 1,
+    "medianViews": 653012,
+    "maxViews": 653012,
+    "dates": [
+     "2026-07-01"
+    ]
+   },
+   "channelPage": {
+    "httpStatus": 200,
+    "exists": true,
+    "rssStatus": 200
+   },
+   "latestUpload": {
+    "videosTabFirst": {
+     "id": "1pCYpepr2WI",
+     "relative": "17h ago",
+     "approxDate": "2026-11-27"
+    },
+    "rssLatestPublished": "2026-11-27T20:15:04+00:00",
+    "daysAgo": 0.7
+   },
+   "uploads30d": {
+    "longformVideosTab": 28,
+    "longformNote": null,
+    "rssAllIncludingShorts": 15,
+    "rssCapped": true
+   },
+   "latest10": {
+    "medianViews": 10000,
+    "viewsSource": "동영상 탭 표시값(근사, K/M 반올림)",
+    "n": 10,
+    "ratioToPastSample": 0.015,
+    "biasNote": "과거 표본 1편(히트작일 수 있음) 대비라 하락 과대 가능"
+   },
+   "appearance": {
+    "lfChannelsField": "unknown",
+    "descriptionClue": null,
+    "thumbnailFace": null,
+    "judgement": null
+   },
+   "aiDisclosure": null,
+   "aiDisclosureNote": "채널 설명·최근 15편 RSS 설명에 AI 음성/제작 문구 없음 (YouTube 합성콘텐츠 라벨은 미확인)",
+   "audienceClue": null,
+   "dataClue": {
+    "where": "영상 설명 sXoZOYKrqo4",
+    "text": "FCC Chairman Brendan Carr joins ‘Squawk on the Street’ to discuss approval of SpaceX’s orbital data center satellites, a ruling on ABC license review, and more."
+   },
+   "template": {
+    "commonTokens": [
+     "market"
+    ],
+    "commonTokenRatio": 0.078,
+    "meanPairJaccard": 0.041,
+    "level": "낮음"
+   },
+   "status": "조회 하락",
+   "flags": [
+    "운영중",
+    "조회 하락"
+   ],
+   "monetization": "미확인",
+   "stopCause": "미확인"
+  },
+  {
+   "name": "聞いてわかる投資本チャンネル",
+   "channelId": "UCfSJLM0qrPbzXnuAATuELhA",
+   "url": "https://www.youtube.com/channel/UCfSJLM0qrPbzXnuAATuELhA",
+   "pickReason": "조회 상위",
+   "keywords": [
+    "AI 투자 분석",
+    "투자 대가"
+   ],
+   "subs": 265000,
+   "joined": "2018-11-23",
+   "totalVideos": 1121,
+   "pastSample": {
+    "n": 4,
+    "medianViews": 101467.5,
+    "maxViews": 651410,
+    "dates": [
+     "2026-10-02",
+     "2026-10-06",
+     "2026-11-17"
+    ]
+   },
+   "channelPage": {
+    "httpStatus": 200,
+    "exists": true,
+    "rssStatus": 200
+   },
+   "latestUpload": {
+    "videosTabFirst": {
+     "id": "b2UNzu5Y8Lw",
+     "relative": "3h ago",
+     "approxDate": "2026-11-28"
+    },
+    "rssLatestPublished": "2026-11-28T10:30:36+00:00",
+    "daysAgo": 0.1
+   },
+   "uploads30d": {
+    "longformVideosTab": 19,
+    "longformNote": null,
+    "rssAllIncludingShorts": 15,
+    "rssCapped": true
+   },
+   "latest10": {
+    "medianViews": 64500,
+    "viewsSource": "동영상 탭 표시값(근사, K/M 반올림)",
+    "n": 10,
+    "ratioToPastSample": 0.636,
+    "biasNote": null
+   },
+   "appearance": {
+    "lfChannelsField": "unknown",
+    "descriptionClue": null,
+    "thumbnailFace": null,
+    "judgement": null
+   },
+   "aiDisclosure": null,
+   "aiDisclosureNote": "채널 설명·최근 15편 RSS 설명에 AI 음성/제작 문구 없음 (YouTube 합성콘텐츠 라벨은 미확인)",
+   "audienceClue": {
+    "where": "채널 설명",
+    "text": "【視聴者層】"
+   },
+   "dataClue": {
+    "where": "영상 설명 U_T-4EBMVNw",
+    "text": "今回の「オルカン通信11月号」では、最新の指数データをもとに、オルカンの値動きから銘柄入替の詳細、そして世界株式市場の新陳代謝まで、6つのトピックを解説します！"
+   },
+   "template": {
+    "commonTokens": [
+     "から"
+    ],
+    "commonTokenRatio": 0.029,
+    "meanPairJaccard": 0.021,
+    "level": "낮음"
+   },
+   "status": "운영중",
+   "flags": [
+    "운영중"
+   ],
+   "monetization": "미확인",
+   "stopCause": null
+  },
+  {
+   "name": "교양이를 부탁해",
+   "channelId": "UChY8VUjXv0aA7RF9hDQ0ISg",
+   "url": "https://www.youtube.com/channel/UChY8VUjXv0aA7RF9hDQ0ISg",
+   "pickReason": "조회 상위",
+   "keywords": [
+    "AI 경제"
+   ],
+   "subs": 521000,
+   "joined": "2024-12-27",
+   "totalVideos": 2400,
+   "pastSample": {
+    "n": 3,
+    "medianViews": 363458,
+    "maxViews": 633451,
+    "dates": [
+     "2026-06-30",
+     "2026-07-08",
+     "2026-10-17"
+    ]
+   },
+   "channelPage": {
+    "httpStatus": 200,
+    "exists": true,
+    "rssStatus": 200
+   },
+   "latestUpload": {
+    "videosTabFirst": {
+     "id": "x7CBxgD704U",
+     "relative": "1d ago",
+     "approxDate": "2026-11-27"
+    },
+    "rssLatestPublished": "2026-11-28T12:00:10+00:00",
+    "daysAgo": 0.1
+   },
+   "uploads30d": {
+    "longformVideosTab": 30,
+    "longformNote": "30개 이상(상한)",
+    "rssAllIncludingShorts": 15,
+    "rssCapped": true
+   },
+   "latest10": {
+    "medianViews": 304000,
+    "viewsSource": "동영상 탭 표시값(근사, K/M 반올림)",
+    "n": 10,
+    "ratioToPastSample": 0.836,
+    "biasNote": null
+   },
+   "appearance": {
+    "lfChannelsField": "unknown",
+    "descriptionClue": null,
+    "thumbnailFace": null,
+    "judgement": null
+   },
+   "aiDisclosure": null,
+   "aiDisclosureNote": "채널 설명·최근 15편 RSS 설명에 AI 음성/제작 문구 없음 (YouTube 합성콘텐츠 라벨은 미확인)",
+   "audienceClue": {
+    "where": "영상 설명 7B-_VKqHwOE",
+    "text": "🎁 영상을 보고 댓글로 리뷰를 남겨주시면 추첨을 통해 곽한영 교수의 〈구룡성채, 검은 성의 비밀〉을 드립니다."
+   },
+   "dataClue": {
+    "where": "영상 설명 6QFl5t0-jvs",
+    "text": "실질금리가 오르며 금값이 무너진 배경, 시장에서 빠져나온 돈이 현금과 단기채권으로 숨어든 흐름, 반도체 리레이팅과 이란 전쟁, 중간선거를 둘러싼 올해의 세 가지 오판, 역대급 실적에도 한국 증시가 힘을 쓰지 못하는 이유까지 함께 담았습니다."
+   },
+   "template": {
+    "commonTokens": [
+     "지식뉴스",
+     "교양이를",
+     "부탁해",
+     "진짜"
+    ],
+    "commonTokenRatio": 0.272,
+    "meanPairJaccard": 0.117,
+    "level": "중간"
+   },
+   "status": "운영중",
+   "flags": [
+    "운영중"
+   ],
+   "monetization": "미확인",
+   "stopCause": null
+  },
+  {
+   "name": "Economics Explained",
+   "channelId": "UCZ4AMrDcNrfy3X6nsU8-rPg",
+   "url": "https://www.youtube.com/channel/UCZ4AMrDcNrfy3X6nsU8-rPg",
+   "pickReason": "조회 상위",
+   "keywords": [
+    "AI 경제"
+   ],
+   "subs": 2900000,
+   "joined": "2012-09-09",
+   "totalVideos": 461,
+   "pastSample": {
+    "n": 1,
+    "medianViews": 589266,
+    "maxViews": 589266,
+    "dates": [
+     "2026-08-17"
+    ]
+   },
+   "channelPage": {
+    "httpStatus": 200,
+    "exists": true,
+    "rssStatus": 200
+   },
+   "latestUpload": {
+    "videosTabFirst": {
+     "id": "4hPRHFTY08I",
+     "relative": "2d ago",
+     "approxDate": "2026-11-26"
+    },
+    "rssLatestPublished": "2026-11-25T14:09:59+00:00",
+    "daysAgo": 2
+   },
+   "uploads30d": {
+    "longformVideosTab": 12,
+    "longformNote": null,
+    "rssAllIncludingShorts": 6,
+    "rssCapped": false
+   },
+   "latest10": {
+    "medianViews": 698500,
+    "viewsSource": "동영상 탭 표시값(근사, K/M 반올림)",
+    "n": 10,
+    "ratioToPastSample": 1.185,
+    "biasNote": "과거 표본 1편(히트작일 수 있음) 대비라 하락 과대 가능"
+   },
+   "appearance": {
+    "lfChannelsField": "unknown",
+    "descriptionClue": null,
+    "thumbnailFace": null,
+    "judgement": null
+   },
+   "aiDisclosure": null,
+   "aiDisclosureNote": "채널 설명·최근 15편 RSS 설명에 AI 음성/제작 문구 없음 (YouTube 합성콘텐츠 라벨은 미확인)",
+   "audienceClue": {
+    "where": "영상 설명 4hPRHFTY08I",
+    "text": "See new videos early, participate in exclusive Q&As, and more!"
+   },
+   "dataClue": {
+    "where": "제목 rqlDPfdXQOk",
+    "text": "Why Europe's GDP Growth Is Crippling Its Economy"
+   },
+   "template": {
+    "commonTokens": [
+     "is"
+    ],
+    "commonTokenRatio": 0.159,
+    "meanPairJaccard": 0.028,
+    "level": "중간"
+   },
+   "status": "운영중",
+   "flags": [
+    "운영중"
+   ],
+   "monetization": "미확인",
+   "stopCause": null
+  },
+  {
+   "name": "Richard Yu",
+   "channelId": "UCb9nQthIifgYhHvtU2i2mFg",
+   "url": "https://www.youtube.com/channel/UCb9nQthIifgYhHvtU2i2mFg",
+   "pickReason": "조회 상위",
+   "keywords": [
+    "전자책·리포트"
+   ],
+   "subs": 102000,
+   "joined": "2025-02-10",
+   "totalVideos": 107,
+   "pastSample": {
+    "n": 2,
+    "medianViews": 323106,
+    "maxViews": 577541,
+    "dates": [
+     "2026-06-19",
+     "2026-10-13"
+    ]
+   },
+   "channelPage": {
+    "httpStatus": 200,
+    "exists": true,
+    "rssStatus": 200
+   },
+   "latestUpload": {
+    "videosTabFirst": {
+     "id": "iI2uFWZ80ZE",
+     "relative": "23h ago",
+     "approxDate": "2026-11-27"
+    },
+    "rssLatestPublished": "2026-11-27T14:00:36+00:00",
+    "daysAgo": 1
+   },
+   "uploads30d": {
+    "longformVideosTab": 18,
+    "longformNote": null,
+    "rssAllIncludingShorts": 9,
+    "rssCapped": false
+   },
+   "latest10": {
+    "medianViews": 28500,
+    "viewsSource": "동영상 탭 표시값(근사, K/M 반올림)",
+    "n": 10,
+    "ratioToPastSample": 0.088,
+    "biasNote": null
+   },
+   "appearance": {
+    "lfChannelsField": "unknown",
+    "descriptionClue": "In the last 4 years I've started and scaled my digital product businesses from 0 to over $25 million in sales, and I'm sharing ALL the strategies of how to scale a digital product business with you here on this channel.",
+    "thumbnailFace": null,
+    "judgement": "출연 단서 있음(설명란)"
+   },
+   "aiDisclosure": {
+    "where": "영상 설명 l4uXu1AhZ8M",
+    "text": "5️⃣ How to make an AI avatar people actually believe (and the mistake most beginners make)",
+    "type": "주제 언급(제작 표기 아님으로 판단)"
+   },
+   "aiDisclosureNote": null,
+   "audienceClue": {
+    "where": "영상 설명 WpKP5xVWr4M",
+    "text": "3️⃣ Why the answer in your video is also the exact moment viewers leave"
+   },
+   "dataClue": {
+    "where": "영상 설명 RLZJhTUzsg0",
+    "text": "3️⃣ How to set a weekly target before you have a single data point"
+   },
+   "template": {
+    "commonTokens": [
+     "digital"
+    ],
+    "commonTokenRatio": 0.108,
+    "meanPairJaccard": 0.074,
+    "level": "낮음"
+   },
+   "status": "조회 하락",
+   "flags": [
+    "운영중",
+    "조회 하락"
+   ],
+   "monetization": "미확인",
+   "stopCause": "미확인"
+  },
+  {
+   "name": "The Ezra Klein Show",
+   "channelId": "UCnxuOd8obvLLtf5_-YKFbiQ",
+   "url": "https://www.youtube.com/channel/UCnxuOd8obvLLtf5_-YKFbiQ",
+   "pickReason": "조회 상위",
+   "keywords": [
+    "AI 경제"
+   ],
+   "subs": 611000,
+   "joined": "2018-04-13",
+   "totalVideos": 598,
+   "pastSample": {
+    "n": 1,
+    "medianViews": 553928,
+    "maxViews": 553928,
+    "dates": [
+     "2026-10-17"
+    ]
+   },
+   "channelPage": {
+    "httpStatus": 200,
+    "exists": true,
+    "rssStatus": 200
+   },
+   "latestUpload": {
+    "videosTabFirst": {
+     "id": "f1jI38-E0rQ",
+     "relative": "3d ago",
+     "approxDate": "2026-11-25"
+    },
+    "rssLatestPublished": "2026-11-26T14:45:38+00:00",
+    "daysAgo": 2
+   },
+   "uploads30d": {
+    "longformVideosTab": 17,
+    "longformNote": null,
+    "rssAllIncludingShorts": 15,
+    "rssCapped": true
+   },
+   "latest10": {
+    "medianViews": 712500,
+    "viewsSource": "동영상 탭 표시값(근사, K/M 반올림)",
+    "n": 10,
+    "ratioToPastSample": 1.286,
+    "biasNote": "과거 표본 1편(히트작일 수 있음) 대비라 하락 과대 가능"
+   },
+   "appearance": {
+    "lfChannelsField": "unknown",
+    "descriptionClue": null,
+    "thumbnailFace": null,
+    "judgement": null
+   },
+   "aiDisclosure": null,
+   "aiDisclosureNote": "채널 설명·최근 15편 RSS 설명에 AI 음성/제작 문구 없음 (YouTube 합성콘텐츠 라벨은 미확인)",
+   "audienceClue": null,
+   "dataClue": {
+    "where": "제목 UJD4r3JQKT0",
+    "text": "Do This to Protect Your Data | The Ezra Klein Show"
+   },
+   "template": {
+    "commonTokens": [
+     "the",
+     "ezra",
+     "klein",
+     "show"
+    ],
+    "commonTokenRatio": 0.396,
+    "meanPairJaccard": 0.263,
+    "level": "높음"
+   },
+   "status": "운영중",
+   "flags": [
+    "운영중"
+   ],
+   "monetization": "미확인",
+   "stopCause": null
+  },
+  {
+   "name": "Ticker Symbol: YOU",
+   "channelId": "UC7kCeZ53sli_9XwuQeFxLqw",
+   "url": "https://www.youtube.com/channel/UC7kCeZ53sli_9XwuQeFxLqw",
+   "pickReason": "조회 상위",
+   "keywords": [
+    "AI 주식"
+   ],
+   "subs": 669000,
+   "joined": "2020-10-05",
+   "totalVideos": 426,
+   "pastSample": {
+    "n": 2,
+    "medianViews": 340764,
+    "maxViews": 501354,
+    "dates": [
+     "2026-03-29",
+     "2026-07-27"
+    ]
+   },
+   "channelPage": {
+    "httpStatus": 200,
+    "exists": true,
+    "rssStatus": 200
+   },
+   "latestUpload": {
+    "videosTabFirst": {
+     "id": "4lDl2CxlURY",
+     "relative": "3d ago",
+     "approxDate": "2026-11-25"
+    },
+    "rssLatestPublished": "2026-11-24T21:29:38+00:00",
+    "daysAgo": 3
+   },
+   "uploads30d": {
+    "longformVideosTab": 9,
+    "longformNote": null,
+    "rssAllIncludingShorts": 5,
+    "rssCapped": false
+   },
+   "latest10": {
+    "medianViews": 234500,
+    "viewsSource": "동영상 탭 표시값(근사, K/M 반올림)",
+    "n": 10,
+    "ratioToPastSample": 0.688,
+    "biasNote": null
+   },
+   "appearance": {
+    "lfChannelsField": "unknown",
+    "descriptionClue": "My name is Alex.",
+    "thumbnailFace": null,
+    "judgement": "출연 단서 있음(설명란)"
+   },
+   "aiDisclosure": null,
+   "aiDisclosureNote": "채널 설명·최근 15편 RSS 설명에 AI 음성/제작 문구 없음 (YouTube 합성콘텐츠 라벨은 미확인)",
+   "audienceClue": null,
+   "dataClue": {
+    "where": "영상 설명 4lDl2CxlURY",
+    "text": "00:00 The Data Wall Street is Missing"
+   },
+   "template": {
+    "commonTokens": [
+     "this"
+    ],
+    "commonTokenRatio": 0.118,
+    "meanPairJaccard": 0.057,
+    "level": "낮음"
+   },
+   "status": "운영중",
+   "flags": [
+    "운영중"
+   ],
+   "monetization": "미확인",
+   "stopCause": null
+  },
+  {
+   "name": "Disruptor Confessions",
+   "channelId": "UCT5LCDS8fzgQoubGkJFIKcA",
+   "url": "https://www.youtube.com/channel/UCT5LCDS8fzgQoubGkJFIKcA",
+   "pickReason": "조회 상위",
+   "keywords": [
+    "AI 경제"
+   ],
+   "subs": 5160,
+   "joined": "2025-04-14",
+   "totalVideos": 330,
+   "pastSample": {
+    "n": 1,
+    "medianViews": 493468,
+    "maxViews": 493468,
+    "dates": [
+     "2026-11-03"
+    ]
+   },
+   "channelPage": {
+    "httpStatus": 200,
+    "exists": true,
+    "rssStatus": 200
+   },
+   "latestUpload": {
+    "videosTabFirst": {
+     "id": "5lrG1ci-qTA",
+     "relative": "10d ago",
+     "approxDate": "2026-11-18"
+    },
+    "rssLatestPublished": "2026-11-27T16:00:03+00:00",
+    "daysAgo": 0.9
+   },
+   "uploads30d": {
+    "longformVideosTab": 5,
+    "longformNote": null,
+    "rssAllIncludingShorts": 15,
+    "rssCapped": true
+   },
+   "latest10": {
+    "medianViews": 848,
+    "viewsSource": "동영상 탭 표시값(근사, K/M 반올림)",
+    "n": 10,
+    "ratioToPastSample": 0.002,
+    "biasNote": "과거 표본 1편(히트작일 수 있음) 대비라 하락 과대 가능"
+   },
+   "appearance": {
+    "lfChannelsField": "unknown",
+    "descriptionClue": null,
+    "thumbnailFace": null,
+    "judgement": null
+   },
+   "aiDisclosure": null,
+   "aiDisclosureNote": "채널 설명·최근 15편 RSS 설명에 AI 음성/제작 문구 없음 (YouTube 합성콘텐츠 라벨은 미확인)",
+   "audienceClue": null,
+   "dataClue": {
+    "where": "제목 _pSpDepSE_s",
+    "text": "AI Data Centers Funded by Debt: ‘Everybody’s Pain’ | Aswath Damodaran"
+   },
+   "template": {
+    "commonTokens": [
+     "ai"
+    ],
+    "commonTokenRatio": 0.082,
+    "meanPairJaccard": 0.057,
+    "level": "낮음"
+   },
+   "status": "조회 하락",
+   "flags": [
+    "운영중",
+    "조회 하락"
+   ],
+   "monetization": "미확인",
+   "stopCause": "미확인"
+  },
+  {
+   "name": "CEOzoned",
+   "channelId": "UCxDgDZTADoIDno8KD8kiGgQ",
+   "url": "https://www.youtube.com/channel/UCxDgDZTADoIDno8KD8kiGgQ",
+   "pickReason": "조회 상위",
+   "keywords": [
+    "투자 대가"
+   ],
+   "subs": 36700,
+   "joined": "2026-09-30",
+   "totalVideos": 15,
+   "pastSample": {
+    "n": 1,
+    "medianViews": 475966,
+    "maxViews": 475966,
+    "dates": [
+     "2026-11-08"
+    ]
+   },
+   "channelPage": {
+    "httpStatus": 200,
+    "exists": true,
+    "rssStatus": 200
+   },
+   "latestUpload": {
+    "videosTabFirst": {
+     "id": "m7Otbjj1eUs",
+     "relative": "17h ago",
+     "approxDate": "2026-11-27"
+    },
+    "rssLatestPublished": "2026-11-27T20:38:28+00:00",
+    "daysAgo": 0.7
+   },
+   "uploads30d": {
+    "longformVideosTab": 16,
+    "longformNote": null,
+    "rssAllIncludingShorts": 7,
+    "rssCapped": false
+   },
+   "latest10": {
+    "medianViews": 23000,
+    "viewsSource": "동영상 탭 표시값(근사, K/M 반올림)",
+    "n": 10,
+    "ratioToPastSample": 0.048,
+    "biasNote": "과거 표본 1편(히트작일 수 있음) 대비라 하락 과대 가능"
+   },
+   "appearance": {
+    "lfChannelsField": "unknown",
+    "descriptionClue": null,
+    "thumbnailFace": null,
+    "judgement": null
+   },
+   "aiDisclosure": null,
+   "aiDisclosureNote": "채널 설명·최근 15편 RSS 설명에 AI 음성/제작 문구 없음 (YouTube 합성콘텐츠 라벨은 미확인)",
+   "audienceClue": null,
+   "dataClue": {
+    "where": "영상 설명 xFQcJVGv0g8",
+    "text": "com/document/d/e/2PACX-1vQ8FqJSobK2dtJBNvdgDP-vhbNcrFwQIjo5RGFjykoOGbDXN3P_mvy8Wtn7vGs3uSZsgGWA83J3k9u2/pub"
+   },
+   "template": {
+    "commonTokens": [
+     "the"
+    ],
+    "commonTokenRatio": 0.145,
+    "meanPairJaccard": 0.076,
+    "level": "중간"
+   },
+   "status": "조회 하락",
+   "flags": [
+    "운영중",
+    "조회 하락"
+   ],
+   "monetization": "미확인",
+   "stopCause": "미확인"
+  },
+  {
+   "name": "90seconds",
+   "channelId": "UC8OjykYh8KUVOmez_y3L7PQ",
+   "url": "https://www.youtube.com/channel/UC8OjykYh8KUVOmez_y3L7PQ",
+   "pickReason": "조회 상위",
+   "keywords": [
+    "AI 주식"
+   ],
+   "subs": 88900,
+   "joined": "2026-01-09",
+   "totalVideos": 136,
+   "pastSample": {
+    "n": 1,
+    "medianViews": 445109,
+    "maxViews": 445109,
+    "dates": [
+     "2026-11-22"
+    ]
+   },
+   "channelPage": {
+    "httpStatus": 200,
+    "exists": true,
+    "rssStatus": 200
+   },
+   "latestUpload": {
+    "videosTabFirst": {
+     "id": "0zU6YgFQi6o",
+     "relative": "6d ago",
+     "approxDate": "2026-11-22"
+    },
+    "rssLatestPublished": "2026-11-23T03:00:09+00:00",
+    "daysAgo": 5.5
+   },
+   "uploads30d": {
+    "longformVideosTab": 5,
+    "longformNote": null,
+    "rssAllIncludingShorts": 8,
+    "rssCapped": false
+   },
+   "latest10": {
+    "medianViews": 178000,
+    "viewsSource": "동영상 탭 표시값(근사, K/M 반올림)",
+    "n": 10,
+    "ratioToPastSample": 0.4,
+    "biasNote": "과거 표본 1편(히트작일 수 있음) 대비라 하락 과대 가능"
+   },
+   "appearance": {
+    "lfChannelsField": "unknown",
+    "descriptionClue": null,
+    "thumbnailFace": null,
+    "judgement": null
+   },
+   "aiDisclosure": null,
+   "aiDisclosureNote": "채널 설명·최근 15편 RSS 설명에 AI 음성/제작 문구 없음 (YouTube 합성콘텐츠 라벨은 미확인)",
+   "audienceClue": null,
+   "dataClue": {
+    "where": "제목 5IDxv4T9w5I",
+    "text": "900seconds【NASDAQ急落！ AI・半導体株に異変、株価チャートが示す危険信号】"
+   },
+   "template": {
+    "commonTokens": [
+     "90seconds",
+     "投資"
+    ],
+    "commonTokenRatio": 0.08,
+    "meanPairJaccard": 0.031,
+    "level": "낮음"
+   },
+   "status": "운영중",
+   "flags": [
+    "운영중"
+   ],
+   "monetization": "미확인",
+   "stopCause": null
+  },
+  {
+   "name": "Rule #1 Investing",
+   "channelId": "UCA8P3Rgfjn0IFZL4bmrKbrg",
+   "url": "https://www.youtube.com/channel/UCA8P3Rgfjn0IFZL4bmrKbrg",
+   "pickReason": "조회 상위",
+   "keywords": [
+    "투자 대가"
+   ],
+   "subs": 515000,
+   "joined": "2014-06-26",
+   "totalVideos": 922,
+   "pastSample": {
+    "n": 1,
+    "medianViews": 436492,
+    "maxViews": 436492,
+    "dates": [
+     "2026-10-25"
+    ]
+   },
+   "channelPage": {
+    "httpStatus": 200,
+    "exists": true,
+    "rssStatus": 200
+   },
+   "latestUpload": {
+    "videosTabFirst": {
+     "id": "fPFitF8dmqo",
+     "relative": "6d ago",
+     "approxDate": "2026-11-22"
+    },
+    "rssLatestPublished": "2026-11-27T12:30:07+00:00",
+    "daysAgo": 1.1
+   },
+   "uploads30d": {
+    "longformVideosTab": 8,
+    "longformNote": null,
+    "rssAllIncludingShorts": 15,
+    "rssCapped": true
+   },
+   "latest10": {
+    "medianViews": 43000,
+    "viewsSource": "동영상 탭 표시값(근사, K/M 반올림)",
+    "n": 10,
+    "ratioToPastSample": 0.099,
+    "biasNote": "과거 표본 1편(히트작일 수 있음) 대비라 하락 과대 가능"
+   },
+   "appearance": {
+    "lfChannelsField": "unknown",
+    "descriptionClue": null,
+    "thumbnailFace": null,
+    "judgement": null
+   },
+   "aiDisclosure": null,
+   "aiDisclosureNote": "채널 설명·최근 15편 RSS 설명에 AI 음성/제작 문구 없음 (YouTube 합성콘텐츠 라벨은 미확인)",
+   "audienceClue": null,
+   "dataClue": null,
+   "template": {
+    "commonTokens": [
+     "the"
+    ],
+    "commonTokenRatio": 0.135,
+    "meanPairJaccard": 0.049,
+    "level": "중간"
+   },
+   "status": "조회 하락",
+   "flags": [
+    "운영중",
+    "조회 하락"
+   ],
+   "monetization": "미확인",
+   "stopCause": "미확인"
+  },
+  {
+   "name": "松井証券_MatsuiSecurities",
+   "channelId": "UCS5dVIXy8SYcIMWRmEI-_3A",
+   "url": "https://www.youtube.com/channel/UCS5dVIXy8SYcIMWRmEI-_3A",
+   "pickReason": "조회 상위",
+   "keywords": [
+    "AI 주식"
+   ],
+   "subs": 1090000,
+   "joined": "2011-08-01",
+   "totalVideos": 579,
+   "pastSample": {
+    "n": 1,
+    "medianViews": 400226,
+    "maxViews": 400226,
+    "dates": [
+     "2026-06-19"
+    ]
+   },
+   "channelPage": {
+    "httpStatus": 200,
+    "exists": true,
+    "rssStatus": 200
+   },
+   "latestUpload": {
+    "videosTabFirst": {
+     "id": "2uUvokZ6DSs",
+     "relative": "1d ago",
+     "approxDate": "2026-11-27"
+    },
+    "rssLatestPublished": "2026-11-28T08:00:40+00:00",
+    "daysAgo": 0.2
+   },
+   "uploads30d": {
+    "longformVideosTab": 21,
+    "longformNote": null,
+    "rssAllIncludingShorts": 11,
+    "rssCapped": false
+   },
+   "latest10": {
+    "medianViews": 139500,
+    "viewsSource": "동영상 탭 표시값(근사, K/M 반올림)",
+    "n": 10,
+    "ratioToPastSample": 0.349,
+    "biasNote": "과거 표본 1편(히트작일 수 있음) 대비라 하락 과대 가능"
+   },
+   "appearance": {
+    "lfChannelsField": "unknown",
+    "descriptionClue": null,
+    "thumbnailFace": null,
+    "judgement": null
+   },
+   "aiDisclosure": null,
+   "aiDisclosureNote": "채널 설명·최근 15편 RSS 설명에 AI 음성/제작 문구 없음 (YouTube 합성콘텐츠 라벨은 미확인)",
+   "audienceClue": null,
+   "dataClue": {
+    "where": "제목 nFuZypeI1ws",
+    "text": "【12/4(金)22：00～米雇用統計LIVE解説】結果を受けて為替市場はどうなる!?エコノミストのエミン・ユルマズと松井証券の鈴木翔がリアルタイム解説！"
+   },
+   "template": {
+    "commonTokens": [
+     "ai",
+     "ない",
+     "松井",
+     "井証",
+     "証券"
+    ],
+    "commonTokenRatio": 0.088,
+    "meanPairJaccard": 0.075,
+    "level": "낮음"
+   },
+   "status": "운영중",
+   "flags": [
+    "운영중"
+   ],
+   "monetization": "미확인",
+   "stopCause": null
+  },
+  {
+   "name": "Stanford Graduate School of Business",
+   "channelId": "UCGwuxdEeCf0TIA2RbPOj-8g",
+   "url": "https://www.youtube.com/channel/UCGwuxdEeCf0TIA2RbPOj-8g",
+   "pickReason": "조회 상위",
+   "keywords": [
+    "AI 경제"
+   ],
+   "subs": 2820000,
+   "joined": "2008-11-15",
+   "totalVideos": 3937,
+   "pastSample": {
+    "n": 2,
+    "medianViews": 193610.5,
+    "maxViews": 383724,
+    "dates": [
+     "2026-05-22",
+     "2026-10-07"
+    ]
+   },
+   "channelPage": {
+    "httpStatus": 200,
+    "exists": true,
+    "rssStatus": 200
+   },
+   "latestUpload": {
+    "videosTabFirst": {
+     "id": "nCftN9kL-h0",
+     "relative": "2d ago",
+     "approxDate": "2026-11-26"
+    },
+    "rssLatestPublished": "2026-11-25T20:01:35+00:00",
+    "daysAgo": 2
+   },
+   "uploads30d": {
+    "longformVideosTab": 30,
+    "longformNote": "30개 이상(상한)",
+    "rssAllIncludingShorts": 15,
+    "rssCapped": true
+   },
+   "latest10": {
+    "medianViews": 5000,
+    "viewsSource": "동영상 탭 표시값(근사, K/M 반올림)",
+    "n": 10,
+    "ratioToPastSample": 0.026,
+    "biasNote": null
+   },
+   "appearance": {
+    "lfChannelsField": "unknown",
+    "descriptionClue": null,
+    "thumbnailFace": null,
+    "judgement": null
+   },
+   "aiDisclosure": null,
+   "aiDisclosureNote": "채널 설명·최근 15편 RSS 설명에 AI 음성/제작 문구 없음 (YouTube 합성콘텐츠 라벨은 미확인)",
+   "audienceClue": {
+    "where": "영상 설명 t_3gaOqVesA",
+    "text": "The session goes beyond the basics of prompting, covering advanced techniques for getting more out of frontier models, including how to structure prompts for research, ideation, and decision making rather than just simpl"
+   },
+   "dataClue": {
+    "where": "영상 설명 NCFkhaSzMQY",
+    "text": "He called for greater investment as the country embraces artificial intelligence (AI) and emphasized South Africa’s ambition to move beyond hosting data centers to participating across the entire AI value chain."
+   },
+   "template": {
+    "commonTokens": [
+     "of",
+     "with",
+     "gsb"
+    ],
+    "commonTokenRatio": 0.309,
+    "meanPairJaccard": 0.05,
+    "level": "높음"
+   },
+   "status": "조회 하락",
+   "flags": [
+    "운영중",
+    "조회 하락"
+   ],
+   "monetization": "미확인",
+   "stopCause": "미확인"
+  },
+  {
+   "name": "Fin Tek",
+   "channelId": "UCxdWHEhEPiYhCADMrn4PdhQ",
+   "url": "https://www.youtube.com/channel/UCxdWHEhEPiYhCADMrn4PdhQ",
+   "pickReason": "조회 상위",
+   "keywords": [
+    "AI 주식"
+   ],
+   "subs": 273000,
+   "joined": "2020-06-02",
+   "totalVideos": 972,
+   "pastSample": {
+    "n": 1,
+    "medianViews": 370715,
+    "maxViews": 370715,
+    "dates": [
+     "2026-05-19"
+    ]
+   },
+   "channelPage": {
+    "httpStatus": 200,
+    "exists": true,
+    "rssStatus": 200
+   },
+   "latestUpload": {
+    "videosTabFirst": {
+     "id": "eI6WYsAwHLM",
+     "relative": "3d ago",
+     "approxDate": "2026-11-25"
+    },
+    "rssLatestPublished": "2026-11-26T02:45:10+00:00",
+    "daysAgo": 2.5
+   },
+   "uploads30d": {
+    "longformVideosTab": 6,
+    "longformNote": null,
+    "rssAllIncludingShorts": 15,
+    "rssCapped": true
+   },
+   "latest10": {
+    "medianViews": 220500,
+    "viewsSource": "동영상 탭 표시값(근사, K/M 반올림)",
+    "n": 10,
+    "ratioToPastSample": 0.595,
+    "biasNote": "과거 표본 1편(히트작일 수 있음) 대비라 하락 과대 가능"
+   },
+   "appearance": {
+    "lfChannelsField": "unknown",
+    "descriptionClue": null,
+    "thumbnailFace": null,
+    "judgement": null
+   },
+   "aiDisclosure": null,
+   "aiDisclosureNote": "채널 설명·최근 15편 RSS 설명에 AI 음성/제작 문구 없음 (YouTube 합성콘텐츠 라벨은 미확인)",
+   "audienceClue": null,
+   "dataClue": {
+    "where": "영상 설명 NeO6nowU380",
+    "text": "Nokia, a networking electronics companies benefiting from the latest datacenter buildout."
+   },
+   "template": {
+    "commonTokens": [],
+    "commonTokenRatio": 0,
+    "meanPairJaccard": 0.092,
+    "level": "낮음"
+   },
+   "status": "운영중",
+   "flags": [
+    "운영중"
+   ],
+   "monetization": "미확인",
+   "stopCause": null
+  },
+  {
+   "name": "TheStreet",
+   "channelId": "UCp6aBHRM6ZS_kLeC57HV4kg",
+   "url": "https://www.youtube.com/channel/UCp6aBHRM6ZS_kLeC57HV4kg",
+   "pickReason": "조회 상위",
+   "keywords": [
+    "AI 주식"
+   ],
+   "subs": 184000,
+   "joined": "2006-12-12",
+   "totalVideos": 915,
+   "pastSample": {
+    "n": 1,
+    "medianViews": 350099,
+    "maxViews": 350099,
+    "dates": [
+     "2026-11-21"
+    ]
+   },
+   "channelPage": {
+    "httpStatus": 200,
+    "exists": true,
+    "rssStatus": 200
+   },
+   "latestUpload": {
+    "videosTabFirst": {
+     "id": "J2Suw6y3V54",
+     "relative": "18h ago",
+     "approxDate": "2026-11-27"
+    },
+    "rssLatestPublished": "2026-11-27T19:00:06+00:00",
+    "daysAgo": 0.8
+   },
+   "uploads30d": {
+    "longformVideosTab": 30,
+    "longformNote": "30개 이상(상한)",
+    "rssAllIncludingShorts": 15,
+    "rssCapped": true
+   },
+   "latest10": {
+    "medianViews": 179500,
+    "viewsSource": "동영상 탭 표시값(근사, K/M 반올림)",
+    "n": 10,
+    "ratioToPastSample": 0.513,
+    "biasNote": "과거 표본 1편(히트작일 수 있음) 대비라 하락 과대 가능"
+   },
+   "appearance": {
+    "lfChannelsField": "unknown",
+    "descriptionClue": null,
+    "thumbnailFace": null,
+    "judgement": null
+   },
+   "aiDisclosure": null,
+   "aiDisclosureNote": "채널 설명·최근 15편 RSS 설명에 AI 음성/제작 문구 없음 (YouTube 합성콘텐츠 라벨은 미확인)",
+   "audienceClue": null,
+   "dataClue": {
+    "where": "채널 설명",
+    "text": "Our mission is simple: to cut through the noise and translate complex market data into clear, actionable investing strategies, helping investors at every level stay confident and ahead of the market."
+   },
+   "template": {
+    "commonTokens": [
+     "stocks",
+     "to",
+     "buy",
+     "now"
+    ],
+    "commonTokenRatio": 0.426,
+    "meanPairJaccard": 0.116,
+    "level": "높음"
+   },
+   "status": "운영중",
+   "flags": [
+    "운영중"
+   ],
+   "monetization": "미확인",
+   "stopCause": null
+  },
+  {
+   "name": "Yahoo Finance",
+   "channelId": "UCEAZeUIeJs0IjQiqTCdVSIg",
+   "url": "https://www.youtube.com/channel/UCEAZeUIeJs0IjQiqTCdVSIg",
+   "pickReason": "조회 상위",
+   "keywords": [
+    "투자 대가"
+   ],
+   "subs": 1540000,
+   "joined": "2018-06-29",
+   "totalVideos": 62363,
+   "pastSample": {
+    "n": 1,
+    "medianViews": 337448,
+    "maxViews": 337448,
+    "dates": [
+     "2026-11-13"
+    ]
+   },
+   "channelPage": {
+    "httpStatus": 200,
+    "exists": true,
+    "rssStatus": 200
+   },
+   "latestUpload": {
+    "videosTabFirst": {
+     "id": "S3zT1x-ZH7k",
+     "relative": "17h ago",
+     "approxDate": "2026-11-27"
+    },
+    "rssLatestPublished": "2026-11-27T19:57:23+00:00",
+    "daysAgo": 0.7
+   },
+   "uploads30d": {
+    "longformVideosTab": 30,
+    "longformNote": "30개 이상(상한)",
+    "rssAllIncludingShorts": 15,
+    "rssCapped": true
+   },
+   "latest10": {
+    "medianViews": 11800,
+    "viewsSource": "동영상 탭 표시값(근사, K/M 반올림)",
+    "n": 10,
+    "ratioToPastSample": 0.035,
+    "biasNote": "과거 표본 1편(히트작일 수 있음) 대비라 하락 과대 가능"
+   },
+   "appearance": {
+    "lfChannelsField": "unknown",
+    "descriptionClue": null,
+    "thumbnailFace": null,
+    "judgement": null
+   },
+   "aiDisclosure": null,
+   "aiDisclosureNote": "채널 설명·최근 15편 RSS 설명에 AI 음성/제작 문구 없음 (YouTube 합성콘텐츠 라벨은 미확인)",
+   "audienceClue": null,
+   "dataClue": {
+    "where": "제목 SD6yKHp_-n8",
+    "text": "45% of data center capacity could be at risk next year. 👀"
+   },
+   "template": {
+    "commonTokens": [
+     "is"
+    ],
+    "commonTokenRatio": 0.097,
+    "meanPairJaccard": 0.032,
+    "level": "낮음"
+   },
+   "status": "조회 하락",
+   "flags": [
+    "운영중",
+    "조회 하락"
+   ],
+   "monetization": "미확인",
+   "stopCause": "미확인"
+  },
+  {
+   "name": "PIVOT 公式チャンネル",
+   "channelId": "UC8yHePe_RgUBE-waRWy6olw",
+   "url": "https://www.youtube.com/channel/UC8yHePe_RgUBE-waRWy6olw",
+   "pickReason": "조회 상위",
+   "keywords": [
+    "AI 주식",
+    "AI 자동화 SaaS",
+    "AI 경제"
+   ],
+   "subs": 4110000,
+   "joined": "2022-02-17",
+   "totalVideos": 5847,
+   "pastSample": {
+    "n": 7,
+    "medianViews": 136667,
+    "maxViews": 336244,
+    "dates": [
+     "2026-09-16",
+     "2026-10-19",
+     "2026-11-13"
+    ]
+   },
+   "channelPage": {
+    "httpStatus": 200,
+    "exists": true,
+    "rssStatus": 200
+   },
+   "latestUpload": {
+    "videosTabFirst": {
+     "id": "wemSw6dmtps",
+     "relative": "1h ago",
+     "approxDate": "2026-11-28"
+    },
+    "rssLatestPublished": "2026-11-28T12:00:30+00:00",
+    "daysAgo": 0
+   },
+   "uploads30d": {
+    "longformVideosTab": 30,
+    "longformNote": "30개 이상(상한)",
+    "rssAllIncludingShorts": 15,
+    "rssCapped": true
+   },
+   "latest10": {
+    "medianViews": 40500,
+    "viewsSource": "동영상 탭 표시값(근사, K/M 반올림)",
+    "n": 10,
+    "ratioToPastSample": 0.296,
+    "biasNote": null
+   },
+   "appearance": {
+    "lfChannelsField": "unknown",
+    "descriptionClue": null,
+    "thumbnailFace": null,
+    "judgement": null
+   },
+   "aiDisclosure": null,
+   "aiDisclosureNote": "채널 설명·최근 15편 RSS 설명에 AI 음성/제작 문구 없음 (YouTube 합성콘텐츠 라벨은 미확인)",
+   "audienceClue": {
+    "where": "채널 설명",
+    "text": "▼YouTubeコメントポリシーについて"
+   },
+   "dataClue": {
+    "where": "제목 rXyWq32G3yU",
+    "text": "【成果が欲しいなら数値化せよ】投資家 田中渓が10年以上続ける自己管理スキル／睡眠･疲労をデータで可視化して行動を変える技術"
+   },
+   "template": {
+    "commonTokens": [
+     "ない"
+    ],
+    "commonTokenRatio": 0.016,
+    "meanPairJaccard": 0.01,
+    "level": "낮음"
+   },
+   "status": "조회 하락",
+   "flags": [
+    "운영중",
+    "조회 하락"
+   ],
+   "monetization": "미확인",
+   "stopCause": "미확인"
+  },
+  {
+   "name": "イズミダイズム",
+   "channelId": "UCxcgtAiWkiSm9BW_u_5OhQA",
+   "url": "https://www.youtube.com/channel/UCxcgtAiWkiSm9BW_u_5OhQA",
+   "pickReason": "조회 상위",
+   "keywords": [
+    "AI 투자 분석"
+   ],
+   "subs": 124000,
+   "joined": "2025-10-22",
+   "totalVideos": 144,
+   "pastSample": {
+    "n": 3,
+    "medianViews": 170165,
+    "maxViews": 329415,
+    "dates": [
+     "2026-10-07",
+     "2026-11-20",
+     "2026-11-23"
+    ]
+   },
+   "channelPage": {
+    "httpStatus": 200,
+    "exists": true,
+    "rssStatus": 200
+   },
+   "latestUpload": {
+    "videosTabFirst": {
+     "id": "C5wZjxRYKsQ",
+     "relative": "1d ago",
+     "approxDate": "2026-11-27"
+    },
+    "rssLatestPublished": "2026-11-27T09:00:32+00:00",
+    "daysAgo": 1
+   },
+   "uploads30d": {
+    "longformVideosTab": 29,
+    "longformNote": null,
+    "rssAllIncludingShorts": 15,
+    "rssCapped": true
+   },
+   "latest10": {
+    "medianViews": 100000,
+    "viewsSource": "동영상 탭 표시값(근사, K/M 반올림)",
+    "n": 10,
+    "ratioToPastSample": 0.588,
+    "biasNote": null
+   },
+   "appearance": {
+    "lfChannelsField": "unknown",
+    "descriptionClue": null,
+    "thumbnailFace": null,
+    "judgement": null
+   },
+   "aiDisclosure": {
+    "where": "영상 설명 58fRgK2RQ5w",
+    "text": "決算資料を渡すだけで、解説スライドも解説動画もAIが作ってくれる？",
+    "type": "주제 언급(제작 표기 아님으로 판단)"
+   },
+   "aiDisclosureNote": null,
+   "audienceClue": {
+    "where": "영상 설명 _phDyROC0NY",
+    "text": "24:58 決算説明会Q&A 機関投資家の質問"
+   },
+   "dataClue": {
+    "where": "제목 C5wZjxRYKsQ",
+    "text": "【三菱UFJ】「利上げで銀行株は上がる」はもう古い!?好決算でも見えた\"金利上昇の限界\"｜経常利益29%増、純利益目標は2.8兆円に上方修正｜まだ上がるかここまでか!?【元機関投資家が解説】"
+   },
+   "template": {
+    "commonTokens": [
+     "るか",
+     "元機",
+     "機関",
+     "関投",
+     "投資",
+     "資家",
+     "家が",
+     "が解",
+     "解説"
+    ],
+    "commonTokenRatio": 0.144,
+    "meanPairJaccard": 0.044,
+    "level": "중간"
+   },
+   "status": "운영중",
+   "flags": [
+    "운영중"
+   ],
+   "monetization": "미확인",
+   "stopCause": null
+  },
+  {
+   "name": "Finance Stack",
+   "channelId": "UCXuajBBk_lhdQH3FRQfd5GA",
+   "url": "https://www.youtube.com/channel/UCXuajBBk_lhdQH3FRQfd5GA",
+   "pickReason": "조회 상위",
+   "keywords": [
+    "AI 경제"
+   ],
+   "subs": 13100,
+   "joined": "2026-10-26",
+   "totalVideos": 29,
+   "pastSample": {
+    "n": 1,
+    "medianViews": 329331,
+    "maxViews": 329331,
+    "dates": [
+     "2026-11-14"
+    ]
+   },
+   "channelPage": {
+    "httpStatus": 200,
+    "exists": true,
+    "rssStatus": 200
+   },
+   "latestUpload": {
+    "videosTabFirst": {
+     "id": "0ZMoj1nAPCE",
+     "relative": "1d ago",
+     "approxDate": "2026-11-27"
+    },
+    "rssLatestPublished": "2026-11-27T12:00:26+00:00",
+    "daysAgo": 1
+   },
+   "uploads30d": {
+    "longformVideosTab": 29,
+    "longformNote": null,
+    "rssAllIncludingShorts": 15,
+    "rssCapped": true
+   },
+   "latest10": {
+    "medianViews": 69000,
+    "viewsSource": "동영상 탭 표시값(근사, K/M 반올림)",
+    "n": 10,
+    "ratioToPastSample": 0.21,
+    "biasNote": "과거 표본 1편(히트작일 수 있음) 대비라 하락 과대 가능"
+   },
+   "appearance": {
+    "lfChannelsField": "unknown",
+    "descriptionClue": null,
+    "thumbnailFace": null,
+    "judgement": null
+   },
+   "aiDisclosure": null,
+   "aiDisclosureNote": "채널 설명·최근 15편 RSS 설명에 AI 음성/제작 문구 없음 (YouTube 합성콘텐츠 라벨은 미확인)",
+   "audienceClue": null,
+   "dataClue": {
+    "where": "영상 설명 0ZMoj1nAPCE",
+    "text": "Data Sheet: https://financestack."
+   },
+   "template": {
+    "commonTokens": [
+     "the"
+    ],
+    "commonTokenRatio": 0.132,
+    "meanPairJaccard": 0.056,
+    "level": "중간"
+   },
+   "status": "조회 하락",
+   "flags": [
+    "운영중",
+    "조회 하락"
+   ],
+   "monetization": "미확인",
+   "stopCause": "미확인"
+  },
+  {
+   "name": "More of Hannah ",
+   "channelId": "UCBGv887IVL4G_ocSJxbLmEg",
+   "url": "https://www.youtube.com/channel/UCBGv887IVL4G_ocSJxbLmEg",
+   "pickReason": "무작위",
+   "keywords": [
+    "전자책·리포트"
+   ],
+   "subs": 4750,
+   "joined": "2022-12-01",
+   "totalVideos": 165,
+   "pastSample": {
+    "n": 1,
+    "medianViews": 13764,
+    "maxViews": 13764,
+    "dates": [
+     "2026-03-10"
+    ]
+   },
+   "channelPage": {
+    "httpStatus": 200,
+    "exists": true,
+    "rssStatus": 200
+   },
+   "latestUpload": {
+    "videosTabFirst": {
+     "id": "QPCmKtXY0SM",
+     "relative": "2mo ago",
+     "approxDate": "2026-09-29"
+    },
+    "rssLatestPublished": "2026-09-17T12:00:10+00:00",
+    "daysAgo": 60
+   },
+   "uploads30d": {
+    "longformVideosTab": 0,
+    "longformNote": null,
+    "rssAllIncludingShorts": 0,
+    "rssCapped": false
+   },
+   "latest10": {
+    "medianViews": 337,
+    "viewsSource": "동영상 탭 표시값(근사, K/M 반올림)",
+    "n": 6,
+    "ratioToPastSample": 0.024,
+    "biasNote": "과거 표본 1편(히트작일 수 있음) 대비라 하락 과대 가능"
+   },
+   "appearance": {
+    "lfChannelsField": "unknown",
+    "descriptionClue": null,
+    "thumbnailFace": null,
+    "judgement": null
+   },
+   "aiDisclosure": null,
+   "aiDisclosureNote": "채널 설명·최근 15편 RSS 설명에 AI 음성/제작 문구 없음 (YouTube 합성콘텐츠 라벨은 미확인)",
+   "audienceClue": {
+    "where": "제목 UWjYcSFeiC8",
+    "text": "Book Bolt Q&A + How I Started My UGC Journey (TikTok Live Replay)"
+   },
+   "dataClue": null,
+   "template": {
+    "commonTokens": [
+     "kdp",
+     "book",
+     "amazon"
+    ],
+    "commonTokenRatio": 0.375,
+    "meanPairJaccard": 0.061,
+    "level": "높음"
+   },
+   "status": "조회 하락",
+   "flags": [
+    "30~90일 공백",
+    "조회 하락"
+   ],
+   "monetization": "미확인",
+   "stopCause": "미확인"
+  },
+  {
+   "name": "Solo AI Stack",
+   "channelId": "UCrdiCMtay29Ad9WC1g1o78A",
+   "url": "https://www.youtube.com/channel/UCrdiCMtay29Ad9WC1g1o78A",
+   "pickReason": "무작위",
+   "keywords": [
+    "AI 투자 분석"
+   ],
+   "subs": 14,
+   "joined": "2026-09-17",
+   "totalVideos": 140,
+   "pastSample": {
+    "n": 1,
+    "medianViews": 23,
+    "maxViews": 23,
+    "dates": [
+     "2026-10-31"
+    ]
+   },
+   "channelPage": {
+    "httpStatus": 200,
+    "exists": true,
+    "rssStatus": 200
+   },
+   "latestUpload": {
+    "videosTabFirst": {
+     "id": "x5eEIQEKAHI",
+     "relative": "7d ago",
+     "approxDate": "2026-11-21"
+    },
+    "rssLatestPublished": "2026-11-27T15:48:18+00:00",
+    "daysAgo": 0.9
+   },
+   "uploads30d": {
+    "longformVideosTab": 24,
+    "longformNote": null,
+    "rssAllIncludingShorts": 15,
+    "rssCapped": true
+   },
+   "latest10": {
+    "medianViews": 28,
+    "viewsSource": "동영상 탭 표시값(근사, K/M 반올림)",
+    "n": 10,
+    "ratioToPastSample": 1.217,
+    "biasNote": "과거 표본 1편(히트작일 수 있음) 대비라 하락 과대 가능"
+   },
+   "appearance": {
+    "lfChannelsField": "unknown",
+    "descriptionClue": null,
+    "thumbnailFace": null,
+    "judgement": null
+   },
+   "aiDisclosure": {
+    "where": "영상 설명 KKI78GPsu5s",
+    "text": "This channel's narration is an AI voice; a person writes and checks every script.",
+    "type": "제작/음성 표기 가능성"
+   },
+   "aiDisclosureNote": null,
+   "audienceClue": null,
+   "dataClue": {
+    "where": "영상 설명 wzEa1rXKmKw",
+    "text": "Test with fake data, then the weird cases: missing fields, accented names, duplicate submissions."
+   },
+   "template": {
+    "commonTokens": [
+     "how",
+     "to",
+     "ai"
+    ],
+    "commonTokenRatio": 0.291,
+    "meanPairJaccard": 0.102,
+    "level": "중간"
+   },
+   "status": "운영중",
+   "flags": [
+    "운영중"
+   ],
+   "monetization": "미확인",
+   "stopCause": null
+  },
+  {
+   "name": "CBS 경제연구실",
+   "channelId": "UCmcSbRX1q3c0XDeI9HeXfFw",
+   "url": "https://www.youtube.com/channel/UCmcSbRX1q3c0XDeI9HeXfFw",
+   "pickReason": "무작위",
+   "keywords": [
+    "AI 경제"
+   ],
+   "subs": 183000,
+   "joined": "2018-10-02",
+   "totalVideos": 3752,
+   "pastSample": {
+    "n": 1,
+    "medianViews": 77030,
+    "maxViews": 77030,
+    "dates": [
+     "2026-11-19"
+    ]
+   },
+   "channelPage": {
+    "httpStatus": 200,
+    "exists": true,
+    "rssStatus": 200
+   },
+   "latestUpload": {
+    "videosTabFirst": {
+     "id": "zp9kWAX21fU",
+     "relative": "9h ago",
+     "approxDate": "2026-11-28"
+    },
+    "rssLatestPublished": "2026-11-28T04:00:32+00:00",
+    "daysAgo": 0.4
+   },
+   "uploads30d": {
+    "longformVideosTab": 30,
+    "longformNote": "30개 이상(상한)",
+    "rssAllIncludingShorts": 15,
+    "rssCapped": true
+   },
+   "latest10": {
+    "medianViews": 4900,
+    "viewsSource": "동영상 탭 표시값(근사, K/M 반올림)",
+    "n": 10,
+    "ratioToPastSample": 0.064,
+    "biasNote": "과거 표본 1편(히트작일 수 있음) 대비라 하락 과대 가능"
+   },
+   "appearance": {
+    "lfChannelsField": "unknown",
+    "descriptionClue": null,
+    "thumbnailFace": null,
+    "judgement": null
+   },
+   "aiDisclosure": null,
+   "aiDisclosureNote": "채널 설명·최근 15편 RSS 설명에 AI 음성/제작 문구 없음 (YouTube 합성콘텐츠 라벨은 미확인)",
+   "audienceClue": {
+    "where": "채널 설명",
+    "text": "《구독 · 좋아요 · 댓글》로 응원해주세요."
+   },
+   "dataClue": {
+    "where": "영상 설명 zp9kWAX21fU",
+    "text": "이는 2020년 9월 출시된 4세대 투싼의 계약 첫날 실적인 1만842대를 넘어선 기록이다."
+   },
+   "template": {
+    "commonTokens": [],
+    "commonTokenRatio": 0,
+    "meanPairJaccard": 0.008,
+    "level": "낮음"
+   },
+   "status": "조회 하락",
+   "flags": [
+    "운영중",
+    "조회 하락"
+   ],
+   "monetization": "미확인",
+   "stopCause": "미확인"
+  },
+  {
+   "name": "Financial Insights In Minutes",
+   "channelId": "UC8yzDCzQvavOvgmblv-ZHwA",
+   "url": "https://www.youtube.com/channel/UC8yzDCzQvavOvgmblv-ZHwA",
+   "pickReason": "무작위",
+   "keywords": [
+    "AI 경제"
+   ],
+   "subs": 362,
+   "joined": "2024-06-04",
+   "totalVideos": 542,
+   "pastSample": {
+    "n": 1,
+    "medianViews": 22,
+    "maxViews": 22,
+    "dates": [
+     "2026-11-19"
+    ]
+   },
+   "channelPage": {
+    "httpStatus": 200,
+    "exists": true,
+    "rssStatus": 200
+   },
+   "latestUpload": {
+    "videosTabFirst": {
+     "id": "JvAR2wLF3Dk",
+     "relative": "13h ago",
+     "approxDate": "2026-11-28"
+    },
+    "rssLatestPublished": "2026-11-28T00:37:39+00:00",
+    "daysAgo": 0.5
+   },
+   "uploads30d": {
+    "longformVideosTab": 30,
+    "longformNote": "30개 이상(상한)",
+    "rssAllIncludingShorts": 15,
+    "rssCapped": true
+   },
+   "latest10": {
+    "medianViews": 17.5,
+    "viewsSource": "동영상 탭 표시값(근사, K/M 반올림)",
+    "n": 10,
+    "ratioToPastSample": 0.795,
+    "biasNote": "과거 표본 1편(히트작일 수 있음) 대비라 하락 과대 가능"
+   },
+   "appearance": {
+    "lfChannelsField": "unknown",
+    "descriptionClue": null,
+    "thumbnailFace": null,
+    "judgement": null
+   },
+   "aiDisclosure": null,
+   "aiDisclosureNote": "채널 설명·최근 15편 RSS 설명에 AI 음성/제작 문구 없음 (YouTube 합성콘텐츠 라벨은 미확인)",
+   "audienceClue": null,
+   "dataClue": {
+    "where": "제목 8izZe4Wqrg0",
+    "text": "AI Growth Is Over 100% of GDP: Booth Warns of a Hidden Recession"
+   },
+   "template": {
+    "commonTokens": [
+     "ai"
+    ],
+    "commonTokenRatio": 0.099,
+    "meanPairJaccard": 0.069,
+    "level": "낮음"
+   },
+   "status": "운영중",
+   "flags": [
+    "운영중"
+   ],
+   "monetization": "미확인",
+   "stopCause": null
+  },
+  {
+   "name": "데일리머니",
+   "channelId": "UCJK9KN_0uXngk0nT61-1DnA",
+   "url": "https://www.youtube.com/channel/UCJK9KN_0uXngk0nT61-1DnA",
+   "pickReason": "무작위",
+   "keywords": [
+    "AI ETF"
+   ],
+   "subs": 58100,
+   "joined": "2023-03-02",
+   "totalVideos": 247,
+   "pastSample": {
+    "n": 2,
+    "medianViews": 86614,
+    "maxViews": 162486,
+    "dates": [
+     "2026-05-03",
+     "2026-10-28"
+    ]
+   },
+   "channelPage": {
+    "httpStatus": 200,
+    "exists": true,
+    "rssStatus": 200
+   },
+   "latestUpload": {
+    "videosTabFirst": {
+     "id": "2l107BSx1g4",
+     "relative": "3d ago",
+     "approxDate": "2026-11-25"
+    },
+    "rssLatestPublished": "2026-11-27T08:59:34+00:00",
+    "daysAgo": 1.2
+   },
+   "uploads30d": {
+    "longformVideosTab": 17,
+    "longformNote": null,
+    "rssAllIncludingShorts": 15,
+    "rssCapped": true
+   },
+   "latest10": {
+    "medianViews": 31500,
+    "viewsSource": "동영상 탭 표시값(근사, K/M 반올림)",
+    "n": 10,
+    "ratioToPastSample": 0.364,
+    "biasNote": null
+   },
+   "appearance": {
+    "lfChannelsField": "unknown",
+    "descriptionClue": null,
+    "thumbnailFace": null,
+    "judgement": null
+   },
+   "aiDisclosure": null,
+   "aiDisclosureNote": "채널 설명·최근 15편 RSS 설명에 AI 음성/제작 문구 없음 (YouTube 합성콘텐츠 라벨은 미확인)",
+   "audienceClue": null,
+   "dataClue": null,
+   "template": {
+    "commonTokens": [],
+    "commonTokenRatio": 0,
+    "meanPairJaccard": 0.024,
+    "level": "낮음"
+   },
+   "status": "운영중",
+   "flags": [
+    "운영중"
+   ],
+   "monetization": "미확인",
+   "stopCause": null
+  },
+  {
+   "name": "EO",
+   "channelId": "UClWTCPVi-AU9TeCN6FkGARg",
+   "url": "https://www.youtube.com/channel/UClWTCPVi-AU9TeCN6FkGARg",
+   "pickReason": "무작위",
+   "keywords": [
+    "AI 창업"
+   ],
+   "subs": 713000,
+   "joined": "2022-06-26",
+   "totalVideos": 445,
+   "pastSample": {
+    "n": 2,
+    "medianViews": 33381.5,
+    "maxViews": 55618,
+    "dates": [
+     "2026-05-30",
+     "2026-06-08"
+    ]
+   },
+   "channelPage": {
+    "httpStatus": 200,
+    "exists": true,
+    "rssStatus": 200
+   },
+   "latestUpload": {
+    "videosTabFirst": {
+     "id": "W0hCs45h6QY",
+     "relative": "2d ago",
+     "approxDate": "2026-11-26"
+    },
+    "rssLatestPublished": "2026-11-25T20:30:33+00:00",
+    "daysAgo": 2
+   },
+   "uploads30d": {
+    "longformVideosTab": 8,
+    "longformNote": null,
+    "rssAllIncludingShorts": 4,
+    "rssCapped": false
+   },
+   "latest10": {
+    "medianViews": 35500,
+    "viewsSource": "동영상 탭 표시값(근사, K/M 반올림)",
+    "n": 10,
+    "ratioToPastSample": 1.063,
+    "biasNote": null
+   },
+   "appearance": {
+    "lfChannelsField": "unknown",
+    "descriptionClue": null,
+    "thumbnailFace": null,
+    "judgement": null
+   },
+   "aiDisclosure": null,
+   "aiDisclosureNote": "채널 설명·최근 15편 RSS 설명에 AI 음성/제작 문구 없음 (YouTube 합성콘텐츠 라벨은 미확인)",
+   "audienceClue": null,
+   "dataClue": {
+    "where": "영상 설명 LQy2FTnwiLk",
+    "text": "His bet is that everyone should have a personal AI like Jarvis from Iron Man, one that runs on your own phone, where you own the model and the data."
+   },
+   "template": {
+    "commonTokens": [],
+    "commonTokenRatio": 0,
+    "meanPairJaccard": 0.018,
+    "level": "낮음"
+   },
+   "status": "운영중",
+   "flags": [
+    "운영중"
+   ],
+   "monetization": "미확인",
+   "stopCause": null
+  },
+  {
+   "name": "Worldline News Radio",
+   "channelId": "UCgbiFpjoKpnzn71wesF12WA",
+   "url": "https://www.youtube.com/channel/UCgbiFpjoKpnzn71wesF12WA",
+   "pickReason": "무작위",
+   "keywords": [
+    "AI 경제"
+   ],
+   "subs": 20,
+   "joined": "2025-11-29",
+   "totalVideos": 72,
+   "pastSample": {
+    "n": 1,
+    "medianViews": 8,
+    "maxViews": 8,
+    "dates": [
+     "2025-12-25"
+    ]
+   },
+   "channelPage": {
+    "httpStatus": 200,
+    "exists": true,
+    "rssStatus": 200
+   },
+   "latestUpload": {
+    "videosTabFirst": {
+     "id": "7tJvhxOVGY4",
+     "relative": "8mo ago",
+     "approxDate": "2026-04-02"
+    },
+    "rssLatestPublished": "2026-03-08T10:24:06+00:00",
+    "daysAgo": 240
+   },
+   "uploads30d": {
+    "longformVideosTab": 0,
+    "longformNote": null,
+    "rssAllIncludingShorts": 0,
+    "rssCapped": false
+   },
+   "latest10": {
+    "medianViews": 6.5,
+    "viewsSource": "동영상 탭 표시값(근사, K/M 반올림)",
+    "n": 10,
+    "ratioToPastSample": 0.813,
+    "biasNote": "과거 표본 1편(히트작일 수 있음) 대비라 하락 과대 가능"
+   },
+   "appearance": {
+    "lfChannelsField": "unknown",
+    "descriptionClue": null,
+    "thumbnailFace": null,
+    "judgement": null
+   },
+   "aiDisclosure": null,
+   "aiDisclosureNote": "채널 설명·최근 15편 RSS 설명에 AI 음성/제작 문구 없음 (YouTube 합성콘텐츠 라벨은 미확인)",
+   "audienceClue": null,
+   "dataClue": null,
+   "template": {
+    "commonTokens": [
+     "the"
+    ],
+    "commonTokenRatio": 0.096,
+    "meanPairJaccard": 0.036,
+    "level": "낮음"
+   },
+   "status": "업로드 중단",
+   "flags": [
+    "업로드 중단"
+   ],
+   "monetization": "미확인",
+   "stopCause": "미확인"
+  },
+  {
+   "name": "ゼロから始めるインフレ時代の投資【元ちゃん】",
+   "channelId": "UCuLy_juyrbOQHe15i4mjJoQ",
+   "url": "https://www.youtube.com/channel/UCuLy_juyrbOQHe15i4mjJoQ",
+   "pickReason": "무작위",
+   "keywords": [
+    "AI 주식"
+   ],
+   "subs": 17900,
+   "joined": "2026-06-14",
+   "totalVideos": 19,
+   "pastSample": {
+    "n": 1,
+    "medianViews": 57813,
+    "maxViews": 57813,
+    "dates": [
+     "2026-10-08"
+    ]
+   },
+   "channelPage": {
+    "httpStatus": 200,
+    "exists": true,
+    "rssStatus": 200
+   },
+   "latestUpload": {
+    "videosTabFirst": {
+     "id": "QA0d4oGlsew",
+     "relative": "15h ago",
+     "approxDate": "2026-11-27"
+    },
+    "rssLatestPublished": "2026-11-27T22:00:19+00:00",
+    "daysAgo": 0.6
+   },
+   "uploads30d": {
+    "longformVideosTab": 13,
+    "longformNote": null,
+    "rssAllIncludingShorts": 6,
+    "rssCapped": false
+   },
+   "latest10": {
+    "medianViews": 47500,
+    "viewsSource": "동영상 탭 표시값(근사, K/M 반올림)",
+    "n": 10,
+    "ratioToPastSample": 0.822,
+    "biasNote": "과거 표본 1편(히트작일 수 있음) 대비라 하락 과대 가능"
+   },
+   "appearance": {
+    "lfChannelsField": "unknown",
+    "descriptionClue": null,
+    "thumbnailFace": null,
+    "judgement": null
+   },
+   "aiDisclosure": null,
+   "aiDisclosureNote": "채널 설명·최근 15편 RSS 설명에 AI 음성/제작 문구 없음 (YouTube 합성콘텐츠 라벨은 미확인)",
+   "audienceClue": null,
+   "dataClue": {
+    "where": "제목 Wd1ZMnz3pJk",
+    "text": "【日本株ついに底打ち？】アンソロピック上場に向けて日本株がとある条件を満たして上昇局面へ！プロの機関投資家が買い集めてる業績最強株を7銘柄徹底解説！【日経平均/TOPIX/AI半導体/NVIDIA】"
+   },
+   "template": {
+    "commonTokens": [
+     "日本",
+     "本株",
+     "てる",
+     "徹底",
+     "底解",
+     "解説",
+     "買い",
+     "日経",
+     "経平",
+     "平均"
+    ],
+    "commonTokenRatio": 0.442,
+    "meanPairJaccard": 0.154,
+    "level": "높음"
+   },
+   "status": "운영중",
+   "flags": [
+    "운영중"
+   ],
+   "monetization": "미확인",
+   "stopCause": null
+  },
+  {
+   "name": "한화자산운용",
+   "channelId": "UCEznrN8oroicBCrwjSyvCDA",
+   "url": "https://www.youtube.com/channel/UCEznrN8oroicBCrwjSyvCDA",
+   "pickReason": "무작위",
+   "keywords": [
+    "AI ETF"
+   ],
+   "subs": 40700,
+   "joined": "2016-11-14",
+   "totalVideos": 640,
+   "pastSample": {
+    "n": 1,
+    "medianViews": 7586,
+    "maxViews": 7586,
+    "dates": [
+     "2026-11-24"
+    ]
+   },
+   "channelPage": {
+    "httpStatus": 200,
+    "exists": true,
+    "rssStatus": 200
+   },
+   "latestUpload": {
+    "videosTabFirst": {
+     "id": "KcNUiRNITZ4",
+     "relative": "10h ago",
+     "approxDate": "2026-11-28"
+    },
+    "rssLatestPublished": "2026-11-28T03:00:35+00:00",
+    "daysAgo": 0.4
+   },
+   "uploads30d": {
+    "longformVideosTab": 15,
+    "longformNote": null,
+    "rssAllIncludingShorts": 15,
+    "rssCapped": true
+   },
+   "latest10": {
+    "medianViews": 18500,
+    "viewsSource": "동영상 탭 표시값(근사, K/M 반올림)",
+    "n": 10,
+    "ratioToPastSample": 2.439,
+    "biasNote": "과거 표본 1편(히트작일 수 있음) 대비라 하락 과대 가능"
+   },
+   "appearance": {
+    "lfChannelsField": "unknown",
+    "descriptionClue": null,
+    "thumbnailFace": null,
+    "judgement": null
+   },
+   "aiDisclosure": null,
+   "aiDisclosureNote": "채널 설명·최근 15편 RSS 설명에 AI 음성/제작 문구 없음 (YouTube 합성콘텐츠 라벨은 미확인)",
+   "audienceClue": {
+    "where": "영상 설명 l-GbXwDfuK0",
+    "text": "🎁댓글 EVENT🎁"
+   },
+   "dataClue": {
+    "where": "영상 설명 l-GbXwDfuK0",
+    "text": "여기에 AI 데이터센터의 폭발적인 전력 수요까지 더해지면서 에너지 패권의 기준도 달라지고 있습니다."
+   },
+   "template": {
+    "commonTokens": [],
+    "commonTokenRatio": 0,
+    "meanPairJaccard": 0.04,
+    "level": "낮음"
+   },
+   "status": "운영중",
+   "flags": [
+    "운영중"
+   ],
+   "monetization": "미확인",
+   "stopCause": null
+  },
+  {
+   "name": "Dividend Talks",
+   "channelId": "UClLyc3C2K3C-RAh7eEJAwyg",
+   "url": "https://www.youtube.com/channel/UClLyc3C2K3C-RAh7eEJAwyg",
+   "pickReason": "무작위",
+   "keywords": [
+    "AI 주식"
+   ],
+   "subs": 129000,
+   "joined": "2023-03-25",
+   "totalVideos": 2093,
+   "pastSample": {
+    "n": 1,
+    "medianViews": 37127,
+    "maxViews": 37127,
+    "dates": [
+     "2026-11-21"
+    ]
+   },
+   "channelPage": {
+    "httpStatus": 200,
+    "exists": true,
+    "rssStatus": 200
+   },
+   "latestUpload": {
+    "videosTabFirst": {
+     "id": "PqkwDbkrvpA",
+     "relative": "18h ago",
+     "approxDate": "2026-11-27"
+    },
+    "rssLatestPublished": "2026-11-27T19:03:46+00:00",
+    "daysAgo": 0.8
+   },
+   "uploads30d": {
+    "longformVideosTab": 30,
+    "longformNote": "30개 이상(상한)",
+    "rssAllIncludingShorts": 15,
+    "rssCapped": true
+   },
+   "latest10": {
+    "medianViews": 21500,
+    "viewsSource": "동영상 탭 표시값(근사, K/M 반올림)",
+    "n": 10,
+    "ratioToPastSample": 0.579,
+    "biasNote": "과거 표본 1편(히트작일 수 있음) 대비라 하락 과대 가능"
+   },
+   "appearance": {
+    "lfChannelsField": "unknown",
+    "descriptionClue": null,
+    "thumbnailFace": null,
+    "judgement": null
+   },
+   "aiDisclosure": null,
+   "aiDisclosureNote": "채널 설명·최근 15편 RSS 설명에 AI 음성/제작 문구 없음 (YouTube 합성콘텐츠 라벨은 미확인)",
+   "audienceClue": null,
+   "dataClue": {
+    "where": "채널 설명",
+    "text": "- Chartered Accountant"
+   },
+   "template": {
+    "commonTokens": [
+     "stocks",
+     "buy"
+    ],
+    "commonTokenRatio": 0.253,
+    "meanPairJaccard": 0.07,
+    "level": "중간"
+   },
+   "status": "운영중",
+   "flags": [
+    "운영중"
+   ],
+   "monetization": "미확인",
+   "stopCause": null
+  },
+  {
+   "name": "Daily JAPAN Stock & Company Research: Market Edge",
+   "channelId": "UC-EQ6nUZh2fKnv9GeBVQJLQ",
+   "url": "https://www.youtube.com/channel/UC-EQ6nUZh2fKnv9GeBVQJLQ",
+   "pickReason": "무작위",
+   "keywords": [
+    "AI ETF"
+   ],
+   "subs": 272,
+   "joined": "2024-01-19",
+   "totalVideos": 258,
+   "pastSample": {
+    "n": 1,
+    "medianViews": 741,
+    "maxViews": 741,
+    "dates": [
+     "2026-07-25"
+    ]
+   },
+   "channelPage": {
+    "httpStatus": 200,
+    "exists": true,
+    "rssStatus": 200
+   },
+   "latestUpload": {
+    "videosTabFirst": {
+     "id": "nKb17Fl9uww",
+     "relative": "5h ago",
+     "approxDate": "2026-11-28"
+    },
+    "rssLatestPublished": "2026-11-28T07:54:36+00:00",
+    "daysAgo": 0.2
+   },
+   "uploads30d": {
+    "longformVideosTab": 30,
+    "longformNote": "30개 이상(상한)",
+    "rssAllIncludingShorts": 15,
+    "rssCapped": true
+   },
+   "latest10": {
+    "medianViews": 30.5,
+    "viewsSource": "동영상 탭 표시값(근사, K/M 반올림)",
+    "n": 10,
+    "ratioToPastSample": 0.041,
+    "biasNote": "과거 표본 1편(히트작일 수 있음) 대비라 하락 과대 가능"
+   },
+   "appearance": {
+    "lfChannelsField": "unknown",
+    "descriptionClue": null,
+    "thumbnailFace": null,
+    "judgement": null
+   },
+   "aiDisclosure": null,
+   "aiDisclosureNote": "채널 설명·최근 15편 RSS 설명에 AI 음성/제작 문구 없음 (YouTube 합성콘텐츠 라벨은 미확인)",
+   "audienceClue": {
+    "where": "영상 설명 La1uCcg3C0w",
+    "text": "コメント欄での感想やご意見もお待ちしております！"
+   },
+   "dataClue": {
+    "where": "제목 pBjqaMPVQQg",
+    "text": "【ストップ高の真相】ステラファーマ(4888)は次のキオクシアか！？超大型材料と最新IRを解禁！国内初の承認取得で化けるバイオ銘柄！事業内容から最新決算まで初心者向けにわかりやすく徹底解説"
+   },
+   "template": {
+    "commonTokens": [
+     "次の",
+     "のキ",
+     "キオ",
+     "オク",
+     "クシ",
+     "シア",
+     "増配",
+     "還元",
+     "最新",
+     "公式"
+    ],
+    "commonTokenRatio": 0.307,
+    "meanPairJaccard": 0.126,
+    "level": "높음"
+   },
+   "status": "조회 하락",
+   "flags": [
+    "운영중",
+    "조회 하락"
+   ],
+   "monetization": "미확인",
+   "stopCause": "미확인"
+  },
+  {
+   "name": "アエとAI旅",
+   "channelId": "UCtxOIw2-xNxRgYydDug_2XQ",
+   "url": "https://www.youtube.com/channel/UCtxOIw2-xNxRgYydDug_2XQ",
+   "pickReason": "무작위",
+   "keywords": [
+    "전자책·리포트"
+   ],
+   "subs": 328,
+   "joined": "2026-03-29",
+   "totalVideos": 94,
+   "pastSample": {
+    "n": 1,
+    "medianViews": 66,
+    "maxViews": 66,
+    "dates": [
+     "2026-11-21"
+    ]
+   },
+   "channelPage": {
+    "httpStatus": 200,
+    "exists": true,
+    "rssStatus": 200
+   },
+   "latestUpload": {
+    "videosTabFirst": {
+     "id": "lkU4E5-vMD8",
+     "relative": "5d ago",
+     "approxDate": "2026-11-23"
+    },
+    "rssLatestPublished": "2026-11-23T11:02:08+00:00",
+    "daysAgo": 5
+   },
+   "uploads30d": {
+    "longformVideosTab": 16,
+    "longformNote": null,
+    "rssAllIncludingShorts": 8,
+    "rssCapped": false
+   },
+   "latest10": {
+    "medianViews": 131.5,
+    "viewsSource": "동영상 탭 표시값(근사, K/M 반올림)",
+    "n": 10,
+    "ratioToPastSample": 1.992,
+    "biasNote": "과거 표본 1편(히트작일 수 있음) 대비라 하락 과대 가능"
+   },
+   "appearance": {
+    "lfChannelsField": "unknown",
+    "descriptionClue": null,
+    "thumbnailFace": null,
+    "judgement": null
+   },
+   "aiDisclosure": {
+    "where": "영상 설명 8EviVuuhVX4",
+    "text": "テーマ選び・台本・VOICEVOXのナレーション・Remotionのアニメーションまで、プロンプトを4つ貼って返事をしただけ。",
+    "type": "제작/음성 표기 가능성"
+   },
+   "aiDisclosureNote": null,
+   "audienceClue": null,
+   "dataClue": {
+    "where": "영상 설명 zc2qRvdTBNQ",
+    "text": "・活用例① 売上データと店長メモから、会議用のPowerPoint資料を作る"
+   },
+   "template": {
+    "commonTokens": [
+     "ai",
+     "副業"
+    ],
+    "commonTokenRatio": 0.066,
+    "meanPairJaccard": 0.05,
+    "level": "낮음"
+   },
+   "status": "운영중",
+   "flags": [
+    "운영중"
+   ],
+   "monetization": "미확인",
+   "stopCause": null
+  },
+  {
+   "name": "AI디렉터 소미",
+   "channelId": "UCQCTxgiDiqLkoWB1AGpHLbQ",
+   "url": "https://www.youtube.com/channel/UCQCTxgiDiqLkoWB1AGpHLbQ",
+   "pickReason": "무작위",
+   "keywords": [
+    "AI 자동화 SaaS"
+   ],
+   "subs": 1430,
+   "joined": "2026-07-01",
+   "totalVideos": 20,
+   "pastSample": {
+    "n": 1,
+    "medianViews": 1769,
+    "maxViews": 1769,
+    "dates": [
+     "2026-11-02"
+    ]
+   },
+   "channelPage": {
+    "httpStatus": 200,
+    "exists": true,
+    "rssStatus": 200
+   },
+   "latestUpload": {
+    "videosTabFirst": {
+     "id": "EpaB6NrQYCs",
+     "relative": "1d ago",
+     "approxDate": "2026-11-27"
+    },
+    "rssLatestPublished": "2026-11-27T08:47:46+00:00",
+    "daysAgo": 1
+   },
+   "uploads30d": {
+    "longformVideosTab": 8,
+    "longformNote": null,
+    "rssAllIncludingShorts": 4,
+    "rssCapped": false
+   },
+   "latest10": {
+    "medianViews": 1400,
+    "viewsSource": "동영상 탭 표시값(근사, K/M 반올림)",
+    "n": 10,
+    "ratioToPastSample": 0.791,
+    "biasNote": "과거 표본 1편(히트작일 수 있음) 대비라 하락 과대 가능"
+   },
+   "appearance": {
+    "lfChannelsField": "unknown",
+    "descriptionClue": null,
+    "thumbnailFace": null,
+    "judgement": null
+   },
+   "aiDisclosure": null,
+   "aiDisclosureNote": "채널 설명·최근 15편 RSS 설명에 AI 음성/제작 문구 없음 (YouTube 합성콘텐츠 라벨은 미확인)",
+   "audienceClue": null,
+   "dataClue": null,
+   "template": {
+    "commonTokens": [],
+    "commonTokenRatio": 0,
+    "meanPairJaccard": 0.03,
+    "level": "낮음"
+   },
+   "status": "운영중",
+   "flags": [
+    "운영중"
+   ],
+   "monetization": "미확인",
+   "stopCause": null
+  },
+  {
+   "name": "Dollar Verse",
+   "channelId": "UCztAai7u-92U0liMviOnJ3A",
+   "url": "https://www.youtube.com/channel/UCztAai7u-92U0liMviOnJ3A",
+   "pickReason": "무작위",
+   "keywords": [
+    "AI ETF"
+   ],
+   "subs": 4,
+   "joined": "2025-11-12",
+   "totalVideos": 40,
+   "pastSample": {
+    "n": 1,
+    "medianViews": 14,
+    "maxViews": 14,
+    "dates": [
+     "2026-01-07"
+    ]
+   },
+   "channelPage": {
+    "httpStatus": 200,
+    "exists": true,
+    "rssStatus": 200
+   },
+   "latestUpload": {
+    "videosTabFirst": {
+     "id": "18m876t9wdY",
+     "relative": "10mo ago",
+     "approxDate": "2026-02-01"
+    },
+    "rssLatestPublished": "2026-01-20T22:05:00+00:00",
+    "daysAgo": 300
+   },
+   "uploads30d": {
+    "longformVideosTab": 0,
+    "longformNote": null,
+    "rssAllIncludingShorts": 0,
+    "rssCapped": false
+   },
+   "latest10": {
+    "medianViews": 4.5,
+    "viewsSource": "동영상 탭 표시값(근사, K/M 반올림)",
+    "n": 10,
+    "ratioToPastSample": 0.321,
+    "biasNote": "과거 표본 1편(히트작일 수 있음) 대비라 하락 과대 가능"
+   },
+   "appearance": {
+    "lfChannelsField": "unknown",
+    "descriptionClue": null,
+    "thumbnailFace": null,
+    "judgement": null
+   },
+   "aiDisclosure": null,
+   "aiDisclosureNote": "채널 설명·최근 15편 RSS 설명에 AI 음성/제작 문구 없음 (YouTube 합성콘텐츠 라벨은 미확인)",
+   "audienceClue": null,
+   "dataClue": {
+    "where": "영상 설명 18m876t9wdY",
+    "text": "Technical analysis on Meta (META) stock revealing a critical bearish chart setup for the next trading day, with key levels to watch for swing traders."
+   },
+   "template": {
+    "commonTokens": [],
+    "commonTokenRatio": 0,
+    "meanPairJaccard": 0.039,
+    "level": "낮음"
+   },
+   "status": "업로드 중단",
+   "flags": [
+    "업로드 중단"
+   ],
+   "monetization": "미확인",
+   "stopCause": "미확인"
+  },
+  {
+   "name": "Microsoft Korea",
+   "channelId": "UCqqoiebjYnMqfhx-4f1awKg",
+   "url": "https://www.youtube.com/channel/UCqqoiebjYnMqfhx-4f1awKg",
+   "pickReason": "무작위",
+   "keywords": [
+    "AI 자동화 SaaS"
+   ],
+   "subs": 19600,
+   "joined": "2011-03-18",
+   "totalVideos": 1965,
+   "pastSample": {
+    "n": 1,
+    "medianViews": 5169,
+    "maxViews": 5169,
+    "dates": [
+     "2026-03-05"
+    ]
+   },
+   "channelPage": {
+    "httpStatus": 200,
+    "exists": true,
+    "rssStatus": 200
+   },
+   "latestUpload": {
+    "videosTabFirst": {
+     "id": "sCjA7zCa0VA",
+     "relative": "8d ago",
+     "approxDate": "2026-11-20"
+    },
+    "rssLatestPublished": "2026-11-20T08:12:39+00:00",
+    "daysAgo": 8
+   },
+   "uploads30d": {
+    "longformVideosTab": 30,
+    "longformNote": "30개 이상(상한)",
+    "rssAllIncludingShorts": 2,
+    "rssCapped": false
+   },
+   "latest10": {
+    "medianViews": 328,
+    "viewsSource": "동영상 탭 표시값(근사, K/M 반올림)",
+    "n": 10,
+    "ratioToPastSample": 0.063,
+    "biasNote": "과거 표본 1편(히트작일 수 있음) 대비라 하락 과대 가능"
+   },
+   "appearance": {
+    "lfChannelsField": "unknown",
+    "descriptionClue": null,
+    "thumbnailFace": null,
+    "judgement": null
+   },
+   "aiDisclosure": null,
+   "aiDisclosureNote": "채널 설명·최근 15편 RSS 설명에 AI 음성/제작 문구 없음 (YouTube 합성콘텐츠 라벨은 미확인)",
+   "audienceClue": null,
+   "dataClue": {
+    "where": "제목 mxjLowOZtM8",
+    "text": "Microsoft Industry Summit 다시보기 | 헬스케어 · 교육 트랙 | Databricks"
+   },
+   "template": {
+    "commonTokens": [
+     "microsoft",
+     "industry",
+     "summit",
+     "다시보기",
+     "헬스케어",
+     "교육",
+     "트랙"
+    ],
+    "commonTokenRatio": 0.686,
+    "meanPairJaccard": 0.478,
+    "level": "높음"
+   },
+   "status": "조회 하락",
+   "flags": [
+    "운영중",
+    "조회 하락"
+   ],
+   "monetization": "미확인",
+   "stopCause": "미확인"
+  },
+  {
+   "name": "インデックス麻衣の投資チャンネル",
+   "channelId": "UC0DiFNCslwFlOvt8dAbY-eQ",
+   "url": "https://www.youtube.com/channel/UC0DiFNCslwFlOvt8dAbY-eQ",
+   "pickReason": "무작위",
+   "keywords": [
+    "AI 투자 분석"
+   ],
+   "subs": 118,
+   "joined": "2026-02-01",
+   "totalVideos": 105,
+   "pastSample": {
+    "n": 1,
+    "medianViews": 33,
+    "maxViews": 33,
+    "dates": [
+     "2026-11-02"
+    ]
+   },
+   "channelPage": {
+    "httpStatus": 200,
+    "exists": true,
+    "rssStatus": 200
+   },
+   "latestUpload": {
+    "videosTabFirst": {
+     "id": "hVH1PnId4HE",
+     "relative": "5d ago",
+     "approxDate": "2026-11-23"
+    },
+    "rssLatestPublished": "2026-11-22T22:27:03+00:00",
+    "daysAgo": 5
+   },
+   "uploads30d": {
+    "longformVideosTab": 8,
+    "longformNote": null,
+    "rssAllIncludingShorts": 15,
+    "rssCapped": true
+   },
+   "latest10": {
+    "medianViews": 48.5,
+    "viewsSource": "동영상 탭 표시값(근사, K/M 반올림)",
+    "n": 10,
+    "ratioToPastSample": 1.47,
+    "biasNote": "과거 표본 1편(히트작일 수 있음) 대비라 하락 과대 가능"
+   },
+   "appearance": {
+    "lfChannelsField": "unknown",
+    "descriptionClue": null,
+    "thumbnailFace": null,
+    "judgement": null
+   },
+   "aiDisclosure": null,
+   "aiDisclosureNote": "채널 설명·최근 15편 RSS 설명에 AI 음성/제작 문구 없음 (YouTube 합성콘텐츠 라벨은 미확인)",
+   "audienceClue": null,
+   "dataClue": {
+    "where": "제목 hVH1PnId4HE",
+    "text": "【決算分析 ジャパンディスプレイ 北浜キャピタル WIZE フルッタフルッタ THE WHY HOW DO COMPANY】株価50円以下の日本株、その決算って実際どうなの？"
+   },
+   "template": {
+    "commonTokens": [
+     "決算"
+    ],
+    "commonTokenRatio": 0.039,
+    "meanPairJaccard": 0.022,
+    "level": "낮음"
+   },
+   "status": "운영중",
+   "flags": [
+    "운영중"
+   ],
+   "monetization": "미확인",
+   "stopCause": null
+  },
+  {
+   "name": "Goldman Sachs",
+   "channelId": "UCyz6-taovlaOkPsPtK4KNEg",
+   "url": "https://www.youtube.com/channel/UCyz6-taovlaOkPsPtK4KNEg",
+   "pickReason": "무작위",
+   "keywords": [
+    "AI 경제"
+   ],
+   "subs": 327000,
+   "joined": "2006-08-14",
+   "totalVideos": 2109,
+   "pastSample": {
+    "n": 1,
+    "medianViews": 76789,
+    "maxViews": 76789,
+    "dates": [
+     "2026-09-09"
+    ]
+   },
+   "channelPage": {
+    "httpStatus": 200,
+    "exists": true,
+    "rssStatus": 200
+   },
+   "latestUpload": {
+    "videosTabFirst": {
+     "id": "0VnKHWTR_Is",
+     "relative": "2d ago",
+     "approxDate": "2026-11-26"
+    },
+    "rssLatestPublished": "2026-11-25T17:06:50+00:00",
+    "daysAgo": 2
+   },
+   "uploads30d": {
+    "longformVideosTab": 30,
+    "longformNote": "30개 이상(상한)",
+    "rssAllIncludingShorts": 15,
+    "rssCapped": true
+   },
+   "latest10": {
+    "medianViews": 19500,
+    "viewsSource": "동영상 탭 표시값(근사, K/M 반올림)",
+    "n": 10,
+    "ratioToPastSample": 0.254,
+    "biasNote": "과거 표본 1편(히트작일 수 있음) 대비라 하락 과대 가능"
+   },
+   "appearance": {
+    "lfChannelsField": "unknown",
+    "descriptionClue": null,
+    "thumbnailFace": null,
+    "judgement": null
+   },
+   "aiDisclosure": null,
+   "aiDisclosureNote": "채널 설명·최근 15편 RSS 설명에 AI 음성/제작 문구 없음 (YouTube 합성콘텐츠 라벨은 미확인)",
+   "audienceClue": {
+    "where": "영상 설명 SWsH0Kh9KGc",
+    "text": "ESPN Chairman Jimmy Pitaro joins Dave Dase, global co-head of the Sports franchise in Investment Banking, and discusses how this challenging decision helps the company reach younger viewers and “serve the sports fan anyt"
+   },
+   "dataClue": {
+    "where": "제목 DFqpv4ofPW4",
+    "text": "How Will Higher-than-Expected Inflation Data Impact the Fed's Next Rate Decisions?"
+   },
+   "template": {
+    "commonTokens": [
+     "the"
+    ],
+    "commonTokenRatio": 0.102,
+    "meanPairJaccard": 0.034,
+    "level": "낮음"
+   },
+   "status": "조회 하락",
+   "flags": [
+    "운영중",
+    "조회 하락"
+   ],
+   "monetization": "미확인",
+   "stopCause": "미확인"
+  },
+  {
+   "name": "씨앤토트",
+   "channelId": "UCVxxp06rLKGYgsyWBQI46mQ",
+   "url": "https://www.youtube.com/channel/UCVxxp06rLKGYgsyWBQI46mQ",
+   "pickReason": "무작위",
+   "keywords": [
+    "AI 자동화 SaaS"
+   ],
+   "subs": 3070,
+   "joined": "2019-03-04",
+   "totalVideos": 219,
+   "pastSample": {
+    "n": 1,
+    "medianViews": 6367,
+    "maxViews": 6367,
+    "dates": [
+     "2026-05-20"
+    ]
+   },
+   "channelPage": {
+    "httpStatus": 200,
+    "exists": true,
+    "rssStatus": 200
+   },
+   "latestUpload": {
+    "videosTabFirst": {
+     "id": "m12UZ_zNfpU",
+     "relative": "4w ago",
+     "approxDate": "2026-10-31"
+    },
+    "rssLatestPublished": "2026-10-30T05:27:35+00:00",
+    "daysAgo": 28
+   },
+   "uploads30d": {
+    "longformVideosTab": 6,
+    "longformNote": null,
+    "rssAllIncludingShorts": 2,
+    "rssCapped": false
+   },
+   "latest10": {
+    "medianViews": 2800,
+    "viewsSource": "동영상 탭 표시값(근사, K/M 반올림)",
+    "n": 10,
+    "ratioToPastSample": 0.44,
+    "biasNote": "과거 표본 1편(히트작일 수 있음) 대비라 하락 과대 가능"
+   },
+   "appearance": {
+    "lfChannelsField": "unknown",
+    "descriptionClue": null,
+    "thumbnailFace": null,
+    "judgement": null
+   },
+   "aiDisclosure": null,
+   "aiDisclosureNote": "채널 설명·최근 15편 RSS 설명에 AI 음성/제작 문구 없음 (YouTube 합성콘텐츠 라벨은 미확인)",
+   "audienceClue": {
+    "where": "영상 설명 WkZORkrlB0k",
+    "text": "01:06 댓글 멘션과 Teams 공유"
+   },
+   "dataClue": {
+    "where": "제목 kqbvgk9B4ts",
+    "text": "코드 인터프리터로 데이터 분석 에이전트 만들기(핸즈온) | Microsoft Copilot & Agent Day"
+   },
+   "template": {
+    "commonTokens": [
+     "copilot"
+    ],
+    "commonTokenRatio": 0.092,
+    "meanPairJaccard": 0.047,
+    "level": "낮음"
+   },
+   "status": "운영중",
+   "flags": [
+    "운영중"
+   ],
+   "monetization": "미확인",
+   "stopCause": null
+  },
+  {
+   "name": "中村 仁の投資アカデミー / ブルーモ証券",
+   "channelId": "UCVBqQQe9qC6ssjNuKjKiBGQ",
+   "url": "https://www.youtube.com/channel/UCVBqQQe9qC6ssjNuKjKiBGQ",
+   "pickReason": "무작위",
+   "keywords": [
+    "AI 경제"
+   ],
+   "subs": 64400,
+   "joined": "2024-08-05",
+   "totalVideos": 746,
+   "pastSample": {
+    "n": 1,
+    "medianViews": 128998,
+    "maxViews": 128998,
+    "dates": [
+     "2026-09-07"
+    ]
+   },
+   "channelPage": {
+    "httpStatus": 200,
+    "exists": true,
+    "rssStatus": 200
+   },
+   "latestUpload": {
+    "videosTabFirst": {
+     "id": "Axmi-jNa3zI",
+     "relative": "1d ago",
+     "approxDate": "2026-11-27"
+    },
+    "rssLatestPublished": "2026-11-28T10:00:34+00:00",
+    "daysAgo": 0.2
+   },
+   "uploads30d": {
+    "longformVideosTab": 30,
+    "longformNote": "30개 이상(상한)",
+    "rssAllIncludingShorts": 15,
+    "rssCapped": true
+   },
+   "latest10": {
+    "medianViews": 18000,
+    "viewsSource": "동영상 탭 표시값(근사, K/M 반올림)",
+    "n": 10,
+    "ratioToPastSample": 0.14,
+    "biasNote": "과거 표본 1편(히트작일 수 있음) 대비라 하락 과대 가능"
+   },
+   "appearance": {
+    "lfChannelsField": "unknown",
+    "descriptionClue": null,
+    "thumbnailFace": null,
+    "judgement": null
+   },
+   "aiDisclosure": null,
+   "aiDisclosureNote": "채널 설명·최근 15편 RSS 설명에 AI 음성/제작 문구 없음 (YouTube 합성콘텐츠 라벨은 미확인)",
+   "audienceClue": {
+    "where": "제목 04-WDz22OF8",
+    "text": "【視聴者質問に回答】債券ETFでは今の高い利回りを確保できないのか? “デュレーションターゲティング”を徹底解説"
+   },
+   "dataClue": {
+    "where": "제목 mFhNkwHYSvA",
+    "text": "【NVIDIA】CEO辞任直後の決算発表と今後の株価の行方、そしてAI・半導体市場への影響を徹底解説! ファン氏の復帰は?"
+   },
+   "template": {
+    "commonTokens": [],
+    "commonTokenRatio": 0,
+    "meanPairJaccard": 0.017,
+    "level": "낮음"
+   },
+   "status": "조회 하락",
+   "flags": [
+    "운영중",
+    "조회 하락"
+   ],
+   "monetization": "미확인",
+   "stopCause": "미확인"
+  },
+  {
+   "name": "Makabeeの米国株【ジム・クレイマー応援ch】",
+   "channelId": "UCBC9F0IokoWtGV4hX_1ueTw",
+   "url": "https://www.youtube.com/channel/UCBC9F0IokoWtGV4hX_1ueTw",
+   "pickReason": "무작위",
+   "keywords": [
+    "AI 주식"
+   ],
+   "subs": 80400,
+   "joined": "2019-12-19",
+   "totalVideos": 1483,
+   "pastSample": {
+    "n": 1,
+    "medianViews": 40225,
+    "maxViews": 40225,
+    "dates": [
+     "2026-11-13"
+    ]
+   },
+   "channelPage": {
+    "httpStatus": 200,
+    "exists": true,
+    "rssStatus": 200
+   },
+   "latestUpload": {
+    "videosTabFirst": {
+     "id": "IMIJtd-zGV0",
+     "relative": "16h ago",
+     "approxDate": "2026-11-27"
+    },
+    "rssLatestPublished": "2026-11-27T21:00:03+00:00",
+    "daysAgo": 0.7
+   },
+   "uploads30d": {
+    "longformVideosTab": 30,
+    "longformNote": "30개 이상(상한)",
+    "rssAllIncludingShorts": 13,
+    "rssCapped": false
+   },
+   "latest10": {
+    "medianViews": 34000,
+    "viewsSource": "동영상 탭 표시값(근사, K/M 반올림)",
+    "n": 10,
+    "ratioToPastSample": 0.845,
+    "biasNote": "과거 표본 1편(히트작일 수 있음) 대비라 하락 과대 가능"
+   },
+   "appearance": {
+    "lfChannelsField": "unknown",
+    "descriptionClue": null,
+    "thumbnailFace": null,
+    "judgement": null
+   },
+   "aiDisclosure": null,
+   "aiDisclosureNote": "채널 설명·최근 15편 RSS 설명에 AI 음성/제작 문구 없음 (YouTube 합성콘텐츠 라벨은 미확인)",
+   "audienceClue": null,
+   "dataClue": {
+    "where": "제목 _ZuB9ZBiKTI",
+    "text": "【限定・第334弾】そろそろ現金を活かすべき時！？今ここで買える株！マイナス・プラス要素を整理！チャートが示す買うべきテック銘柄！【11/19~24】"
+   },
+   "template": {
+    "commonTokens": [
+     "米国株",
+     "ai",
+     "ジム",
+     "ムク",
+     "クレ",
+     "レイ",
+     "イマ",
+     "マー",
+     "mad",
+     "money"
+    ],
+    "commonTokenRatio": 0.253,
+    "meanPairJaccard": 0.104,
+    "level": "중간"
+   },
+   "status": "운영중",
+   "flags": [
+    "운영중"
+   ],
+   "monetization": "미확인",
+   "stopCause": null
+  },
+  {
+   "name": "しごおもTV  by うねり",
+   "channelId": "UCxv2fXOn1pl1X173WkSb1Mw",
+   "url": "https://www.youtube.com/channel/UCxv2fXOn1pl1X173WkSb1Mw",
+   "pickReason": "무작위",
+   "keywords": [
+    "AI 자동화 SaaS"
+   ],
+   "subs": 106000,
+   "joined": "2020-08-16",
+   "totalVideos": 889,
+   "pastSample": {
+    "n": 1,
+    "medianViews": 164648,
+    "maxViews": 164648,
+    "dates": [
+     "2026-08-23"
+    ]
+   },
+   "channelPage": {
+    "httpStatus": 200,
+    "exists": true,
+    "rssStatus": 200
+   },
+   "latestUpload": {
+    "videosTabFirst": {
+     "id": "FEgw-wHM2Bc",
+     "relative": "1d ago",
+     "approxDate": "2026-11-27"
+    },
+    "rssLatestPublished": "2026-11-28T11:00:06+00:00",
+    "daysAgo": 0.1
+   },
+   "uploads30d": {
+    "longformVideosTab": 30,
+    "longformNote": "30개 이상(상한)",
+    "rssAllIncludingShorts": 15,
+    "rssCapped": true
+   },
+   "latest10": {
+    "medianViews": 6050,
+    "viewsSource": "동영상 탭 표시값(근사, K/M 반올림)",
+    "n": 10,
+    "ratioToPastSample": 0.037,
+    "biasNote": "과거 표본 1편(히트작일 수 있음) 대비라 하락 과대 가능"
+   },
+   "appearance": {
+    "lfChannelsField": "unknown",
+    "descriptionClue": null,
+    "thumbnailFace": null,
+    "judgement": null
+   },
+   "aiDisclosure": null,
+   "aiDisclosureNote": "채널 설명·최근 15편 RSS 설명에 AI 음성/제작 문구 없음 (YouTube 합성콘텐츠 라벨은 미확인)",
+   "audienceClue": null,
+   "dataClue": {
+    "where": "영상 설명 neUJbH92FHM",
+    "text": "ブランドコンサルタント、ストラテジックプランナーを経てデータ・テクノロジー領域へ。"
+   },
+   "template": {
+    "commonTokens": [
+     "ai"
+    ],
+    "commonTokenRatio": 0.024,
+    "meanPairJaccard": 0.043,
+    "level": "낮음"
+   },
+   "status": "조회 하락",
+   "flags": [
+    "운영중",
+    "조회 하락"
+   ],
+   "monetization": "미확인",
+   "stopCause": "미확인"
+  },
+  {
+   "name": "1分決算解説動画🎥",
+   "channelId": "UC0HBPM4mMWvPr8hSMCVub5w",
+   "url": "https://www.youtube.com/channel/UC0HBPM4mMWvPr8hSMCVub5w",
+   "pickReason": "무작위",
+   "keywords": [
+    "AI 주식"
+   ],
+   "subs": 590,
+   "joined": "2026-05-08",
+   "totalVideos": 330,
+   "pastSample": {
+    "n": 1,
+    "medianViews": 594,
+    "maxViews": 594,
+    "dates": [
+     "2026-07-28"
+    ]
+   },
+   "channelPage": {
+    "httpStatus": 200,
+    "exists": true,
+    "rssStatus": 200
+   },
+   "latestUpload": {
+    "videosTabFirst": {
+     "id": "AwQCU7H3XP4",
+     "relative": "1mo ago",
+     "approxDate": "2026-10-29"
+    },
+    "rssLatestPublished": "2026-10-01T09:34:31+00:00",
+    "daysAgo": 30
+   },
+   "uploads30d": {
+    "longformVideosTab": 1,
+    "longformNote": null,
+    "rssAllIncludingShorts": 0,
+    "rssCapped": false
+   },
+   "latest10": {
+    "medianViews": 304,
+    "viewsSource": "동영상 탭 표시값(근사, K/M 반올림)",
+    "n": 10,
+    "ratioToPastSample": 0.512,
+    "biasNote": "과거 표본 1편(히트작일 수 있음) 대비라 하락 과대 가능"
+   },
+   "appearance": {
+    "lfChannelsField": "unknown",
+    "descriptionClue": null,
+    "thumbnailFace": null,
+    "judgement": null
+   },
+   "aiDisclosure": null,
+   "aiDisclosureNote": "채널 설명·최근 15편 RSS 설명에 AI 음성/제작 문구 없음 (YouTube 합성콘텐츠 라벨은 미확인)",
+   "audienceClue": null,
+   "dataClue": {
+    "where": "제목 AwQCU7H3XP4",
+    "text": "【ニデック6594】5646億円の巨額赤字！「意見不表明」の異常事態と上場廃止の危機を徹底解説⁠#ニデック⁠ ⁠#日本株⁠ ⁠#決算解説⁠ ⁠#株式投資⁠ ⁠#ガバナンス⁠ ⁠#EVモーター⁠ ⁠"
+   },
+   "template": {
+    "commonTokens": [
+     "解説",
+     "説⁠",
+     "日本",
+     "本株",
+     "株⁠",
+     "株式",
+     "式投",
+     "投資",
+     "資⁠",
+     "ン⁠"
+    ],
+    "commonTokenRatio": 0.228,
+    "meanPairJaccard": 0.106,
+    "level": "중간"
+   },
+   "status": "운영중",
+   "flags": [
+    "운영중"
+   ],
+   "monetization": "미확인",
+   "stopCause": null
+  },
+  {
+   "name": "주식투자 불변의법칙 - 370억 부자",
+   "channelId": "UC8XICovJY5hQI9jenhW_TEw",
+   "url": "https://www.youtube.com/channel/UC8XICovJY5hQI9jenhW_TEw",
+   "pickReason": "무작위",
+   "keywords": [
+    "투자 대가"
+   ],
+   "subs": 53,
+   "joined": "2025-05-02",
+   "totalVideos": 34,
+   "pastSample": {
+    "n": 2,
+    "medianViews": 88.5,
+    "maxViews": 93,
+    "dates": [
+     "2026-01-09",
+     "2026-01-23"
+    ]
+   },
+   "channelPage": {
+    "httpStatus": 200,
+    "exists": true,
+    "rssStatus": 200
+   },
+   "latestUpload": {
+    "videosTabFirst": {
+     "id": "aUfV6YQjDik",
+     "relative": "6mo ago",
+     "approxDate": "2026-06-01"
+    },
+    "rssLatestPublished": "2026-04-30T12:15:00+00:00",
+    "daysAgo": 180
+   },
+   "uploads30d": {
+    "longformVideosTab": 0,
+    "longformNote": null,
+    "rssAllIncludingShorts": 0,
+    "rssCapped": false
+   },
+   "latest10": {
+    "medianViews": 34.5,
+    "viewsSource": "동영상 탭 표시값(근사, K/M 반올림)",
+    "n": 10,
+    "ratioToPastSample": 0.39,
+    "biasNote": null
+   },
+   "appearance": {
+    "lfChannelsField": "unknown",
+    "descriptionClue": "저는 '복리의 법칙'을 누구보다 잘 이해하고 있고, 이 속도면 분명히 해낼 것입니다",
+    "thumbnailFace": null,
+    "judgement": "출연 단서 있음(설명란)"
+   },
+   "aiDisclosure": null,
+   "aiDisclosureNote": "채널 설명·최근 15편 RSS 설명에 AI 음성/제작 문구 없음 (YouTube 합성콘텐츠 라벨은 미확인)",
+   "audienceClue": {
+    "where": "영상 설명 YJBXc202zC0",
+    "text": "Q&A식으로 인터뷰한 내용을 바탕으로 컨텐츠를 제작하였습니다."
+   },
+   "dataClue": null,
+   "template": {
+    "commonTokens": [
+     "주식",
+     "투자",
+     "원칙",
+     "워런",
+     "버핏",
+     "100억짜리",
+     "피터린치"
+    ],
+    "commonTokenRatio": 0.579,
+    "meanPairJaccard": 0.211,
+    "level": "높음"
+   },
+   "status": "업로드 중단",
+   "flags": [
+    "업로드 중단"
+   ],
+   "monetization": "미확인",
+   "stopCause": "미확인"
+  },
+  {
+   "name": "カブリエルTV -GFS公式-",
+   "channelId": "UCIwodMcDr08vz-jWDBIGa8g",
+   "url": "https://www.youtube.com/channel/UCIwodMcDr08vz-jWDBIGa8g",
+   "pickReason": "무작위",
+   "keywords": [
+    "AI 주식"
+   ],
+   "subs": 148000,
+   "joined": "2024-01-14",
+   "totalVideos": 726,
+   "pastSample": {
+    "n": 1,
+    "medianViews": 139061,
+    "maxViews": 139061,
+    "dates": [
+     "2026-10-03"
+    ]
+   },
+   "channelPage": {
+    "httpStatus": 200,
+    "exists": true,
+    "rssStatus": 200
+   },
+   "latestUpload": {
+    "videosTabFirst": {
+     "id": "OiJTlqe8nhQ",
+     "relative": "16h ago",
+     "approxDate": "2026-11-27"
+    },
+    "rssLatestPublished": "2026-11-27T21:00:29+00:00",
+    "daysAgo": 0.7
+   },
+   "uploads30d": {
+    "longformVideosTab": 30,
+    "longformNote": "30개 이상(상한)",
+    "rssAllIncludingShorts": 15,
+    "rssCapped": true
+   },
+   "latest10": {
+    "medianViews": 21500,
+    "viewsSource": "동영상 탭 표시값(근사, K/M 반올림)",
+    "n": 10,
+    "ratioToPastSample": 0.155,
+    "biasNote": "과거 표본 1편(히트작일 수 있음) 대비라 하락 과대 가능"
+   },
+   "appearance": {
+    "lfChannelsField": "unknown",
+    "descriptionClue": null,
+    "thumbnailFace": null,
+    "judgement": null
+   },
+   "aiDisclosure": null,
+   "aiDisclosureNote": "채널 설명·최근 15편 RSS 설명에 AI 음성/제작 문구 없음 (YouTube 합성콘텐츠 라벨은 미확인)",
+   "audienceClue": null,
+   "dataClue": {
+    "where": "제목 2WRVp3eoB0w",
+    "text": "【古河電気工業】営業利益3倍＆通期予想引き上げなのに株価7割下落!?好決算の裏側と今買うべきかをプロがズバリ解説🔥"
+   },
+   "template": {
+    "commonTokens": [
+     "徹底",
+     "解説"
+    ],
+    "commonTokenRatio": 0.051,
+    "meanPairJaccard": 0.041,
+    "level": "낮음"
+   },
+   "status": "조회 하락",
+   "flags": [
+    "운영중",
+    "조회 하락"
+   ],
+   "monetization": "미확인",
+   "stopCause": "미확인"
+  },
+  {
+   "name": "박정호 교수의 여의도멘션",
+   "channelId": "UCCxgS_J2m_ksXNjsRnHZ4Pg",
+   "url": "https://www.youtube.com/channel/UCCxgS_J2m_ksXNjsRnHZ4Pg",
+   "pickReason": "무작위",
+   "keywords": [
+    "AI 경제"
+   ],
+   "subs": 219000,
+   "joined": "2022-10-23",
+   "totalVideos": 794,
+   "pastSample": {
+    "n": 1,
+    "medianViews": 29942,
+    "maxViews": 29942,
+    "dates": [
+     "2025-12-15"
+    ]
+   },
+   "channelPage": {
+    "httpStatus": 200,
+    "exists": true,
+    "rssStatus": 200
+   },
+   "latestUpload": {
+    "videosTabFirst": {
+     "id": "qp_W4knbrgw",
+     "relative": "12h ago",
+     "approxDate": "2026-11-28"
+    },
+    "rssLatestPublished": "2026-11-28T01:00:39+00:00",
+    "daysAgo": 0.5
+   },
+   "uploads30d": {
+    "longformVideosTab": 30,
+    "longformNote": "30개 이상(상한)",
+    "rssAllIncludingShorts": 15,
+    "rssCapped": true
+   },
+   "latest10": {
+    "medianViews": 67500,
+    "viewsSource": "동영상 탭 표시값(근사, K/M 반올림)",
+    "n": 10,
+    "ratioToPastSample": 2.254,
+    "biasNote": "과거 표본 1편(히트작일 수 있음) 대비라 하락 과대 가능"
+   },
+   "appearance": {
+    "lfChannelsField": "unknown",
+    "descriptionClue": null,
+    "thumbnailFace": null,
+    "judgement": null
+   },
+   "aiDisclosure": null,
+   "aiDisclosureNote": "채널 설명·최근 15편 RSS 설명에 AI 음성/제작 문구 없음 (YouTube 합성콘텐츠 라벨은 미확인)",
+   "audienceClue": {
+    "where": "영상 설명 Wv9eT6Vedwg",
+    "text": "아래 댓글로 『팔란티어의 제왕』 도서 기대평을 남겨주세요."
+   },
+   "dataClue": {
+    "where": "제목 au860xE_9FQ",
+    "text": "\"지금 주가 폭락, 완전히 속았다\" 미국 중간선거·데이터센터 폭락설의 진실 #박정호교수 #여의도멘션 #주가폭락 #데이터센터"
+   },
+   "template": {
+    "commonTokens": [
+     "박정호교수",
+     "여의도멘션"
+    ],
+    "commonTokenRatio": 0.14,
+    "meanPairJaccard": 0.075,
+    "level": "중간"
+   },
+   "status": "운영중",
+   "flags": [
+    "운영중"
+   ],
+   "monetization": "미확인",
+   "stopCause": null
+  },
+  {
+   "name": "8Star Life",
+   "channelId": "UCYsZKqBSGm94fNFRZxn88pQ",
+   "url": "https://www.youtube.com/channel/UCYsZKqBSGm94fNFRZxn88pQ",
+   "pickReason": "무작위",
+   "keywords": [
+    "AI 투자 분석"
+   ],
+   "subs": 3,
+   "joined": "2026-10-15",
+   "totalVideos": 17,
+   "pastSample": {
+    "n": 1,
+    "medianViews": 9,
+    "maxViews": 9,
+    "dates": [
+     "2026-11-06"
+    ]
+   },
+   "channelPage": {
+    "httpStatus": 200,
+    "exists": true,
+    "rssStatus": 200
+   },
+   "latestUpload": {
+    "videosTabFirst": {
+     "id": "8azqCepw_CM",
+     "relative": "1d ago",
+     "approxDate": "2026-11-27"
+    },
+    "rssLatestPublished": "2026-11-27T20:09:43+00:00",
+    "daysAgo": 0.7
+   },
+   "uploads30d": {
+    "longformVideosTab": 12,
+    "longformNote": null,
+    "rssAllIncludingShorts": 15,
+    "rssCapped": true
+   },
+   "latest10": {
+    "medianViews": 4,
+    "viewsSource": "동영상 탭 표시값(근사, K/M 반올림)",
+    "n": 10,
+    "ratioToPastSample": 0.444,
+    "biasNote": "과거 표본 1편(히트작일 수 있음) 대비라 하락 과대 가능"
+   },
+   "appearance": {
+    "lfChannelsField": "unknown",
+    "descriptionClue": "I'm Mark, and this is 8 Star Life — a place for curiosity, questions, discoveries, and unexpected detours.",
+    "thumbnailFace": null,
+    "judgement": "출연 단서 있음(설명란)"
+   },
+   "aiDisclosure": {
+    "where": "영상 설명 1XDz4PiqfUk",
+    "text": "In this AI-generated companion video for 8 Star Life, we explore a thought-provoking possibility about God, creation, and humanity's place in the universe.",
+    "type": "제작/음성 표기 가능성"
+   },
+   "aiDisclosureNote": null,
+   "audienceClue": null,
+   "dataClue": null,
+   "template": {
+    "commonTokens": [],
+    "commonTokenRatio": 0,
+    "meanPairJaccard": 0.046,
+    "level": "낮음"
+   },
+   "status": "운영중",
+   "flags": [
+    "운영중"
+   ],
+   "monetization": "미확인",
+   "stopCause": null
+  },
+  {
+   "name": "WebSensePro",
+   "channelId": "UCloCjpFkjlNb_5Gz_bsg3uw",
+   "url": "https://www.youtube.com/channel/UCloCjpFkjlNb_5Gz_bsg3uw",
+   "pickReason": "무작위",
+   "keywords": [
+    "AI 자동화 SaaS"
+   ],
+   "subs": 160000,
+   "joined": "2011-11-18",
+   "totalVideos": 919,
+   "pastSample": {
+    "n": 2,
+    "medianViews": 3171,
+    "maxViews": 3211,
+    "dates": [
+     "2025-12-04",
+     "2026-01-28"
+    ]
+   },
+   "channelPage": {
+    "httpStatus": 200,
+    "exists": true,
+    "rssStatus": 200
+   },
+   "latestUpload": {
+    "videosTabFirst": {
+     "id": "ArYYerA_L5U",
+     "relative": "1d ago",
+     "approxDate": "2026-11-27"
+    },
+    "rssLatestPublished": "2026-11-27T13:00:16+00:00",
+    "daysAgo": 1
+   },
+   "uploads30d": {
+    "longformVideosTab": 29,
+    "longformNote": null,
+    "rssAllIncludingShorts": 15,
+    "rssCapped": true
+   },
+   "latest10": {
+    "medianViews": 303,
+    "viewsSource": "동영상 탭 표시값(근사, K/M 반올림)",
+    "n": 10,
+    "ratioToPastSample": 0.096,
+    "biasNote": null
+   },
+   "appearance": {
+    "lfChannelsField": "unknown",
+    "descriptionClue": null,
+    "thumbnailFace": null,
+    "judgement": null
+   },
+   "aiDisclosure": {
+    "where": "영상 설명 7J0I9lAh_w0",
+    "text": "Can you tell the difference between an original image and an AI-generated image?",
+    "type": "주제 언급(제작 표기 아님으로 판단)"
+   },
+   "aiDisclosureNote": null,
+   "audienceClue": null,
+   "dataClue": {
+    "where": "채널 설명",
+    "text": "Our core competencies include Web Development, WordPress Development, Search Engine Optimization, Facebook Marketing, and Google Ads, enabling businesses to achieve measurable, data-driven results."
+   },
+   "template": {
+    "commonTokens": [
+     "shopify",
+     "free",
+     "how",
+     "to"
+    ],
+    "commonTokenRatio": 0.435,
+    "meanPairJaccard": 0.12,
+    "level": "높음"
+   },
+   "status": "조회 하락",
+   "flags": [
+    "운영중",
+    "조회 하락"
+   ],
+   "monetization": "미확인",
+   "stopCause": "미확인"
+  },
+  {
+   "name": "AI 콘텐츠 마스터 세인투",
+   "channelId": "UCU2XQH56ZZFUbpeuPr4jzrg",
+   "url": "https://www.youtube.com/channel/UCU2XQH56ZZFUbpeuPr4jzrg",
+   "pickReason": "무작위",
+   "keywords": [
+    "전자책·리포트",
+    "AI 자동화 SaaS"
+   ],
+   "subs": 78900,
+   "joined": "2013-04-06",
+   "totalVideos": 58,
+   "pastSample": {
+    "n": 2,
+    "medianViews": 166506.5,
+    "maxViews": 317613,
+    "dates": [
+     "2026-02-18",
+     "2026-06-18"
+    ]
+   },
+   "channelPage": {
+    "httpStatus": 200,
+    "exists": true,
+    "rssStatus": 200
+   },
+   "latestUpload": {
+    "videosTabFirst": {
+     "id": "UK2dvYwhrI4",
+     "relative": "10d ago",
+     "approxDate": "2026-11-18"
+    },
+    "rssLatestPublished": "2026-11-27T04:00:24+00:00",
+    "daysAgo": 1.4
+   },
+   "uploads30d": {
+    "longformVideosTab": 3,
+    "longformNote": null,
+    "rssAllIncludingShorts": 8,
+    "rssCapped": false
+   },
+   "latest10": {
+    "medianViews": 14000,
+    "viewsSource": "동영상 탭 표시값(근사, K/M 반올림)",
+    "n": 10,
+    "ratioToPastSample": 0.084,
+    "biasNote": null
+   },
+   "appearance": {
+    "lfChannelsField": "unknown",
+    "descriptionClue": null,
+    "thumbnailFace": null,
+    "judgement": null
+   },
+   "aiDisclosure": null,
+   "aiDisclosureNote": "채널 설명·최근 15편 RSS 설명에 AI 음성/제작 문구 없음 (YouTube 합성콘텐츠 라벨은 미확인)",
+   "audienceClue": null,
+   "dataClue": {
+    "where": "영상 설명 MWg4_88rwnA",
+    "text": "· 남의 데이터가 보이는 구멍 막고, 직접 눌러서 확인하기"
+   },
+   "template": {
+    "commonTokens": [],
+    "commonTokenRatio": 0,
+    "meanPairJaccard": 0.018,
+    "level": "낮음"
+   },
+   "status": "조회 하락",
+   "flags": [
+    "운영중",
+    "조회 하락"
+   ],
+   "monetization": "미확인",
+   "stopCause": "미확인"
+  },
+  {
+   "name": "Krittiya Clark | AI",
+   "channelId": "UCASMTbdWezNJjNHYqscwOSQ",
+   "url": "https://www.youtube.com/channel/UCASMTbdWezNJjNHYqscwOSQ",
+   "pickReason": "무작위",
+   "keywords": [
+    "AI 자동화 SaaS"
+   ],
+   "subs": 434,
+   "joined": "2012-08-22",
+   "totalVideos": 96,
+   "pastSample": {
+    "n": 1,
+    "medianViews": 996,
+    "maxViews": 996,
+    "dates": [
+     "2026-04-27"
+    ]
+   },
+   "channelPage": {
+    "httpStatus": 200,
+    "exists": true,
+    "rssStatus": 200
+   },
+   "latestUpload": {
+    "videosTabFirst": {
+     "id": "JzyPbRPbv2w",
+     "relative": "3d ago",
+     "approxDate": "2026-11-25"
+    },
+    "rssLatestPublished": "2026-11-24T19:30:57+00:00",
+    "daysAgo": 3
+   },
+   "uploads30d": {
+    "longformVideosTab": 8,
+    "longformNote": null,
+    "rssAllIncludingShorts": 7,
+    "rssCapped": false
+   },
+   "latest10": {
+    "medianViews": 347.5,
+    "viewsSource": "동영상 탭 표시값(근사, K/M 반올림)",
+    "n": 10,
+    "ratioToPastSample": 0.349,
+    "biasNote": "과거 표본 1편(히트작일 수 있음) 대비라 하락 과대 가능"
+   },
+   "appearance": {
+    "lfChannelsField": "unknown",
+    "descriptionClue": null,
+    "thumbnailFace": null,
+    "judgement": null
+   },
+   "aiDisclosure": {
+    "where": "영상 설명 GlDGivtxqEU",
+    "text": "Build an AI voice agent for restaurants that answers the phone, takes the order, texts a payment link, and sends the paid order straight into Square POS, using Retell AI, n8n and Square.",
+    "type": "주제 언급(제작 표기 아님으로 판단)"
+   },
+   "aiDisclosureNote": null,
+   "audienceClue": null,
+   "dataClue": {
+    "where": "영상 설명 pMXjxu_RVvY",
+    "text": "In this tutorial, I'll show you how to build a studio booking marketplace with an animated homepage, user authentication, a PostgreSQL database, and a working booking system."
+   },
+   "template": {
+    "commonTokens": [
+     "in",
+     "minutes",
+     "ai"
+    ],
+    "commonTokenRatio": 0.256,
+    "meanPairJaccard": 0.089,
+    "level": "중간"
+   },
+   "status": "운영중",
+   "flags": [
+    "운영중"
+   ],
+   "monetization": "미확인",
+   "stopCause": null
+  },
+  {
+   "name": "Emerging Finance",
+   "channelId": "UCRuBazmeemnM7yQAeWOT-DA",
+   "url": "https://www.youtube.com/channel/UCRuBazmeemnM7yQAeWOT-DA",
+   "pickReason": "무작위",
+   "keywords": [
+    "AI ETF",
+    "AI 투자 분석"
+   ],
+   "subs": 15300,
+   "joined": "2013-10-31",
+   "totalVideos": 156,
+   "pastSample": {
+    "n": 2,
+    "medianViews": 853.5,
+    "maxViews": 1101,
+    "dates": [
+     "2026-10-31",
+     "2026-11-02"
+    ]
+   },
+   "channelPage": {
+    "httpStatus": 200,
+    "exists": true,
+    "rssStatus": 200
+   },
+   "latestUpload": {
+    "videosTabFirst": {
+     "id": "08kjQtmWQ8c",
+     "relative": "8d ago",
+     "approxDate": "2026-11-20"
+    },
+    "rssLatestPublished": "2026-11-20T11:02:14+00:00",
+    "daysAgo": 8
+   },
+   "uploads30d": {
+    "longformVideosTab": 30,
+    "longformNote": "30개 이상(상한)",
+    "rssAllIncludingShorts": 14,
+    "rssCapped": false
+   },
+   "latest10": {
+    "medianViews": 574,
+    "viewsSource": "동영상 탭 표시값(근사, K/M 반올림)",
+    "n": 10,
+    "ratioToPastSample": 0.673,
+    "biasNote": null
+   },
+   "appearance": {
+    "lfChannelsField": "unknown",
+    "descriptionClue": null,
+    "thumbnailFace": null,
+    "judgement": null
+   },
+   "aiDisclosure": null,
+   "aiDisclosureNote": "채널 설명·최근 15편 RSS 설명에 AI 음성/제작 문구 없음 (YouTube 합성콘텐츠 라벨은 미확인)",
+   "audienceClue": null,
+   "dataClue": {
+    "where": "영상 설명 08kjQtmWQ8c",
+    "text": "💰 Profit Splits – Compare profit-sharing arrangements and potential earnings."
+   },
+   "template": {
+    "commonTokens": [
+     "best",
+     "top",
+     "crypto",
+     "platforms"
+    ],
+    "commonTokenRatio": 0.435,
+    "meanPairJaccard": 0.17,
+    "level": "높음"
+   },
+   "status": "운영중",
+   "flags": [
+    "운영중"
+   ],
+   "monetization": "미확인",
+   "stopCause": null
+  }
+ ],
+ "summary": {
+  "byStatus": {
+   "조회 하락": 28,
+   "운영중": 29,
+   "업로드 중단": 3
+  },
+  "groupStats": {
+   "alive": {
+    "n": 56,
+    "subsMedian": 138500,
+    "totalVideosMedian": 560.5,
+    "longform30dMedian": 22.5,
+    "latest10MedianViewsMedian": 20500,
+    "templateHigh": 8,
+    "aiProductionDisclosure": 3,
+    "descSelfIntroClue": 3,
+    "audienceClue": 18,
+    "dataClue": 47,
+    "topPick": 30,
+    "joinedMedian": "2020-08-16"
+   },
+   "healthy": {
+    "n": 29,
+    "subsMedian": 88900,
+    "totalVideosMedian": 426,
+    "longform30dMedian": 15,
+    "latest10MedianViewsMedian": 35500,
+    "templateHigh": 4,
+    "aiProductionDisclosure": 3,
+    "descSelfIntroClue": 2,
+    "audienceClue": 7,
+    "dataClue": 24,
+    "topPick": 12,
+    "joinedMedian": "2022-06-26"
+   },
+   "decline": {
+    "n": 28,
+    "subsMedian": 171500,
+    "totalVideosMedian": 904,
+    "longform30dMedian": 30,
+    "latest10MedianViewsMedian": 11400,
+    "templateHigh": 5,
+    "aiProductionDisclosure": 0,
+    "descSelfIntroClue": 1,
+    "audienceClue": 12,
+    "dataClue": 23,
+    "topPick": 18,
+    "joinedMedian": "2019-03-20"
+   },
+   "stopped": {
+    "n": 3,
+    "subsMedian": 20,
+    "totalVideosMedian": 40,
+    "longform30dMedian": 0,
+    "latest10MedianViewsMedian": 6.5,
+    "templateHigh": 1,
+    "aiProductionDisclosure": 0,
+    "descSelfIntroClue": 1,
+    "audienceClue": 1,
+    "dataClue": 1,
+    "topPick": 0,
+    "joinedMedian": "2025-11-12"
+   }
+  },
+  "caveat": "선정 60곳 중 다수(특히 조회 상위 30)는 BBC·Bloomberg·CNBC·TBS·디글 등 대형 언론/방송 채널로, AI 제작 채널이 아님. 조회 하락 28곳 중 20곳은 과거 표본 1편(히트작) 대비라 실제 하락보다 과대 가능.",
+  "생존 채널 공통점": [
+   "존재 확인 60/60, 30일 내 업로드 56/60(운영중 29 + 업로드는 계속하나 조회 하락 28 중 27, 30~90일 공백 1).",
+   "업로드 지속 채널 구독자 중앙값 138500, 총영상 중앙값 560.5, 최근30일 롱폼 중앙값 22.5편(상한 30), 최신10 조회 중앙값의 중앙값 20500.",
+   "데이터 단서(실적·차트·지표 등 키워드) 47/56로 대부분; 독자 의견 단서 18/56.",
+   "'운영중'(조회 유지) 29곳: 가입 중앙 2022-06-26, 최신10 조회 중앙 35500, 30일 롱폼 중앙 15편. 조회 하락 28곳은 더 오래되고(가입 중앙 2019-03-20) 더 많이 올림(30일 중앙 30편, 총영상 904) — 대량 업로드 언론사 채널 영향.",
+   "제목 템플릿 '높음'은 운영중 4/29, 하락 5/28로 뚜렷한 차이 없음.",
+   "AI 제작/음성 표기 문구 3곳(Solo AI Stack, アエとAI旅, 8Star Life) 모두 운영중이지만 구독자 3~328명의 소형 채널."
+  ],
+  "중단 채널 공통점": [
+   "업로드 중단 3곳(Worldline News Radio 240일, Dollar Verse 300일, 주식투자 불변의법칙 180일) 모두 무작위 표본·소형: 구독자 4/20/53, 총영상 34~72, 가입 2025-05~2025-11, 최신10 조회 중앙 4.5~34.5.",
+   "가입 후 약 2~6개월 안에 업로드가 멈춤(마지막 업로드 2026-01~2026-06 근사).",
+   "3곳 모두 AI 제작 표기 문구 없음; 1곳(주식투자 불변의법칙)은 제목 템플릿 높음(0.579, '워런 버핏/피터린치/원칙' 반복).",
+   "삭제/비공개 0곳. 수익화 중단 여부·원인은 공개 근거 없어 미확인."
+  ]
+ }
+}

@@ -29,8 +29,9 @@
   const D = () => window.LFData;
   let chCache = null, chCacheSize = -1;
   function channels() {
+    const sz = D()?.size ? D().size() : -2;
+    if (chCache && chCacheSize === sz) return chCache;
     const all = D()?.all() || [];
-    if (chCache && chCacheSize === all.length) return chCache;
     const now = Date.now(), m = new Map();
     for (const v of all) { const k = terms(v.ch); if (!k) continue; let c = m.get(k); if (!c) m.set(k, c = { vids: [] }); c.vids.push(v); }
     for (const c of m.values()) {
@@ -43,7 +44,7 @@
       const n90 = ds.filter(x => now - x <= 90 * DAY).length; c.monthly = ds.length ? n90 / 3 : null;
       const gaps = []; for (let i = 1; i < Math.min(ds.length, 11); i++) gaps.push((ds[i - 1] - ds[i]) / DAY); c.interval = gaps.length ? med(gaps.sort((a, b) => a - b)) : null;
     }
-    chCache = m; chCacheSize = all.length; return m;
+    chCache = m; chCacheSize = D()?.size ? D().size() : all.length; return m;
   }
   const rpm = () => Number($('#rpm')?.value) || 2;
   function info(v) { try { return window.LFV6?.info ? window.LFV6.info(v) : {}; } catch { return {}; } }

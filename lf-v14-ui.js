@@ -10,10 +10,10 @@
   let cache = null, cacheN = -1;
   function engine() {
     const D = window.LFData; if (!D || !window.LFOpp) return null;
-    const pool = D.all(); if (cache && cacheN === pool.length) return cache;
+    const sz = D.size ? D.size() : -1; if (cache && cacheN === sz) return cache; const pool = D.all();
     const info = v => { try { return window.LFV6?.info ? window.LFV6.info(v) : {}; } catch { return {}; } };
     cache = window.LFOpp.build(pool, { channels: () => window.LFMetric.channels(), info });
-    cache.pool = pool; cache.info = info; cacheN = pool.length; return cache;
+    cache.pool = pool; cache.info = info; cacheN = sz; return cache;
   }
   const sc = v => engine()?.scores.get(v.id) || null;
   // register sort keys into v13 SortControl
