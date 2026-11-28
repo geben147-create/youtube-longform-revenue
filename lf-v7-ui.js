@@ -7,8 +7,8 @@ window.LFV7UI = {
     root.dataset.ready = '1';
     const esc = api.esc, n = x => x == null ? '미확인' : Math.round(x).toLocaleString('ko-KR'), pct = x => x == null ? '미확인' : (Math.trunc(x * 1000) / 10) + '%';
     const STORE = 'lf-v7:pilot:v1';
-    const TABS = [['seed', '핵심 채널 15편'], ['rank', '신생 채널 순위'], ['sector', '섹터·검색어'], ['pilot', 'A/B 파일럿 비교'], ['top20', 'V8 TOP 20'], ['v8pl', '재생목록 92편'], ['mkt', 'KR·JP·US 비교'], ['notes', '근거·한계']];
-    let v8 = null, v8sort = 'net', data = null, tab = 'seed', sort = 'meanEx2', sector = '', loading = false, pilot = {};
+    const TABS = [['seed', '핵심 채널 15편'], ['rank', '신생 채널 순위'], ['sector', '섹터·검색어'], ['pilot', 'A/B 파일럿 비교'], ['top20', 'V8 TOP 20'], ['v8pl', '재생목록 92편'], ['mkt', 'KR·JP·US 비교'], ['v9th', 'V9 일본뽕 썸네일·제목'], ['v9cat', 'V9 5분야 KR·JP·US'], ['notes', '근거·한계']];
+    let v9 = null, v8 = null, v8sort = 'net', data = null, tab = 'seed', sort = 'meanEx2', sector = '', loading = false, pilot = {};
     try { pilot = JSON.parse(localStorage.getItem(STORE) || '{}') || {}; } catch { pilot = {}; }
     root.innerHTML = '<summary>🔥 V7 신생 고수익 · 일본 국뽕 감동사연·AI 드라마</summary><div data-body><p class="lf-hint">열면 V7 조사 자료를 불러옵니다. 실제 수익이 아니라 공개 조회 기반 관찰과 가정입니다.</p></div>';
     const body = root.querySelector('[data-body]');
@@ -52,6 +52,16 @@ window.LFV7UI = {
       if (!v8) return '<p>불러오는 중…</p>';
       return '<div class="lf-table-wrap"><table><thead><tr><th>시장</th><th>RPM 계수(가정)</th><th>조사 채널</th><th>중앙값의 중앙값</th><th>경쟁</th><th>제작비·시간</th><th>저작권 위험</th></tr></thead><tbody>' + v8.markets.map(m => '<tr><th>' + esc(m.name) + '</th><td>' + m.rpmCoefficient + '</td><td>' + m.channels + '</td><td>' + W(m.medianOfMedians) + '</td><td>' + esc(m.competitionNote) + '</td><td>' + esc(m.cost) + '<br>' + esc(m.hours) + '</td><td>' + esc(m.copyrightRisk) + '</td></tr>').join('') + '</tbody></table></div><p class="lf-hint">미국 표본은 3곳뿐이라 비교 신뢰도가 낮습니다. 제목·썸네일·훅 분석은 V7 15편 심층과 설명란 기반 표기만 근거가 있고, V8 신규 채널의 훅·썸네일은 미확인입니다.</p>';
     }
+    function v9th() {
+      if (!v9) return '<p>불러오는 중…</p>';
+      const t = v9.thumbs, ag = JSON.stringify(t.aggregates);
+      return '<p class="lf-hint">' + esc((t.caveats || []).join(' · ')) + '</p><div class="lf-card-mini"><strong>집계(18개 기록)</strong><br><small>' + esc(ag) + '</small></div><div class="lf-card-mini"><strong>범용 제작 규칙 (상관관계, 인과 아님)</strong><ol>' + t.rules.map(r => '<li>' + esc(typeof r === 'string' ? r : JSON.stringify(r)) + '</li>').join('') + '</ol></div><div class="lf-table-wrap"><table><thead><tr><th>#</th><th>영상(원문 제목)</th><th>조회</th><th>예상 하/중/상(원, 가정)</th><th>메인 문구 원문 / 번역</th><th>보조 문구 원문 / 번역</th><th>놀란 얼굴</th><th>인물</th><th>배치·표정</th><th>색상</th><th>VS</th><th>충격</th><th>여백</th></tr></thead><tbody>' + t.records.map(r => { const h = r.thumb || {}; return '<tr><td>' + r.rank + '</td><th><a href="' + esc(r.url) + '" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/' + esc(r.videoId) + '/mqdefault.jpg" alt="" width="96" height="54" loading="lazy" referrerpolicy="no-referrer"></a> ' + esc(r.title) + '<br><small>' + esc(r.channel) + ' · ' + esc((r.viewsRetrievedAt || '').slice(0, 10)) + '</small></th><td>' + W(r.views) + '</td><td>' + [r.est_revenue_KRW_assumed.rpm1000, r.est_revenue_KRW_assumed.rpm2000, r.est_revenue_KRW_assumed.rpm4000].map(W).join('/') + '</td><td>' + esc(h.mainText || '문구 없음') + '<br><small>' + esc(h.mainText_ko_translation || '') + ' (번역)</small></td><td>' + esc((h.subTexts || []).join(' / ') || '없음') + '<br><small>' + esc((h.subTexts_ko_translation || []).join(' / ')) + '</small></td><td>' + esc(h.surprisedFace ?? '미확인') + '</td><td>' + esc(h.peopleCount ?? '미확인') + '</td><td>' + esc((h.layout || '') + ' / ' + (h.expression || '')) + '</td><td>' + esc((h.mainColors || []).join(',')) + '</td><td>' + (h.vsComposition ? 'VS' : '-') + '</td><td>' + esc(h.shockElement || '-') + '</td><td>' + esc(h.whitespace || '') + '</td></tr>'; }).join('') + '</tbody></table></div>';
+    }
+    function v9cat() {
+      if (!v9) return '<p>불러오는 중…</p>';
+      return '<p class="lf-hint">' + esc(v9.assumptions) + '</p><div class="lf-table-wrap"><table><thead><tr><th>#</th><th>분야</th><th>시장</th><th>채널 중앙값의 중앙값</th><th>월수익 하/중/상(원)</th><th>제작비·시간</th><th>월 순이익 하/중/상(원)</th><th>경쟁(1-5)</th><th>저작권 위험</th><th>채널(중앙값)</th></tr></thead><tbody>' + v9.cells.map((c, i) => '<tr><td>' + (i + 1) + '</td><th>' + esc(c.category) + '</th><td>' + c.market + '</td><td>' + W(c.medianOfMedians) + '</td><td>' + (c.monthlyKRW || []).map(W).join('/') + '</td><td>' + W(c.costPerVideo) + '원·' + c.hoursPerVideo + 'h</td><td>' + (c.netMonthlyKRW || []).map(W).join('/') + '</td><td>' + c.competition + '</td><td>' + esc(c.copyright) + '</td><td>' + c.channels.map(x => '<a href="' + esc(x.url) + '" target="_blank" rel="noopener noreferrer">' + esc(x.name) + '</a> ' + W(x.median)).join('<br>') + '</td></tr>').join('') + '</tbody></table></div><p class="lf-hint">신생 채널 성장률: 개설일을 확인하지 못해 모든 칸 미산정. 대형 방송사·언론 채널이 섞여 있어 진입 가능성과 다릅니다.</p>';
+    }
+    async function loadV9() { if (v9) return; try { v9 = await (await fetch('lf-v9.json')).json(); render(); } catch { /* optional */ } }
     async function loadV8() { if (v8) return; try { v8 = await (await fetch('lf-v8.json')).json(); render(); } catch { /* optional */ } }
     function notes() {
       return `<p>${esc(data.excludedNote || '')} (${n(data.excludedCount)}곳)</p><ul>${(data.limits || []).map(l => `<li>${esc(l)}</li>`).join('')}</ul><p>기존 일본 50편 아웃라인은 변경하지 않았고 이 자료는 별도 사업 유형 비교용입니다.</p>`;
@@ -59,7 +69,7 @@ window.LFV7UI = {
     function render() {
       if (!data) return;
       const head = `<div class="lf-row" role="tablist">${TABS.map(([k, t]) => `<button type="button" role="tab" data-v7="tab" data-tab="${k}" aria-selected="${tab === k}" aria-pressed="${tab === k}">${t}</button>`).join('')}</div><p class="lf-hint">조사 기준 ${esc(data.asOf)} · ${esc(data.scope || '')}</p>`;
-      body.innerHTML = head + ({ seed, rank, sector: sectors, pilot: pilotTab, top20, v8pl, mkt, notes })[tab]();
+      body.innerHTML = head + ({ seed, rank, sector: sectors, pilot: pilotTab, top20, v8pl, mkt, v9th, v9cat, notes })[tab]();
     }
     async function load() {
       if (data || loading) return; loading = true;
@@ -67,8 +77,8 @@ window.LFV7UI = {
       catch { loading = false; body.innerHTML = '<p>V7 자료를 읽지 못했습니다. 기존 갤러리는 영향을 받지 않습니다.</p>'; }
     }
     root.addEventListener('toggle', () => { if (root.open) load(); });
-    root.addEventListener('click', e => { const b = e.target.closest('[data-v7=tab]'); if (b) { tab = b.dataset.tab; if (/top20|v8pl|mkt/.test(tab)) loadV8(); render(); } });
+    root.addEventListener('click', e => { const b = e.target.closest('[data-v7=tab]'); if (b) { tab = b.dataset.tab; if (/top20|v8pl|mkt/.test(tab)) loadV8(); if (/v9/.test(tab)) loadV9(); render(); } });
     root.addEventListener('change', e => { const t = e.target, v = t.dataset.v7, p = t.dataset.v7Pilot; if (v === 'v8sort') v8sort = t.value; else if (v === 'sort') sort = t.value; else if (v === 'sector') sector = t.value; else if (p) { const [k, f] = p.split('.'); pilot[k] = { ...(pilot[k] || {}), [f]: t.value }; try { localStorage.setItem(STORE, JSON.stringify(pilot)); } catch { /* optional */ } } else return; render(); });
-    return { open(k) { if (k) tab = k; if (/top20|v8pl|mkt/.test(tab)) loadV8(); root.open = true; load(); render(); root.scrollIntoView({ block: 'nearest' }); } };
+    return { open(k) { if (k) tab = k; if (/v9/.test(tab)) loadV9(); if (/top20|v8pl|mkt/.test(tab)) loadV8(); root.open = true; load(); render(); root.scrollIntoView({ block: 'nearest' }); } };
   }
 };
