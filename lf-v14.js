@@ -7,11 +7,11 @@
   const CATS = [
     ['fullmovie', '영화·드라마 전편 업로드(저작권 위험)', 'B', /full movie|full film|full episode|풀버전|전편|전체 회차|完整版|全集|全話/i, 0.1, 0.2],
     // key, label, class, regex, business(0-1), purchase(0-1)
-    ['ai-invest', 'AI 투자·주식·ETF·코인·경제', 'S', /AI ?(투자|주식|ETF|코인|경제)|주식|증시|ETF|코인|비트코인|배당|금리|경제|재테크|株|投資|NISA|stock|invest|crypto|bitcoin|dividend|econom/i, 1, 1],
+    ['ai-invest', 'AI 투자·주식·ETF·코인·경제', 'S', /AI ?(투자|주식|ETF|코인|경제)|주식|주가|증시|폭락|폭등|ETF|코인|비트코인|배당|금리|경제|재테크|부동산|자산|노후 자금|돈 모|연봉|월급|株|投資|NISA|stock|invest|crypto|bitcoin|dividend|econom/i, 1, 1],
     ['ai-biz', 'AI 창업·마케팅·자동화·전자책', 'S', /창업|마케팅|자동화|전자책|SaaS|부업|수익화|사업|副業|起業|marketing|automation|side hustle|ebook|business/i, 1, 0.9],
     ['kukppong', '한일 국뽕·해외반응', 'S', /국뽕|해외반응|외국인|海外の反応|日本人|韓国人|外国人|称賛|絶賛|reaction|korea|japan/i, 0.35, 0.35],
-    ['war-doc', '전쟁·전투기·잠수함·산업·재난 다큐', 'S', /전쟁|전투|전투기|잠수함|전함|군|세계대전|재난|참사|사고|폭발|산업|war|battle|fighter|submarine|navy|disaster|explosion|戦|軍|艦/i, 0.3, 0.45],
-    ['science', '건축·과학·공학·지식', 'S', /건축|과학|공학|구조|우주|기술|지식|원리|이유|engineer|science|architect|physics|space|how it works|建築|科学|技術/i, 0.45, 0.5],
+    ['war-doc', '전쟁·전투기·잠수함·산업·재난 다큐', 'S', /전쟁|전투|전투기|잠수함|전함|무기|방산|전란|대전|세계대전|재난|참사|사고|폭발|산업|war|battle|fighter|submarine|navy|disaster|explosion|戦|軍|艦/i, 0.3, 0.45],
+    ['science', '건축·과학·공학·지식', 'S', /건축|과학|공학|구조물|우주|기술|원리|물리|engineer|science|architect|physics|space|how it works|建築|科学|技術/i, 0.45, 0.5],
     ['travel', '여행·드론·풍경·세계 문화', 'S', /여행|드론|풍경|도시 걷기|걷기|walking tour|travel|drone|旅|散歩/i, 0.4, 0.45],
     ['kids-edu', 'AI 어린이 영어 교육', 'A', /어린이|키즈|동요|영어 공부|파닉스|kids|nursery|phonics|子供|童謡/i, 0.6, 0.6],
     ['animal', '동물 이야기·캐릭터', 'A', /동물|고양이|강아지|cat|dog|animal|猫|犬/i, 0.25, 0.35],
