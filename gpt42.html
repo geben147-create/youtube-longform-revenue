@@ -1,0 +1,718 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>GPT 선정 일본뽕·국뽕 42편 · 1차 21 + 2차 21</title>
+<style>
+:root{--bg:#0f141c;--panel:#161d29;--line:#2b3546;--ink:#e8eef8;--mut:#9aa7bd;--red:#ff4d4d;--grn:#7dff7a;--lime:#bcff34;--ylw:#FFEB00}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.55 system-ui,"Malgun Gothic",sans-serif}a{color:#8cc4ff}
+header{position:sticky;top:0;z-index:20;background:#0b1017;border-bottom:1px solid var(--line);padding:8px 14px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+header h1{font-size:16px;margin:0 10px 0 0}header button,header a.btn{background:#1d2636;color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:5px 10px;cursor:pointer;font-size:13px;text-decoration:none}
+header button[aria-pressed=true]{border-color:var(--red);color:var(--red);font-weight:700}
+main{max-width:1280px;margin:0 auto;padding:12px}
+.round{border:2px solid var(--line);border-radius:12px;padding:12px;margin:14px 0;background:var(--panel)}.round.r1{border-color:#ff6b6b}.round.r2{border-color:#7dd3fc}
+.badge{display:inline-block;padding:2px 8px;border-radius:999px;font-weight:800;font-size:12px}.b1{background:#ff6b6b;color:#200}.b2{background:#7dd3fc;color:#021}
+.tw{overflow:auto}table{border-collapse:collapse;width:100%;margin:6px 0}th,td{border:1px solid var(--line);padding:4px 6px;vertical-align:top;text-align:left}th{background:#1c2535}
+.gpt{background:#10161f;border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:8px 0}.gpt h2,.gpt h3,.gpt h4,.gpt h5{margin:10px 0 4px}
+details>summary{cursor:pointer;font-weight:700}pre.raw{white-space:pre-wrap;word-break:break-word;background:#0a0e14;border:1px solid var(--line);padding:10px;border-radius:8px;font-size:12px}
+.chart{background:#10161f;border:1px solid var(--line);border-radius:10px;padding:10px;margin:8px 0}.bar{display:grid;grid-template-columns:170px 1fr 120px;gap:6px;align-items:center;margin:3px 0;font-size:12px}.bar i{display:block;height:14px;border-radius:4px;background:linear-gradient(90deg,#ff6b6b,#ffb86b)}.bar b{color:var(--grn)}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(300px,100%),1fr));gap:10px}.card{background:#10161f;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.th{position:relative;display:block;aspect-ratio:16/9;background:#000;cursor:pointer}.th img{width:100%;height:100%;object-fit:cover;display:block}.th .pl{position:absolute;left:8px;bottom:8px;background:rgba(0,0,0,.75);color:#fff;border-radius:6px;padding:2px 8px;font-size:12px}
+.th .code{position:absolute;left:8px;top:8px;font-weight:900;font-size:12px;border-radius:5px;padding:1px 7px}.th .gptm{position:absolute;right:6px;top:6px}
+.cb{padding:8px 10px;font-size:13px}.cb .t{font-weight:700}.cb .m{color:var(--mut);font-size:12px}.money{color:var(--grn);font-weight:700}.red{color:var(--red);font-weight:700}
+.tt{background:#0b1220;border-left:3px solid var(--ylw);padding:4px 8px;margin:6px 0;font-size:12px}
+.hook{max-height:220px;overflow:auto;font-size:12px;border:1px solid var(--line);border-radius:6px;margin-top:6px}.hook div{display:grid;grid-template-columns:58px 1fr 1fr;gap:6px;padding:2px 6px;border-bottom:1px solid #1d2636}.hook .tc{color:#ffd36b;font-family:monospace}
+.player iframe{width:100%;aspect-ratio:16/9;border:0;display:block}.player .pb{display:flex;gap:6px;padding:4px;background:#111;font-size:12px}
+.hide-thumb .th img{display:none}.hide-thumb .th{aspect-ratio:auto;min-height:28px}.hide-desc .cb .detail{display:none}
+.calc{display:flex;flex-wrap:wrap;gap:8px;align-items:center}.calc button[aria-pressed=true]{border-color:var(--red);color:var(--red)}
+.note{color:var(--mut);font-size:12px}
+</style></head><body>
+<header><h1>💛 GPT 선정 일본뽕·국뽕 42편</h1><button data-go="r1" aria-pressed="false">🔴 1차 (처음 준 21편)</button><button data-go="r2" aria-pressed="false">🔵 2차 (지금 준 21편)</button><button id="tThumb">썸네일 숨기기</button><button id="tDesc">하단 설명 숨기기</button><a class="btn" href="index.html">← 롱폼 전체 바둑판</a><a class="btn" href="https://github.com/geben147-create/youtube-longform-revenue/pull/7" target="_blank" rel="noopener">PR #7</a><span class="note" id="asof"></span></header>
+<main>
+<p class="note">이 페이지는 두 번에 나눠 받은 GPT 보고서 <b>원문 전체를 그대로</b> 싣고(아래 각 차수의 "GPT 원문"), 그 아래에 같은 영상들의 실제 YouTube 수집값(제목·채널·조회수·게시일·썸네일 문구·자막 상태·첫 3분 훅 원문/한국어)을 붙였습니다. GPT 보고서의 수치는 GPT 작성 당시 값이고, 수집값은 수집 시각 기준입니다. 모든 수익은 RPM 가정 추정이며 실제 정산액이 아닙니다.</p>
+<section class="round r1" id="r1"><h2><span class="badge b1">1차</span> 처음 준 GPT 보고서 · 일본뽕·국뽕 BEST 21편</h2><div id="viz1"></div><div id="cards1"></div><details open><summary>📄 GPT 원문 (1차 · 서식 변환본, 문구 그대로)</summary><div class="gpt"><h2><b>🔴🟡🟢 일본뽕·국뽕 BEST 21편</b></h2>
+<p>기존 AISDE GitHub 조사 자료에서 <b>A·B·C 그룹별 7편씩, 총 21편</b>으로 확대했습니다. 영상 제목을 클릭하면 유튜브 원본으로 이동합니다.</p>
+<p>🔴 A. 반복 고수익</p>
+<h2><b>7편</b></h2>
+<p>🟡 B. 신생 급성장</p>
+<h2><b>7편</b></h2>
+<p>🟢 C. 교차 검증</p>
+<h2><b>7편</b></h2>
+<h3><b>🔴 A그룹. 지속적 고수익 채널 7편</b></h3>
+<p>비출연형 및 자동화 제작에 참고할 만한 채널을 우선 선정했습니다. 월수익은 기존 블링의 최근 30일 롱폼 추정치입니다.</p>
+<div class="tw"><table><thead><tr><th>순위</th><th>채널 및 영상 링크</th><th>조회수</th><th>월 추정 수익</th><th>제작 난이도</th></tr></thead><tbody><tr><td>1</td><td>일본 응원단 · <a href="https://www.youtube.com/watch?v=pwTkR2Z_wrI&amp;utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer" data-vid="pwTkR2Z_wrI">일본 총리와 중국의 반응</a></td><td>133만</td><td><b>1억 2,869만</b></td><td>★★★☆☆</td></tr><tr><td>2</td><td>경제상담소 · <a href="https://www.youtube.com/watch?v=UOa3y1H9e2Q&amp;utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer" data-vid="UOa3y1H9e2Q">동남아 휴양지 몰락 TOP5</a></td><td>344만</td><td><b>4,353만</b></td><td>★★★☆☆</td></tr><tr><td>3</td><td>즌다 탐험대 · <a href="https://www.youtube.com/watch?v=G4VSzLMFjEo&amp;utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer" data-vid="G4VSzLMFjEo">한일 관계 캐릭터 해설</a></td><td>143만</td><td><b>3,015만</b></td><td>★★★★☆</td></tr><tr><td>4</td><td>이슈한바퀴 · <a href="https://www.youtube.com/watch?v=dzBShM8wRlM&amp;utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer" data-vid="dzBShM8wRlM">김연경과 일본 배구선수</a></td><td>201만</td><td><b>1,670만</b></td><td>★★★★☆</td></tr><tr><td>5</td><td>たのしみTV · <a href="https://www.youtube.com/watch?v=e7ecpxvjAAc&amp;utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer" data-vid="e7ecpxvjAAc">한국인 여동생의 일본 초밥 체험</a></td><td>87만</td><td><b>1,193만</b></td><td>★★★★☆</td></tr><tr><td>6</td><td>한류왕 · <a href="https://www.youtube.com/watch?v=cwqukf8KJuA&amp;utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer" data-vid="cwqukf8KJuA">미국 여성들이 종로에 몰려드는 이유</a></td><td>97만</td><td><b>1,047만</b></td><td>★★★☆☆</td></tr><tr><td>7</td><td>日本びっくり速報 · <a href="https://www.youtube.com/watch?v=9l5fbcz6Znc&amp;utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer" data-vid="9l5fbcz6Znc">일본 시바견에 열광하는 외국인</a></td><td>41만</td><td><b>935만</b></td><td>★★★☆☆</td></tr></tbody></table></div>
+<p><b>채널별 월 추정 수익</b></p>
+<p>단위: 만 원</p>
+<p>일본 응원단</p>
+<p>12,869만</p>
+<p>경제상담소</p>
+<p>4,353만</p>
+<p>즌다 탐험대</p>
+<p>3,015만</p>
+<p>이슈한바퀴</p>
+<p>1,670만</p>
+<p>たのしみTV</p>
+<p>1,193만</p>
+<p>한류왕</p>
+<p>1,047만</p>
+<p>日本びっくり速報</p>
+<p>935만</p>
+<p> A그룹 URL 7개 복사</p>
+<h3><b>🟡 B그룹. 신생·저구독·공개 영상 10개 이하 채널 7편</b></h3>
+<p>7일·10일·30일·60일·90일 이내 조건을 적용했습니다. 모두 서로 다른 채널입니다.</p>
+<div class="tw"><table><thead><tr><th>순위</th><th>채널 및 영상 링크</th><th>개설 경과</th><th>공개 영상</th><th>구독자</th><th>조회수</th></tr></thead><tbody><tr><td>1</td><td><a href="https://www.youtube.com/watch?v=vqwtVxPPqzU&amp;utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer" data-vid="vqwtVxPPqzU">캐나다인 부부의 도쿄 체험</a></td><td>8일</td><td>9개</td><td>156</td><td><b>197,747</b></td></tr><tr><td>2</td><td><a href="https://www.youtube.com/watch?v=es2FBU2_mBY&amp;utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer" data-vid="es2FBU2_mBY">폭스바겐과 도요타 비교</a></td><td>6일</td><td>4개</td><td>423</td><td><b>138,097</b></td></tr><tr><td>3</td><td><a href="https://www.youtube.com/watch?v=YKLP-i8Gpec&amp;utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer" data-vid="YKLP-i8Gpec">미국 성게 어항과 일본 유학생</a></td><td>19일</td><td>10개</td><td>358</td><td>33,194</td></tr><tr><td>4</td><td><a href="https://www.youtube.com/watch?v=DEaKgtjKYS4&amp;utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer" data-vid="DEaKgtjKYS4">일본 히타치의 오스트리아 철도 수주</a></td><td>42일</td><td>8개</td><td>1,740</td><td>19,263</td></tr><tr><td>5</td><td><a href="https://www.youtube.com/watch?v=-pozMsqZ-Qw&amp;utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer" data-vid="-pozMsqZ-Qw">호주 패널과 일본 패널의 논쟁</a></td><td>14일</td><td>7개</td><td>17</td><td>7,757</td></tr><tr><td>6</td><td><a href="https://www.youtube.com/watch?v=Z5dkA8rHc8c&amp;utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer" data-vid="Z5dkA8rHc8c">일본 규동과 라멘에 놀란 외국인</a></td><td>11일</td><td>9개</td><td>27</td><td>7,708</td></tr><tr><td>7</td><td><a href="https://www.youtube.com/watch?v=abvahzCz0Qs&amp;utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer" data-vid="abvahzCz0Qs">후지산 일출을 처음 본 외국인</a></td><td>17일</td><td>7개</td><td>226</td><td>1,007</td></tr></tbody></table></div>
+<p><b>구독자 대비 조회수 배율</b></p>
+<p>B1. 日本旅のおすそわけ</p>
+<p>1,268배</p>
+<p>B2. 脱帽ジャパン</p>
+<p>326배</p>
+<p>B3. 脱帽ニッポン</p>
+<p>93배</p>
+<p>B4. 匠の国ニッポン</p>
+<p>11.1배</p>
+<p>B5. 海外の反応ニッポン堂</p>
+<p>456배</p>
+<p>B6. 訪日客から一声</p>
+<p>285배</p>
+<p>B7. ニッポンのトリコ</p>
+<p>4.5배</p>
+<p> B그룹 URL 7개 복사</p>
+<p><b>B1·B2가 특히 주목할 사례입니다.</b> 엄격한 신생 채널 조건을 유지하면 B3~B7은 조회 성과가 낮아지므로 고수익 성공 사례로 확정하지 않고 비교 후보로 분류했습니다.</p>
+<h3><b>🟢 C그룹. AI 감동 스토리 및 교차 검증 7편</b></h3>
+<p>세계의 빛 JAPAN(世界の輝きJAPAN)의 성공 영상 중 V5·V7 양쪽 데이터가 일치하고 자막이 확보된 상위 7편입니다.</p>
+<ul><li>개설 45일, 구독자 약 7,920명, 공개 영상 15개</li><li>제작 방식: 창작 스토리·AI 이미지·내레이션 활용</li><li>실제 사건이 아닌 창작 이야기임을 제작자가 고지</li></ul>
+<div class="tw"><table><thead><tr><th>순위</th><th>영상 링크</th><th>조회수(V5)</th><th>길이</th><th>편당 추정 수익</th></tr></thead><tbody><tr><td>1</td><td><a href="https://www.youtube.com/watch?v=JT80a8IEu2s&amp;utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer" data-vid="JT80a8IEu2s">미국 슈퍼마켓과 일본 생선가게 딸</a></td><td><b>172.7만</b></td><td>32:24</td><td>345만 원</td></tr><tr><td>2</td><td><a href="https://www.youtube.com/watch?v=alYG7_zlRTM&amp;utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer" data-vid="alYG7_zlRTM">감자를 폐기하던 미국 농장과 일본인 며느리</a></td><td><b>142.8만</b></td><td>35:01</td><td>286만 원</td></tr><tr><td>3</td><td><a href="https://www.youtube.com/watch?v=ChCe6Wejrc0&amp;utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer" data-vid="ChCe6Wejrc0">맛없는 미국 군용식당과 일본인 아르바이트생</a></td><td>36.6만</td><td>35:43</td><td>73만 원</td></tr><tr><td>4</td><td><a href="https://www.youtube.com/watch?v=IJp6iY68YMM&amp;utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer" data-vid="IJp6iY68YMM">무를 버리던 미국 농장과 일본인 여성</a></td><td>35만</td><td>36:22</td><td>70만 원</td></tr><tr><td>5</td><td><a href="https://www.youtube.com/watch?v=SI4X0uOPMWU&amp;utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer" data-vid="SI4X0uOPMWU">미국 호텔 경영 가족의 일본 료칸 체험</a></td><td>21.7만</td><td>43:34</td><td>43만 원</td></tr><tr><td>6</td><td><a href="https://www.youtube.com/watch?v=Aea4iQjXGNk&amp;utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer" data-vid="Aea4iQjXGNk">폐업 직전 미국 주유소와 일본인 며느리</a></td><td>20.9만</td><td>30:14</td><td>42만 원</td></tr><tr><td>7</td><td><a href="https://www.youtube.com/watch?v=3k6yHXKTQP0&amp;utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer" data-vid="3k6yHXKTQP0">아기를 데리고 일본에 온 미국인 엄마</a></td><td>17.5만</td><td>36:52</td><td>35만 원</td></tr></tbody></table></div>
+<p><b>C그룹 성공 영상 조회수</b></p>
+<p>0만 회50만 회100만 회150만 회200만 회생선감자식당무료칸주유소엄마</p>
+<p> C그룹 URL 7개 복사</p>
+<h3><b>4. 전체 21편 세부 수익 비교</b></h3>
+<p>RPM 2,000원 기준이며, 일평균은 11월 27일까지 공개 누적 조회수를 게시 경과일로 나눈 근삿값입니다.</p>
+<div class="tw"><table><thead><tr><th>영상</th><th>일평균 조회</th><th>편당 추정 수익</th><th>월 추정 수익</th><th>난이도 /5</th></tr></thead><tbody><tr><td>🔴 A1</td><td>222,124</td><td>267만</td><td>12,869만</td><td>3</td></tr><tr><td>🔴 A2</td><td>83,892</td><td>688만</td><td>4,353만</td><td>3</td></tr><tr><td>🔴 A3</td><td>34,142</td><td>287만</td><td>3,015만</td><td>4</td></tr><tr><td>🔴 A4</td><td>287,763</td><td>403만</td><td>1,670만</td><td>4</td></tr><tr><td>🔴 A5</td><td>24,880</td><td>174만</td><td>1,193만</td><td>4</td></tr><tr><td>🔴 A6</td><td>23,160</td><td>195만</td><td>1,047만</td><td>3</td></tr><tr><td>🔴 A7</td><td>20,387</td><td>82만</td><td>935만</td><td>3</td></tr><tr><td>🟡 B1</td><td>32,958</td><td>39.5만</td><td>4.8만</td><td>3</td></tr><tr><td>🟡 B2</td><td>46,032</td><td>27.6만</td><td>38.4만</td><td>3</td></tr><tr><td>🟡 B3</td><td>8,299</td><td>6.6만</td><td>미산정</td><td>3</td></tr><tr><td>🟡 B4</td><td>1,284</td><td>3.9만</td><td>23.5만</td><td>3</td></tr><tr><td>🟡 B5</td><td>1,108</td><td>1.6만</td><td>12.4만</td><td>3</td></tr><tr><td>🟡 B6</td><td>3,854</td><td>1.5만</td><td>2.2만</td><td>3</td></tr><tr><td>🟡 B7</td><td>168</td><td>0.2만</td><td>1.6만</td><td>3</td></tr><tr><td>🟢 C1</td><td>115,118</td><td>345만</td><td>181만*</td><td>2</td></tr><tr><td>🟢 C2</td><td>49,246</td><td>286만</td><td>동일 채널</td><td>2</td></tr><tr><td>🟢 C3</td><td>19,259</td><td>73만</td><td>동일 채널</td><td>2</td></tr><tr><td>🟢 C4</td><td>15,918</td><td>70만</td><td>동일 채널</td><td>2</td></tr><tr><td>🟢 C5</td><td>12,755</td><td>43만</td><td>동일 채널</td><td>3</td></tr><tr><td>🟢 C6</td><td>8,709</td><td>42만</td><td>동일 채널</td><td>2</td></tr><tr><td>🟢 C7</td><td>19,418</td><td>35만</td><td>동일 채널</td><td>2</td></tr></tbody></table></div>
+<p>A그룹 월수익은 외부 추정치이고, B·C그룹은 채널 조회 중앙값 × 월 8편 × 가정 RPM을 적용한 제작 시뮬레이션입니다. C그룹의 181만 원은 동일 채널에 대한 하나의 시뮬레이션이며 7번 합산하지 않습니다.</p>
+<p>실제 정산액은 전부 미확인입니다. 제작 난이도도 실제 작업시간을 측정한 결과가 아닌 잠정 평가입니다.</p>
+<h3><b>5. ⭐ 가장 먼저 분석할 영상 7편</b></h3>
+<div class="tw"><table><thead><tr><th>우선순위</th><th>영상</th><th>분석 목적</th></tr></thead><tbody><tr><td>1</td><td><a href="https://www.youtube.com/watch?v=JT80a8IEu2s&amp;utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer" data-vid="JT80a8IEu2s">C1. 미국 생선가게</a></td><td>감동·반전 대본 공식</td></tr><tr><td>2</td><td><a href="https://www.youtube.com/watch?v=alYG7_zlRTM&amp;utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer" data-vid="alYG7_zlRTM">C2. 미국 감자 농장</a></td><td>성공 공식의 반복성</td></tr><tr><td>3</td><td><a href="https://www.youtube.com/watch?v=UOa3y1H9e2Q&amp;utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer" data-vid="UOa3y1H9e2Q">A2. 경제상담소</a></td><td>AI 경제·순위 영상</td></tr><tr><td>4</td><td><a href="https://www.youtube.com/watch?v=es2FBU2_mBY&amp;utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer" data-vid="es2FBU2_mBY">B2. 도요타 비교</a></td><td>신생 채널의 빠른 성장</td></tr><tr><td>5</td><td><a href="https://www.youtube.com/watch?v=vqwtVxPPqzU&amp;utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer" data-vid="vqwtVxPPqzU">B1. 캐나다인 일본 체험</a></td><td>저구독 고조회 공식</td></tr><tr><td>6</td><td><a href="https://www.youtube.com/watch?v=pwTkR2Z_wrI&amp;utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer" data-vid="pwTkR2Z_wrI">A1. 일본 응원단</a></td><td>반복 고수익 운영 구조</td></tr><tr><td>7</td><td><a href="https://www.youtube.com/watch?v=dzBShM8wRlM&amp;utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer" data-vid="dzBShM8wRlM">A4. 이슈한바퀴</a></td><td>한국 국뽕·해외반응 구조</td></tr></tbody></table></div>
+<p><b>전체 영상 21개 URL</b></p>
+<p>Hermes·Codex 영상 분석용</p>
+<p> 전체 21개 한 번에 복사</p>
+<p><b>기존 조사 출처:</b> <a href="https://geben147-create.github.io/youtube-longform-revenue/index.html?utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer">AISDE 운영 화면</a> · <a href="https://github.com/geben147-create/youtube-longform-revenue/blob/main/lf-v5-lab.json?utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer">V5 국뽕 연구</a> · <a href="https://github.com/geben147-create/youtube-longform-revenue/blob/main/lf-v7.json?utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer">V7 신생 채널 연구</a></p>
+<p>이번에는 기존 저장 데이터를 재분석했으며, 실시간 영상 재생 검증과 GitHub 추가 배포는 하지 않았습니다. C그룹은 같은 채널 내 성공 공식의 반복성을 검증하기 위한 것이므로 서로 독립적인 7개 채널의 검증 결과는 아닙니다.</p></div></details><details><summary>📄 GPT 원문 (1차 · 글자 그대로 원본 텍스트)</summary><pre class="raw"># **🔴🟡🟢 일본뽕·국뽕 BEST 21편**
+
+기존 AISDE GitHub 조사 자료에서 **A·B·C 그룹별 7편씩, 총 21편**으로 확대했습니다. 영상 제목을 클릭하면 유튜브 원본으로 이동합니다.
+
+🔴 A. 반복 고수익
+
+# **7편**
+
+🟡 B. 신생 급성장
+
+# **7편**
+
+🟢 C. 교차 검증
+
+# **7편**
+
+## **🔴 A그룹. 지속적 고수익 채널 7편**
+
+비출연형 및 자동화 제작에 참고할 만한 채널을 우선 선정했습니다. 월수익은 기존 블링의 최근 30일 롱폼 추정치입니다.
+
+| 순위 | 채널 및 영상 링크                                                                                         | 조회수  | 월 추정 수익       | 제작 난이도 |
+| -- | -------------------------------------------------------------------------------------------------- | ---- | ------------- | ------ |
+| 1  | 일본 응원단 · [일본 총리와 중국의 반응](https://www.youtube.com/watch?v=pwTkR2Z_wrI\&amp;utm_source=chatgpt.com)      | 133만 | **1억 2,869만** | ★★★☆☆  |
+| 2  | 경제상담소 · [동남아 휴양지 몰락 TOP5](https://www.youtube.com/watch?v=UOa3y1H9e2Q\&amp;utm_source=chatgpt.com)     | 344만 | **4,353만**    | ★★★☆☆  |
+| 3  | 즌다 탐험대 · [한일 관계 캐릭터 해설](https://www.youtube.com/watch?v=G4VSzLMFjEo\&amp;utm_source=chatgpt.com)       | 143만 | **3,015만**    | ★★★★☆  |
+| 4  | 이슈한바퀴 · [김연경과 일본 배구선수](https://www.youtube.com/watch?v=dzBShM8wRlM\&amp;utm_source=chatgpt.com)        | 201만 | **1,670만**    | ★★★★☆  |
+| 5  | たのしみTV · [한국인 여동생의 일본 초밥 체험](https://www.youtube.com/watch?v=e7ecpxvjAAc\&amp;utm_source=chatgpt.com)  | 87만  | **1,193만**    | ★★★★☆  |
+| 6  | 한류왕 · [미국 여성들이 종로에 몰려드는 이유](https://www.youtube.com/watch?v=cwqukf8KJuA\&amp;utm_source=chatgpt.com)   | 97만  | **1,047만**    | ★★★☆☆  |
+| 7  | 日本びっくり速報 · [일본 시바견에 열광하는 외국인](https://www.youtube.com/watch?v=9l5fbcz6Znc\&amp;utm_source=chatgpt.com) | 41만  | **935만**      | ★★★☆☆  |
+
+**채널별 월 추정 수익**
+
+단위: 만 원
+
+일본 응원단
+
+12,869만
+
+경제상담소
+
+4,353만
+
+즌다 탐험대
+
+3,015만
+
+이슈한바퀴
+
+1,670만
+
+たのしみTV
+
+1,193만
+
+한류왕
+
+1,047만
+
+日本びっくり速報
+
+935만
+
+&amp;#x20;A그룹 URL 7개 복사
+
+## **🟡 B그룹. 신생·저구독·공개 영상 10개 이하 채널 7편**
+
+7일·10일·30일·60일·90일 이내 조건을 적용했습니다. 모두 서로 다른 채널입니다.
+
+| 순위 | 채널 및 영상 링크                                                                                 | 개설 경과 | 공개 영상 | 구독자   | 조회수         |
+| -- | ------------------------------------------------------------------------------------------ | ----- | ----- | ----- | ----------- |
+| 1  | [캐나다인 부부의 도쿄 체험](https://www.youtube.com/watch?v=vqwtVxPPqzU\&amp;utm_source=chatgpt.com)      | 8일    | 9개    | 156   | **197,747** |
+| 2  | [폭스바겐과 도요타 비교](https://www.youtube.com/watch?v=es2FBU2_mBY\&amp;utm_source=chatgpt.com)        | 6일    | 4개    | 423   | **138,097** |
+| 3  | [미국 성게 어항과 일본 유학생](https://www.youtube.com/watch?v=YKLP-i8Gpec\&amp;utm_source=chatgpt.com)    | 19일   | 10개   | 358   | 33,194      |
+| 4  | [일본 히타치의 오스트리아 철도 수주](https://www.youtube.com/watch?v=DEaKgtjKYS4\&amp;utm_source=chatgpt.com) | 42일   | 8개    | 1,740 | 19,263      |
+| 5  | [호주 패널과 일본 패널의 논쟁](https://www.youtube.com/watch?v=-pozMsqZ-Qw\&amp;utm_source=chatgpt.com)    | 14일   | 7개    | 17    | 7,757       |
+| 6  | [일본 규동과 라멘에 놀란 외국인](https://www.youtube.com/watch?v=Z5dkA8rHc8c\&amp;utm_source=chatgpt.com)   | 11일   | 9개    | 27    | 7,708       |
+| 7  | [후지산 일출을 처음 본 외국인](https://www.youtube.com/watch?v=abvahzCz0Qs\&amp;utm_source=chatgpt.com)    | 17일   | 7개    | 226   | 1,007       |
+
+**구독자 대비 조회수 배율**
+
+B1. 日本旅のおすそわけ
+
+1,268배
+
+B2. 脱帽ジャパン
+
+326배
+
+B3. 脱帽ニッポン
+
+93배
+
+B4. 匠の国ニッポン
+
+11.1배
+
+B5. 海外の反応ニッポン堂
+
+456배
+
+B6. 訪日客から一声
+
+285배
+
+B7. ニッポンのトリコ
+
+4.5배
+
+&amp;#x20;B그룹 URL 7개 복사
+
+**B1·B2가 특히 주목할 사례입니다.** 엄격한 신생 채널 조건을 유지하면 B3\~B7은 조회 성과가 낮아지므로 고수익 성공 사례로 확정하지 않고 비교 후보로 분류했습니다.
+
+## **🟢 C그룹. AI 감동 스토리 및 교차 검증 7편**
+
+세계의 빛 JAPAN(世界の輝きJAPAN)의 성공 영상 중 V5·V7 양쪽 데이터가 일치하고 자막이 확보된 상위 7편입니다.
+
+- 개설 45일, 구독자 약 7,920명, 공개 영상 15개
+- 제작 방식: 창작 스토리·AI 이미지·내레이션 활용
+- 실제 사건이 아닌 창작 이야기임을 제작자가 고지
+
+| 순위 | 영상 링크                                                                                          | 조회수(V5)    | 길이    | 편당 추정 수익 |
+| -- | ---------------------------------------------------------------------------------------------- | ---------- | ----- | -------- |
+| 1  | [미국 슈퍼마켓과 일본 생선가게 딸](https://www.youtube.com/watch?v=JT80a8IEu2s\&amp;utm_source=chatgpt.com)      | **172.7만** | 32:24 | 345만 원   |
+| 2  | [감자를 폐기하던 미국 농장과 일본인 며느리](https://www.youtube.com/watch?v=alYG7_zlRTM\&amp;utm_source=chatgpt.com) | **142.8만** | 35:01 | 286만 원   |
+| 3  | [맛없는 미국 군용식당과 일본인 아르바이트생](https://www.youtube.com/watch?v=ChCe6Wejrc0\&amp;utm_source=chatgpt.com) | 36.6만      | 35:43 | 73만 원    |
+| 4  | [무를 버리던 미국 농장과 일본인 여성](https://www.youtube.com/watch?v=IJp6iY68YMM\&amp;utm_source=chatgpt.com)    | 35만        | 36:22 | 70만 원    |
+| 5  | [미국 호텔 경영 가족의 일본 료칸 체험](https://www.youtube.com/watch?v=SI4X0uOPMWU\&amp;utm_source=chatgpt.com)   | 21.7만      | 43:34 | 43만 원    |
+| 6  | [폐업 직전 미국 주유소와 일본인 며느리](https://www.youtube.com/watch?v=Aea4iQjXGNk\&amp;utm_source=chatgpt.com)   | 20.9만      | 30:14 | 42만 원    |
+| 7  | [아기를 데리고 일본에 온 미국인 엄마](https://www.youtube.com/watch?v=3k6yHXKTQP0\&amp;utm_source=chatgpt.com)    | 17.5만      | 36:52 | 35만 원    |
+
+**C그룹 성공 영상 조회수**
+
+0만 회50만 회100만 회150만 회200만 회생선감자식당무료칸주유소엄마
+
+&amp;#x20;C그룹 URL 7개 복사
+
+## **4. 전체 21편 세부 수익 비교**
+
+RPM 2,000원 기준이며, 일평균은 11월 27일까지 공개 누적 조회수를 게시 경과일로 나눈 근삿값입니다.
+
+| 영상    | 일평균 조회  | 편당 추정 수익 | 월 추정 수익 | 난이도 /5 |
+| ----- | ------- | -------- | ------- | ------ |
+| 🔴 A1 | 222,124 | 267만     | 12,869만 | 3      |
+| 🔴 A2 | 83,892  | 688만     | 4,353만  | 3      |
+| 🔴 A3 | 34,142  | 287만     | 3,015만  | 4      |
+| 🔴 A4 | 287,763 | 403만     | 1,670만  | 4      |
+| 🔴 A5 | 24,880  | 174만     | 1,193만  | 4      |
+| 🔴 A6 | 23,160  | 195만     | 1,047만  | 3      |
+| 🔴 A7 | 20,387  | 82만      | 935만    | 3      |
+| 🟡 B1 | 32,958  | 39.5만    | 4.8만    | 3      |
+| 🟡 B2 | 46,032  | 27.6만    | 38.4만   | 3      |
+| 🟡 B3 | 8,299   | 6.6만     | 미산정     | 3      |
+| 🟡 B4 | 1,284   | 3.9만     | 23.5만   | 3      |
+| 🟡 B5 | 1,108   | 1.6만     | 12.4만   | 3      |
+| 🟡 B6 | 3,854   | 1.5만     | 2.2만    | 3      |
+| 🟡 B7 | 168     | 0.2만     | 1.6만    | 3      |
+| 🟢 C1 | 115,118 | 345만     | 181만\*  | 2      |
+| 🟢 C2 | 49,246  | 286만     | 동일 채널   | 2      |
+| 🟢 C3 | 19,259  | 73만      | 동일 채널   | 2      |
+| 🟢 C4 | 15,918  | 70만      | 동일 채널   | 2      |
+| 🟢 C5 | 12,755  | 43만      | 동일 채널   | 3      |
+| 🟢 C6 | 8,709   | 42만      | 동일 채널   | 2      |
+| 🟢 C7 | 19,418  | 35만      | 동일 채널   | 2      |
+
+A그룹 월수익은 외부 추정치이고, B·C그룹은 채널 조회 중앙값 × 월 8편 × 가정 RPM을 적용한 제작 시뮬레이션입니다. C그룹의 181만 원은 동일 채널에 대한 하나의 시뮬레이션이며 7번 합산하지 않습니다.
+
+실제 정산액은 전부 미확인입니다. 제작 난이도도 실제 작업시간을 측정한 결과가 아닌 잠정 평가입니다.
+
+## **5. ⭐ 가장 먼저 분석할 영상 7편**
+
+| 우선순위 | 영상                                                                                    | 분석 목적         |
+| ---- | ------------------------------------------------------------------------------------- | ------------- |
+| 1    | [C1. 미국 생선가게](https://www.youtube.com/watch?v=JT80a8IEu2s\&amp;utm_source=chatgpt.com)    | 감동·반전 대본 공식   |
+| 2    | [C2. 미국 감자 농장](https://www.youtube.com/watch?v=alYG7_zlRTM\&amp;utm_source=chatgpt.com)   | 성공 공식의 반복성    |
+| 3    | [A2. 경제상담소](https://www.youtube.com/watch?v=UOa3y1H9e2Q\&amp;utm_source=chatgpt.com)      | AI 경제·순위 영상   |
+| 4    | [B2. 도요타 비교](https://www.youtube.com/watch?v=es2FBU2_mBY\&amp;utm_source=chatgpt.com)     | 신생 채널의 빠른 성장  |
+| 5    | [B1. 캐나다인 일본 체험](https://www.youtube.com/watch?v=vqwtVxPPqzU\&amp;utm_source=chatgpt.com) | 저구독 고조회 공식    |
+| 6    | [A1. 일본 응원단](https://www.youtube.com/watch?v=pwTkR2Z_wrI\&amp;utm_source=chatgpt.com)     | 반복 고수익 운영 구조  |
+| 7    | [A4. 이슈한바퀴](https://www.youtube.com/watch?v=dzBShM8wRlM\&amp;utm_source=chatgpt.com)      | 한국 국뽕·해외반응 구조 |
+
+**전체 영상 21개 URL**
+
+Hermes·Codex 영상 분석용
+
+&amp;#x20;전체 21개 한 번에 복사
+
+**기존 조사 출처:** [AISDE 운영 화면](https://geben147-create.github.io/youtube-longform-revenue/index.html?utm_source=chatgpt.com) · [V5 국뽕 연구](https://github.com/geben147-create/youtube-longform-revenue/blob/main/lf-v5-lab.json?utm_source=chatgpt.com) · [V7 신생 채널 연구](https://github.com/geben147-create/youtube-longform-revenue/blob/main/lf-v7.json?utm_source=chatgpt.com)
+
+이번에는 기존 저장 데이터를 재분석했으며, 실시간 영상 재생 검증과 GitHub 추가 배포는 하지 않았습니다. C그룹은 같은 채널 내 성공 공식의 반복성을 검증하기 위한 것이므로 서로 독립적인 7개 채널의 검증 결과는 아닙니다.</pre></details></section>
+<section class="round r2" id="r2"><h2><span class="badge b2">2차</span> 지금 준 GPT 보고서 · 수익 우선 추가 BEST 21편</h2><div id="viz2"></div><div id="cards2"></div><details open><summary>📄 GPT 원문 (2차 · 서식 변환본, 문구 그대로)</summary><div class="gpt"><h2><b>💰 일본뽕·국뽕 수익 우선 추가 BEST 21편</b></h2>
+<p>앞서 제공한 21개 영상 ID를 전부 제외하고, 기존 AISDE 데이터를 다시 분석했습니다. 이번에는 <b>구독자 대비 조회수만 높은 영상보다 실제로 큰 매출을 기대할 만한 조회 규모와 반복 성과</b>를 우선합니다.</p>
+<div class="tw"><table><thead><tr><th>그룹</th><th>추가 선별 기준</th><th>편수</th></tr></thead><tbody><tr><td>🔴 A</td><td>월 추정 수익이 높은 채널의 추가 성공작</td><td>7</td></tr><tr><td>🟡 B</td><td>신생·저구독 채널 중 수익 잠재력이 큰 영상</td><td>7</td></tr><tr><td>🟢 C</td><td>다른 채널·제작 유형과 교차 비교할 고조회 영상</td><td>7</td></tr><tr><td>합계</td><td>기존 21편과 영상 중복 없음</td><td><b>21</b></td></tr></tbody></table></div>
+<p>기존 10개 이하 조건을 엄격하게 유지하면 추가 B그룹은 조회수가 수백~수천 회인 영상까지 들어갑니다. 이번에는 수익을 중시하신다는 요청에 따라 일부 후보의 공개 영상 수 조건을 완화하고, 해당 후보를 명시하겠습니다.</p>
+<h3><b>🔴 A그룹: 반복 고수익 채널 추가 7편</b></h3>
+<p><b>채널 월 추정 수익순으로 정렬했습니다.</b> 금액 단위는 모두 원화입니다.</p>
+<div class="tw"><table><thead><tr><th>순위</th><th>채널 및 영상 바로보기</th><th>조회수</th><th>월 추정 수익</th><th>편당 추정 수익</th><th>난이도</th></tr></thead><tbody><tr><td>1</td><td>일본 응원단 · <a href="https://www.youtube.com/watch?v=Fo2k6EzwY-Y&amp;utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer" data-vid="Fo2k6EzwY-Y">후지산에서 조난당한 중국인</a></td><td>101만</td><td><b>1억 2,869만</b></td><td>201만</td><td>3/5</td></tr><tr><td>2</td><td>경제상담소 · <a href="https://www.youtube.com/watch?v=H7WrYR5vmzA&amp;utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer" data-vid="H7WrYR5vmzA">한국에서 몰락한 명품 브랜드 TOP7</a></td><td>312만</td><td><b>4,353만</b></td><td>623만</td><td>3/5</td></tr><tr><td>3</td><td>JUJUWORLD · <a href="https://www.youtube.com/watch?v=fpEZVSEa1Ec&amp;utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer" data-vid="fpEZVSEa1Ec">북한 군인의 첫 일본 방문</a></td><td>421만</td><td><b>4,290만</b></td><td>841만</td><td>5/5</td></tr><tr><td>4</td><td>즌다 탐험대 · <a href="https://www.youtube.com/watch?v=RvYcEy4b19I&amp;utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer" data-vid="RvYcEy4b19I">중국 BYD 자동차 논란</a></td><td>124만</td><td><b>3,015만</b></td><td>248만</td><td>4/5</td></tr><tr><td>5</td><td>이슈한바퀴 · <a href="https://www.youtube.com/watch?v=no61XpMBelM&amp;utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer" data-vid="no61XpMBelM">일본에서 외면받은 대만 투수와 한국 한화</a></td><td>94만</td><td><b>1,670만</b></td><td>188만</td><td>4/5</td></tr><tr><td>6</td><td>たのしみTV · <a href="https://www.youtube.com/watch?v=M8z3ga3OXR8&amp;utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer" data-vid="M8z3ga3OXR8">일본을 떠나는 한국인이 전한 마지막 말</a></td><td>225만</td><td><b>1,193만</b></td><td>450만</td><td>4/5</td></tr><tr><td>7</td><td>한류왕 · <a href="https://www.youtube.com/watch?v=rzY2S1nsQ4A&amp;utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer" data-vid="rzY2S1nsQ4A">한국 휴게소 화장실에 놀란 벨기에 가족</a></td><td>212만</td><td><b>1,047만</b></td><td>423만</td><td>3/5</td></tr></tbody></table></div>
+<p><b>A그룹 채널 월 추정 수익</b></p>
+<p>블링 최근 30일 롱폼 추정치</p>
+<p>일본 응원단</p>
+<p>12,869만 원</p>
+<p>경제상담소</p>
+<p>4,353만 원</p>
+<p>JUJUWORLD</p>
+<p>4,290만 원</p>
+<p>즌다 탐험대</p>
+<p>3,015만 원</p>
+<p>이슈한바퀴</p>
+<p>1,670만 원</p>
+<p>たのしみTV</p>
+<p>1,193만 원</p>
+<p>한류왕</p>
+<p>1,047만 원</p>
+<p> A그룹 신규 7편 복사</p>
+<div class="tw"><table><thead><tr><th>채널</th><th>구독자</th><th>공개 영상</th><th>구독자 대비 조회</th><th>일평균 조회</th></tr></thead><tbody><tr><td>일본 응원단</td><td>78,700</td><td>293</td><td>12.8배</td><td>335,174</td></tr><tr><td>경제상담소</td><td>45,800</td><td>115</td><td>68.1배</td><td>62,338</td></tr><tr><td>JUJUWORLD</td><td>698,000</td><td>654</td><td>6배</td><td>110,692</td></tr><tr><td>즌다 탐험대</td><td>152,000</td><td>469</td><td>8.2배</td><td>14,078</td></tr><tr><td>이슈한바퀴</td><td>3,680</td><td>232</td><td>255.5배</td><td>36,156</td></tr><tr><td>たのしみTV</td><td>98,200</td><td>238</td><td>22.9배</td><td>2,777</td></tr><tr><td>한류왕</td><td>12,800</td><td>64</td><td>165.4배</td><td>22,280</td></tr></tbody></table></div>
+<p>JUJUWORLD는 직접 출연형이고, たのしみTV의 선정 영상은 2024년 게시된 과거 성공작입니다. 수익은 크지만 최신 성장성과 자동화 제작 가능성은 구분해야 합니다.</p>
+<h3><b>🟡 B그룹: 신생 고수익 잠재력 추가 7편</b></h3>
+<p>이번에 새롭게 주목할 채널은 **核心のジャパン(핵심 JAPAN)**과 **鳥肌ジャパン(소름 JAPAN)**입니다.</p>
+<div class="tw"><table><thead><tr><th>순위</th><th>채널 및 영상 바로보기</th><th>조회수</th><th>편당 추정</th><th>월 8편 모델</th></tr></thead><tbody><tr><td>1</td><td>核心のジャパン · <a href="https://www.youtube.com/watch?v=NAQXPYPaC_U&amp;utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer" data-vid="NAQXPYPaC_U">일본 여행객을 비판한 중국인 이야기</a></td><td>104만</td><td><b>208만</b></td><td>92만</td></tr><tr><td>2</td><td>鳥肌ジャパン · <a href="https://www.youtube.com/watch?v=EYTYtD_aw2g&amp;utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer" data-vid="EYTYtD_aw2g">퀸의 일본 공연과 관객 떼창</a></td><td>63.6만</td><td><b>127만</b></td><td>128만</td></tr><tr><td>3</td><td>개묘한세상 · <a href="https://www.youtube.com/watch?v=VpYAfInd-dU&amp;utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer" data-vid="VpYAfInd-dU">한국 역사 드라마와 중국 반응</a></td><td>40만</td><td><b>80만</b></td><td>16만</td></tr><tr><td>4</td><td>世界朝刊 · <a href="https://www.youtube.com/watch?v=QvtKzowsbWA&amp;utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer" data-vid="QvtKzowsbWA">APEC에서 일본과 중국의 관계</a></td><td>38.8만</td><td><b>78만</b></td><td>1.1만</td></tr><tr><td>5</td><td>Japan魂 · <a href="https://www.youtube.com/watch?v=ylO0gjrzr8c&amp;utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer" data-vid="ylO0gjrzr8c">일본의 종교문화에 놀란 세계</a></td><td>19.2만</td><td>38만</td><td>27만</td></tr><tr><td>6</td><td>ここ、日本 · <a href="https://www.youtube.com/watch?v=8HXJxyzeODo&amp;utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer" data-vid="8HXJxyzeODo">교토의 청결함에 감동한 외국인</a></td><td>15.9만</td><td>32만</td><td>미산정</td></tr><tr><td>7</td><td>日本旅のおすそわけ · <a href="https://www.youtube.com/watch?v=_0QGGa-ov4o&amp;utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer" data-vid="_0QGGa-ov4o">시부야에 처음 방문한 뉴욕 커플</a></td><td>6.2만</td><td>12만</td><td>4.8만</td></tr></tbody></table></div>
+<h4><b>신생 채널 성장성 비교</b></h4>
+<div class="tw"><table><thead><tr><th>채널</th><th>개설 경과</th><th>공개 영상</th><th>구독자</th><th>조회 배율</th><th>일평균 조회</th></tr></thead><tbody><tr><td>核心のジャパン</td><td>83일</td><td>39</td><td>2,490</td><td>418배</td><td>38,571</td></tr><tr><td>鳥肌ジャパン</td><td>24일</td><td>28</td><td>2,750</td><td>231배</td><td><b>79,445</b></td></tr><tr><td>개묘한세상</td><td>89일</td><td>49</td><td>791</td><td>506배</td><td>36,377</td></tr><tr><td>世界朝刊</td><td>19일</td><td>22</td><td>1,530</td><td>254배</td><td><b>64,654</b></td></tr><tr><td>Japan魂</td><td>44일</td><td>33</td><td>2,360</td><td>81배</td><td>10,667</td></tr><tr><td>ここ、日本</td><td>31일</td><td>17</td><td>271</td><td><b>587배</b></td><td>8,377</td></tr><tr><td>日本旅のおすそわけ</td><td>8일</td><td>9</td><td>156</td><td>398배</td><td>15,539</td></tr></tbody></table></div>
+<p><b>B그룹 일평균 조회수</b></p>
+<p>鳥肌ジャパン</p>
+<p>79,445회</p>
+<p>世界朝刊</p>
+<p>64,654회</p>
+<p>核心のジャパン</p>
+<p>38,571회</p>
+<p>개묘한세상</p>
+<p>36,377회</p>
+<p>日本旅のおすそわけ</p>
+<p>15,539회</p>
+<p>Japan魂</p>
+<p>10,667회</p>
+<p>ここ、日本</p>
+<p>8,377회</p>
+<p> B그룹 신규 7편 복사</p>
+<p>7편 모두 개설 90일 이내이며 구독자 3,000명 미만입니다. 다만 공개 영상 10개 이하 조건을 충족하는 것은 B7뿐입니다. B1~B6는 수익 잠재력을 우선하여 공개 영상 50개 이하로 완화했습니다.</p>
+<p>특히 世界朝刊은 한 편의 조회수는 높지만 최근 표본 중앙값이 698회에 불과합니다. <b>일회성 대박과 반복 고수익을 혼동하면 안 되는 대표 사례</b>입니다.</p>
+<h3><b>🟢 C그룹: 고수익 콘텐츠 교차 검증용 추가 7편</b></h3>
+<p>이번에는 지난번처럼 같은 채널에 집중하지 않고 서로 다른 7개 채널을 선정했습니다. 음식·질서·교통·기술·관광 등의 소재를 비교하기 좋습니다.</p>
+<div class="tw"><table><thead><tr><th>순위</th><th>채널 및 영상 바로보기</th><th>조회수</th><th>편당 추정 수익</th><th>월 모델 추정</th></tr></thead><tbody><tr><td>1</td><td>영국남자 · <a href="https://www.youtube.com/watch?v=lKuj43ySMds&amp;utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer" data-vid="lKuj43ySMds">한국 소고기를 처음 맛본 영국 셰프</a></td><td>403만</td><td><b>806만</b></td><td>867만</td></tr><tr><td>2</td><td>어썸코리아 · <a href="https://www.youtube.com/watch?v=Gg2jgCmsKj8&amp;utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer" data-vid="Gg2jgCmsKj8">외국인이 한국 고속도로에 놀라는 이유</a></td><td>270만</td><td><b>540만</b></td><td>4,482만</td></tr><tr><td>3</td><td>海外の反応フレンズ · <a href="https://www.youtube.com/watch?v=Z0R1wGDbDH4&amp;utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer" data-vid="Z0R1wGDbDH4">밤에 외출하지 못했던 영국 여성의 일본 방문</a></td><td>179만</td><td><b>357만</b></td><td>194만</td></tr><tr><td>4</td><td>MrFuji · <a href="https://www.youtube.com/watch?v=9MPP_KRje20&amp;utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer" data-vid="9MPP_KRje20">외국인이 놀란 일본의 평범한 일상</a></td><td>160만</td><td><b>319만</b></td><td>미산정</td></tr><tr><td>5</td><td>김샬롯 · <a href="https://www.youtube.com/watch?v=U0M00l-lzjM&amp;utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer" data-vid="U0M00l-lzjM">한국으로 관광객이 몰리는 이유</a></td><td>144만</td><td><b>287만</b></td><td>518만</td></tr><tr><td>6</td><td>世界は日本をどう思う · <a href="https://www.youtube.com/watch?v=Pe1ZFnSS_Fo&amp;utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer" data-vid="Pe1ZFnSS_Fo">미국 목공 기술자와 일본 공구</a></td><td>141만</td><td><b>282만</b></td><td>124만</td></tr><tr><td>7</td><td>한국찐반응 · <a href="https://www.youtube.com/watch?v=lLjZ8Bp6EiA&amp;utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer" data-vid="lLjZ8Bp6EiA">뉴욕에서 인기를 얻은 한국 김밥</a></td><td>97만</td><td><b>195만</b></td><td>390만</td></tr></tbody></table></div>
+<p><b>C그룹 영상별 누적 추정 수익</b></p>
+<p>한국 소고기</p>
+<p>806만 원</p>
+<p>한국 고속도로</p>
+<p>540만 원</p>
+<p>일본 치안</p>
+<p>357만 원</p>
+<p>일본 일상</p>
+<p>319만 원</p>
+<p>한국 관광</p>
+<p>287만 원</p>
+<p>일본 공구 기술</p>
+<p>282만 원</p>
+<p>뉴욕 김밥</p>
+<p>195만 원</p>
+<p> C그룹 신규 7편 복사</p>
+<p>C그룹은 기존 V5 훅·자막 분석, V12 원본 메타데이터 확인, 기존 영상 카탈로그를 대조했습니다. 일부 자료는 동일 원자료를 공유하므로 완전히 독립적인 수익 검증은 아닙니다.</p>
+<h3><b>💎 수익과 제작 재현성을 고려한 최우선 7편</b></h3>
+<h2><b>1</b></h2>
+<p><b>경제상담소</b></p>
+<p>명품 브랜드 몰락 TOP7</p>
+<p>난이도 3/5 · 잠정 평가</p>
+<h3><b>623만 원</b></h3>
+<p>영상 보기</p>
+<h2><b>2</b></h2>
+<p><b>한류왕</b></p>
+<p>한국 휴게소 화장실</p>
+<p>난이도 3/5 · 잠정 평가</p>
+<h3><b>423만 원</b></h3>
+<p>영상 보기</p>
+<h2><b>3</b></h2>
+<p><b>海外の反応フレンズ</b></p>
+<p>일본 치안·생활 감동</p>
+<p>난이도 3/5 · 잠정 평가</p>
+<h3><b>357만 원</b></h3>
+<p>영상 보기</p>
+<h2><b>4</b></h2>
+<p><b>世界は日本をどう思う</b></p>
+<p>일본 공구·기술 우수성</p>
+<p>난이도 4/5 · 잠정 평가</p>
+<h3><b>282만 원</b></h3>
+<p>영상 보기</p>
+<h2><b>5</b></h2>
+<p><b>즌다 탐험대</b></p>
+<p>자동차 산업 비교</p>
+<p>난이도 4/5 · 잠정 평가</p>
+<h3><b>248만 원</b></h3>
+<p>영상 보기</p>
+<h2><b>6</b></h2>
+<p><b>핵심 JAPAN</b></p>
+<p>외국인 반응·반전</p>
+<p>난이도 3/5 · 잠정 평가</p>
+<h3><b>208만 원</b></h3>
+<p>영상 보기</p>
+<h2><b>7</b></h2>
+<p><b>한국찐반응</b></p>
+<p>해외에서 인기 있는 한국 음식</p>
+<p>난이도 3/5 · 잠정 평가</p>
+<h3><b>195만 원</b></h3>
+<p>영상 보기</p>
+<h3><b>💰 21편 수익 계산기</b></h3>
+<p>조회수 1,000회당 가정 RPM 선택</p>
+<p>1,000원2,000원4,000원</p>
+<p>21편 전체 누적 조회 기반 추정 수익 합계</p>
+<h2><b>63,383,172원</b></h2>
+<p>A. 반복 고수익</p>
+<p><b>29,753,212원</b></p>
+<p>B. 신생 성장형</p>
+<p><b>5,756,760원</b></p>
+<p>C. 교차 검증형</p>
+<p><b>27,873,200원</b></p>
+<p>서로 다른 게시 기간의 누적 추정액을 합산한 것으로 월수익이나 앞으로 벌 수 있는 보장 수익이 아닙니다.</p>
+<p><b>추가 영상 21개 URL</b></p>
+<p>기존 21개와 중복 없음</p>
+<p> 신규 21개 전체 복사</p>
+<p><b>누적 선별 완료: 기존 21편 + 신규 21편 = 총 42편.</b></p>
+<p>조사 출처: <a href="https://geben147-create.github.io/youtube-longform-revenue/index.html?utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer">AISDE 운영 페이지</a> · <a href="https://github.com/geben147-create/youtube-longform-revenue/blob/main/lf-v5-lab.json?utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer">V5 연구</a> · <a href="https://github.com/geben147-create/youtube-longform-revenue/blob/main/lf-v11.json?utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer">V11 수익 연구</a> · <a href="https://github.com/geben147-create/youtube-longform-revenue/blob/main/lf-v12.json?utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer">V12 연구</a></p>
+<p>수익 산정은 A그룹 블링 추정치, B그룹 월 8편 제작 모델, C그룹 기존 V11·V12 월수익 모델을 구분해 적용했습니다. 실제 정산액은 전부 미확인이고, 실시간 재생 및 GitHub 신규 배포는 이번에 수행하지 않았습니다.</p></div></details><details><summary>📄 GPT 원문 (2차 · 글자 그대로 원본 텍스트)</summary><pre class="raw"># **💰 일본뽕·국뽕 수익 우선 추가 BEST 21편**
+
+앞서 제공한 21개 영상 ID를 전부 제외하고, 기존 AISDE 데이터를 다시 분석했습니다. 이번에는 **구독자 대비 조회수만 높은 영상보다 실제로 큰 매출을 기대할 만한 조회 규모와 반복 성과**를 우선합니다.
+
+| 그룹   | 추가 선별 기준                   | 편수     |
+| ---- | -------------------------- | ------ |
+| 🔴 A | 월 추정 수익이 높은 채널의 추가 성공작     | 7      |
+| 🟡 B | 신생·저구독 채널 중 수익 잠재력이 큰 영상   | 7      |
+| 🟢 C | 다른 채널·제작 유형과 교차 비교할 고조회 영상 | 7      |
+| 합계   | 기존 21편과 영상 중복 없음           | **21** |
+
+기존 10개 이하 조건을 엄격하게 유지하면 추가 B그룹은 조회수가 수백\~수천 회인 영상까지 들어갑니다. 이번에는 수익을 중시하신다는 요청에 따라 일부 후보의 공개 영상 수 조건을 완화하고, 해당 후보를 명시하겠습니다.
+
+## **🔴 A그룹: 반복 고수익 채널 추가 7편**
+
+**채널 월 추정 수익순으로 정렬했습니다.** 금액 단위는 모두 원화입니다.
+
+| 순위 | 채널 및 영상 바로보기                                                                                          | 조회수  | 월 추정 수익       | 편당 추정 수익 | 난이도 |
+| -- | ----------------------------------------------------------------------------------------------------- | ---- | ------------- | -------- | --- |
+| 1  | 일본 응원단 · [후지산에서 조난당한 중국인](https://www.youtube.com/watch?v=Fo2k6EzwY-Y\&amp;utm_source=chatgpt.com)        | 101만 | **1억 2,869만** | 201만     | 3/5 |
+| 2  | 경제상담소 · [한국에서 몰락한 명품 브랜드 TOP7](https://www.youtube.com/watch?v=H7WrYR5vmzA\&amp;utm_source=chatgpt.com)   | 312만 | **4,353만**    | 623만     | 3/5 |
+| 3  | JUJUWORLD · [북한 군인의 첫 일본 방문](https://www.youtube.com/watch?v=fpEZVSEa1Ec\&amp;utm_source=chatgpt.com)     | 421만 | **4,290만**    | 841만     | 5/5 |
+| 4  | 즌다 탐험대 · [중국 BYD 자동차 논란](https://www.youtube.com/watch?v=RvYcEy4b19I\&amp;utm_source=chatgpt.com)         | 124만 | **3,015만**    | 248만     | 4/5 |
+| 5  | 이슈한바퀴 · [일본에서 외면받은 대만 투수와 한국 한화](https://www.youtube.com/watch?v=no61XpMBelM\&amp;utm_source=chatgpt.com) | 94만  | **1,670만**    | 188만     | 4/5 |
+| 6  | たのしみTV · [일본을 떠나는 한국인이 전한 마지막 말](https://www.youtube.com/watch?v=M8z3ga3OXR8\&amp;utm_source=chatgpt.com) | 225만 | **1,193만**    | 450만     | 4/5 |
+| 7  | 한류왕 · [한국 휴게소 화장실에 놀란 벨기에 가족](https://www.youtube.com/watch?v=rzY2S1nsQ4A\&amp;utm_source=chatgpt.com)    | 212만 | **1,047만**    | 423만     | 3/5 |
+
+**A그룹 채널 월 추정 수익**
+
+블링 최근 30일 롱폼 추정치
+
+일본 응원단
+
+12,869만 원
+
+경제상담소
+
+4,353만 원
+
+JUJUWORLD
+
+4,290만 원
+
+즌다 탐험대
+
+3,015만 원
+
+이슈한바퀴
+
+1,670만 원
+
+たのしみTV
+
+1,193만 원
+
+한류왕
+
+1,047만 원
+
+&amp;#x20;A그룹 신규 7편 복사
+
+| 채널        | 구독자     | 공개 영상 | 구독자 대비 조회 | 일평균 조회  |
+| --------- | ------- | ----- | --------- | ------- |
+| 일본 응원단    | 78,700  | 293   | 12.8배     | 335,174 |
+| 경제상담소     | 45,800  | 115   | 68.1배     | 62,338  |
+| JUJUWORLD | 698,000 | 654   | 6배        | 110,692 |
+| 즌다 탐험대    | 152,000 | 469   | 8.2배      | 14,078  |
+| 이슈한바퀴     | 3,680   | 232   | 255.5배    | 36,156  |
+| たのしみTV    | 98,200  | 238   | 22.9배     | 2,777   |
+| 한류왕       | 12,800  | 64    | 165.4배    | 22,280  |
+
+JUJUWORLD는 직접 출연형이고, たのしみTV의 선정 영상은 2024년 게시된 과거 성공작입니다. 수익은 크지만 최신 성장성과 자동화 제작 가능성은 구분해야 합니다.
+
+## **🟡 B그룹: 신생 고수익 잠재력 추가 7편**
+
+이번에 새롭게 주목할 채널은 \*\*核心のジャパン(핵심 JAPAN)\*\*과 \*\*鳥肌ジャパン(소름 JAPAN)\*\*입니다.
+
+| 순위 | 채널 및 영상 바로보기                                                                                         | 조회수   | 편당 추정    | 월 8편 모델 |
+| -- | ---------------------------------------------------------------------------------------------------- | ----- | -------- | ------- |
+| 1  | 核心のジャパン · [일본 여행객을 비판한 중국인 이야기](https://www.youtube.com/watch?v=NAQXPYPaC_U\&amp;utm_source=chatgpt.com) | 104만  | **208만** | 92만     |
+| 2  | 鳥肌ジャパン · [퀸의 일본 공연과 관객 떼창](https://www.youtube.com/watch?v=EYTYtD_aw2g\&amp;utm_source=chatgpt.com)      | 63.6만 | **127만** | 128만    |
+| 3  | 개묘한세상 · [한국 역사 드라마와 중국 반응](https://www.youtube.com/watch?v=VpYAfInd-dU\&amp;utm_source=chatgpt.com)      | 40만   | **80만**  | 16만     |
+| 4  | 世界朝刊 · [APEC에서 일본과 중국의 관계](https://www.youtube.com/watch?v=QvtKzowsbWA\&amp;utm_source=chatgpt.com)      | 38.8만 | **78만**  | 1.1만    |
+| 5  | Japan魂 · [일본의 종교문화에 놀란 세계](https://www.youtube.com/watch?v=ylO0gjrzr8c\&amp;utm_source=chatgpt.com)      | 19.2만 | 38만      | 27만     |
+| 6  | ここ、日本 · [교토의 청결함에 감동한 외국인](https://www.youtube.com/watch?v=8HXJxyzeODo\&amp;utm_source=chatgpt.com)      | 15.9만 | 32만      | 미산정     |
+| 7  | 日本旅のおすそわけ · [시부야에 처음 방문한 뉴욕 커플](https://www.youtube.com/watch?v=_0QGGa-ov4o\&amp;utm_source=chatgpt.com) | 6.2만  | 12만      | 4.8만    |
+
+### **신생 채널 성장성 비교**
+
+| 채널        | 개설 경과 | 공개 영상 | 구독자   | 조회 배율    | 일평균 조회     |
+| --------- | ----- | ----- | ----- | -------- | ---------- |
+| 核心のジャパン   | 83일   | 39    | 2,490 | 418배     | 38,571     |
+| 鳥肌ジャパン    | 24일   | 28    | 2,750 | 231배     | **79,445** |
+| 개묘한세상     | 89일   | 49    | 791   | 506배     | 36,377     |
+| 世界朝刊      | 19일   | 22    | 1,530 | 254배     | **64,654** |
+| Japan魂    | 44일   | 33    | 2,360 | 81배      | 10,667     |
+| ここ、日本     | 31일   | 17    | 271   | **587배** | 8,377      |
+| 日本旅のおすそわけ | 8일    | 9     | 156   | 398배     | 15,539     |
+
+**B그룹 일평균 조회수**
+
+鳥肌ジャパン
+
+79,445회
+
+世界朝刊
+
+64,654회
+
+核心のジャパン
+
+38,571회
+
+개묘한세상
+
+36,377회
+
+日本旅のおすそわけ
+
+15,539회
+
+Japan魂
+
+10,667회
+
+ここ、日本
+
+8,377회
+
+&amp;#x20;B그룹 신규 7편 복사
+
+7편 모두 개설 90일 이내이며 구독자 3,000명 미만입니다. 다만 공개 영상 10개 이하 조건을 충족하는 것은 B7뿐입니다. B1\~B6는 수익 잠재력을 우선하여 공개 영상 50개 이하로 완화했습니다.
+
+특히 世界朝刊은 한 편의 조회수는 높지만 최근 표본 중앙값이 698회에 불과합니다. **일회성 대박과 반복 고수익을 혼동하면 안 되는 대표 사례**입니다.
+
+## **🟢 C그룹: 고수익 콘텐츠 교차 검증용 추가 7편**
+
+이번에는 지난번처럼 같은 채널에 집중하지 않고 서로 다른 7개 채널을 선정했습니다. 음식·질서·교통·기술·관광 등의 소재를 비교하기 좋습니다.
+
+| 순위 | 채널 및 영상 바로보기                                                                                                | 조회수  | 편당 추정 수익 | 월 모델 추정 |
+| -- | ----------------------------------------------------------------------------------------------------------- | ---- | -------- | ------- |
+| 1  | 영국남자 · [한국 소고기를 처음 맛본 영국 셰프](https://www.youtube.com/watch?v=lKuj43ySMds\&amp;utm_source=chatgpt.com)           | 403만 | **806만** | 867만    |
+| 2  | 어썸코리아 · [외국인이 한국 고속도로에 놀라는 이유](https://www.youtube.com/watch?v=Gg2jgCmsKj8\&amp;utm_source=chatgpt.com)         | 270만 | **540만** | 4,482만  |
+| 3  | 海外の反応フレンズ · [밤에 외출하지 못했던 영국 여성의 일본 방문](https://www.youtube.com/watch?v=Z0R1wGDbDH4\&amp;utm_source=chatgpt.com) | 179만 | **357만** | 194만    |
+| 4  | MrFuji · [외국인이 놀란 일본의 평범한 일상](https://www.youtube.com/watch?v=9MPP_KRje20\&amp;utm_source=chatgpt.com)          | 160만 | **319만** | 미산정     |
+| 5  | 김샬롯 · [한국으로 관광객이 몰리는 이유](https://www.youtube.com/watch?v=U0M00l-lzjM\&amp;utm_source=chatgpt.com)               | 144만 | **287만** | 518만    |
+| 6  | 世界は日本をどう思う · [미국 목공 기술자와 일본 공구](https://www.youtube.com/watch?v=Pe1ZFnSS_Fo\&amp;utm_source=chatgpt.com)        | 141만 | **282만** | 124만    |
+| 7  | 한국찐반응 · [뉴욕에서 인기를 얻은 한국 김밥](https://www.youtube.com/watch?v=lLjZ8Bp6EiA\&amp;utm_source=chatgpt.com)            | 97만  | **195만** | 390만    |
+
+**C그룹 영상별 누적 추정 수익**
+
+한국 소고기
+
+806만 원
+
+한국 고속도로
+
+540만 원
+
+일본 치안
+
+357만 원
+
+일본 일상
+
+319만 원
+
+한국 관광
+
+287만 원
+
+일본 공구 기술
+
+282만 원
+
+뉴욕 김밥
+
+195만 원
+
+&amp;#x20;C그룹 신규 7편 복사
+
+C그룹은 기존 V5 훅·자막 분석, V12 원본 메타데이터 확인, 기존 영상 카탈로그를 대조했습니다. 일부 자료는 동일 원자료를 공유하므로 완전히 독립적인 수익 검증은 아닙니다.
+
+## **💎 수익과 제작 재현성을 고려한 최우선 7편**
+
+# **1**
+
+**경제상담소**
+
+명품 브랜드 몰락 TOP7
+
+난이도 3/5 · 잠정 평가
+
+## **623만 원**
+
+영상 보기
+
+# **2**
+
+**한류왕**
+
+한국 휴게소 화장실
+
+난이도 3/5 · 잠정 평가
+
+## **423만 원**
+
+영상 보기
+
+# **3**
+
+**海外の反応フレンズ**
+
+일본 치안·생활 감동
+
+난이도 3/5 · 잠정 평가
+
+## **357만 원**
+
+영상 보기
+
+# **4**
+
+**世界は日本をどう思う**
+
+일본 공구·기술 우수성
+
+난이도 4/5 · 잠정 평가
+
+## **282만 원**
+
+영상 보기
+
+# **5**
+
+**즌다 탐험대**
+
+자동차 산업 비교
+
+난이도 4/5 · 잠정 평가
+
+## **248만 원**
+
+영상 보기
+
+# **6**
+
+**핵심 JAPAN**
+
+외국인 반응·반전
+
+난이도 3/5 · 잠정 평가
+
+## **208만 원**
+
+영상 보기
+
+# **7**
+
+**한국찐반응**
+
+해외에서 인기 있는 한국 음식
+
+난이도 3/5 · 잠정 평가
+
+## **195만 원**
+
+영상 보기
+
+## **💰 21편 수익 계산기**
+
+조회수 1,000회당 가정 RPM 선택
+
+1,000원2,000원4,000원
+
+21편 전체 누적 조회 기반 추정 수익 합계
+
+# **63,383,172원**
+
+A. 반복 고수익
+
+**29,753,212원**
+
+B. 신생 성장형
+
+**5,756,760원**
+
+C. 교차 검증형
+
+**27,873,200원**
+
+서로 다른 게시 기간의 누적 추정액을 합산한 것으로 월수익이나 앞으로 벌 수 있는 보장 수익이 아닙니다.
+
+**추가 영상 21개 URL**
+
+기존 21개와 중복 없음
+
+&amp;#x20;신규 21개 전체 복사
+
+**누적 선별 완료: 기존 21편 + 신규 21편 = 총 42편.**
+
+조사 출처: [AISDE 운영 페이지](https://geben147-create.github.io/youtube-longform-revenue/index.html?utm_source=chatgpt.com) · [V5 연구](https://github.com/geben147-create/youtube-longform-revenue/blob/main/lf-v5-lab.json?utm_source=chatgpt.com) · [V11 수익 연구](https://github.com/geben147-create/youtube-longform-revenue/blob/main/lf-v11.json?utm_source=chatgpt.com) · [V12 연구](https://github.com/geben147-create/youtube-longform-revenue/blob/main/lf-v12.json?utm_source=chatgpt.com)
+
+수익 산정은 A그룹 블링 추정치, B그룹 월 8편 제작 모델, C그룹 기존 V11·V12 월수익 모델을 구분해 적용했습니다. 실제 정산액은 전부 미확인이고, 실시간 재생 및 GitHub 신규 배포는 이번에 수행하지 않았습니다.</pre></details></section>
+</main>
+<script src="lf-gpt42-ui.js"></script></body></html>
